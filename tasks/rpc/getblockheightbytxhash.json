@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+	  "jsonrpc": "2.0",
+	  "method": "getblockheightbytxhash",
+	  "params": ["c453557af780fe403db6e954ebc9adeafd5818c596c6c60e5cc42851c5b41884"],
+	  "id": 1
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

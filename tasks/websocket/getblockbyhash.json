@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+		"Action": "getblockbyhash",
+    "Version": "1.0.0",
+    "Raw": "0",
+    "Hash": "7c3e38afb62db28c7360af7ef3c1baa66aeec27d7d2f60cd22c13ca85b2fd4f3"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

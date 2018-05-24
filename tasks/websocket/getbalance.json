@@ -1,0 +1,10 @@
+{
+	"REQUEST": {
+		"Action": "getbalance",
+    "Version": "1.0.0",
+    "Addr": "TA63xZXqdPLtDeznWQ6Ns4UsbqprLrrLJk"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}
