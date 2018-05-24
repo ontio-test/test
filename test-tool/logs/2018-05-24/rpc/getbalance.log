@@ -1,0 +1,29 @@
+[-------------------------------]
+[ RUN      ] rpc.getbalance
+[ PARAMS   ]{
+    "REQUEST": {
+        "method": "getbalance",
+        "id": 1,
+        "jsonrpc": "2.0",
+        "params": [
+            "TA5uYzLU2vBvvfCMxyV2sdzc9kPqJzGZWq"
+        ]
+    },
+    "RESPONSE": {
+        "error": 0
+    }
+}
+[ THREAD 0 ]
+[ RESULT   ]{
+    "id": 1,
+    "desc": "SUCCESS",
+    "jsonpc": "2.0",
+    "result": {
+        "ong": "0",
+        "ont": "0"
+    },
+    "error": 0
+}
+[ OK       ] rpc.getbalance (51 ms)
+[-------------------------------]
+

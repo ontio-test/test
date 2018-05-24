@@ -1,0 +1,27 @@
+[-------------------------------]
+[ RUN      ] websocket.getbalance
+[ PARAMS   ]{
+    "RESPONSE": {
+        "error": 0
+    },
+    "REQUEST": {
+        "Action": "getbalance",
+        "Version": "1.0.0",
+        "Addr": "TA63xZXqdPLtDeznWQ6Ns4UsbqprLrrLJk"
+    }
+}
+[ THREAD 0 ]
+[ RESULT   ]{
+    "Action": "getbalance",
+    "Result": {
+        "ont": "0",
+        "ong": "0"
+    },
+    "Id": null,
+    "Desc": "SUCCESS",
+    "Error": 0,
+    "Version": "1.0.0"
+}
+[ OK       ] websocket.getbalance (76 ms)
+[-------------------------------]
+
