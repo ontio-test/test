@@ -1,4 +1,0 @@
-TASK NAME, STATE, LOG PATH
-rpc.getbalance, pass, rpc/getbalance.log
-restful.getbalance, fail, restful/getbalance.log
-websocket.getbalance, pass, websocket/getbalance.log

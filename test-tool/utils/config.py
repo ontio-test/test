@@ -27,6 +27,8 @@ class Config():
 
 	THREAD = 1
 
+	SERVICES = cfg_json["NODES"]
+
 	RPC_HEADERS = {'content-type': 'application/json'}
 	#RPC CONFIG
 	RPC_URL = cfg_json["RPC_URL"]
