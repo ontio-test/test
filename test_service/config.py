@@ -2,7 +2,7 @@
 
 class Configure():
 
-    PORT = 24008
+    PORT = 23635
 
     # path
     LEVELDB_PATH_STATES = '../Chain/states'
