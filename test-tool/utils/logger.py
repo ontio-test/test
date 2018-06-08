@@ -19,27 +19,27 @@ class Logger():
 	def __del__(self):
 		self.collectionfile.close()
 
-	def open(self, filepath):
+	def open(self, filepath, title = None):
 		logdir = self.prefix + "/" + os.path.dirname(filepath)
 		if not os.path.exists(logdir):
 			os.makedirs(logdir)
 
 		self.logpath = self.prefix + "/" + filepath
 		self.logfile = open(self.logpath, "w")  # 打开文件
-
+		self.logtitle = title
 	#write
 	def print(self, str):
 		print(str)
 		self.logfile.write(str + "\n")
 
-	def close(self, name = None, result = None):
+	def close(self, result = None, msg = None):
 		if not result is None:
 			if result:
 				self.print("[ OK       ] ")
-				self.append_record(name, "pass", self.logpath)
+				self.append_record(self.logtitle, "pass", self.logpath)
 			else:
 				self.print("[ Failed   ] ")
-				self.append_record(name, "fail", self.logpath)
+				self.append_record(self.logtitle, "fail", self.logpath)
 		self.logfile.close()
 
 	def append_record(self, name, status, logpath):

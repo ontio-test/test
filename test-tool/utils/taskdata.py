@@ -6,26 +6,25 @@ import json
 from utils.config import Config
 
 class Task:
-	def __init__(self, name, ijson):
-		self._path = ""
+	def __init__(self, path = "", name = "", ijson = None):
 		self._type = "rpc"
-		if "type" in self._taskjson:
-			self._type = self._taskjson["type"]
+		self._path = path
 		self._name = name
 		self._taskjson = ijson
-		self._data = ijson
+		self._nodeindex = None
 
-	def __init__(self, path = ""):
-		self._path = path
-		self._type = "rpc"
-		if self._path:
+		if self._path is not "":
 			self._taskjson = self.load_cfg(self._path)
 			self._name = os.path.basename(self._path).replace('.json', '')
 
 		if self._taskjson:
-			if "type" in self._taskjson:
-				self._type = self._taskjson["type"]
-			self._data = self._taskjson
+			for key in self._taskjson:
+				if key.upper() == "TYPE":
+					self._type = self._taskjson[key]
+				if key.upper() == "NODE_INDEX":
+					self._nodeindex = self._taskjson[key]
+
+		self._data = self._taskjson
 
 	def path(self):
 		return self._path
@@ -50,6 +49,15 @@ class Task:
 
 	def to_json(self):
 		return self._taskjson
+
+	def request(self):
+		return self._data["REQUEST"]
+
+	def set_request(self, request):
+		self._data["REQUEST"] = request
+
+	def node_index(self):
+		return self._nodeindex
 
 	def load_cfg(self, cfg):
 		if ".json" not in cfg:

@@ -1,0 +1,20 @@
+{
+	"REQUEST": {
+	   "Qid":"t",
+	  "Method":"signativeinvoketx",
+	  "Params":{
+		  "gas_price":0,
+		  "gas_limit":1000000000,
+		  "address":"ff00000000000000000000000000000000000003",
+		  "method":"regIDWithPublicKey",
+		  "version":0,
+      "params":[
+            "did:ont:TA72EvegmAoYGhakEKmyrNbckzy5LGjLk7",
+            "12020388e9f62a0d5c070d67b94bd7ec17957a950f953a401e2a2323f58d72431f3541"
+			]
+	  }
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}
