@@ -1,0 +1,62 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_code": 0,
+        "method": "signeovminvoketx",
+        "error_info": "",
+        "result": {
+            "signed_tx": "00d1bcf5205b000000000000000000ca9a3b0000000017d7f4b65306825be29ec381d234bf7c9d6f1f231d0051c1046e616d6567022303bbe7c88244ccf8025b3d67a8afad7d2a00000142410136c705feb46911513fa4678f2db5dfdeab513309da935309f4f5013c07250d1360571eb3291ec8356b7e011e63719ac2a443ab3e9e1334eaa36e06eef0680f4e252312020224724fa74a4eb8888df7152fa8f5fa0d74b10dac3f8cf41e3f9fecf65452c0e7ac"
+        },
+        "qid": "t"
+    },
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Params": {
+            "params": [
+                {
+                    "type": "string",
+                    "value": "name"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": ""
+                        }
+                    ]
+                }
+            ],
+            "gas_limit": 1000000000,
+            "address": "022303bbe7c88244ccf8025b3d67a8afad7d2a00",
+            "gas_price": 0,
+            "version": 1
+        },
+        "Qid": "t"
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "error": 0,
+        "jsonpc": "2.0",
+        "id": 1,
+        "result": {
+            "State": 1,
+            "Gas": 30000,
+            "Result": "4f4e4720546f6b656e",
+            "Result String": "ONG Token"
+        },
+        "desc": "SUCCESS"
+    },
+    "REQUEST": {
+        "params": [
+            "00d1bcf5205b000000000000000000ca9a3b0000000017d7f4b65306825be29ec381d234bf7c9d6f1f231d0051c1046e616d6567022303bbe7c88244ccf8025b3d67a8afad7d2a00000142410136c705feb46911513fa4678f2db5dfdeab513309da935309f4f5013c07250d1360571eb3291ec8356b7e011e63719ac2a443ab3e9e1334eaa36e06eef0680f4e252312020224724fa74a4eb8888df7152fa8f5fa0d74b10dac3f8cf41e3f9fecf65452c0e7ac",
+            1
+        ],
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "sendrawtransaction"
+    }
+}
+[ OK       ] 

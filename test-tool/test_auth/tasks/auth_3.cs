@@ -24,7 +24,7 @@ namespace Example
 
         struct assignFuncsToRoleParam
         {
-            public string ContractAddr;
+            public byte[] ContractAddr;
             public byte[] AdminOntID;
             public byte[] Role;
             public object[] Funcs;
@@ -66,20 +66,16 @@ namespace Example
             public byte[] Role;
             public int KeyNo;
         }
-        
-        public struct functions
-        {
-            public string Functions;
-        }
-        
 
+        //did:ont:
+		 public static readonly byte[] mAdminOntID = { 
+                };
 
-
-        public static object Main(string operation, object[] token, object[] args)
+        public static object Main(string operation, object[] token, params object[] args)
         {
             if (operation == "initContractAdmin")
             {
-                return InitContractAdmin();
+                return InitContractAdmin(args);
             }
 
             if (operation == "A")
@@ -105,13 +101,8 @@ namespace Example
 
                 return InvokeTransfer(args);   
             }
-
-            if (operation == "assignFuncsToRole")
-            {
-                return InvokeAssignFuncsToRole(args);   
-            }
     
-            return "222";
+            return "111";
         }
 
         public static object A()
@@ -138,25 +129,21 @@ namespace Example
             return Native.Invoke(0, address, "transfer", param);
         }
 
-        public static object InvokeAssignFuncsToRole(object[] args)
+        public static byte[] InvokeAssignFuncsToRole(object[] args)
         {
    
             byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6 };
-            
-            string contractAddr = (string)args[0];
-            
-            byte[] adminOntID = (byte[])args[1];
-            
-            byte[] role = (byte[])args[2];
-            
+            byte[] contractAddr = (byte[])args[1];
+            byte[] adminOntID = (byte[])args[2];
+
             object[] funcs = new object[1];
-            funcs[0] = new functions{Functions = (string)args[3]};
-            
+            funcs = (object[])args[3];
+
             int keyNo = (int)args[4];
             
             object[] param = new object[1];
-            param[0] = new assignFuncsToRoleParam { ContractAddr = contractAddr, AdminOntID = adminOntID, Role = role, Funcs = funcs, KeyNo = keyNo};
-            
+            param[0] = new assignFuncsToRoleParam { ContractAddr = contractAddr, AdminOntID = adminOntID, Funcs = funcs, KeyNo = keyNo};
+
             return Native.Invoke(0, address, "assignFuncsToRole", param);
         }
 
@@ -169,7 +156,7 @@ namespace Example
 
             object[] persons = new object[1];
             persons = (object[])args[3];
-            
+
             int keyNo = (int)args[4];
             
             object[] param = new object[1];
@@ -214,20 +201,14 @@ namespace Example
             return Native.Invoke(0, address, "withdraw", param);
         }
 
-                //did:ont:
-		public static readonly byte[] mAdminOntID = { 
-                0x64, 0x69, 0x64, 0x3a, 0x6f, 0x6e, 0x74, 0x3a,
-				0x41, 0x4b, 0x37, 0x77, 0x7a, 0x6d, 0x6b, 0x64, 
-                0x67, 0x6a, 0x4b, 0x78, 0x62, 0x58, 0x41, 0x4a, 
-                0x42, 0x69, 0x61, 0x57, 0x39, 0x31, 0x59, 0x68, 
-                0x55, 0x6f, 0x6b, 0x54, 0x75, 0x39, 0x70, 0x61, 
-                0x35, 0x58};
-        public static object InitContractAdmin()
+        
+        public static object InitContractAdmin(object[] args)
         {
             byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6 };
-            initContractAdminParam param = new initContractAdminParam { AdminOntID = mAdminOntID };
-            byte[] ret = Native.Invoke(0, address, "initContractAdmin", param);
-            return ret[0] == 1;
+            object[] param = new object[1];
+            param[0] = new initContractAdminParam { AdminOntID = mAdminOntID };
+            
+            return Native.Invoke(0, address, "initContractAdmin", param);
         }
 
         public static bool VerifyToken(string operation, object[] token)

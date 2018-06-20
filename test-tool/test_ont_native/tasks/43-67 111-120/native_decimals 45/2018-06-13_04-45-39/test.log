@@ -1,0 +1,62 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_code": 0,
+        "error_info": "",
+        "result": {
+            "signed_tx": "00d174a1205b000000000000000000ca9a3b000000002aaa39310daba9a4cebd3a514c27d8a0b83479d5210051c108646563696d616c73671c576b0b913cdde0043c6115a2ee3a4b35c632a20001424101e0cb4bcd173555bdcf24958875c5884aa1236abd9e447472acf10858bb8d28364ec4c0c54fd6c5a82ac097b39b6b3314ee1be2cf8b48911a2232a2ac9dd54f8125231202026967e9c809d149f67c6142eb8d0e044029178a78fe9e8349663993f474e2fa30ac"
+        },
+        "method": "signeovminvoketx",
+        "qid": "t"
+    },
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "decimals"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": ""
+                        }
+                    ]
+                }
+            ],
+            "address": "1c576b0b913cdde0043c6115a2ee3a4b35c632a2",
+            "gas_price": 0,
+            "gas_limit": 1000000000
+        },
+        "Method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "jsonpc": "2.0",
+        "result": {
+            "Result String": "\u0001",
+            "Gas": 30000,
+            "State": 1,
+            "Result": "01"
+        },
+        "id": 1,
+        "desc": "SUCCESS",
+        "error": 0
+    },
+    "REQUEST": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "sendrawtransaction",
+        "params": [
+            "00d174a1205b000000000000000000ca9a3b000000002aaa39310daba9a4cebd3a514c27d8a0b83479d5210051c108646563696d616c73671c576b0b913cdde0043c6115a2ee3a4b35c632a20001424101e0cb4bcd173555bdcf24958875c5884aa1236abd9e447472acf10858bb8d28364ec4c0c54fd6c5a82ac097b39b6b3314ee1be2cf8b48911a2232a2ac9dd54f8125231202026967e9c809d149f67c6142eb8d0e044029178a78fe9e8349663993f474e2fa30ac",
+            1
+        ]
+    }
+}
+[ OK       ] 

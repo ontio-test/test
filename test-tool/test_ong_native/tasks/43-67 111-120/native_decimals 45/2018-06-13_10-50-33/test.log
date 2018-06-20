@@ -1,0 +1,62 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_code": 0,
+        "error_info": "",
+        "result": {
+            "signed_tx": "00d1f9f6205b000000000000000000ca9a3b0000000017d7f4b65306825be29ec381d234bf7c9d6f1f23210051c108646563696d616c736756f9f4c9b668749f50f57faf00cb99cb2547708e00014241010a764f03ee808d348ff443bb39de5674054cab5df253f818d19b152bd14513b0ef318c7d0b80cb6cb0d0d19aca050b0eb499a55678b0598ec2fc15aac4460d5b252312020224724fa74a4eb8888df7152fa8f5fa0d74b10dac3f8cf41e3f9fecf65452c0e7ac"
+        },
+        "qid": "t",
+        "method": "signeovminvoketx"
+    },
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_limit": 1000000000,
+            "address": "56f9f4c9b668749f50f57faf00cb99cb2547708e",
+            "version": 1,
+            "params": [
+                {
+                    "value": "decimals",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "",
+                            "type": "bytearray"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_price": 0
+        }
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "result": {
+            "Result String": "\t",
+            "Result": "09",
+            "Gas": 30000,
+            "State": 1
+        },
+        "error": 0,
+        "id": 1,
+        "desc": "SUCCESS",
+        "jsonpc": "2.0"
+    },
+    "REQUEST": {
+        "method": "sendrawtransaction",
+        "id": 1,
+        "params": [
+            "00d1f9f6205b000000000000000000ca9a3b0000000017d7f4b65306825be29ec381d234bf7c9d6f1f23210051c108646563696d616c736756f9f4c9b668749f50f57faf00cb99cb2547708e00014241010a764f03ee808d348ff443bb39de5674054cab5df253f818d19b152bd14513b0ef318c7d0b80cb6cb0d0d19aca050b0eb499a55678b0598ec2fc15aac4460d5b252312020224724fa74a4eb8888df7152fa8f5fa0d74b10dac3f8cf41e3f9fecf65452c0e7ac",
+            1
+        ],
+        "jsonrpc": "2.0"
+    }
+}
+[ OK       ] 

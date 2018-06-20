@@ -1,0 +1,58 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:7d0cd19e13a388af45af797fff87894cecb6d4ae
+  TxHash:2b08e6d6c5667b3ef7d4d42b109559f08a9121a0d641c173788148a10010eda8
+
+Tip:
+  Using './ontology info status 2b08e6d6c5667b3ef7d4d42b109559f08a9121a0d641c173788148a10010eda8' to query transaction status
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "gas_limit": 1000000000,
+            "address": "7d0cd19e13a388af45af797fff87894cecb6d4ae",
+            "version": 0,
+            "gas_price": 0,
+            "params": []
+        },
+        "Method": "signeovminvoketx"
+    },
+    "RESPONSE": {
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d1e720235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91567aed4b6ec4c8987ff7f79af45af88a3139ed10c7d00014140476d52a86de5fc43a5ade89aa64ee662a58a56b11930bad929b04aced8c8d58a3c270de8c7d76d296b58587e19049a98be090bf456061ed7867d9c3875433d6e232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "error_info": "",
+        "method": "signeovminvoketx",
+        "error_code": 0
+    },
+    "DEPLOY": true,
+    "CODE_PATH": "tasks/test.neo"
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "id": 1,
+        "params": [
+            "00d1e720235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91567aed4b6ec4c8987ff7f79af45af88a3139ed10c7d00014140476d52a86de5fc43a5ade89aa64ee662a58a56b11930bad929b04aced8c8d58a3c270de8c7d76d296b58587e19049a98be090bf456061ed7867d9c3875433d6e232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "jsonrpc": "2.0",
+        "method": "sendrawtransaction"
+    },
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "error": 0,
+        "result": {
+            "Result": "43b0c22a3de35055a007d796f6b5bba8648a4fd5",
+            "Gas": 30000,
+            "State": 1,
+            "Result String": "C\u00b0\u00c2*=\u00e3PU\u00a0\u0007\u00d7\u0096\u00f6\u00b5\u00bb\u00a8d\u008aO\u00d5"
+        },
+        "id": 1,
+        "jsonpc": "2.0"
+    }
+}
+[ OK       ] 

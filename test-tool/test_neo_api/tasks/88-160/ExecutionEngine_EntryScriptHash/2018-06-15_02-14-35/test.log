@@ -1,0 +1,58 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:b834e62aaa2f19ca988d697d4a0b51ed7b436a1f
+  TxHash:6aad2a32532685383d265b964ddb5c81f845c5f8d252114468d7a02a770f7c63
+
+Tip:
+  Using './ontology info status 6aad2a32532685383d265b964ddb5c81f845c5f8d252114468d7a02a770f7c63' to query transaction status
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_info": "",
+        "error_code": 0,
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d10b21235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a915671f6a437bed510b4a7d698d98ca192faa2ae634b800014140ab01ad314cc784196a38ab6b23fbb392a65321a7beaecfa6959c50b1cbcd2507fb3f57dbcdce29a14bcf961f7d7beb4c566e1f25255bdcbd9cb3bb73065f8ac5232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "method": "signeovminvoketx"
+    },
+    "REQUEST": {
+        "Params": {
+            "address": "b834e62aaa2f19ca988d697d4a0b51ed7b436a1f",
+            "params": [],
+            "version": 0,
+            "gas_price": 0,
+            "gas_limit": 1000000000
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    },
+    "DEPLOY": true,
+    "CODE_PATH": "tasks/test.neo"
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "jsonpc": "2.0",
+        "result": {
+            "Result": "fae6dbbea01d0b9c9d15b0a29770923dccf41c44",
+            "Gas": 30000,
+            "State": 1,
+            "Result String": "\u00fa\u00e6\u00db\u00be\u00a0\u001d\u000b\u009c\u009d\u0015\u00b0\u00a2\u0097p\u0092=\u00cc\u00f4\u001cD"
+        },
+        "error": 0,
+        "id": 1
+    },
+    "REQUEST": {
+        "params": [
+            "00d10b21235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a915671f6a437bed510b4a7d698d98ca192faa2ae634b800014140ab01ad314cc784196a38ab6b23fbb392a65321a7beaecfa6959c50b1cbcd2507fb3f57dbcdce29a14bcf961f7d7beb4c566e1f25255bdcbd9cb3bb73065f8ac5232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "jsonrpc": "2.0",
+        "method": "sendrawtransaction",
+        "id": 1
+    }
+}
+[ OK       ] 

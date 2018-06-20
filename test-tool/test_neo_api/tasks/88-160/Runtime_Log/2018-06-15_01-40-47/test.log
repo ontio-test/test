@@ -1,0 +1,66 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:a769ee682ae14af736f4c03a9685b693c89c69ba
+  TxHash:a64f115954fae39fd29cfda5f71bc5ea91db06de1b1c67c48f8e982f495f0f11
+
+Tip:
+  Using './ontology info status a64f115954fae39fd29cfda5f71bc5ea91db06de1b1c67c48f8e982f495f0f11' to query transaction status
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Qid": "t",
+        "Params": {
+            "version": 1,
+            "gas_limit": 1000000000,
+            "gas_price": 0,
+            "address": "a769ee682ae14af736f4c03a9685b693c89c69ba",
+            "params": [
+                {
+                    "type": "string",
+                    "value": "Log"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "DEPLOY": true,
+    "RESPONSE": {
+        "method": "signeovminvoketx",
+        "error_code": 0,
+        "error_info": "",
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d11f19235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91c0051c1034c6f6767ba699cc893b685963ac0f436f74ae12a68ee69a700014140d188d74ef336db42f466653312ed9fb2f6ee1258497c218ab3ba9ca900adb4246d6027032e3377815198daba83fc765b6a290321cbc0ff1c7094e5f87002c1dc232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        }
+    },
+    "CODE_PATH": "tasks/test.neo"
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "id": 1,
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0",
+        "params": [
+            "00d11f19235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91c0051c1034c6f6767ba699cc893b685963ac0f436f74ae12a68ee69a700014140d188d74ef336db42f466653312ed9fb2f6ee1258497c218ab3ba9ca900adb4246d6027032e3377815198daba83fc765b6a290321cbc0ff1c7094e5f87002c1dc232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        ]
+    },
+    "RESPONSE": {
+        "id": 1,
+        "error": 0,
+        "result": "4f574545abcba614973b4a1d24eeb4f69e03334f0f2b1f215a822e5a5c76a6ec",
+        "desc": "SUCCESS",
+        "jsonpc": "2.0"
+    }
+}
+[ OK       ] 

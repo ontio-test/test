@@ -1,0 +1,66 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:7a5ead1a1aafd56f40a385dcab6f021f97f4f71b
+  TxHash:3348ed55bf5cacec40d2ab66366259b2eac25a047b748016e1ce56efb97ec7a7
+
+Tip:
+  Using './ontology info status 3348ed55bf5cacec40d2ab66366259b2eac25a047b748016e1ce56efb97ec7a7' to query transaction status
+[ SIGNED TX ] {
+    "DEPLOY": true,
+    "RESPONSE": {
+        "error_code": 0,
+        "result": {
+            "signed_tx": "00d1fe76225b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91f0051c1064e6f74696679671bf7f4971f026fabdc85a3406fd5af1a1aad5e7a0001414044a5fe706d6ac3ad054979e85069ebd6c680f1a79f77d5209067d64e6a0209a3c8988c05bbe579b1fe9035b11380097c504356f8b7af5674080baf6b9c2594fe232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "error_info": "",
+        "method": "signeovminvoketx",
+        "qid": "t"
+    },
+    "REQUEST": {
+        "Params": {
+            "gas_limit": 1000000000,
+            "version": 1,
+            "address": "7a5ead1a1aafd56f40a385dcab6f021f97f4f71b",
+            "params": [
+                {
+                    "value": "Notify",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "",
+                            "type": "bytearray"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_price": 0
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    },
+    "CODE_PATH": "tasks/test.neo"
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "id": 1,
+        "result": "6d80c7c6944b38042ab87c06759a2326eb728fee55619fb2eec377d578a20a85",
+        "jsonpc": "2.0",
+        "error": 0,
+        "desc": "SUCCESS"
+    },
+    "REQUEST": {
+        "id": 1,
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0",
+        "params": [
+            "00d1fe76225b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91f0051c1064e6f74696679671bf7f4971f026fabdc85a3406fd5af1a1aad5e7a0001414044a5fe706d6ac3ad054979e85069ebd6c680f1a79f77d5209067d64e6a0209a3c8988c05bbe579b1fe9035b11380097c504356f8b7af5674080baf6b9c2594fe232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        ]
+    }
+}
+[ OK       ] 

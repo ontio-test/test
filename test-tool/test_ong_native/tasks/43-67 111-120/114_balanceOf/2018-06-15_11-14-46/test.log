@@ -1,0 +1,72 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:dd977b0dadf9371319c728a76622ea75b7d7592b
+  TxHash:ae54f63ce536d5e9ec002b0e2d5c3b482bbe7ffbffd1a3462303ee37f5adc658
+
+Tip:
+  Using './ontology info status ae54f63ce536d5e9ec002b0e2d5c3b482bbe7ffbffd1a3462303ee37f5adc658' to query transaction status
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "method": "signeovminvoketx",
+        "result": {
+            "signed_tx": "00d1a79f235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a9361424b453d1388732a9d78228b572e05f7a082b90a951c10962616c616e63654f66672b59d7b775ea2266a728c7191337f9ad0d7b97dd000141406c065682cd2f3760ebccdfb9ce8fcc8d18e0ca18ac128584b76d3a8a12e32322ac7eb60d5adc9d5fdb56cd250cb18362f262d0fa9151ad8d2cc72a0f52d84ce4232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "error_code": 0,
+        "qid": "t",
+        "error_info": ""
+    },
+    "DEPLOY": true,
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_limit": 1000000000,
+            "version": 1,
+            "params": [
+                {
+                    "value": "balanceOf",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "24b453d1388732a9d78228b572e05f7a082b90a9",
+                            "type": "bytearray"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "address": "dd977b0dadf9371319c728a76622ea75b7d7592b",
+            "gas_price": 0
+        }
+    },
+    "CODE_PATH": "tasks/test.neo"
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "id": 1,
+        "result": {
+            "Result String": "\u0085*\tJ4Z",
+            "State": 1,
+            "Gas": 30000,
+            "Result": "852a094a345a"
+        },
+        "jsonpc": "2.0",
+        "error": 0
+    },
+    "REQUEST": {
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0",
+        "params": [
+            "00d1a79f235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a9361424b453d1388732a9d78228b572e05f7a082b90a951c10962616c616e63654f66672b59d7b775ea2266a728c7191337f9ad0d7b97dd000141406c065682cd2f3760ebccdfb9ce8fcc8d18e0ca18ac128584b76d3a8a12e32322ac7eb60d5adc9d5fdb56cd250cb18362f262d0fa9151ad8d2cc72a0f52d84ce4232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "id": 1
+    }
+}
+[ OK       ] 

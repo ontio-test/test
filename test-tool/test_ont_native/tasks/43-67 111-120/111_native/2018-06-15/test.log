@@ -1,0 +1,67 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "DEPLOY": false,
+    "REQUEST": {
+        "Params": {
+            "address": "6408c4cc6c55700e96c38db184f3c1de8a260b02",
+            "gas_limit": 1000000000,
+            "version": 1,
+            "params": [
+                {
+                    "value": "transfer",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "24b453d1388732a9d78228b572e05f7a082b90a9",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "a0b2c0fa82789c91c79b41fd671195ea52fdb978",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "10",
+                            "type": "int"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_price": 0
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    },
+    "CODE_PATH": "tasks/ont_1_42.neo",
+    "RESPONSE": {
+        "error_info": "",
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d19167235b000000000000000000ca9a3b00000000a0b2c0fa82789c91c79b41fd671195ea52fdb9784b5a14a0b2c0fa82789c91c79b41fd671195ea52fdb9781424b453d1388732a9d78228b572e05f7a082b90a953c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc408640001414025c04c0932d63dfe61a5b69fea073b3f9a355730c76a74c7e3f12256c1c9772f25fe79442d76cd198dc792cfd9b596edc25bf8702a47f07a1442c0ded86118fa2321032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4ac"
+        },
+        "method": "signeovminvoketx",
+        "error_code": 0
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "method": "sendrawtransaction",
+        "params": [
+            "00d19167235b000000000000000000ca9a3b00000000a0b2c0fa82789c91c79b41fd671195ea52fdb9784b5a14a0b2c0fa82789c91c79b41fd671195ea52fdb9781424b453d1388732a9d78228b572e05f7a082b90a953c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc408640001414025c04c0932d63dfe61a5b69fea073b3f9a355730c76a74c7e3f12256c1c9772f25fe79442d76cd198dc792cfd9b596edc25bf8702a47f07a1442c0ded86118fa2321032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4ac",
+            1
+        ]
+    },
+    "RESPONSE": {
+        "jsonpc": "2.0",
+        "desc": "SMARTCODE EXEC ERROR",
+        "result": "",
+        "error": 47001,
+        "id": 1
+    }
+}
+[ Failed   ] call contract error

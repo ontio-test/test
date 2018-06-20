@@ -1,0 +1,50 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "result": {
+            "signed_tx": "00d183f1215b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a96f00c66b14a9902b087a5fe072b52882d7a9328738d153b4246a7cc81478b9fd52ea951167fd419bc7919c7882fac0b2a06a7cc85a6a7cc86c087472616e736665721400000000000000000000000000000000000000020068164f6e746f6c6f67792e4e61746976652e496e766f6b6500014140354ab09f74d9036cbb61ba501dcc00b2ee00e41a13d2b1790a42a2ffd9fb2b46ae681e6ea6a9bccb6b79d3ad48fa5aafe3a2234966675d6c42c2e685c988df35232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "error_code": 0,
+        "method": "signativeinvoketx",
+        "qid": "t",
+        "error_info": ""
+    },
+    "REQUEST": {
+        "Params": {
+            "version": 0,
+            "method": "transfer",
+            "gas_limit": 1000000000,
+            "params": [
+                [
+                    "24b453d1388732a9d78228b572e05f7a082b90a9",
+                    "a0b2c0fa82789c91c79b41fd671195ea52fdb978",
+                    "10"
+                ]
+            ],
+            "address": "0200000000000000000000000000000000000000",
+            "gas_price": 0
+        },
+        "Qid": "t",
+        "Method": "signativeinvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "id": 1,
+        "result": "",
+        "desc": "SMARTCODE EXEC ERROR",
+        "jsonpc": "2.0",
+        "error": 47001
+    },
+    "REQUEST": {
+        "params": [
+            "00d183f1215b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a96f00c66b14a9902b087a5fe072b52882d7a9328738d153b4246a7cc81478b9fd52ea951167fd419bc7919c7882fac0b2a06a7cc85a6a7cc86c087472616e736665721400000000000000000000000000000000000000020068164f6e746f6c6f67792e4e61746976652e496e766f6b6500014140354ab09f74d9036cbb61ba501dcc00b2ee00e41a13d2b1790a42a2ffd9fb2b46ae681e6ea6a9bccb6b79d3ad48fa5aafe3a2234966675d6c42c2e685c988df35232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "id": 1,
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0"
+    }
+}
+[ Failed   ] call contract error

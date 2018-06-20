@@ -1,0 +1,30 @@
+{
+	"DEPLOY" : true,
+	"CODE_PATH" : "tasks/test.neo",
+	"REQUEST": {
+		"Qid": "t",
+		"Method": "siginvoketx",
+		"Params": {
+			"gas_price": 0,
+			"gas_limit": 1000000000,
+			"address": "TMgdCNoWzE7afL8ur46MSLKg85XDdWnjun",
+			"version": 1,
+			"params": [
+				{
+					"type": "string",
+					"value": "Notify"
+				},
+				{
+					"type": "array",
+					"value": [
+						{
+							"type": "string",
+							"value": ""
+						}
+					]
+				}
+			]
+		}
+	},
+	"RESPONSE": {}
+}

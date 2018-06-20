@@ -1,0 +1,76 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:0e46ae49f324e8e13d1d2a6c4c70d30a74759777
+  TxHash:fb08fd46a337990eb204c85182b11169ec6ef86b63c67c9169c33d233c3d7e2d
+
+Tip:
+  Using './ontology info status fb08fd46a337990eb204c85182b11169ec6ef86b63c67c9169c33d233c3d7e2d' to query transaction status
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_limit": 1000000000,
+            "gas_price": 0,
+            "address": "0e46ae49f324e8e13d1d2a6c4c70d30a74759777",
+            "version": 1,
+            "params": [
+                {
+                    "value": "allowance",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "24b453d1388732a9d78228b572e05f7a082b90a9",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "922fef396b3b3bb26600dc9caf27be5b16bc5e0f",
+                            "type": "bytearray"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ]
+        },
+        "Qid": "t"
+    },
+    "RESPONSE": {
+        "error_code": 0,
+        "result": {
+            "signed_tx": "00d18def215b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a94b14922fef396b3b3bb26600dc9caf27be5b16bc5e0f1424b453d1388732a9d78228b572e05f7a082b90a952c109616c6c6f77616e636567779775740ad3704c6c2a1d3de1e824f349ae460e00014140b8a7f6b9df09df2bcbd9e030a41f9109dc7f8c6fc77c321b2a3f816971e83d8135bee6e525fcc22af0169da33d875c87e269f633e3353670e0a629bdc3c4a8af232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "qid": "t",
+        "method": "signeovminvoketx",
+        "error_info": ""
+    },
+    "CODE_PATH": "tasks/test.neo",
+    "DEPLOY": true
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "error": 0,
+        "result": {
+            "Gas": 30000,
+            "State": 1,
+            "Result": "",
+            "Result String": ""
+        },
+        "id": 1,
+        "jsonpc": "2.0"
+    },
+    "REQUEST": {
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0",
+        "id": 1,
+        "params": [
+            "00d18def215b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a94b14922fef396b3b3bb26600dc9caf27be5b16bc5e0f1424b453d1388732a9d78228b572e05f7a082b90a952c109616c6c6f77616e636567779775740ad3704c6c2a1d3de1e824f349ae460e00014140b8a7f6b9df09df2bcbd9e030a41f9109dc7f8c6fc77c321b2a3f816971e83d8135bee6e525fcc22af0169da33d875c87e269f633e3353670e0a629bdc3c4a8af232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ]
+    }
+}
+[ OK       ] 

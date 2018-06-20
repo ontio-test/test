@@ -1,0 +1,36 @@
+{
+	"REQUEST": {
+		"Qid": "t",
+		"Method": "siginvoketx",
+		"Params": {
+			"gas_price": 0,
+			"gas_pimit": 0,
+			"address": "TMhpjkkH2tsGmpQd2iPiYHGfAWZEeN3UEC",
+			"version": 1,
+			"params": [
+				{
+					"type": "string",
+					"value": "Put"
+				},
+				{
+					"type": "array",
+					"value": [
+						{
+							"type": "bytearray",
+							"value": "74657374"
+						},
+						{
+							"type": "bytearray",
+							"value": "313233"
+						},
+						{
+							"type": "bytearray",
+							"value": "313231"
+						}
+					]
+				}
+			]
+		}
+	},
+	"RESPONSE": {}
+}

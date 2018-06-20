@@ -1,0 +1,58 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:c7ce59e73a42fb13effe23851a0d3a3d9ecb16bf
+  TxHash:c40b29d7224c1e43626db16aad6cdc6697b8d390912379281ca9dec063696361
+
+Tip:
+  Using './ontology info status c40b29d7224c1e43626db16aad6cdc6697b8d390912379281ca9dec063696361' to query transaction status
+[ SIGNED TX ] {
+    "CODE_PATH": "tasks/test.neo",
+    "DEPLOY": true,
+    "REQUEST": {
+        "Params": {
+            "params": [],
+            "version": 0,
+            "address": "c7ce59e73a42fb13effe23851a0d3a3d9ecb16bf",
+            "gas_price": 0,
+            "gas_limit": 1000000000
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    },
+    "RESPONSE": {
+        "qid": "t",
+        "error_info": "",
+        "error_code": 0,
+        "method": "signeovminvoketx",
+        "result": {
+            "signed_tx": "00d12e55225b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91567bf16cb9e3d3a0d1a8523feef13fb423ae759cec7000141406fdda902434c0fef4bbc100efd798f4b049cbb111799fa8fe60a8e08d7432d3145dc1220adfc5f18ec0fc9cdb2d545731b6f0c915f5dd213339cf665a3ea93a9232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        }
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "id": 1,
+        "result": {
+            "State": 1,
+            "Result": "2e55225b",
+            "Result String": ".U\"[",
+            "Gas": 30000
+        },
+        "desc": "SUCCESS",
+        "error": 0,
+        "jsonpc": "2.0"
+    },
+    "REQUEST": {
+        "params": [
+            "00d12e55225b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91567bf16cb9e3d3a0d1a8523feef13fb423ae759cec7000141406fdda902434c0fef4bbc100efd798f4b049cbb111799fa8fe60a8e08d7432d3145dc1220adfc5f18ec0fc9cdb2d545731b6f0c915f5dd213339cf665a3ea93a9232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "sendrawtransaction"
+    }
+}
+[ OK       ] 

@@ -1,0 +1,62 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Params": {
+            "params": [
+                {
+                    "type": "string",
+                    "value": "symbol"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": ""
+                        }
+                    ]
+                }
+            ],
+            "gas_limit": 1000000000,
+            "version": 1,
+            "address": "698556dbe0fa8feff06061c07567bea7baa72968",
+            "gas_price": 0
+        },
+        "Method": "signeovminvoketx",
+        "Qid": "t"
+    },
+    "RESPONSE": {
+        "method": "signeovminvoketx",
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d108a1205b000000000000000000ca9a3b000000002aaa39310daba9a4cebd3a514c27d8a0b83479d51f0051c10673796d626f6c67698556dbe0fa8feff06061c07567bea7baa729680001424101a7b5b6a24f3026929de2b15c0c6f71ae6378d7e2c0c504376b1ab17623667523d2e74b6f37f29faefa41b438e6c4e58c77f5cb352980b5c8ed8dae9aa5e35af225231202026967e9c809d149f67c6142eb8d0e044029178a78fe9e8349663993f474e2fa30ac"
+        },
+        "error_info": "",
+        "error_code": 0
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "jsonrpc": "2.0",
+        "method": "sendrawtransaction",
+        "params": [
+            "00d108a1205b000000000000000000ca9a3b000000002aaa39310daba9a4cebd3a514c27d8a0b83479d51f0051c10673796d626f6c67698556dbe0fa8feff06061c07567bea7baa729680001424101a7b5b6a24f3026929de2b15c0c6f71ae6378d7e2c0c504376b1ab17623667523d2e74b6f37f29faefa41b438e6c4e58c77f5cb352980b5c8ed8dae9aa5e35af225231202026967e9c809d149f67c6142eb8d0e044029178a78fe9e8349663993f474e2fa30ac",
+            1
+        ],
+        "id": 1
+    },
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "jsonpc": "2.0",
+        "error": 0,
+        "result": {
+            "Result String": "ONT",
+            "State": 1,
+            "Gas": 30000,
+            "Result": "4f4e54"
+        },
+        "id": 1
+    }
+}
+[ OK       ] 

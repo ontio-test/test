@@ -1,0 +1,30 @@
+{
+	"DEPLOY" : true,
+    "CODE_PATH" : "tasks/test.neo",
+	"REQUEST": {
+		"Qid": "t",
+		"Method": "signeovminvoketx",
+		"Params": {
+			"gas_price": 0,
+			"gas_limit": 1000000000,
+			"address": "TMfYAKyeC2DM11p8LFCo2WbEnMqFLWKdcw",
+			"version": 1,
+			"params": [
+				{
+					"type": "string",
+					"value": "StorageContext"
+				},
+				{
+					"type": "array",
+					"value": [
+						{
+							"type": "bytearray",
+							"value": "47f076ea8624f88c080c1b6b3c80b46668c36ed8"
+						}
+					]
+				}
+			]
+		}
+	},
+	"RESPONSE": {}
+}

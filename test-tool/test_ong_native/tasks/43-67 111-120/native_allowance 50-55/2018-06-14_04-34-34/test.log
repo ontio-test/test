@@ -1,0 +1,71 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:0e46ae49f324e8e13d1d2a6c4c70d30a74759777
+  TxHash:417c21cd88e0d068a4711e9ef0796c8b9273c8b33cd22f99f9e824a4e66fa117
+
+Tip:
+  Using './ontology info status 417c21cd88e0d068a4711e9ef0796c8b9273c8b33cd22f99f9e824a4e66fa117' to query transaction status
+[ SIGNED TX ] {
+    "DEPLOY": true,
+    "RESPONSE": {
+        "error_info": "",
+        "method": "signeovminvoketx",
+        "qid": "t",
+        "error_code": 0,
+        "result": {
+            "signed_tx": "00d15af0215b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a937001424b453d1388732a9d78228b572e05f7a082b90a952c109616c6c6f77616e636567779775740ad3704c6c2a1d3de1e824f349ae460e00014140eb00e146a119c7615413622bfb5257a04f1e8e1a3bb4cda31bcdce26f2587446f4386077b8d2d8c3bfd19427ceeb86c0a79bc2c5b2c24cc3bf4152626c423372232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        }
+    },
+    "CODE_PATH": "tasks/test.neo",
+    "REQUEST": {
+        "Params": {
+            "params": [
+                {
+                    "value": "allowance",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "24b453d1388732a9d78228b572e05f7a082b90a9",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "",
+                            "type": "bytearray"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "address": "0e46ae49f324e8e13d1d2a6c4c70d30a74759777",
+            "gas_limit": 1000000000,
+            "version": 1,
+            "gas_price": 0
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "desc": "SMARTCODE EXEC ERROR",
+        "jsonpc": "2.0",
+        "error": 47001,
+        "id": 1,
+        "result": ""
+    },
+    "REQUEST": {
+        "params": [
+            "00d15af0215b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a937001424b453d1388732a9d78228b572e05f7a082b90a952c109616c6c6f77616e636567779775740ad3704c6c2a1d3de1e824f349ae460e00014140eb00e146a119c7615413622bfb5257a04f1e8e1a3bb4cda31bcdce26f2587446f4386077b8d2d8c3bfd19427ceeb86c0a79bc2c5b2c24cc3bf4152626c423372232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "method": "sendrawtransaction",
+        "id": 1,
+        "jsonrpc": "2.0"
+    }
+}
+[ Failed   ] call contract error

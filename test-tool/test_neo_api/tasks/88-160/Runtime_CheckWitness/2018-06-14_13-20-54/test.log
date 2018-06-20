@@ -1,0 +1,67 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:127738a68601018f80e158ec10c8411b9abb500b
+  TxHash:eeb2c5b11a795ba588a837f97027ef0f4af6bb31ebaa47de1fc29e30fd3b0caa
+
+Tip:
+  Using './ontology info status eeb2c5b11a795ba588a837f97027ef0f4af6bb31ebaa47de1fc29e30fd3b0caa' to query transaction status
+[ SIGNED TX ] {
+    "DEPLOY": true,
+    "RESPONSE": {
+        "error_info": "",
+        "result": {
+            "signed_tx": "00d1b76b225b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a9250051c10c436865636b5769746e657373670b50bb9a1b41c810ec58e1808f010186a638771200014140466ee22a7992d4dac8104f1e5f17782cf64683efedf7f7b121264b437d7924af85dd8872d1af9964a5746c6c3ab4b4e99b5d6be62193047321c86519e63a1563232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "error_code": 0,
+        "qid": "t",
+        "method": "signeovminvoketx"
+    },
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_limit": 1000000000,
+            "version": 1,
+            "params": [
+                {
+                    "value": "CheckWitness",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "",
+                            "type": "bytearray"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_price": 0,
+            "address": "127738a68601018f80e158ec10c8411b9abb500b"
+        },
+        "Qid": "t"
+    },
+    "CODE_PATH": "tasks/test.neo"
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "id": 1,
+        "result": "",
+        "jsonpc": "2.0",
+        "desc": "SMARTCODE EXEC ERROR",
+        "error": 47001
+    },
+    "REQUEST": {
+        "jsonrpc": "2.0",
+        "params": [
+            "00d1b76b225b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a9250051c10c436865636b5769746e657373670b50bb9a1b41c810ec58e1808f010186a638771200014140466ee22a7992d4dac8104f1e5f17782cf64683efedf7f7b121264b437d7924af85dd8872d1af9964a5746c6c3ab4b4e99b5d6be62193047321c86519e63a1563232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac",
+            1
+        ],
+        "method": "sendrawtransaction",
+        "id": 1
+    }
+}
+[ Failed   ] call contract error

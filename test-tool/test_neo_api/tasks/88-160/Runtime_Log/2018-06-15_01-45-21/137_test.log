@@ -1,0 +1,66 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ DEPLOY ] 
+Password:Using default account:
+Deploy contract:
+  Contract Address:f9c4aca54050e2388d3e42421b2a306481fa5a3a
+  TxHash:39749682e02c563d50c697dea61fb9c7699ade468e395b8ef3b9601e0f52b290
+
+Tip:
+  Using './ontology info status 39749682e02c563d50c697dea61fb9c7699ade468e395b8ef3b9601e0f52b290' to query transaction status
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Qid": "t",
+        "Params": {
+            "version": 1,
+            "address": "f9c4aca54050e2388d3e42421b2a306481fa5a3a",
+            "gas_price": 0,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "Log"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": ""
+                        }
+                    ]
+                }
+            ],
+            "gas_limit": 1000000000
+        }
+    },
+    "DEPLOY": true,
+    "CODE_PATH": "tasks/test.neo",
+    "RESPONSE": {
+        "qid": "t",
+        "error_code": 0,
+        "error_info": "",
+        "result": {
+            "signed_tx": "00d1311a235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91c0051c1034c6f67673a5afa8164302a1b42423e8d38e25040a5acc4f9000141401c2493aabcbbafac7921fcd0c9919b0c962c92169f14bfaf69653dbfc870413bc0b37d5e3e8dd9e5521534fe7e9ce237d9843ebf9160729521ebdbfe414a54c9232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        },
+        "method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "id": 1,
+        "desc": "SUCCESS",
+        "jsonpc": "2.0",
+        "result": "9f424b37b6670e198a3fbd6cdeb96fad04f8c6a25d679f41472e4d51a74c7665",
+        "error": 0
+    },
+    "REQUEST": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "params": [
+            "00d1311a235b000000000000000000ca9a3b0000000024b453d1388732a9d78228b572e05f7a082b90a91c0051c1034c6f67673a5afa8164302a1b42423e8d38e25040a5acc4f9000141401c2493aabcbbafac7921fcd0c9919b0c962c92169f14bfaf69653dbfc870413bc0b37d5e3e8dd9e5521534fe7e9ce237d9843ebf9160729521ebdbfe414a54c9232103e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dcac"
+        ],
+        "method": "sendrawtransaction"
+    }
+}
+[ OK       ] 
