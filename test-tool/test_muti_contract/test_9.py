@@ -29,42 +29,42 @@ logger = LoggerInstance
 # test cases
 
 
-class TestMutiContract_2(ParametrizedTestCase):
+class TestMutiContract_9(ParametrizedTestCase):
     def test_main(self):
-        logger.open("TestMutiContract_3.log", "TestMutiContract_3")
+        logger.open("TestMutiContract_9.log", "TestMutiContract_9")
         result = False
         try:
-            
-            (contract_address, adminOntID, roleA_hex, roleB_hex, ontID_A, ontID_B, ontID_C) = set_premise("tasks/test_5.neo")
+            contract_address = set_premise("tasks/test_1.neo")
 
             # setp 1 绑定用户A拥有roleA角色
-            (result, response) = bind_user_role(contract_address,adminOntID, roleA_hex, [ontID_A])
+            (result, response) = bind_user_role(contract_address,Common.ontID_Admin, Common.roleA_hex, [Common.ontID_A])
             if not result:
                 raise("bind_user_role error")
 			
 			# setp 1 绑定用户B拥有roleB角色
-            (result, response) = bind_user_role(contract_address,adminOntID, roleB_hex, [ontID_B])
+            (result, response) = bind_user_role(contract_address,Common.ontID_Admin, Common.roleB_hex, [Common.ontID_B])
             if not result:
                 raise("bind_user_role error")
 			
 			# setp 1 用户B授权用户A拥有角色B的权限
-            (result, response) = delegate_user_role(contract_address, ontID_B, ontID_A, roleB_hex, "10000", "1")
+            (result, response) = delegate_user_role(contract_address, Common.ontID_B, Common.ontID_A, Common.roleB_hex, "10000", "1",
+			node_index = Common.node_B)
             if not result:
                 raise("bind_user_role error")
 			
 			# setp 1 收回授权用户A拥有的roleB角色
-            (result, response) = withdraw_user_role(contract_address, ontID_B, ontID_A, roleB_hex)
+            (result, response) = withdraw_user_role(contract_address, Common.ontID_B, Common.ontID_A, Common.roleB_hex, node_index = Common.node_B)
             if not result:
                 raise("bind_user_role error")
             
             # setp 2 用户A访问B函数
-            (result, response) = invoke_function(contract_address, "C", ontID_A)
+            (result, response) = invoke_function(contract_address, "C", Common.ontID_A, node_index = Common.node_A)
             if not result:
                 raise Error("invoke_function error")
         
         except Exception as e:
             print(e.msg)
-            logger.close(result)
+        logger.close(result)
     
 ####################################################
 if __name__ == '__main__':

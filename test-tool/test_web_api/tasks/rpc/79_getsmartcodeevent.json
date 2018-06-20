@@ -1,0 +1,17 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getsmartcodeevent",
+		"params": [
+			"3ba4b4e463a717635614595378f2aac78feacc7d4dfda075bfcf9328cbbcd000"
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 0,
+		"result": {
+			
+		}
+	}
+}

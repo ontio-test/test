@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/hash/test"
+	},
+	"RESPONSE": {
+        "Action": "getblockhash",
+        "Error": 42002,
+        "Version": "1.0.0",
+        "Result": "",
+        "Desc": "INVALID PARAMS"
+	}
+}

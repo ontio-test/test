@@ -1,0 +1,22 @@
+{
+  "TYPE" : "restful",
+  "REQUEST": {
+	  "api": "/api/v1/contract/fff49c809d302a2956e9dc0012619a452d4b846c"
+	},
+	"RESPONSE": {
+        "Action": "getcontract",
+        "Desc": "SUCCESS",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": {
+            "VmType": 255,
+            "Code": "4f4e5420546f6b656e",
+            "NeedStorage": true,
+            "Name": "ONT",
+            "CodeVersion": "1.0",
+            "Author": "Ontology Team",
+            "Email": "contact@ont.io",
+            "Description": "Ontology Network ONT Token"
+        }
+	}
+}

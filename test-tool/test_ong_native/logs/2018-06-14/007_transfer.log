@@ -1,0 +1,72 @@
+[-------------------------------]
+[ RUN      ] contract.007_transfer
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "params": [
+                {
+                    "value": "transfer",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "a0b2c0fa82789c91c79b41fd671195ea52fdb978",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "922fef396b3b3bb26600dc9caf27be5b16bc5e0f",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "10",
+                            "type": "int"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_limit": 1000000000,
+            "address": "8c65fe53de1f345771fa029e6f7cb0e157b849d2",
+            "version": 1,
+            "gas_price": 0
+        },
+        "Method": "signeovminvoketx"
+    },
+    "DEPLOY": false,
+    "CODE_PATH": "tasks/ont_1_42.neo",
+    "RESPONSE": {
+        "error_code": 0,
+        "error_info": "",
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d1334a225b000000000000000000ca9a3b00000000a0b2c0fa82789c91c79b41fd671195ea52fdb9784b5a14922fef396b3b3bb26600dc9caf27be5b16bc5e0f14a0b2c0fa82789c91c79b41fd671195ea52fdb97853c1087472616e7366657267d249b857e1b07c6f9e02fa7157341fde53fe658c0001414041b7d1c3822080681be87b79024d154f6a002e21e4429073a599c30cc3eadb31ff292a05933f5919782c5ae46753586aa4a75cd3381d829e3cba8e14fc5e48a72321032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4ac"
+        },
+        "method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "params": [
+            "00d1334a225b000000000000000000ca9a3b00000000a0b2c0fa82789c91c79b41fd671195ea52fdb9784b5a14922fef396b3b3bb26600dc9caf27be5b16bc5e0f14a0b2c0fa82789c91c79b41fd671195ea52fdb97853c1087472616e7366657267d249b857e1b07c6f9e02fa7157341fde53fe658c0001414041b7d1c3822080681be87b79024d154f6a002e21e4429073a599c30cc3eadb31ff292a05933f5919782c5ae46753586aa4a75cd3381d829e3cba8e14fc5e48a72321032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4ac",
+            1
+        ],
+        "id": 1,
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0"
+    },
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "id": 1,
+        "result": {
+            "State": 1,
+            "Result": "01",
+            "Result String": "\u0001",
+            "Gas": 30000
+        },
+        "error": 0,
+        "jsonpc": "2.0"
+    }
+}
+[ OK       ] 

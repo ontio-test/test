@@ -1,0 +1,19 @@
+{
+	"REQUEST": {
+    "Qid": "t",
+    "Method": "signativeinvoketx",
+    "Params": {
+        "gas_price": 0,
+        "gas_limit": 1000000000,
+        "address": "ff00000000000000000000000000000000000006",
+        "method": "transfer",
+        "version": 0,
+        "params": [
+            "80681acadce3186efee39157eecf2982d4cedd4e",
+            "TA82XAPQXtVzncQMczcY9SVytjb2VuTQy4",
+            "1"
+        ]
+    }
+  },
+	"RESPONSE": {}
+}

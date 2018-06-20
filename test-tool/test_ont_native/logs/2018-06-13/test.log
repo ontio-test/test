@@ -1,0 +1,66 @@
+[-------------------------------]
+[ RUN      ] contract.test
+[ SIGNED TX ] {
+    "DEPLOY": false,
+    "CODE_PATH": "tasks/test.neo",
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Params": {
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "transfer"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "8dfab22c3eecfd17f78539de97f92758c0e78e15"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "2aaa39310daba9a4cebd3a514c27d8a0b83479d5"
+                        },
+                        {
+                            "type": "int",
+                            "value": "100000"
+                        }
+                    ]
+                }
+            ],
+            "gas_price": 30000,
+            "address": "8495075ea784be12de94c6d5fcf8935140a87df9",
+            "gas_limit": 1000000000
+        },
+        "Qid": "t"
+    },
+    "RESPONSE": {
+        "result": {
+            "signed_tx": "00d1758f205b307500000000000000ca9a3b000000008dfab22c3eecfd17f78539de97f92758c0e78e154e03a08601142aaa39310daba9a4cebd3a514c27d8a0b83479d5148dfab22c3eecfd17f78539de97f92758c0e78e1553c1087472616e73666572678495075ea784be12de94c6d5fcf8935140a87df900014241014715d6ad62b4d5fcb7335274af311ddd9882683ea5c079d0072070e14615065c2259ca59e6a8b7ccd1a76f6d7825e7353dc4add120ca800be576b78e1e8675642523120202840dadcce25f58317bc7d370b5cc53b1f58206447714227fb5d55258e79340b4ac"
+        },
+        "error_info": "",
+        "qid": "t",
+        "error_code": 0,
+        "method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "params": [
+            "00d1758f205b307500000000000000ca9a3b000000008dfab22c3eecfd17f78539de97f92758c0e78e154e03a08601142aaa39310daba9a4cebd3a514c27d8a0b83479d5148dfab22c3eecfd17f78539de97f92758c0e78e1553c1087472616e73666572678495075ea784be12de94c6d5fcf8935140a87df900014241014715d6ad62b4d5fcb7335274af311ddd9882683ea5c079d0072070e14615065c2259ca59e6a8b7ccd1a76f6d7825e7353dc4add120ca800be576b78e1e8675642523120202840dadcce25f58317bc7d370b5cc53b1f58206447714227fb5d55258e79340b4ac"
+        ],
+        "method": "sendrawtransaction",
+        "id": 1,
+        "jsonrpc": "2.0"
+    },
+    "RESPONSE": {
+        "jsonpc": "2.0",
+        "result": "734c6704c0f5c3e881b58445d3bd493743fc81f3ca1c86a8e5c2706de476d747",
+        "desc": "SUCCESS",
+        "error": 0,
+        "id": 1
+    }
+}
+[ OK       ] 

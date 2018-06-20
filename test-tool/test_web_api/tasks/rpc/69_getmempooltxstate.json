@@ -1,0 +1,16 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getmempooltxstate",
+		"params": [
+			"773dd2dae4a9c9275290f89b56e67d7363ea4826dfd4fc13cc01cf73a44b0d0e"
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 0,
+		"result": {
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+"REQUEST": {
+"Qid": "t",
+"Method": "siginvoketx",
+"Params": {
+"gas_price": 0,
+"gas_pimit": 0,
+"address": "TMfUZxYQNar9DpDTgNxZSCTV9wS6ksgw9B",
+"version": 1,
+"params":[
+			{
+				"type":"string",
+				"value":"GetTransaction_Hash"
+			},
+			{
+				"type":"array",
+				"value":[{
+							"type":"bytearray",
+							"value":"0b28eeb5885de6c76de1eaad16cf4be34ef65dd251f70b100cd91426d1080f83"
+						}]
+			}
+
+		]
+		}
+		},
+"RESPONSE": {}
+}

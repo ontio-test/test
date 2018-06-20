@@ -1,0 +1,34 @@
+{
+    "DEPLOY" : true,
+    "CODE_PATH" : "tasks/neo_1_45.neo",
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_pimit": 0,
+            "address": "TMhwCRaT4aMtj6h6unqeCJWUn8vomadk7s",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "GetBlockTransaction_40"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "54413643744634685a7771416d586463366f7061344237396652533137594a6a5835"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "54413754535135614a6341387355354d70714a4e795447317231334151594c597052"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "RESPONSE": {}
+}

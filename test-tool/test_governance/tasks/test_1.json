@@ -1,0 +1,23 @@
+{
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signativeinvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_limit": 1000000000,
+            "address": "ff00000000000000000000000000000000000007",
+            "method": "VoteForPeer",
+            "version": 0,
+            "params": [
+                "TA7TSQ5aJcA8sU5MpqJNyTG1r13AQYLYpR",
+                [
+                    "120203483420b24240f9db477fb117d857bc6e537a1486eb803e2e702f7bb353eea481"
+                ],
+                [
+                    "30000"
+                ]
+            ]
+        }
+    },
+    "RESPONSE": {}
+}

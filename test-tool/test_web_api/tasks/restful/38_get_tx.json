@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/transaction/18f2be1fb70ad2b335cb94729773a181f8f6f828c048ae8ea9fe0337bf63f684"
+	},
+	"RESPONSE": {
+        "Action": "gettransaction",
+    "Error": 44001,
+    "Version": "1.0.0",
+    "Result": "",
+    "Desc": "UNKNOWN TRANSACTION"
+	}
+}

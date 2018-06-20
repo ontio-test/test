@@ -1,0 +1,47 @@
+[-------------------------------]
+[ RUN      ] contract.012_transfer
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "params": [
+                {
+                    "type": "string",
+                    "value": "transfer"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "a0b2c0fa82789c91c79b41fd671195ea52fdb978"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "24b453d1388732a9d78228b572e05f7a082b90a9"
+                        },
+                        {
+                            "type": "int",
+                            "value": ""
+                        }
+                    ]
+                }
+            ],
+            "gas_limit": 1000000000,
+            "address": "6408c4cc6c55700e96c38db184f3c1de8a260b02",
+            "version": 1,
+            "gas_price": 0
+        },
+        "Method": "signeovminvoketx"
+    },
+    "RESPONSE": {
+        "error_code": 1003,
+        "error_info": "ParseNeoVMInvokeParams error:Parse Param type:int value: error:parse integer param: error:strconv.ParseInt: parsing \"\": invalid syntax",
+        "method": "signeovminvoketx",
+        "result": null,
+        "qid": "t"
+    },
+    "DEPLOY": false,
+    "CODE_PATH": "tasks/ont_1_42.neo"
+}
+[ Failed   ] no signed tx

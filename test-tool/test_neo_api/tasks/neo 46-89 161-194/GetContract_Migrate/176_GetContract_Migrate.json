@@ -1,0 +1,56 @@
+{
+"REQUEST": {
+"Qid": "t",
+"Method": "siginvoketx",
+"Params": {
+"gas_price": 0,
+"gas_pimit": 0,
+"address": "TMiRXSdSgsTCkxc5PDovYSz9uhMJMdpHyQ",
+"version": 1,
+"params":[	
+			{
+				"type":"string",
+				"value":"GetContract_Migrate"
+			},
+			{
+				"type":"array",
+				"value":[{
+							"type":"bytearray",
+							"value":"54c56b6c766b00527ac46c766b51527ac4616c766b00c36c766b52527ac46c766b52c312476574436f6e74726163745f437265617465876306006260006c766b51c300c36c766b51c351c36c766b51c352c36c766b51c353c36c766b51c354c36c766b51c355c36c766b51c356c3615679517958727551727555795279577275527275547953795672755372756521006c766b53527ac4620e00006c766b53527ac46203006c766b53c3616c756659c56b6c766b00527ac46c766b51527ac46c766b52527ac46c766b53527ac46c766b54527ac46c766b55527ac46c766b56527ac4616c766b00c36c766b51c36c766b52c36c766b53c36c766b54c36c766b55c36c766b56c36156795179587275517275557952795772755272755479537956727553727568134e656f2e436f6e74726163742e4372656174656c766b57527ac46c766b57c36c766b58527ac46203006c766b58c3616c7566"
+						},
+						{
+							"type":"bool",
+							"value":"true"
+						},
+						{
+							"type":"string",
+							"value":"testContract"
+							
+						},
+						{
+							"type":"string",
+							"value":"123"
+							
+						},
+						{
+							"type":"string",
+							"value":"yangjc"
+							
+						},
+						{
+							"type":"string",
+							"value":"378986991@qq.com"
+							
+						},
+						{
+							"type":"string",
+							"value":"this is my first test contract"
+							
+						}]
+
+			}
+		]
+		}
+		},
+"RESPONSE": {}
+}

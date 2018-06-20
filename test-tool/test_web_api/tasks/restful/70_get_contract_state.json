@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+  "REQUEST": {
+	  "api": "/api/v1/contract/fff49c809d302a2956e9dc0012619a452d4b846c"
+	},
+	"RESPONSE": {
+        "Action": "getcontract",
+        "Error": 44004,
+        "Version": "1.0.0",
+        "Result": "",
+        "Desc": ""
+	}
+}

@@ -1,0 +1,30 @@
+{
+    "DEPLOY" : true,
+    "CODE_PATH" : "1_initContractAdmin/001_initContractAdmin.neo",
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_limit": 1000000000,
+            "address": "",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "initContractAdmin"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "new Ontid"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "RESPONSE": {}
+}

@@ -1,0 +1,13 @@
+NAME,STATUS,LOG PATH
+005_transfer,fail,/005_transfer.log
+001_transfer,fail,/001_transfer.log
+012_transfer,fail,/012_transfer.log
+009_transfer,fail,/009_transfer.log
+006_transfer,fail,/006_transfer.log
+004_transfer,fail,/004_transfer.log
+010_transfer,fail,/010_transfer.log
+003_transfer,fail,/003_transfer.log
+008_transfer,fail,/008_transfer.log
+011_transfer,fail,/011_transfer.log
+007_transfer,fail,/007_transfer.log
+002_transfer,fail,/002_transfer.log

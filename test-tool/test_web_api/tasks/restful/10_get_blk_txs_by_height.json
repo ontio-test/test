@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/transactions/height/9000"
+	},
+	"RESPONSE": {
+        "Action": "getblocktxsbyheight",
+        "Error": 42002,
+        "Version": "1.0.0",
+        "Result": "",
+        "Desc": "INVALID PARAMS"
+    }
+}

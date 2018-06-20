@@ -101,7 +101,8 @@ def con_restful(ip, api_request):
 			api_post_data = None
 			if "params" in api_request:
 				api_post_data = api_request["params"]
-			api_post_data_encode = urllib.parse.urlencode(api_post_data).encode(encoding='UTF8')
+			api_post_data_encode = json.dumps(api_post_data)  
+			api_post_data_encode = bytes(api_post_data_encode, 'utf8')
 			req = urllib.request.Request(url = api_url, data = api_post_data_encode)
 			response = urllib.request.urlopen(req)
 			return json.loads(response.read().decode("utf-8"))

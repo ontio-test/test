@@ -1,0 +1,35 @@
+{
+    "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/transaction/18f2be1fb70ad2b335cb94729773a181f8f6f828c048ae8ea9fe0337bf63f683"
+	},
+	"RESPONSE": {
+        "Action": "gettransaction",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": {
+            "Nonce": 0,
+            "NetworkFee": 0,
+            "Fee": [],
+            "Hash": "18f2be1fb70ad2b335cb94729773a181f8f6f828c048ae8ea9fe0337bf63f683",
+            "TxType": 0,
+            "Sigs": [
+                {
+                    "SigData": [
+                        "018a1ab05bcd5d8f2eda362fb05080bb688c04b1a5eb5aa3bc43bdd7a9c0d89bbe14c9c3f21dc875cd9cb2c80bf4136b34a2deca0ace340cb17001e1c63d7a0003"
+                    ],
+                    "PubKeys": [
+                        "1202023a36cbf365877305db8c9cc0ca2f4f7965517be16a32724625cf5f736458f996"
+                    ],
+                    "M": 1
+                }
+            ],
+            "Version": 0,
+            "Attributes": [],
+            "Payload": {
+                "Nonce": 1525928763448078800
+            }
+        },
+        "Desc": "SUCCESS"
+	}
+}

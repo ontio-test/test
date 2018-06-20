@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+  "REQUEST": {
+	  "api": "/api/v1/smartcode/event/txhash/b32750da54b9b2e717768f91e0ce5036ffa8ad3e9bd79ec5aaa04ed42b3e78af"
+	},
+	"RESPONSE": {
+        "Action": "getsmartcodeeventbyhash",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": null,
+        "Desc": "SUCCESS"
+	}
+}

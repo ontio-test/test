@@ -41,14 +41,12 @@ class TestMutiContract_4(ParametrizedTestCase):
             (result, response) = bind_user_role(contract_address,adminOntID, roleA_hex, [ontID_A])
             if not result:
                 raise("bind_user_role error")
-            
-            # setp 1 绑定用户A拥有roleB角色
+            # setp 2 绑定用户A拥有roleB角色
             (result, response) = bind_user_role(contract_address,adminOntID, roleB_hex, [ontID_A])
             if not result:
                 raise("bind_user_role error")
-            
-            # setp 2 用户A访问A函数
-            (result, response) = invoke_function(contract_address, "B", ontID_A)
+            # setp 3 用户A访问A函数
+            (result, response) = invoke_function(contract_address, "B", ontID_A, node_index = 3)
             if not result:
                 raise Error("invoke_function error")
         

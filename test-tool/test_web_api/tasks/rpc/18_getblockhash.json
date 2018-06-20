@@ -1,0 +1,15 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getblockhash",
+		"params": [
+			-1
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 42002,
+		"result": "invalid params"
+	}
+}

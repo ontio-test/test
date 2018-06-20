@@ -1,0 +1,49 @@
+[-------------------------------]
+[ RUN      ] contract.68_approve
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signativeinvoketx",
+        "Params": {
+            "version": 0,
+            "params": [
+                [
+                    "AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT",
+                    "AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM",
+                    "10"
+                ]
+            ],
+            "method": "approve",
+            "gas_price": 0,
+            "gas_limit": 1000000000,
+            "address": "0100000000000000000000000000000000000000"
+        }
+    },
+    "RESPONSE": {
+        "error_info": "",
+        "error_code": 0,
+        "method": "signativeinvoketx",
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d148ef205b000000000000000000ca9a3b000000008dfab22c3eecfd17f78539de97f92758c0e78e156e00c66b148dfab22c3eecfd17f78539de97f92758c0e78e156a7cc8142aaa39310daba9a4cebd3a514c27d8a0b83479d56a7cc85a6a7cc86c07617070726f76651400000000000000000000000000000000000000010068164f6e746f6c6f67792e4e61746976652e496e766f6b650001424101fd65c756ad0c48bd34f9336d9ddff2cedd5c7d9275a5fe9edebe509ff051ccb3c233523cfd5f4c26144161a4c13c3886bec5ec2ce4da0a1883c051130b5f90492523120202840dadcce25f58317bc7d370b5cc53b1f58206447714227fb5d55258e79340b4ac"
+        }
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "params": [
+            "00d148ef205b000000000000000000ca9a3b000000008dfab22c3eecfd17f78539de97f92758c0e78e156e00c66b148dfab22c3eecfd17f78539de97f92758c0e78e156a7cc8142aaa39310daba9a4cebd3a514c27d8a0b83479d56a7cc85a6a7cc86c07617070726f76651400000000000000000000000000000000000000010068164f6e746f6c6f67792e4e61746976652e496e766f6b650001424101fd65c756ad0c48bd34f9336d9ddff2cedd5c7d9275a5fe9edebe509ff051ccb3c233523cfd5f4c26144161a4c13c3886bec5ec2ce4da0a1883c051130b5f90492523120202840dadcce25f58317bc7d370b5cc53b1f58206447714227fb5d55258e79340b4ac"
+        ],
+        "method": "sendrawtransaction"
+    },
+    "RESPONSE": {
+        "jsonpc": "2.0",
+        "desc": "SUCCESS",
+        "id": 1,
+        "error": 0,
+        "result": "5bbbf2213b6835a5000729bbc6ea02fb15f1fc3cfbec9789732e034a177c4286"
+    }
+}
+[ OK       ] 

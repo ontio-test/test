@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/details/height/80000000000000"
+	},
+	"RESPONSE": {
+    "Result": "",
+    "Error": 44003,
+    "Desc": "UNKNOWN BLOCK",
+    "Version": "1.0.0",
+    "Action": "getblockbyheight"
+}
+}

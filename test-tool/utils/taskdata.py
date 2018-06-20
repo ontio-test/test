@@ -57,7 +57,10 @@ class Task:
 		self._data["REQUEST"] = request
 
 	def node_index(self):
-		return self._nodeindex
+		for key in self._taskjson:
+			if key.upper() == "NODE_INDEX":
+				return self._taskjson[key]
+		return None
 
 	def load_cfg(self, cfg):
 		if ".json" not in cfg:

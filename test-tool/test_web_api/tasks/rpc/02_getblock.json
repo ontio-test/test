@@ -1,0 +1,15 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getblock",
+		"params": [
+			"6c7f76be5873aeb177f44c3fb64e6468b06efa901671378f9c472fe696401617"
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 44003,
+		"result": ""
+	}
+}

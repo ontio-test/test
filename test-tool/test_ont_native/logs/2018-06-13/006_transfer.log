@@ -1,0 +1,67 @@
+[-------------------------------]
+[ RUN      ] contract.006_transfer
+[ SIGNED TX ] {
+    "DEPLOY": false,
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "gas_limit": 1000000000,
+            "version": 1,
+            "params": [
+                {
+                    "value": "transfer",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "8dfab22c3eecfd17f78539de97f92758c0e78e15",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "10",
+                            "type": "int"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_price": 0,
+            "address": "08b374c9747fc21d632c05892b645775d8991944"
+        },
+        "Method": "signeovminvoketx"
+    },
+    "CODE_PATH": "tasks/ont_1_42.neo",
+    "RESPONSE": {
+        "error_code": 0,
+        "error_info": "",
+        "qid": "t",
+        "method": "signeovminvoketx",
+        "result": {
+            "signed_tx": "00d129b5205b000000000000000000ca9a3b000000008dfab22c3eecfd17f78539de97f92758c0e78e15375a00148dfab22c3eecfd17f78539de97f92758c0e78e1553c1087472616e736665726708b374c9747fc21d632c05892b645775d89919440001424101956d2d90e8a7dfbcee86419e623a25fc4ae5abd2585e4631dbb8700267a6f01061b41e5c526dd7d925048b842bf2044fa19198bcd21c9a8e9433012b65a43b3b2523120202840dadcce25f58317bc7d370b5cc53b1f58206447714227fb5d55258e79340b4ac"
+        }
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "jsonpc": "2.0",
+        "error": 47001,
+        "desc": "SMARTCODE EXEC ERROR",
+        "id": 1,
+        "result": ""
+    },
+    "REQUEST": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "method": "sendrawtransaction",
+        "params": [
+            "00d129b5205b000000000000000000ca9a3b000000008dfab22c3eecfd17f78539de97f92758c0e78e15375a00148dfab22c3eecfd17f78539de97f92758c0e78e1553c1087472616e736665726708b374c9747fc21d632c05892b645775d89919440001424101956d2d90e8a7dfbcee86419e623a25fc4ae5abd2585e4631dbb8700267a6f01061b41e5c526dd7d925048b842bf2044fa19198bcd21c9a8e9433012b65a43b3b2523120202840dadcce25f58317bc7d370b5cc53b1f58206447714227fb5d55258e79340b4ac",
+            1
+        ]
+    }
+}
+[ Failed   ] call contract error

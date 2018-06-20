@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/"
+	},
+	"RESPONSE": {
+        "Action": "getblockheight",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": 8467,
+        "Desc": "SUCCESS"
+	}
+}

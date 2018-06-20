@@ -27,35 +27,21 @@ logger = LoggerInstance
 
 ####################################################
 # test cases
-
-
-class TestMutiContract_2(ParametrizedTestCase):
+class TestMutiContract_34(ParametrizedTestCase):
     def test_main(self):
-        logger.open("TestMutiContract_3.log", "TestMutiContract_3")
+        logger.open("TestMutiContract_34.log", "TestMutiContract_34")
         result = False
         try:
-            # 初始化合约B管理员为A用户,
-            contract_address_B = deploy_contract("./tasks/contractB.neo")
-            ontID_A = ByteToHex(b"did:ont:TA7TSQ5aJcA8sU5MpqJNyTG1r13AQYLYpR")
-            ontID_B = ByteToHex(b"did:ont:TA82XAPQXtVzncQMczcY9SVytjb2VuTQy4") 
+            (contract_address_A, contract_address_B) = set_premise_a("tasks/contractA.neo", "tasks/contractB.neo")
 
-            (result, response) = init_admin(contract_address_B, adminOntID_A)
-            if not result:
-                raise("init_admin error")
-            
-            # 部署智能合约A
-            contract_address_A = deploy_contract("./tasks/contractA.neo")
-
-            
-
-            # A用户去调用A方法
-            (result, response) = invoke_function(contract_address_A, "contractA_Func_A", ontID_B)
+            # B用户去调用A方法
+            (result, response) = invoke_function(contract_address_A, "contractA_Func_A", Common.ontID_B)
             if not result:
                 raise Error("invoke_function error")
         
         except Exception as e:
             print(e.msg)
-            logger.close(result)
+        logger.close(result)
     
 ####################################################
 if __name__ == '__main__':

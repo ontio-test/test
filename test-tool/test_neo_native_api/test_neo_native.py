@@ -11,14 +11,13 @@ import sys, getopt
 sys.path.append('..')
 
 from utils.config import Config
-from utils.restful import Restful
 from utils.taskdata import TaskData, Task
 from utils.logger import LoggerInstance
 from utils.hexstring import *
 from utils.error import Error
 from utils.parametrizedtestcase import ParametrizedTestCase
 
-from utils.commonapi import call_contract
+from utils.commonapi import *
 
 logger = LoggerInstance
 

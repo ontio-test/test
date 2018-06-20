@@ -29,13 +29,13 @@ logger = LoggerInstance
 # test cases
 
 
-class TestMutiContract_2(ParametrizedTestCase):
+class TestMutiContract_18(ParametrizedTestCase):
     def test_main(self):
-        logger.open("TestMutiContract_3.log", "TestMutiContract_3")
+        logger.open("TestMutiContract_18.log", "TestMutiContract_18")
         result = False
         try:
             
-            (contract_address, adminOntID, roleA_hex, roleB_hex, ontID_A, ontID_B, ontID_C) = set_premise("tasks/test_5.neo")
+            (contract_address, adminOntID, roleA_hex, roleB_hex, ontID_A, ontID_B, ontID_C) = set_premise("tasks/test_18.neo")
             
             # setp 1 绑定roleA角色绑定到用户A, B
             (result, response) = bind_user_role(contract_address,adminOntID, roleA_hex, [ontID_A, ontID_B])

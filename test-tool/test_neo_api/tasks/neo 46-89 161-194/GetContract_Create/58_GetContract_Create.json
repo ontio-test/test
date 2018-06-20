@@ -1,0 +1,56 @@
+{
+"REQUEST": {
+"Qid": "t",
+"Method": "siginvoketx",
+"Params": {
+"gas_price": 0,
+"gas_pimit": 0,
+"address": "80c7a32949f61d2e719f72d03041f1dd81e5d1c0",
+"version": 1,
+"params":[	
+			{
+				"type":"string",
+				"value":"GetContract_Create"
+			},
+			{
+				"type":"array",
+				"value":[{
+							"type":"bytearray",
+							"value":"33653530363137396362393430626361623632303034656531353462333732663934633863393235316161663138336166303931656461353061383062323530"
+						},
+						{
+							"type":"bool",
+							"value":"true"
+						},
+						{
+							"type":"string",
+							"value":"testContract"
+							
+						},
+						{
+							"type":"string",
+							"value":"1"
+							
+						},
+						{
+							"type":"string",
+							"value":"yangjc"
+							
+						},
+						{
+							"type":"string",
+							"value":"378986991@qq.com"
+							
+						},
+						{
+							"type":"string",
+							"value":"this is my first test contract"
+							
+						}]
+
+			}
+		]
+		}
+		},
+"RESPONSE": {}
+}

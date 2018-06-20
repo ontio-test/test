@@ -1,0 +1,76 @@
+[-------------------------------]
+[ RUN      ] contract.030_transferFrom
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "params": [
+                {
+                    "value": "transferForm",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "a0b2c0fa82789c91c79b41fd671195ea52fdb978",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "922fef396b3b3bb26600dc9caf27be5b16bc5e0f",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "a0b2c0fa82789c91c79b41fd671195ea52fdb978",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "10",
+                            "type": "int"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_limit": 1000000000,
+            "address": "8c65fe53de1f345771fa029e6f7cb0e157b849d2",
+            "version": 1,
+            "gas_price": 0
+        },
+        "Method": "signeovminvoketx"
+    },
+    "DEPLOY": false,
+    "CODE_PATH": "tasks/ont_1_42.neo",
+    "RESPONSE": {
+        "error_code": 0,
+        "error_info": "",
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d1334a225b000000000000000000ca9a3b00000000a0b2c0fa82789c91c79b41fd671195ea52fdb978645a14a0b2c0fa82789c91c79b41fd671195ea52fdb97814922fef396b3b3bb26600dc9caf27be5b16bc5e0f14a0b2c0fa82789c91c79b41fd671195ea52fdb97854c10c7472616e73666572466f726d67d249b857e1b07c6f9e02fa7157341fde53fe658c00014140d28031746af4f4b5b237afe9a72bd05ecc609dddb1aaec07db8e66ec4a17c2bf643db12b503f04ca449d4e8d7c2c76a4a776cca1067859c11d28466a2afd7ca32321032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4ac"
+        },
+        "method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "params": [
+            "00d1334a225b000000000000000000ca9a3b00000000a0b2c0fa82789c91c79b41fd671195ea52fdb978645a14a0b2c0fa82789c91c79b41fd671195ea52fdb97814922fef396b3b3bb26600dc9caf27be5b16bc5e0f14a0b2c0fa82789c91c79b41fd671195ea52fdb97854c10c7472616e73666572466f726d67d249b857e1b07c6f9e02fa7157341fde53fe658c00014140d28031746af4f4b5b237afe9a72bd05ecc609dddb1aaec07db8e66ec4a17c2bf643db12b503f04ca449d4e8d7c2c76a4a776cca1067859c11d28466a2afd7ca32321032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4ac",
+            1
+        ],
+        "id": 1,
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0"
+    },
+    "RESPONSE": {
+        "desc": "SUCCESS",
+        "id": 1,
+        "result": {
+            "State": 1,
+            "Result": "00",
+            "Result String": "\u0000",
+            "Gas": 30000
+        },
+        "error": 0,
+        "jsonpc": "2.0"
+    }
+}
+[ OK       ] 

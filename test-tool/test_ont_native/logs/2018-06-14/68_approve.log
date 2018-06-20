@@ -1,0 +1,30 @@
+[-------------------------------]
+[ RUN      ] contract.68_approve
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "gas_limit": 1000000000,
+            "address": "0100000000000000000000000000000000000000",
+            "method": "approve",
+            "params": [
+                [
+                    "AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT",
+                    "AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM",
+                    "10"
+                ]
+            ],
+            "gas_price": 0,
+            "version": 0
+        },
+        "Method": "signativeinvoketx"
+    },
+    "RESPONSE": {
+        "error_code": 900,
+        "error_info": "param:root parse:[[AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM 10]] error:struct abi not match",
+        "method": "signativeinvoketx",
+        "result": null,
+        "qid": "t"
+    }
+}
+[ Failed   ] no signed tx

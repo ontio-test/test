@@ -1,0 +1,42 @@
+{
+    "DEPLOY" : false,
+	"CODE_PATH" : "tasks/ont_1_42.neo", 
+	"REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_limit": 1000000000,
+            "address": "8c65fe53de1f345771fa029e6f7cb0e157b849d2",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "transferForm"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "abc"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "922fef396b3b3bb26600dc9caf27be5b16bc5e0f"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "a0b2c0fa82789c91c79b41fd671195ea52fdb978"
+                        },
+                        {
+                            "type": "int",
+                            "value": "10"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "RESPONSE": {}
+}
