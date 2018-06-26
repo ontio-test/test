@@ -170,7 +170,37 @@ class TestBenefit(ParametrizedTestCase):
 			print(e.msg)
 			result = False
 		logger.close(result)
+
+	def test_7(self):
+		address = Config.SERVICES[2]["address"]
+		result = False
+		logger.open("TestBenefit7.log", "TestBenefit7")
+		try:
+			invoke_function_update("updateGlobalParam","2000000000","10000","32","1","50","50","50","50")
+			response = withdrawong(2)
+			(result1, response)=rpcapi.getbalance(address)
+			if not result1:
+				raise Error("get balance error")
+			ong1=int(response["result"]["ong"])
+			ont1=response["result"]["ont"]
+
+
+			response = transfer_ont(0, 2, 1000)
+			print (json.dumps(response))
+			time.sleep(5)
+			(result2, response)=rpcapi.getbalance(address)
+			if not result1:
+				raise Error("get balance error")
+			ong2=int(response["result"]["ong"])
+			ont2=response["result"]["ont"]
+
+			if ong1 == ong2:
+				result = False
 		
+		except Exception as e:
+			print(e.msg)
+		logger.close(result)
+	
 ####################################################
 if __name__ == '__main__':
     unittest.main()

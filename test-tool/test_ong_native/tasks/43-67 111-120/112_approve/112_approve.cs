@@ -14,7 +14,7 @@ namespace Example
         {
             public byte[] from;
             public byte[] to;
-            public uint64 amount;
+            public UInt64 amount;
         }
 
         public static object Main(string operation, params object[] args)
@@ -30,11 +30,11 @@ namespace Example
 
         public static byte[] approveInvoke(object[] args)
         {
-            byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 };
             ApproveParam approveParam;
             approveParam.from = (byte[])args[0];
             approveParam.to = (byte[])args[1];
-            approveParam.amount = (uint64)args[2];
+            approveParam.amount = (UInt64)args[2];
             
             object[] approveArgs = new object[1];
             approveArgs[0] = approveArgs.Serialize();

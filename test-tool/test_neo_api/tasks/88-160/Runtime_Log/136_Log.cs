@@ -14,16 +14,16 @@ namespace Neo.SmartContract
             switch (operation)
             {
                 case "Log":
-                    SendLog();
+                    SendLog(args);
                     return true;
                 default:
                     return false;
             }
         }
         
-        public static void SendLog()
+        public static void SendLog(object[] args)
         {
-            string param = "123";
+            string param = (string)args[0];
             Runtime.Log(param);
         }
     }

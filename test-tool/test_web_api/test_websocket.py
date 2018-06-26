@@ -18,6 +18,7 @@ from utils.taskdata import TaskData, Task
 from utils.logger import LoggerInstance
 from utils.parametrizedtestcase import ParametrizedTestCase
 from utils.websocketapi import WebSocketApi
+from utils.commonapi import *
 
 logger = LoggerInstance
 
@@ -540,6 +541,66 @@ class TestWebAPI(ParametrizedTestCase):
 		task_name = "65_sendrawtransaction"
 		self.start(log_path)
 		(result, response) = wsapi.sendrawtransaction(RAW_TRANSACTION_DATA_INCORRECT_1)
+		self.abnormal_finish(task_name, log_path, result, "")
+
+	def test_66_get_version(self):
+		log_path = "66_get_version.log"
+		task_name = "66_get_version"
+		self.start(log_path)
+		task = Task(Config.BASEAPI_PATH + "/ws/getversion.json")
+		task.set_type("ws")
+		param = None
+		if param and isinstance(param, dict):
+			taskrequest = task.request()
+			for key in param:
+				taskrequest[key] = param[key]
+			task.set_request(taskrequest)
+		(result, response) = run_single_task(task)
+		self.abnormal_finish(task_name, log_path, result, "")
+
+	def test_67_get_version(self):
+		log_path = "67_get_version.log"
+		task_name = "67_get_version"
+		self.start(log_path)
+		task = Task(Config.BASEAPI_PATH + "/ws/getversion.json")
+		task.set_type("ws")
+		param = None
+		if param and isinstance(param, dict):
+			taskrequest = task.request()
+			for key in param:
+				taskrequest[key] = param[key]
+			task.set_request(taskrequest)
+		(result, response) = run_single_task(task)
+		self.abnormal_finish(task_name, log_path, result, "")
+
+	def test_68_get_version(self):
+		log_path = "68_get_version.log"
+		task_name = "68_get_version"
+		self.start(log_path)
+		task = Task(Config.BASEAPI_PATH + "/ws/getversion.json")
+		task.set_type("ws")
+		param = {"height":""}
+		if param and isinstance(param, dict):
+			taskrequest = task.request()
+			for key in param:
+				taskrequest[key] = param[key]
+			task.set_request(taskrequest)
+		(result, response) = run_single_task(task)
+		self.abnormal_finish(task_name, log_path, result, "")
+
+	def test_69_get_version(self):
+		log_path = "69_get_version.log"
+		task_name = "69_get_version"
+		self.start(log_path)
+		task = Task(Config.BASEAPI_PATH + "/ws/getversion.json")
+		task.set_type("ws")
+		param = {"height":"abc"}
+		if param and isinstance(param, dict):
+			taskrequest = task.request()
+			for key in param:
+				taskrequest[key] = param[key]
+			task.set_request(taskrequest)
+		(result, response) = run_single_task(task)
 		self.abnormal_finish(task_name, log_path, result, "")
 
 	def test_70_getbalancebyaddr(self):

@@ -6,6 +6,7 @@ import urllib.request
 import json
 import os
 import sys, getopt
+import time
 
 sys.path.append('..')
 
@@ -24,12 +25,14 @@ class TestConsensus(ParametrizedTestCase):
 
 	def test_main(self):
 		result = False
-		logger.open("TestConsensus1.log", "TestConsensus1")
+		logger.open("TestGover1.log", "TestGover1")
 		try:
 			if (not pause("ensure that node A is not in the nodes network and node B is in the nodes network and node A has more than 10000 ont.")):
 				raise Error("pre-condition unsatisfied")
 
 			(wallet_A_address, wallet_B_address, vote_price, node_B_puiblic_key, blocks_per_round, punish_ratio) = get_config()
+
+			block_count = getblockcount()
 
 			# step 1 before vote get balance of wallet A B
 			balance_of_wallet_A_1 = getbalance_ont(wallet_A_address)
@@ -39,9 +42,16 @@ class TestConsensus(ParametrizedTestCase):
 
 			# step 2 wallet A vote for node B
 			(result, response) = vote_for_peer(wallet_A_address, [node_B_puiblic_key], [vote_price])
-			print (response)
 			#if not result:
 			#	raise Error("vote error")
+
+			# wait until the next two blocks
+			while(True):
+				if getblockcount() - block_count <= 1:
+					print (getblockcount(), block_count)
+					time.sleep(5)
+				else:
+					break
 
 			# step 3 after vote get balance of wallet A B
 			balance_of_wallet_A_2 = getbalance_ont(wallet_A_address)
@@ -54,7 +64,7 @@ class TestConsensus(ParametrizedTestCase):
 				raise Error("balance of wallte B changed.")
 			
 			if balance_of_wallet_A_1 - balance_of_wallet_A_2 != int(vote_price):
-				raise Error("the decrease of balance of wallte A is not %s." % vote_price)
+				raise Error("the decrease of balance of wallet A is not %s." % vote_price)
 
 		
 		except Exception as e:

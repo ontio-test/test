@@ -124,6 +124,74 @@ def bind_role_function(contract_address, admin_address, role_str, functions, pub
         
     return call_contract(Task(name="bind_role_function", ijson=request), twice = True)
 
+def invoke_assignfuncstorole_neo(contract_address, admin_address, role_str, functions, public_key="1", node_index = None):
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signeovminvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": contract_address,
+                "version": 0,
+                "params": [
+                    {
+                        "type": "string",
+                        "value": "assignFuncsToRole"
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : contract_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : admin_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : role_str
+                            },
+                            {
+                                "type" : "array",
+                                "value" : [
+                                    {
+                                        "type" : "string",
+                                        "value" : functions
+                                    }
+                                ]
+                            },
+                            {
+                                "type" : "int",
+                                "value" : public_key
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "RESPONSE":{"error" : 0}
+    }
+
+    if node_index != None:
+        request["NODE_INDEX"] = node_index
+    #else:
+        #node_index = Common.ontid_map[admin_address]
+        #request["NODE_INDEX"] = node_index
+        
+    return call_contract(Task(name="bind_role_function", ijson=request), twice = True)
+
 
 def bind_user_role(contract_address, admin_address, role_str, ontIDs, public_key="1", node_index = None):
     request = {
@@ -155,6 +223,74 @@ def bind_user_role(contract_address, admin_address, role_str, ontIDs, public_key
         request["NODE_INDEX"] = node_index
         
     return call_contract(Task(name="bind_user_role", ijson=request), twice = True)
+
+def invoke_assignontidstorole_neo(contract_address, admin_address, role_str, ontIDs, public_key="1", node_index = None):
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signeovminvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": contract_address,
+                "version": 0,
+                "params": [
+                    {
+                        "type": "string",
+                        "value": "assignOntIDsToRole"
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : contract_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : admin_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : role_str
+                            },
+                            {
+                                "type" : "array",
+                                "value" : [
+                                    {
+                                        "type" : "bytearray",
+                                        "value" : ontIDs
+                                    }
+                                ]
+                            },
+                            {
+                                "type" : "int",
+                                "value" : public_key
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "RESPONSE":{"error" : 0}
+    }
+
+    if node_index != None:
+        request["NODE_INDEX"] = node_index
+    #else:
+        #node_index = Common.ontid_map[admin_address]
+        #request["NODE_INDEX"] = node_index
+        
+    return call_contract(Task(name="bind_role_function", ijson=request), twice = True)
 
 
 def delegate_user_role(contract_address, owner_user, delegate_user, delegate_role, period, level, public_key="1", node_index = None):
@@ -190,6 +326,77 @@ def delegate_user_role(contract_address, owner_user, delegate_user, delegate_rol
 
     return call_contract(Task(name="delegate_user_role", ijson=request), twice = True)
 
+def invoke_delegate_neo(contract_address, owner_user, delegate_user, delegate_role, period, level, public_key="1", node_index = None):
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signeovminvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": contract_address,
+                "version": 0,
+                "params": [
+                    {
+                        "type": "string",
+                        "value": "delegate"
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : contract_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : owner_user
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : delegate_user
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : delegate_role
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : period
+                            },
+                            {
+                                "type" : "int",
+                                "value" : level
+                            },
+                            {
+                                "type" : "int",
+                                "value" : public_key
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "RESPONSE":{"error" : 0}
+    }
+
+    if node_index != None:
+        request["NODE_INDEX"] = node_index
+    #else:
+        #node_index = Common.ontid_map[admin_address]
+        #request["NODE_INDEX"] = node_index
+        
+    return call_contract(Task(name="bind_role_function", ijson=request), twice = True)
+
 
 def withdraw_user_role(contract_address, call_user, delegate_user, delegate_role, public_key="1", node_index = None):
     request = {
@@ -222,6 +429,69 @@ def withdraw_user_role(contract_address, call_user, delegate_user, delegate_role
         
     return call_contract(Task(name="withdraw_user_role", ijson=request), twice = True)
 
+def invoke_withdraw_neo(contract_address, call_user, delegate_user, delegate_role, public_key="1", node_index = None):
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signeovminvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": contract_address,
+                "version": 0,
+                "params": [
+                    {
+                        "type": "string",
+                        "value": "withdraw"
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : contract_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : call_user
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : delegate_user
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : delegate_role
+                            },
+                            {
+                                "type" : "int",
+                                "value" : public_key
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "RESPONSE":{"error" : 0}
+    }
+
+    if node_index != None:
+        request["NODE_INDEX"] = node_index
+    #else:
+        #node_index = Common.ontid_map[admin_address]
+        #request["NODE_INDEX"] = node_index
+        
+    return call_contract(Task(name="bind_role_function", ijson=request), twice = True)
+
 def transfer(contract_address, new_admin_ontid, public_key="1", node_index = None):
     request = {
         "REQUEST": {
@@ -248,6 +518,61 @@ def transfer(contract_address, new_admin_ontid, public_key="1", node_index = Non
     else:
         node_index = Common.ontid_map[new_admin_ontid]
         request["NODE_INDEX"] = node_index
+        
+    return call_contract(Task(name="withdraw_user_role", ijson=request), twice = True)
+
+def invoke_transfer_neo(contract_address, new_admin_ontid, public_key="1", node_index = None):
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signeovminvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": contract_address,
+                "version": 0,
+                "params": [
+                    {
+                        "type": "string",
+                        "value": "transfer"
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : contract_address
+                            },
+                            {
+                                "type" : "bytearray",
+                                "value" : new_admin_ontid
+                            },
+                            {
+                                "type" : "int",
+                                "value" : public_key
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type" : "string",
+                                "value" : ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "RESPONSE":{"error" : 0}
+    }
+
+    if node_index != None:
+        request["NODE_INDEX"] = node_index
+    #else:
+        #node_index = Common.ontid_map[admin_address]
+        #request["NODE_INDEX"] = node_index
         
     return call_contract(Task(name="withdraw_user_role", ijson=request), twice = True)
 

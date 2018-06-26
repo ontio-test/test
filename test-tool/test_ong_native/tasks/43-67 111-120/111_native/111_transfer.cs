@@ -30,7 +30,7 @@ namespace Example
 
         public static byte[] transferInvoke(object[] args)
         {
-            byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 };
             TransferParam transferParam;
             transferParam.from = (byte[])args[0];
             transferParam.to = (byte[])args[1];

@@ -23,14 +23,21 @@ from utils.commonapi import call_contract
 
 logger = LoggerInstance
 
-CONTRACT_ADDRESS_CORRECT = "63ece36aba749db043e9250ddd0f965461fbedf1"
+# CONTRACT_ADDRESS_CORRECT = "a0e5382b913487321cc6357d6ff224f9b3490c70"
+CONTRACT_ADDRESS_CORRECT = "f77457cf24b1ab93b34050b3cfe6892f22e11945"
 CONTRACT_ADDRESS_INCORRECT_1 = "895e4e505cb1a1388cf8bdc3021440c45bf66d1b"
-CONTRACT_ADDRESS_INCORRECT_2 = "17f4f200d9cc9046406579f09484350bc149cd9b"
+CONTRACT_ADDRESS_INCORRECT_2 = "3ad9f65c84ca447bb66eb2f9425ac6b22955bacf"
 CONTRACT_ADDRESS_INCORRECT_3 = "457f2f72528d8a0809666bd9a441711123336a2c"
 
 CONTRACT_ADDRESS_INCORRECT_4 = "457f2f72528d8a0809666bd9a441711123336a11" # not real contract
 CONTRACT_ADDRESS_INCORRECT_5 = "45445566" # luanma
 CONTRACT_ADDRESS_INCORRECT_6 = "" # null
+CONTRACT_ADDRESS_INCORRECT_10 = "144d253e0375c3a06e3e954976d1e87eaf5c9b6e"
+CONTRACT_ADDRESS_INCORRECT_11 = "9f5fb13ba264ec69cf347359dc3e4e34d2016997"
+CONTRACT_ADDRESS_INCORRECT_12 = "a3444ccbc10b343f09453d8343bb73c02ebfde43"
+
+CONTRACT_ADDRESS_138 = "4231d21f460bf073427a0378b20eb0e9129e805c"
+CONTRACT_ADDRESS_139 = "a9026ea486c6c04cd1b4c1c75d3507d265854975"
 
 ontID_A = ByteToHex(b"did:ont:AK7wzmkdgjKxbXAJBiaW91YhUokTu9pa5X")
 ontID_B = ByteToHex(b"did:ont:AcVb7HZB4nMDscQHXXoqKvnNFwrpL3V1u3")
@@ -112,91 +119,91 @@ class TestContract(ParametrizedTestCase):
 		log_path = "05_verifyToken.log"
 		task_name = "05_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_06_verifyToken(self):
 		log_path = "06_verifyToken.log"
 		task_name = "06_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_B)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_07_verifyToken(self):
 		log_path = "07_verifyToken.log"
 		task_name = "07_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_C)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_08_verifyToken(self):
 		log_path = "08_verifyToken.log"
 		task_name = "08_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_D)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_09_verifyToken(self):
 		log_path = "09_verifyToken.log"
 		task_name = "09_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_10_verifyToken(self):
 		log_path = "10_verifyToken.log"
 		task_name = "10_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_INCORRECT_10, "A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_11_verifyToken(self):
 		log_path = "11_verifyToken.log"
 		task_name = "11_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_INCORRECT_11, "A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_12_verifyToken(self):
 		log_path = "12_verifyToken.log"
 		task_name = "12_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_INCORRECT_12, "A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_13_verifyToken(self):
 		log_path = "13_verifyToken.log"
 		task_name = "13_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_14_verifyToken(self):
 		log_path = "14_verifyToken.log"
 		task_name = "14_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "C", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_15_verifyToken(self):
 		log_path = "15_verifyToken.log"
 		task_name = "15_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "B", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_16_verifyToken(self):
 		log_path = "16_verifyToken.log"
 		task_name = "16_verifyToken"
 		self.start(log_path)
-		(result, response) = init_admin(CONTRACT_ADDRESS_INCORRECT_3, None)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_17_transfer(self):
 		log_path = "17_transfer.log"
 		task_name = "17_transfer"
 		self.start(log_path)
-		(result, response) = transfer(CONTRACT_ADDRESS_CORRECT, ontID_A)
+		(result, response) = transfer(CONTRACT_ADDRESS_CORRECT, ontID_B)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_18_transfer(self):
@@ -329,7 +336,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "36_assignFuncsToRole.log"
 		task_name = "36_assignFuncsToRole"
 		self.start(log_path)
-		(result, response) = bind_role_function(CONTRACT_ADDRESS_CORRECT, ontID_B, ROLE_CORRECT, [FUNCTION_A])
+		(result, response) = bind_role_function(CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [FUNCTION_A])
 		self.finish(task_name, log_path, result,  "")
 
 	def test_37_assignFuncsToRole(self):
@@ -627,7 +634,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "78_delegate.log"
 		task_name = "78_delegate"
 		self.start(log_path)
-		(result, response) = delegate_user_role(CONTRACT_ADDRESS_CORRECT, ontID_B, ontID_B, ROLE_CORRECT, PERIOD_CORRECT, LEVEL_CORRECT)
+		(result, response) = delegate_user_role(CONTRACT_ADDRESS_CORRECT, ontID_A, ontID_B, ROLE_CORRECT, PERIOD_CORRECT, LEVEL_CORRECT)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_79_delegate(self):
@@ -663,6 +670,8 @@ class TestContract(ParametrizedTestCase):
 		log_path = "83_delegate.log"
 		task_name = "83_delegate"
 		self.start(log_path)
+		(result, response) = bind_role_function(CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [FUNCTION_A])
+		(result, response) = bind_user_role( CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [ontID_A])
 		(result, response) = delegate_user_role(CONTRACT_ADDRESS_CORRECT, ontID_A, ontID_A, ROLE_CORRECT, PERIOD_CORRECT, LEVEL_CORRECT)
 		self.finish(task_name, log_path, result,  "")
 
@@ -677,6 +686,8 @@ class TestContract(ParametrizedTestCase):
 		log_path = "85_delegate.log"
 		task_name = "85_delegate"
 		self.start(log_path)
+		(result, response) = bind_role_function(CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [FUNCTION_A])
+		(result, response) = bind_user_role( CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [ontID_A])
 		(result, response) = delegate_user_role(CONTRACT_ADDRESS_CORRECT, ontID_A, ontID_D, ROLE_CORRECT, PERIOD_CORRECT, LEVEL_CORRECT)
 		self.finish(task_name, log_path, result,  "")
 
@@ -719,6 +730,8 @@ class TestContract(ParametrizedTestCase):
 		log_path = "91_delegate.log"
 		task_name = "91_delegate"
 		self.start(log_path)
+		(result, response) = bind_role_function(CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [FUNCTION_A])
+		(result, response) = bind_user_role( CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, [ontID_A])
 		(result, response) = delegate_user_role(CONTRACT_ADDRESS_CORRECT, ontID_A, ontID_B, ROLE_CORRECT, PERIOD_INCORRECT_2, LEVEL_CORRECT)		
 		self.finish(task_name, log_path, result,  "")
 
@@ -1048,21 +1061,84 @@ class TestContract(ParametrizedTestCase):
 		log_path = "138_appcall.log"
 		task_name = "138_appcall"
 		self.start(log_path)
-		(result, response) = withdraw_user_role(CONTRACT_ADDRESS_CORRECT, CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, FUNCTION_A)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_138, "contractA_Func_A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_139_appcall(self):
 		log_path = "139_appcall.log"
 		task_name = "139_appcall"
 		self.start(log_path)
-		(result, response) = withdraw_user_role(CONTRACT_ADDRESS_CORRECT, CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, FUNCTION_A)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_139, "contractA_Func_A", ontID_A)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_140_appcall(self):
 		log_path = "140_appcall.log"
 		task_name = "140_appcall"
 		self.start(log_path)
-		(result, response) = withdraw_user_role(CONTRACT_ADDRESS_CORRECT, CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, FUNCTION_A)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "contractA_Func_A", ontID_A)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_141_transfer(self):
+		log_path = "141_transfer.log"
+		task_name = "141_transfer"
+		self.start(log_path)
+		(result, response) = invoke_transfer_neo(CONTRACT_ADDRESS_CORRECT, ontID_B)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_142_assignfuncstorole(self):
+		log_path = "142_assignfuncstorole.log"
+		task_name = "142_assignfuncstorole"
+		self.start(log_path)
+		(result, response) = invoke_assignfuncstorole_neo(CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, FUNCTION_A)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_143_assignontidstorole(self):
+		log_path = "143_assignontidstorole.log"
+		task_name = "143_assignontidstorole"
+		self.start(log_path)
+		(result, response) = invoke_assignontidstorole_neo(CONTRACT_ADDRESS_CORRECT, ontID_A, ROLE_CORRECT, ontID_B)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_144_delegate(self):
+		log_path = "144_delegate.log"
+		task_name = "144_delegate"
+		self.start(log_path)
+		(result, response) = invoke_delegate_neo(CONTRACT_ADDRESS_CORRECT, ontID_A, ontID_B, ROLE_CORRECT, PERIOD_CORRECT, LEVEL_CORRECT)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_145_withdraw(self):
+		log_path = "145_withdraw.log"
+		task_name = "145_withdraw"
+		self.start(log_path)
+		(result, response) = invoke_withdraw_neo(CONTRACT_ADDRESS_CORRECT, ontID_A, ontID_B, ROLE_CORRECT)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_146_verifyToken(self):
+		log_path = "146_verifyToken.log"
+		task_name = "146_verifyToken"
+		self.start(log_path)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_147_verifyToken(self):
+		log_path = "147_verifyToken.log"
+		task_name = "147_verifyToken"
+		self.start(log_path)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A, public_key=KEY_NO_1)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_148_verifyToken(self):
+		log_path = "148_verifyToken.log"
+		task_name = "148_verifyToken"
+		self.start(log_path)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A, public_key=KEY_NO_2)
+		self.finish(task_name, log_path, result,  "")
+
+	def test_149_verifyToken(self):
+		log_path = "149_verifyToken.log"
+		task_name = "149_verifyToken"
+		self.start(log_path)
+		(result, response) = invoke_function(CONTRACT_ADDRESS_CORRECT, "A", ontID_A, public_key=KEY_NO_3)
 		self.finish(task_name, log_path, result,  "")
 
 	def test_00(self):
@@ -1074,6 +1150,7 @@ class TestContract(ParametrizedTestCase):
 		regIDWithPublicKey(5)
 		regIDWithPublicKey(6)
 		regIDWithPublicKey(7)
+		regIDWithPublicKey(8)
 ####################################################
 if __name__ == '__main__':
 	unittest.main()

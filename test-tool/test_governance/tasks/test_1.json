@@ -6,7 +6,7 @@
             "gas_price": 0,
             "gas_limit": 1000000000,
             "address": "ff00000000000000000000000000000000000007",
-            "method": "VoteForPeer",
+            "method": "voteForPeer",
             "version": 0,
             "params": [
                 "TA7TSQ5aJcA8sU5MpqJNyTG1r13AQYLYpR",

@@ -25,13 +25,13 @@ class TestConsensus(ParametrizedTestCase):
 
 	def test_main(self):
 		result = False
-		logger.open("TestConsensus1.log", "TestConsensus1")
+		logger.open("TestGover12.log", "TestGover12")
 		try:
 			if (not pause("ensure that node A and node B is in the nodes network and node A has more than 10000 ont.")):
 				raise Error("pre-condition unsatisfied")
 
 			(wallet_A_address, wallet_B_address, vote_price, node_B_puiblic_key, blocks_per_round, punish_ratio) = get_config()
-			
+			'''
 			# to ensure that the following operations are in the same round			
 			while(True):
 				if getblockcount() % blocks_per_round <= 2:
@@ -39,7 +39,7 @@ class TestConsensus(ParametrizedTestCase):
 					continue
 				else:
 					break
-
+			'''
 			# step 1 wallet A vote for node B
 			(result, response) = vote_for_peer(wallet_A_address, [node_B_puiblic_key], [vote_price])
 			print (response)
@@ -47,7 +47,8 @@ class TestConsensus(ParametrizedTestCase):
 			#	raise Error("vote error")
 
 			# step 2 black node b 
-			(result, response) = black_node([node_B_puiblic_key])
+			if (not pause("black node over?")):
+				pass
 			#if not result:
 			#	raise Error("black_node error")
 

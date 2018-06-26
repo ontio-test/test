@@ -29,7 +29,7 @@ namespace Example
 
         public static byte[] AllowanceInvoke(object[] args)
         {
-            byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 };
             AllowanceParam allowanceParam;
             allowanceParam.from = (byte[])args[0];
             allowanceParam.to = (byte[])args[1];

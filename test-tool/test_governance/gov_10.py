@@ -25,13 +25,13 @@ class TestConsensus(ParametrizedTestCase):
 
 	def test_main(self):
 		result = False
-		logger.open("TestConsensus1.log", "TestConsensus1")
+		logger.open("TestGover10.log", "TestGover10")
 		try:
 			if (not pause("ensure that node A and node B is in the nodes network and node A has more than 10000 ont.")):
 				raise Error("pre-condition unsatisfied")
 
 			(wallet_A_address, wallet_B_address, vote_price, node_B_puiblic_key, blocks_per_round, punish_ratio) = get_config()
-
+			'''
 			# to ensure that the following operations are in the same round
 			while(True):
 				if getblockcount() % blocks_per_round <= 2:
@@ -39,9 +39,9 @@ class TestConsensus(ParametrizedTestCase):
 					continue
 				else:
 					break
-
-			consensus_rounds = getblockcount() / blocks_per_round
-
+			'''
+			consensus_rounds = (int) (getblockcount() / blocks_per_round)
+			
 			# step 1 wallet A vote for node B
 			(result, response) = vote_for_peer(wallet_A_address, [node_B_puiblic_key], [vote_price])
 			print (response)
@@ -51,12 +51,13 @@ class TestConsensus(ParametrizedTestCase):
 			# step 2 wait until the second round
 			while(True):
 				if (getblockcount() / blocks_per_round - consensus_rounds == 1):
-					(result, response) = quit_node([node_B_puiblic_key], wallet_B_address)
+					(result, response) = quit_node_index(node_B_puiblic_key, wallet_B_address)
 					#if not result:
 					#	raise Error("quit_node error")
 					break
 				else:
-					time.sleep(1)
+					print(getblockcount())
+					time.sleep(5)
 					continue	
 			
 			# step 3 wallet A withdraw ont in the third round
@@ -66,7 +67,8 @@ class TestConsensus(ParametrizedTestCase):
 					(result, response) = withdraw_ont(wallet_A_address, [node_B_puiblic_key], [vote_price])
 					break
 				else:
-					time.sleep(1)
+					print(getblockcount())
+					time.sleep(5)
 					continue	
 			#if not result:
 			#	raise Error("withdraw_ont error")
@@ -77,7 +79,8 @@ class TestConsensus(ParametrizedTestCase):
 					(result, response) = withdraw_ont(wallet_A_address, [node_B_puiblic_key], [vote_price])
 					break
 				else:
-					time.sleep(1)
+					print(getblockcount())
+					time.sleep(5)
 					continue	
 
 			# this should be failed
@@ -85,7 +88,7 @@ class TestConsensus(ParametrizedTestCase):
 			#if not result:
 			#	raise Error("withdraw_ont error")
 
-		
+			
 		except Exception as e:
 			print(e.msg)
 		logger.close(result)

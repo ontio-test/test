@@ -2,14 +2,14 @@
 
 class testConfig():
 
-    wallet_A_address = "TA7TSQ5aJcA8sU5MpqJNyTG1r13AQYLYpR"
-    wallet_B_address = "TA82XAPQXtVzncQMczcY9SVytjb2VuTQy4"
+    wallet_A_address = "AYyvJH7ZLc58HP6XMQjpgEPyrKcj2PCMLn"
+    wallet_B_address = "AbeyxqLpm3GZDVJdRP62raMfCmHxsDfKDN"
 
-    node_B_puiblic_key = "120203483420b24240f9db477fb117d857bc6e537a1486eb803e2e702f7bb353eea481"
+    node_B_puiblic_key = "02b59d88bc4b2f5814b691d32e736bcd7ad018794f041235092f6954e23198cbcf"
 
     vote_price = "3000"
 
-    blocks_per_round = 50
+    blocks_per_round = 5
 
     punish_ratio = 0.5
 

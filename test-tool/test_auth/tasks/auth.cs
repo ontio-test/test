@@ -14,11 +14,11 @@ namespace Example
             public byte[] AdminOntID;
         }
         
-        struct verifyTokenParam
+        struct VerifyTokenParam
         {
             public byte[] ContractAddr;
             public byte[] Caller;
-            public byte[] Fn;
+            public string Fn;
             public int KeyNo;
         }
 
@@ -42,9 +42,9 @@ namespace Example
 
         public struct Transfer
         {
-            public byte[] From;
-            public byte[] To;
-            public int Value;
+            public string ContractAddr;
+            public byte[] AdminOntID;
+            public int KeyNo;
         }
 
         public struct delegateParam
@@ -100,8 +100,6 @@ namespace Example
 
             if (operation == "transfer")
             {
-                //we need to check if the caller is authorized to invoke foo
-                if (!VerifyToken(operation, token)) return false;
 
                 return InvokeTransfer(args);   
             }
@@ -109,6 +107,21 @@ namespace Example
             if (operation == "assignFuncsToRole")
             {
                 return InvokeAssignFuncsToRole(args);   
+            }
+
+            if (operation == "assignOntIDsToRole")
+            {
+                return InvokeAssignOntIDsToRole(args);   
+            }
+
+            if (operation == "delegate")
+            {
+                return InvokeDelegate(args);   
+            }
+
+            if (operation == "withdraw")
+            {
+                return InvokeWithdraw(args);   
             }
     
             return "222";
@@ -128,12 +141,12 @@ namespace Example
         {
    
             byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6 };
-            byte[] from = (byte[])args[1];
-            byte[] to = (byte[])args[2];
-            int amount = (int)args[3];
+            string contractAddr = (string)args[0];
+            byte[] adminOntID = (byte[])args[1];
+            int keyNo = (int)args[2];
             
             object[] param = new object[1];
-            param[0] = new Transfer { From = from, To = to, Value = amount };
+            param[0] = new Transfer { ContractAddr = contractAddr, AdminOntID = adminOntID, KeyNo = keyNo };
 
             return Native.Invoke(0, address, "transfer", param);
         }
@@ -234,15 +247,14 @@ namespace Example
         {
             byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6 };
             
-            byte[] contractAddr = ExecutionEngine.ExecutingScriptHash;
-            byte[] caller = (byte[])token[0];
-            byte[] fn = operation.AsByteArray();
-            int keyNo = (int)token[1];
-            
-            object[] param = new object[1];
-            param[0] = new verifyTokenParam { ContractAddr = contractAddr, Caller = caller, Fn = fn, KeyNo = keyNo };
-            byte[] res = Native.Invoke(0, address, "verifyToken", param);
-            return true;
+            VerifyTokenParam param = new VerifyTokenParam{}; 
+            param.ContractAddr = ExecutionEngine.ExecutingScriptHash;
+            param.Fn = operation;
+            param.Caller = (byte[])token[0];
+            param.KeyNo = (int)token[1];
+
+            byte[] ret = Native.Invoke(0, address, "verifyToken", param);
+            return ret[0] == 1;
         }
 
     }

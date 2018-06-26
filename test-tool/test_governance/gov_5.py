@@ -24,13 +24,14 @@ class TestConsensus(ParametrizedTestCase):
 
 	def test_main(self):
 		result = False
-		logger.open("TestConsensus1.log", "TestConsensus1")
+		logger.open("TestGover5.log", "TestGover5")
 		try:
 			if (not pause("ensure that node A  and node B is in the nodes network and node A has more than 10000 ont.")):
 				raise Error("pre-condition unsatisfied")
 
 			(wallet_A_address, wallet_B_address, vote_price, node_B_puiblic_key, blocks_per_round, punish_ratio) = get_config()
 
+			
 			# step 1 before vote get balance of wallet A B
 			balance_of_wallet_A_1 = getbalance_ont(wallet_A_address)
 			balance_of_wallet_B_1 = getbalance_ont(wallet_B_address)
@@ -42,7 +43,15 @@ class TestConsensus(ParametrizedTestCase):
 			print (response)
 			#if not result:
 			#	raise Error("vote error")
-
+			'''
+			# wait until the next two blocks
+			while(True):
+				if getblockcount() - block_count <= 1:
+					print(getblockcount())
+					time.sleep(5)
+				else:
+					break
+			'''
 			# step 3 after vote get balance of wallet A
 			balance_of_wallet_A_2 = getbalance_ont(wallet_A_address)
 			balance_of_wallet_B_2 = getbalance_ont(wallet_B_address)
