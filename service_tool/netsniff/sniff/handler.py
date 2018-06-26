@@ -72,7 +72,7 @@ class SniffHandler(tornado.web.RequestHandler):
     def sniff(self, interface, capfilter="", timeout="", count=""):
         cmd = "tshark -i %s -T fields -e frame.time_epoch -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e udp.srcport -e udp.dstport -e frame.protocols -l" % (interface)
         if capfilter:
-            cmd += " -f %s" % (capfilter)
+            cmd += ' -f "%s"' % (capfilter)
         if timeout:
             cmd += " -a duration:%s" % (timeout)
         if count:
@@ -124,7 +124,8 @@ class SniffHandler(tornado.web.RequestHandler):
     def start_sniff(self, interface, capfilter=""):
         cmd = "tshark -i %s -T fields -e frame.time_epoch -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e udp.srcport -e udp.dstport -e frame.protocols -l -a duration:60" % (interface)
         if capfilter:
-            cmd += " -f %s" % (capfilter)
+            cmd += ' -f "%s"' % (capfilter)
+        print(cmd)
         SniffHandler.capture = LoopCmd(cmd, self.sniff_callback)
         SniffHandler.packet = []
         SniffHandler.index = 0

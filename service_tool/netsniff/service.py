@@ -6,9 +6,12 @@ from tornado import websocket
 from tc.handler import TCHandler
 from sniff.handler import SniffHandler
 from common import log
+import setproctitle
 
 APP = None
 CONNECTSET = set()
+
+setproctitle.setproctitle("net_service")
 
 class NoCasheFileHandler(tornado.web.StaticFileHandler):  
     def set_extra_headers(self, path):

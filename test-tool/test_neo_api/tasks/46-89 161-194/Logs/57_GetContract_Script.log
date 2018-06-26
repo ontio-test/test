@@ -1,0 +1,37 @@
+[-------------------------------]
+[ RUN      ] contract.57_GetContract_Script
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "result": null,
+        "method": "signeovminvoketx",
+        "error_code": 1003,
+        "qid": "t",
+        "error_info": "ParseNeoVMInvokeParams error:Parse Param type:bytearray value:123 error:parse byte array param:123 error:encoding/hex: odd length hex string"
+    },
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "gas_pimit": 0,
+            "version": 1,
+            "address": "312ff7c76bedc932135d2a0d4e8b17e534b49209",
+            "gas_price": 0,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "GetContract_Script"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "123"
+                        }
+                    ]
+                }
+            ]
+        },
+        "Method": "signeovminvoketx"
+    }
+}
+[ Failed   ] no signed tx

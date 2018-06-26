@@ -1,0 +1,42 @@
+using Neo.SmartContract.Framework;
+using Neo.SmartContract.Framework.Services.Neo;
+using Neo.SmartContract.Framework.Services.System;
+using System;
+using System.ComponentModel;
+using System.Numerics;
+
+namespace Neo.SmartContract
+{
+    public class Domain : Framework.SmartContract
+    {
+        struct State
+        {
+            public byte[] From;
+            public byte[] To;
+            public UInt64 Amount;
+        }
+        
+        public struct StateSend
+        {
+            public byte[] Send;
+            public byte[] From;
+            public byte[] To;
+            public UInt64 Amount;
+        }
+        public static object Main(string operation, params object[] args)
+        {
+            byte[] address1 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            byte[] address2 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 };
+            byte[] from = (byte[])args[0];
+            byte[] to = (byte[])args[1];
+            UInt64 amount = (UInt64)args[2];
+            
+            object[] param = new object[1];
+            param[0] = new State { From = from, To = to, Amount = amount };
+            Native.Invoke(0, address1, "transfer", param);
+            Native.Invoke(0, address2, "transfer", param);
+            return false;
+        }
+
+    }
+}

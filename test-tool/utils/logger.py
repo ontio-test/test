@@ -45,6 +45,7 @@ class Logger():
 				self.append_record(self.logtitle, "fail", self.logpath)
 		if self.logfile:
 			self.logfile.close()
+			self.logfile = None
 
 	def append_record(self, name, status, logpath):
 		self.collectionfile.write(name + "," + status + "," + logpath + "\n")

@@ -1,0 +1,28 @@
+{
+    "REQUEST": {
+    "Qid": "t",
+    "Method": "signeovminvoketx",
+    "Params": {
+    "gas_price": 0,
+    "gas_pimit": 0,
+    "address": "a5db91c678d5daa03edb78a2fb02b8c498671a6d",
+    "version": 1,
+    "params":[
+        {
+            "type":"string",
+            "value":"test_neo_param_string"
+        },
+        {
+            "type":"array",
+            "value":[{
+                        "type":"bool",
+                        "value":"false"
+                    }]
+        }
+    ]
+    }
+            },
+    "RESPONSE": {}
+}
+    
+    

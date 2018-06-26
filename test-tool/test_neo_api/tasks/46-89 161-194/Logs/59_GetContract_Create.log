@@ -1,0 +1,61 @@
+[-------------------------------]
+[ RUN      ] contract.59_GetContract_Create
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "address": "221b65b65d01284d60c9cb92ec70d77e3e270ebc",
+            "gas_pimit": 0,
+            "gas_price": 0,
+            "params": [
+                {
+                    "value": "GetContract_Create",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "12345",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "true",
+                            "type": "bool"
+                        },
+                        {
+                            "value": "testContract",
+                            "type": "string"
+                        },
+                        {
+                            "value": "1",
+                            "type": "string"
+                        },
+                        {
+                            "value": "yangjc",
+                            "type": "string"
+                        },
+                        {
+                            "value": "378986991@qq.com",
+                            "type": "string"
+                        },
+                        {
+                            "value": "this is my first test contract",
+                            "type": "string"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "version": 1
+        },
+        "Method": "signeovminvoketx"
+    },
+    "RESPONSE": {
+        "method": "signeovminvoketx",
+        "error_info": "ParseNeoVMInvokeParams error:Parse Param type:bytearray value:12345 error:parse byte array param:12345 error:encoding/hex: odd length hex string",
+        "qid": "t",
+        "error_code": 1003,
+        "result": null
+    }
+}
+[ Failed   ] no signed tx

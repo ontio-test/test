@@ -105,7 +105,7 @@ def check_node_all(node_list):
 	return (check_node_state(node_list) and check_node_ledgerevent(node_list) and check_node_block(node_list))
 
 
-def deploy_contract_full(neo_code_path, name = "name", desc = "this is desc"):
+def deploy_contract_full(neo_code_path, name = "name", desc = "this is desc", price = 0):
 	if not neo_code_path or neo_code_path == "":
 		return None
 
@@ -113,7 +113,7 @@ def deploy_contract_full(neo_code_path, name = "name", desc = "this is desc"):
 	deploy_contract_txhash = None
 	
 	logger.print("[ DEPLOY ] ")
-	cmd = Config.TOOLS_PATH + "/deploy_contract.sh " + neo_code_path + " \"" + name + "\" \"" + desc + "\" > tmp"
+	cmd = Config.TOOLS_PATH + "/deploy_contract.sh " + neo_code_path + " \"" + name + "\" \"" + desc + "\" \"" + str(price) +  "\" > tmp"
 	p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
 	print(cmd)
 	begintime = time.time()
@@ -147,8 +147,8 @@ def deploy_contract_full(neo_code_path, name = "name", desc = "this is desc"):
 	return (deploy_contract_addr, deploy_contract_txhash)
 #部署合约
 #返回值： 部署的合约地址
-def deploy_contract(neo_code_path, name = "name", desc = "this is desc"):
-	(deploy_contract_addr, deploy_contract_txhash) = deploy_contract_full(neo_code_path, name, desc)
+def deploy_contract(neo_code_path, name = "name", desc = "this is desc", price = 0):
+	(deploy_contract_addr, deploy_contract_txhash) = deploy_contract_full(neo_code_path, name, desc, price)
 	time.sleep(6)
 	return deploy_contract_addr
 
@@ -243,11 +243,11 @@ def call_contract(task, judge = True, pre = True, twice = False):
 
 		if twice:
 			(result, response) = call_signed_contract(signed_tx, True, node_index)
-			(result, response) = call_signed_contract(signed_tx, False, node_index)
+			call_signed_contract(signed_tx, False, node_index)
 		else:
 			(result, response) = call_signed_contract(signed_tx, pre, node_index)
 	
-		if response is None or "error" not in response or str(response["error"]) != '0':
+		if response is None or "error" not in response:# or str(response["error"]) != '0':
 			raise Error("call contract error")
 
 		if judge and expect_response:
@@ -363,6 +363,10 @@ def pause(msg):
 	return command
 
 #
+def start_nodes(indexs, start_params, clear_chain = False, clear_log = False):
+	for index in indexs:
+		start_node(index, start_params, clear_chain, clear_log)
+
 def start_node(index, start_params, clear_chain = False, clear_log = False):
 	request = {
 		"method": "start_node",
@@ -380,7 +384,10 @@ def start_node(index, start_params, clear_chain = False, clear_log = False):
 
 	return response
 
-#
+def stop_nodes(indexs):
+	for index in indexs:
+		stop_node(index)
+
 def stop_node(index):
 	request = {
 		"method": "stop_node",
@@ -394,6 +401,10 @@ def stop_node(index):
 	return response
 
 #
+def replace_configs(indexs, config = None):
+	for index in indexs:
+		replace_config(index, config)
+		
 def replace_config(index, config = None):
 	if not config:
 		config = {
@@ -508,7 +519,6 @@ def script_hash_bl_reserver(input):
 		output = output + rstrs[i + 1]
 		output = output + rstrs[i]
 	return output
-
 
 def base58_to_address(input):
 	address = None

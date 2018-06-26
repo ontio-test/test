@@ -1,0 +1,86 @@
+[-------------------------------]
+[ RUN      ] contract.183_GetContract_Migrate
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Params": {
+            "address": "968d98071063a563b3fc61e4e9cdce4835818524",
+            "gas_price": 0,
+            "gas_pimit": 0,
+            "version": 1,
+            "params": [
+                {
+                    "value": "GetContract_Migrate",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "968d98071063a563b3fc61e4e9cdce4835818524",
+                            "type": "bytearray"
+                        },
+                        {
+                            "value": "true",
+                            "type": "bool"
+                        },
+                        {
+                            "value": "testContract",
+                            "type": "string"
+                        },
+                        {
+                            "value": "1",
+                            "type": "string"
+                        },
+                        {
+                            "value": "!@#%$&^*()_ +!~`",
+                            "type": "string"
+                        },
+                        {
+                            "value": "378986991@qq.com",
+                            "type": "string"
+                        },
+                        {
+                            "value": "this is my first test contract",
+                            "type": "string"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ]
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    },
+    "RESPONSE": {
+        "method": "signeovminvoketx",
+        "result": {
+            "signed_tx": "00d1b16e225b00000000000000000000000000000000922fef396b3b3bb26600dc9caf27be5b16bc5e0f911e74686973206973206d79206669727374207465737420636f6e7472616374103337383938363939314071712e636f6d102140232524265e2a28295f202b217e6001310c74657374436f6e74726163745114968d98071063a563b3fc61e4e9cdce483581852457c113476574436f6e74726163745f4d696772617465672485813548cecde9e461fcb363a5631007988d960001414039163289daebc5643f54fe827f76e4252c00af4014804d72219a72669f007bd113ae0bac1de5d2cd7b71fb3a27ff1bcb55bc5db96793f01a5cdaaeead630368c232102f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287efac"
+        },
+        "error_info": "",
+        "error_code": 0,
+        "qid": "t"
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "method": "sendrawtransaction",
+        "id": 1,
+        "params": [
+            "00d1b16e225b00000000000000000000000000000000922fef396b3b3bb26600dc9caf27be5b16bc5e0f911e74686973206973206d79206669727374207465737420636f6e7472616374103337383938363939314071712e636f6d102140232524265e2a28295f202b217e6001310c74657374436f6e74726163745114968d98071063a563b3fc61e4e9cdce483581852457c113476574436f6e74726163745f4d696772617465672485813548cecde9e461fcb363a5631007988d960001414039163289daebc5643f54fe827f76e4252c00af4014804d72219a72669f007bd113ae0bac1de5d2cd7b71fb3a27ff1bcb55bc5db96793f01a5cdaaeead630368c232102f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287efac",
+            1
+        ],
+        "jsonrpc": "2.0"
+    },
+    "RESPONSE": {
+        "result": {
+            "Result": "14968d98071063a563b3fc61e4e9cdce4835818524010c74657374436f6e74726163740131102140232524265e2a28295f202b217e60103337383938363939314071712e636f6d1e74686973206973206d79206669727374207465737420636f6e7472616374",
+            "Gas": 10000305,
+            "Result String": "\u0014\u0096\u008d\u0098\u0007\u0010c\u00a5c\u00b3\u00fca\u00e4\u00e9\u00cd\u00ceH5\u0081\u0085$\u0001\ftestContract\u00011\u0010!@#%$&^*()_ +!~`\u0010378986991@qq.com\u001ethis is my first test contract",
+            "State": 1
+        },
+        "desc": "SUCCESS",
+        "jsonpc": "2.0",
+        "id": 1,
+        "error": 0
+    }
+}
+[ OK       ] 

@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">16</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1281132211000</longProp>
+        <longProp name="ThreadGroup.end_time">1281132211000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.duration">600</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <stringProp name="CookieManager.policy">rfc2109</stringProp>
+        </CookieManager>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="VIEWSTATE" elementType="Argument">
+              <stringProp name="Argument.name">VIEWSTATE</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="jsessionid" elementType="Argument">
+              <stringProp name="Argument.name">jsessionid</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">application/x-ms-application, image/jpeg, application/xaml+xml, image/gif, image/pjpeg, application/x-ms-xbap, */*</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept-Language</stringProp>
+              <stringProp name="Header.value">zh-CN</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Step 1" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </LoopController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc1" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b000000008b35a0290ca3993dfef1bb41efb1bc4fb7e7e4374d02e803148b35a0290ca3993dfef1bb41efb1bc4fb7e7e437148b35a0290ca3993dfef1bb41efb1bc4fb7e7e43753c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc4086400014140012f564b50c9f31d71fbdfbd1ea2d818462cf1abfd04d382232476d3e682be4f6e327ad264253a4b996911fdb6a8e3e5f52aa729a21e4feed1ec1ef4d4a09f9e232102b1df66eefab70864ca7b6d74ac625bd0ea9f5a45977fa58435e66cc542ad6baaac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.134.32</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc2" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b0000000096246d5a6f744079100eae844a1e9a525b71c8dd4d02e8031496246d5a6f744079100eae844a1e9a525b71c8dd1496246d5a6f744079100eae844a1e9a525b71c8dd53c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc408640001414069f0f2637d021abd1dc9003e8983b390dfac3a6aaa18cd19da20936bb06710267d19fa9b8c990854cce60379180c666e7fc5fb600e5301b8ad3751a6c97f524e232103579c31832dbf82941f55b528718176ebf06ff5904d73d47566a0aad4f1054d60ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.130.42</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc3" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b000000000ddd3731b662bd76a6e3ba85a656cb961b4ff32d4d02e803140ddd3731b662bd76a6e3ba85a656cb961b4ff32d140ddd3731b662bd76a6e3ba85a656cb961b4ff32d53c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc40864000141400693f4b5aaeeb8d2328609d55f8e0f486cd1495aa9747fd80156ac34b8587da1bbf34d9280898f2a5c8745fa74191d4f57b79ebf4959b614bfb75469b6bd78242321020fea657fd8b6d084625fca24360d2923603ef868e892e040c8929da24cdfa03eac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.131.108</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc4" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b000000007f4dd4974bfd8bea446ebe50fd30f77756c38c884d02e803147f4dd4974bfd8bea446ebe50fd30f77756c38c88147f4dd4974bfd8bea446ebe50fd30f77756c38c8853c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc40864000141401c9cc7d267e4514a0142dadb4a40f35c69fcf43c23fa2984687f2e649cf2e31234eab59e4ef5f120c001233b3d7f51c6bccaa2e8ea47aae3fe4fc84760e9cf88232102c00be95510ff4df00f1af293184cc918f1ff1cb2cd2bb5a0a680e21042aff820ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.132.96</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc5" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b00000000e7e482ce6c7076cf0a5ce608d62307bf1ad2d68f4d02e80314e7e482ce6c7076cf0a5ce608d62307bf1ad2d68f14e7e482ce6c7076cf0a5ce608d62307bf1ad2d68f53c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc4086400014140c129411f1907ca31858c9ea6a7a903b40e88dd6a95f4701d95b6b8393a8b52c112209f2b433ed7eba32fa66735a53bd63c5c86886e76b9cb58b3cf8cdfa60a80232102a21920b33558e45f1705b52f94e4fe1b16efcc7f02595fbade6524fa6826133bac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.142.139</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc6" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b00000000a2cf63ee53246bdad1192e290158fa7004febd3d4d02e80314a2cf63ee53246bdad1192e290158fa7004febd3d14a2cf63ee53246bdad1192e290158fa7004febd3d53c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc40864000141400d1db34c721adf48934efc30c8216c73abe0b7c9e58c2ddc6a74ade07d6721f3eccf4cb80a62141651e978fccfb3850a74e46bac8ba3042624ddbc12e670401f2321030393c6424ec9aee767f690756efcbfeaa164b922f31784968bd61a222a9c35f0ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.134.164</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc7" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b00000000eafad06d229b9fead2521e02c1ec6b5c86bc17184d02e80314eafad06d229b9fead2521e02c1ec6b5c86bc171814eafad06d229b9fead2521e02c1ec6b5c86bc171853c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc4086400014140d404e4414d8a0e76b2847f4ae070f45fb4aa1ee3a344d95ba7273c0dc37c2e6678dae438390ccb4bcca640064eff1502be95c290996c20595c76df0ff9c0b07f232102e50bb8d0e49cb9b24fc9b7d6719d0a7db58e27399e44717f4480b22657b72bd1ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.135.168</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc8" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b0000000013ff41976b84872daeee941967a99b0100af6eb14d02e8031413ff41976b84872daeee941967a99b0100af6eb11413ff41976b84872daeee941967a99b0100af6eb153c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc4086400014140986cb13890bb4bf0b78fe979d0b814dd7c974c08e1a8447777946856dc3f9a53a3628e5175402f4ce8b1b2ce4327fb3b1191272da1f1c29ab6efc5d9f20ac732232102841129b41c544f2cc18403fa3ec243fbd86df900a9338e71e94da7179b3e2be1ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.129.141</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc9" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b00000000f48b996077d6d06067a808fde3163ad322d744f24d02e80314f48b996077d6d06067a808fde3163ad322d744f214f48b996077d6d06067a808fde3163ad322d744f253c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc40864000141405996ce2178c2aec761f3b9679343cf6fe44e44c87df75d322469cdbb09cf70d1e6d884c373b526f4aff31f8081c5a7d4abf86db9d4bff1e081c3e16cef230c66232102e9f73e6288089b84126b60377fc7aad729e3bf005663da81eeb68bc2a6c10866ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.131.154</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc10" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b000000002493dfb6ff9bdfc589b1ac3702f3e2aa88c300f24d02e803142493dfb6ff9bdfc589b1ac3702f3e2aa88c300f2142493dfb6ff9bdfc589b1ac3702f3e2aa88c300f253c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc4086400014140f2644ac6cff3b5ffceace30ebb77eee1f54b72dab4714b5ce75f9f2c1d536af72dfd3deef052691c0ecca1c78ef7ec8274f4fcd49ff77959391a5aef8e94fa44232102820bebf2018e0b963e0304e1ac424d2e0ff0069c37665439355bca3307a2882bac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.136.126</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc11" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d1a0802f5b000000000000000000ca9a3b000000001f17ec136b28e997cecd3ceb77426a21438e63954d02e803141f17ec136b28e997cecd3ceb77426a21438e6395141f17ec136b28e997cecd3ceb77426a21438e639553c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc408640001414047f209865274603a13fba654a6a43bd90c5bc0630d66d8a71315144dcb1a52ad8dfa9f97ce8b7a5543ffc70d4901be83c1b5b8af8fdfa3154a9659433c0583cc232102f4e1d79730652b9a6943e8e8be639750d12f5c939d15ad412a7154ab72bb422fac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.140.33</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc12" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d18d502f5b0000000000000000000000000000000090de9a5388116a8130f528f47a66afb0aedce5a441208599cb99b9a8578277f82e6be1c92d9247ecfe5e22a8f571a5744cf7c72a117d51c108476574426c6f636b67bbb3484093ae1f2f217338ca93c78a2230d9595b000141403a337a937f10781f151829c724aa15aea96214b6baa2b7ac45bef4b69eee0d8852d103b4f00d2f8df1d9027f1f27ed18d8287bf8b7f077ab8380c99ec4acb58d2321037653265a35e3900eee2dbf13e649032589f15f3422d7756cdb71e2c12111a871ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.129.183</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc13" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d18d502f5b0000000000000000000000000000000090de9a5388116a8130f528f47a66afb0aedce5a441208599cb99b9a8578277f82e6be1c92d9247ecfe5e22a8f571a5744cf7c72a117d51c108476574426c6f636b67bbb3484093ae1f2f217338ca93c78a2230d9595b000141403a337a937f10781f151829c724aa15aea96214b6baa2b7ac45bef4b69eee0d8852d103b4f00d2f8df1d9027f1f27ed18d8287bf8b7f077ab8380c99ec4acb58d2321037653265a35e3900eee2dbf13e649032589f15f3422d7756cdb71e2c12111a871ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.135.173</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc14" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d18d502f5b0000000000000000000000000000000090de9a5388116a8130f528f47a66afb0aedce5a441208599cb99b9a8578277f82e6be1c92d9247ecfe5e22a8f571a5744cf7c72a117d51c108476574426c6f636b67bbb3484093ae1f2f217338ca93c78a2230d9595b000141403a337a937f10781f151829c724aa15aea96214b6baa2b7ac45bef4b69eee0d8852d103b4f00d2f8df1d9027f1f27ed18d8287bf8b7f077ab8380c99ec4acb58d2321037653265a35e3900eee2dbf13e649032589f15f3422d7756cdb71e2c12111a871ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.134.249</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc15" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d18d502f5b0000000000000000000000000000000090de9a5388116a8130f528f47a66afb0aedce5a441208599cb99b9a8578277f82e6be1c92d9247ecfe5e22a8f571a5744cf7c72a117d51c108476574426c6f636b67bbb3484093ae1f2f217338ca93c78a2230d9595b000141403a337a937f10781f151829c724aa15aea96214b6baa2b7ac45bef4b69eee0d8852d103b4f00d2f8df1d9027f1f27ed18d8287bf8b7f077ab8380c99ec4acb58d2321037653265a35e3900eee2dbf13e649032589f15f3422d7756cdb71e2c12111a871ac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.143.192</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jsonrpc16" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value"> {&#xd;
+        &quot;id&quot;: 1,&#xd;
+        &quot;method&quot;: &quot;sendrawtransaction&quot;,&#xd;
+        &quot;jsonrpc&quot;: &quot;2.0&quot;,&#xd;
+        &quot;params&quot;: [&#xd;
+            &quot;00d154762f5b000000000000000000ca9a3b000000008b35a0290ca3993dfef1bb41efb1bc4fb7e7e4374d02de0014922fef396b3b3bb26600dc9caf27be5b16bc5e0f1424b453d1388732a9d78228b572e05f7a082b90a953c1087472616e7366657267020b268adec1f384b18dc3960e70556cccc4086400014140751f5a01c16c98cdb867388fbfb6cfcafd24006ab4565672aaf2280363f543666c38e93dee7f024165d305894fc4240d3a5b568e17a3b8b5419646e5e3b9bc22232102b1df66eefab70864ca7b6d74ac625bd0ea9f5a45977fa58435e66cc542ad6baaac&quot;&#xd;
+        ]&#xd;
+    }&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">139.219.131.74</stringProp>
+            <stringProp name="HTTPSampler.port">20336</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">jsonrpc</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="false">
+          <intProp name="calcMode">1</intProp>
+          <doubleProp>
+            <name>throughput</name>
+            <value>96000.0</value>
+            <savedValue>0.0</savedValue>
+          </doubleProp>
+        </ConstantThroughputTimer>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="图形结果" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

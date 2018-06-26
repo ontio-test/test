@@ -1,0 +1,39 @@
+{
+    "DEPLOY" : true,
+    "CODE_PATH" : "tasks/transfer.neo",
+    "NODE_INDEX" : 1,
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_limit": 1000000000,
+            "address": "80559e902873c5d157c4ba44f1f138f295bb2dae",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "transfer"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "0ddd3731b662bd76a6e3ba85a656cb961b4ff32d"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "0ddd3731b662bd76a6e3ba85a656cb961b4ff32d"
+                        },
+                        {
+                            "type": "int",
+                            "value": "222"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "RESPONSE": {"error" : 0}
+}

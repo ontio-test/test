@@ -1,0 +1,28 @@
+{
+    "REQUEST": {
+    "Qid": "t",
+    "Method": "signeovminvoketx",
+    "Params": {
+    "gas_price": 0,
+    "gas_limit": 1000000000,
+    "address": "24d8ec381d95ac1c3904b50eec53d3162c199138",
+    "version": 1,
+    "params":[
+                {
+                    "type":"string",
+                    "value":"GetContract_Destroy"
+                },
+                {
+                    "type":"array",
+                    "value":[
+                      {
+                        "type":"string",
+                        "value":""
+                      }  
+                    ]
+                }
+            ]
+            }
+            },
+    "RESPONSE": {}
+    }

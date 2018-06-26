@@ -15,7 +15,7 @@ __doc__ = "[1] -h --help\n[2] -a --action\n[3] -n --node\n[4] -v --value\n[5] -v
 #end doc
 
 
-DEFAULT_NODE_ARGS = "--ws --rest --loglevel=0 --clirpc --networkid=299"
+DEFAULT_NODE_ARGS = "--ws --rest --loglevel=0 --clirpc --networkid=304"
 
 class Usage(Exception):
 	def __init__(self, msg):

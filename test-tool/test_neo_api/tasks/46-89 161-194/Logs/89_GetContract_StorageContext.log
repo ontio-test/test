@@ -1,0 +1,57 @@
+[-------------------------------]
+[ RUN      ] contract.89_GetContract_StorageContext
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "qid": "t",
+        "result": {
+            "signed_tx": "00d1b95c225b00000000000000000000000000000000922fef396b3b3bb26600dc9caf27be5b16bc5e0f360331323351c11a476574436f6e74726163745f53746f72616765436f6e7465787467c3e920bf943ca27d74ad19f57a050d05e43ba683000141406db4ebaab00aabad206be69c63475bed5edf701571a288a44bd92e83169f356013d4f621126a5b0c2fad92136c75eaba4bf7e889e8926db0e1ad79c7aa296aa7232102f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287efac"
+        },
+        "method": "signeovminvoketx",
+        "error_info": "",
+        "error_code": 0
+    },
+    "REQUEST": {
+        "Params": {
+            "gas_pimit": 0,
+            "params": [
+                {
+                    "value": "GetContract_StorageContext",
+                    "type": "string"
+                },
+                {
+                    "value": [
+                        {
+                            "value": "123",
+                            "type": "string"
+                        }
+                    ],
+                    "type": "array"
+                }
+            ],
+            "gas_price": 0,
+            "address": "83a63be4050d057af519ad747da23c94bf20e9c3",
+            "version": 1
+        },
+        "Qid": "t",
+        "Method": "signeovminvoketx"
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "desc": "SMARTCODE EXEC ERROR",
+        "result": "",
+        "error": 47001,
+        "jsonpc": "2.0",
+        "id": 1
+    },
+    "REQUEST": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "sendrawtransaction",
+        "params": [
+            "00d1b95c225b00000000000000000000000000000000922fef396b3b3bb26600dc9caf27be5b16bc5e0f360331323351c11a476574436f6e74726163745f53746f72616765436f6e7465787467c3e920bf943ca27d74ad19f57a050d05e43ba683000141406db4ebaab00aabad206be69c63475bed5edf701571a288a44bd92e83169f356013d4f621126a5b0c2fad92136c75eaba4bf7e889e8926db0e1ad79c7aa296aa7232102f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287efac",
+            1
+        ]
+    }
+}
+[ Failed   ] call contract error

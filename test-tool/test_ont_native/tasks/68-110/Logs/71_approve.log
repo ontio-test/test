@@ -1,0 +1,30 @@
+[-------------------------------]
+[ RUN      ] contract.71_approve
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_code": 900,
+        "qid": "t",
+        "method": "signativeinvoketx",
+        "result": null,
+        "error_info": "param:root parse:[AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM AUibFD5MWCEKAvVDttbkFyHYnuAQ1timoT 10] error:params struct:root item:to error:param:to parse:AUibFD5MWCEKAvVDttbkFyHYnuAQ1timoT error:invalid address"
+    },
+    "REQUEST": {
+        "Params": {
+            "address": "0100000000000000000000000000000000000000",
+            "params": [
+                [
+                    "AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM",
+                    "AUibFD5MWCEKAvVDttbkFyHYnuAQ1timoT",
+                    "10"
+                ]
+            ],
+            "gas_price": 0,
+            "method": "approve",
+            "gas_limit": 1000000000,
+            "version": 0
+        },
+        "Method": "signativeinvoketx",
+        "Qid": "t"
+    }
+}
+[ Failed   ] no signed tx

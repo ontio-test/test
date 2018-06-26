@@ -45,8 +45,10 @@ class RPCApi:
 		task.set_request(taskrequest)
 		return run_single_task(task)
 
-	def getblockcount(self):
+	def getblockcount(self, node_index = None):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getblockcount.json")
+		if node_index != None:
+			task.data()["NODE_INDEX"] = node_index
 		return run_single_task(task)
 
 	def getblockhash(self, height):
@@ -161,9 +163,11 @@ class RPCApi:
 
 	def getbalance(self, address):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getbalance.json")
+		taskrequest = task.request()
 		params = []
 		if address != None:
 			params.append(address)
+		taskrequest["params"] = params
 		return run_single_task(task)
 
 	def getmerkleproof(self, tx_hash):

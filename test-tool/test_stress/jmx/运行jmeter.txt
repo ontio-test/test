@@ -1,0 +1,1 @@
+./jmeter.sh -t "ontio.jmx" -n -l "xxxx.csv"

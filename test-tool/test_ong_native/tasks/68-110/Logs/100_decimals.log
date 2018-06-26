@@ -1,0 +1,24 @@
+[-------------------------------]
+[ RUN      ] contract.100_decimals
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "method": "signativeinvoketx",
+        "result": null,
+        "error_code": 1007,
+        "error_info": "abi not found",
+        "qid": "t"
+    },
+    "REQUEST": {
+        "Params": {
+            "version": 0,
+            "gas_limit": 40000,
+            "method": "OngDecimals",
+            "gas_price": 0,
+            "address": "0200000000000000000000000000000000000000",
+            "params": []
+        },
+        "Method": "signativeinvoketx",
+        "Qid": "t"
+    }
+}
+[ Failed   ] no signed tx

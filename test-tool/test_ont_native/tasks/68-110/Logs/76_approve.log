@@ -1,0 +1,30 @@
+[-------------------------------]
+[ RUN      ] contract.76_approve
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_info": "param:root parse:[AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT abc] error:params struct:root item:value error:param:value parse:abc error:parse int error:strconv.ParseInt: parsing \"abc\": invalid syntax",
+        "result": null,
+        "method": "signativeinvoketx",
+        "qid": "t",
+        "error_code": 900
+    },
+    "REQUEST": {
+        "Params": {
+            "method": "approve",
+            "address": "0100000000000000000000000000000000000000",
+            "version": 0,
+            "params": [
+                [
+                    "AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM",
+                    "AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT",
+                    "abc"
+                ]
+            ],
+            "gas_limit": 1000000000,
+            "gas_price": 0
+        },
+        "Qid": "t",
+        "Method": "signativeinvoketx"
+    }
+}
+[ Failed   ] no signed tx

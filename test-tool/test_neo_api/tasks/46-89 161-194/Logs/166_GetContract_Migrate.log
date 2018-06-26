@@ -1,0 +1,86 @@
+[-------------------------------]
+[ RUN      ] contract.166_GetContract_Migrate
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "qid": "t",
+        "error_info": "",
+        "error_code": 0,
+        "method": "signeovminvoketx",
+        "result": {
+            "signed_tx": "00d1f069225b00000000000000000000000000000000922fef396b3b3bb26600dc9caf27be5b16bc5e0f871e74686973206973206d79206669727374207465737420636f6e7472616374103337383938363939314071712e636f6d0679616e676a6301310c74657374436f6e74726163745114968d98071063a563b3fc61e4e9cdce483581852457c113476574436f6e74726163745f4d696772617465672485813548cecde9e461fcb363a5631007988d96000141404450bd87c4064e1f3aaf652f6239ebcecc16518f009557cccba97e27c168d4d230d6a4effab999ec32e0343b9b9b1feb9472bafc10d84b22653351d40cdca404232102f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287efac"
+        }
+    },
+    "REQUEST": {
+        "Method": "signeovminvoketx",
+        "Qid": "t",
+        "Params": {
+            "gas_price": 0,
+            "address": "968d98071063a563b3fc61e4e9cdce4835818524",
+            "params": [
+                {
+                    "type": "string",
+                    "value": "GetContract_Migrate"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "968d98071063a563b3fc61e4e9cdce4835818524"
+                        },
+                        {
+                            "type": "bool",
+                            "value": "true"
+                        },
+                        {
+                            "type": "string",
+                            "value": "testContract"
+                        },
+                        {
+                            "type": "string",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "yangjc"
+                        },
+                        {
+                            "type": "string",
+                            "value": "378986991@qq.com"
+                        },
+                        {
+                            "type": "string",
+                            "value": "this is my first test contract"
+                        }
+                    ]
+                }
+            ],
+            "version": 1,
+            "gas_pimit": 0
+        }
+    }
+}
+[ CALL CONTRACT ] {
+    "RESPONSE": {
+        "id": 1,
+        "result": {
+            "State": 1,
+            "Gas": 10000305,
+            "Result": "14968d98071063a563b3fc61e4e9cdce4835818524010c74657374436f6e747261637401310679616e676a63103337383938363939314071712e636f6d1e74686973206973206d79206669727374207465737420636f6e7472616374",
+            "Result String": "\u0014\u0096\u008d\u0098\u0007\u0010c\u00a5c\u00b3\u00fca\u00e4\u00e9\u00cd\u00ceH5\u0081\u0085$\u0001\ftestContract\u00011\u0006yangjc\u0010378986991@qq.com\u001ethis is my first test contract"
+        },
+        "jsonpc": "2.0",
+        "error": 0,
+        "desc": "SUCCESS"
+    },
+    "REQUEST": {
+        "id": 1,
+        "params": [
+            "00d1f069225b00000000000000000000000000000000922fef396b3b3bb26600dc9caf27be5b16bc5e0f871e74686973206973206d79206669727374207465737420636f6e7472616374103337383938363939314071712e636f6d0679616e676a6301310c74657374436f6e74726163745114968d98071063a563b3fc61e4e9cdce483581852457c113476574436f6e74726163745f4d696772617465672485813548cecde9e461fcb363a5631007988d96000141404450bd87c4064e1f3aaf652f6239ebcecc16518f009557cccba97e27c168d4d230d6a4effab999ec32e0343b9b9b1feb9472bafc10d84b22653351d40cdca404232102f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287efac",
+            1
+        ],
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0"
+    }
+}
+[ OK       ] 

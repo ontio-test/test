@@ -106,8 +106,8 @@ class TCClient:
             return ""
         
 if __name__ == "__main__":
-    target_ip = "10.0.0.46"
-    local_ip = "10.0.0.32"
+    target_ip = "10.0.0.89"
+    local_ip = "10.0.0.61"
     tcc = TCClient(target_ip, "10001")
     log(tcc.get_netcard_info())
     

@@ -1,0 +1,29 @@
+[-------------------------------]
+[ RUN      ] contract.109_allowance
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "error_code": 900,
+        "method": "signativeinvoketx",
+        "qid": "t",
+        "result": null,
+        "error_info": "param:root parse:[AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM AUibFD1MWCEKAvVDttbkFyHYnuAQ6timoT] error:params struct:root item:to error:param:to parse:AUibFD1MWCEKAvVDttbkFyHYnuAQ6timoT error:invalid address"
+    },
+    "REQUEST": {
+        "Method": "signativeinvoketx",
+        "Qid": "t",
+        "Params": {
+            "params": [
+                [
+                    "AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM",
+                    "AUibFD1MWCEKAvVDttbkFyHYnuAQ6timoT"
+                ]
+            ],
+            "method": "allowance",
+            "version": 0,
+            "gas_limit": 1000000000,
+            "address": "0100000000000000000000000000000000000000",
+            "gas_price": 0
+        }
+    }
+}
+[ Failed   ] no signed tx

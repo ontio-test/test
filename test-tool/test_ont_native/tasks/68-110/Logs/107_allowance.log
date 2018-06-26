@@ -1,0 +1,26 @@
+[-------------------------------]
+[ RUN      ] contract.107_allowance
+[ SIGNED TX ] {
+    "RESPONSE": {
+        "Desc": "Connection Error",
+        "Error": "Connection Error"
+    },
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signativeinvoketx",
+        "Params": {
+            "gas_price": 0,
+            "method": "allowance",
+            "address": "0100000000000000000000000000000000000000",
+            "gas_limit": 1000000000,
+            "params": [
+                [
+                    "",
+                    "AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT"
+                ]
+            ],
+            "version": 0
+        }
+    }
+}
+[ Failed   ] no signed tx

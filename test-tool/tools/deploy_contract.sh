@@ -1,2 +1,2 @@
 cd ~/ontology/node/ontology
-echo "123456" | ~/ontology/node/ontology contract deploy -w="/home/ubuntu/ontology/node/wallet.dat" --needstore=true --code=$1 --name=$2 --version="1" --author=tester --desc="$3" --email="tester@xxxxxxx.com" --gaslimit=1000000000
+echo "123456" | ~/ontology/node/ontology contract deploy -w="/home/ubuntu/ontology/node/wallet.dat" --needstore=true --code=$1 --name=$2 --version="1" --author=tester --desc="$3" --email="tester@xxxxxxx.com" --gaslimit=1000000000 --gasprice=$4

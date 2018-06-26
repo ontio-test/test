@@ -1,0 +1,54 @@
+[-------------------------------]
+[ RUN      ] contract.108_allowance
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Params": {
+            "address": "0200000000000000000000000000000000000000",
+            "params": [
+                [
+                    "AKfTwtGRwoZaj53qWWmbFLidcpxDcm5vbM",
+                    "AUibFD5MWCEKAvVDttbkFyHYnuAQ6timoT"
+                ]
+            ],
+            "method": "allowance",
+            "gas_price": 0,
+            "version": 0,
+            "gas_limit": 1000000000
+        },
+        "Qid": "t",
+        "Method": "signativeinvoketx"
+    },
+    "RESPONSE": {
+        "result": {
+            "signed_tx": "00d126e5205b000000000000000000ca9a3b000000002aaa39310daba9a4cebd3a514c27d8a0b83479d56c00c66b142aaa39310daba9a4cebd3a514c27d8a0b83479d56a7cc8148dfab22c3eecfd17f78539de97f92758c0e78e156a7cc86c09616c6c6f77616e63651400000000000000000000000000000000000000010068164f6e746f6c6f67792e4e61746976652e496e766f6b650001424101749fb2b2aab09e5e86058864d02f395848b53de59f50e0a401674cc9b563cb5aa4edf33cadf739a55c2f6f6a3ef1b33e76c7e889f0020d87e9e77aa3cd5cfe9c25231202026967e9c809d149f67c6142eb8d0e044029178a78fe9e8349663993f474e2fa30ac"
+        },
+        "method": "signativeinvoketx",
+        "qid": "t",
+        "error_info": "",
+        "error_code": 0
+    }
+}
+[ CALL CONTRACT ] {
+    "REQUEST": {
+        "method": "sendrawtransaction",
+        "jsonrpc": "2.0",
+        "id": 1,
+        "params": [
+            "00d126e5205b000000000000000000ca9a3b000000002aaa39310daba9a4cebd3a514c27d8a0b83479d56c00c66b142aaa39310daba9a4cebd3a514c27d8a0b83479d56a7cc8148dfab22c3eecfd17f78539de97f92758c0e78e156a7cc86c09616c6c6f77616e63651400000000000000000000000000000000000000010068164f6e746f6c6f67792e4e61746976652e496e766f6b650001424101749fb2b2aab09e5e86058864d02f395848b53de59f50e0a401674cc9b563cb5aa4edf33cadf739a55c2f6f6a3ef1b33e76c7e889f0020d87e9e77aa3cd5cfe9c25231202026967e9c809d149f67c6142eb8d0e044029178a78fe9e8349663993f474e2fa30ac",
+            1
+        ]
+    },
+    "RESPONSE": {
+        "jsonpc": "2.0",
+        "desc": "SUCCESS",
+        "error": 0,
+        "result": {
+            "Gas": 30000,
+            "Result": "",
+            "State": 1,
+            "Result String": ""
+        },
+        "id": 1
+    }
+}
+[ OK       ] 

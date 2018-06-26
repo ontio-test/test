@@ -1,0 +1,23 @@
+[-------------------------------]
+[ RUN      ] contract.104_balanceOf
+[ SIGNED TX ] {
+    "REQUEST": {
+        "Qid": "t",
+        "Params": {
+            "version": 0,
+            "gas_limit": 1000000000,
+            "address": "0100000000000000000000000000000000000000",
+            "method": "balanceOf",
+            "gas_price": 0,
+            "params": [
+                ""
+            ]
+        },
+        "Method": "signativeinvoketx"
+    },
+    "RESPONSE": {
+        "Desc": "Connection Error",
+        "Error": "Connection Error"
+    }
+}
+[ Failed   ] no signed tx
