@@ -86,6 +86,9 @@ def siginvoketx(**kwargs):
 @dispatcher.add_method
 def stop_node(**kwargs):
   os.popen("killall -9 ontology")
+  os.popen("killall -9 ontology-bft_1")
+  os.popen("killall -9 ontology-bft_2")
+  os.popen("killall -9 ontology-bft_3")
   return True
 
 @dispatcher.add_method
@@ -135,10 +138,19 @@ def start_node(**kwargs):
   clear_chain=None
   clear_log=None
   node_args=None
+  program_name = "ontology"
+  config_file = "config.json"
   if "clear_chain" in kwargs:
     clear_chain = kwargs["clear_chain"]
   if "clear_log" in kwargs:
     clear_log = kwargs["clear_log"]
+
+  if "name" in kwargs:
+    program_name = kwargs["name"]
+
+  if "config" in kwargs:
+    config_file = kwargs["config"]
+
   if "node_args" in kwargs:
     node_args = kwargs["node_args"]
 
@@ -149,12 +161,12 @@ def start_node(**kwargs):
 
   if node_args:
     cmd = "cd " + config.NODE_PATH + "\n";
-    cmd = cmd + "echo 123456|" + config.NODE_PATH + "/ontology -w=\"" + config.NODE_PATH + "/wallet.dat\" --config=\"" + config.NODE_PATH + "/config.json\" " + node_args + " &"
+    cmd = cmd + "echo 123456|" + config.NODE_PATH + "/" + program_name + " -w=\"" + config.NODE_PATH + "/wallet.dat\" --config=\"" + config.NODE_PATH + "/" + config_file + "\" " + node_args + " &"
     print(cmd)
     os.system(cmd)
   else:
     cmd = "cd " + config.NODE_PATH + "\n";
-    cmd = cmd + "echo 123456|" + config.NODE_PATH + "/ontology -w=\"" + config.NODE_PATH + "/wallet.dat\" --config=\"" + config.NODE_PATH + "/config.json\" " + " &"
+    cmd = cmd + "echo 123456|" + config.NODE_PATH + "/" + program_name + " -w=\"" + config.NODE_PATH + "/wallet.dat\" --config=\"" + config.NODE_PATH + "/" + config_file +  "\" " + " &"
     print(cmd)
     os.system(cmd)
 
