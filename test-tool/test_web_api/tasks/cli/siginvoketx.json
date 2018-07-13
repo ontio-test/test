@@ -1,10 +1,10 @@
 {
 	"REQUEST": {
 		"Qid": "t",
-		"Method": "siginvoketx",
+		"Method": "signativeinvoketx",
 		"Params": {
 			"version": 0,
-			"address": "ff00000000000000000000000000000000000001",
+			"address": "0100000000000000000000000000000000000000",
 			"method": "name",
 			"args": []
 		}

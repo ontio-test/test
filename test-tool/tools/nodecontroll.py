@@ -14,9 +14,6 @@ from utils.commonapi import *
 __doc__ = "[1] -h --help\n[2] -a --action\n[3] -n --node\n[4] -v --value\n[5] -v1 --value1\n[6] -v2 --value2"
 #end doc
 
-
-DEFAULT_NODE_ARGS = "--ws --rest --loglevel=0 --clirpc --networkid=304"
-
 class Usage(Exception):
 	def __init__(self, msg):
 		self.msg = msg
@@ -74,7 +71,7 @@ def main(argv = None):
 					_node = int(_node)
 					if _node >= 0:
 						if _action == "start":
-							start_node(_node, DEFAULT_NODE_ARGS)
+							start_node(_node, Config.DEFAULT_NODE_ARGS)
 							time.sleep(3)
 						elif _action == "stop":
 							stop_node(_node)
@@ -89,7 +86,7 @@ def main(argv = None):
 
 							replace_config(_node, cfg_json)
 						elif _action == "restart":
-							start_node(_node, DEFAULT_NODE_ARGS, True, True)
+							start_node(_node, Config.DEFAULT_NODE_ARGS, True, True)
 							time.sleep(3)
 						else:
 							raise(Usage("no action: " + str(_action)))

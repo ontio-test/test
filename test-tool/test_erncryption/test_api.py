@@ -22,23 +22,23 @@ class Common:
     ontid_map = {}
 
     node_Admin = 2
-    ontID_Admin = Config.SERVICES[node_Admin]["pubkey"]
+    ontID_Admin = Config.NODES[node_Admin]["pubkey"]
     ontid_map[ontID_Admin] = node_Admin
     
     node_A = 3
-    ontID_A = Config.SERVICES[node_A]["pubkey"]
+    ontID_A = Config.NODES[node_A]["pubkey"]
     ontid_map[ontID_A] = node_A
     
     node_B = 4
-    ontID_B = Config.SERVICES[node_B]["pubkey"]
+    ontID_B = Config.NODES[node_B]["pubkey"]
     ontid_map[ontID_B] = node_B
     
     node_C = 5
-    ontID_C = Config.SERVICES[node_C]["pubkey"]
+    ontID_C = Config.NODES[node_C]["pubkey"]
     ontid_map[ontID_C] = node_C
     
     node_D = 6
-    ontID_D = Config.SERVICES[node_D]["pubkey"]
+    ontID_D = Config.NODES[node_D]["pubkey"]
     ontid_map[ontID_D] = node_D
     
     roleA_hex = ByteToHex(b"roleA")

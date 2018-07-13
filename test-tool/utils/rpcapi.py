@@ -141,7 +141,7 @@ class RPCApi:
 
 		return run_single_task(task)
 
-	def getsmartcodeevent(self, height, tx_hash):
+	def getsmartcodeevent(self, height = None, tx_hash = None):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getsmartcodeevent.json")
 		taskrequest = task.request()
 		params = []
@@ -155,10 +155,12 @@ class RPCApi:
 
 	def getblockheightbytxhash(self, tx_hash):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getblockheightbytxhash.json")
+		taskrequest = task.request()
 		params = []
 		if tx_hash != None:
 			params.append(tx_hash)
-
+		taskrequest["params"] = params
+		
 		return run_single_task(task)
 
 	def getbalance(self, address):
@@ -172,9 +174,11 @@ class RPCApi:
 
 	def getmerkleproof(self, tx_hash):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getmerkleproof.json")
+		taskrequest = task.request()
 		params = []
 		if tx_hash != None:
 			params.append(tx_hash)
+		taskrequest["params"] = params
 		return run_single_task(task)
 
 	def getgasprice(self):
@@ -183,6 +187,7 @@ class RPCApi:
 
 	def getallowance(self, asset, _from, _to):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getallowance.json")
+		taskrequest = task.request()
 		params = []
 		if asset != None:
 			params.append(asset)
@@ -190,4 +195,5 @@ class RPCApi:
 			params.append(_from)
 		if _to != None:
 			params.append(_to)
+		taskrequest["params"] = params
 		return run_single_task(task)

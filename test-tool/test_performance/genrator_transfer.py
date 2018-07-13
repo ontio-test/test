@@ -70,7 +70,7 @@ def genrator_transfer_sintx():
 
     index = 1
     sign_transction_transfertmp = copy.copy(sign_transction_transfer)
-    nodeaddress = Config.SERVICES[index]["address"]
+    nodeaddress = Config.NODES[index]["address"]
     sign_transction_transfertmp["NODE_INDEX"] = index
     sign_transction_transfertmp["REQUEST"]["Params"]["params"][1]["value"][0]["value"] = script_hash_bl_reserver(base58_to_address(nodeaddress))
     sign_transction_transfertmp["REQUEST"]["Params"]["params"][1]["value"][1]["value"] = script_hash_bl_reserver(base58_to_address(nodeaddress))

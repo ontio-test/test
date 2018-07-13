@@ -38,7 +38,7 @@ class TestNode(ParametrizedTestCase):
 		try:
 			node_i = 7
 			task = Task("tasks/transfer.json")
-			nodeaddress = Config.SERVICES[node_i]["address"]
+			nodeaddress = Config.NODES[node_i]["address"]
 			task.data()["NODE_INDEX"] = node_i
 			task.data()["REQUEST"]["Params"]["params"][1]["value"][0]["value"] = script_hash_bl_reserver(base58_to_address(nodeaddress))
 			task.data()["REQUEST"]["Params"]["params"][1]["value"][1]["value"] = script_hash_bl_reserver(base58_to_address(nodeaddress))

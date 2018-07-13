@@ -61,7 +61,7 @@ class WebSocketApi:
 		return run_single_task(task)
 
 	def getblocktxsbyheight(self, height):
-		task = Task(Config.BASEAPI_PATH + "/ws/getconnectioncount.json")
+		task = Task(Config.BASEAPI_PATH + "/ws/getblocktxsbyheight.json")
 		task.set_type("ws")
 
 		taskrequest = task.request()
@@ -80,7 +80,7 @@ class WebSocketApi:
 		return run_single_task(task)
 
 	def getblockbyhash(self, _hash, raw = 0):
-		task = Task(Config.BASEAPI_PATH + "/ws/getblockbyheight.json")
+		task = Task(Config.BASEAPI_PATH + "/ws/getblockbyhash.json")
 		task.set_type("ws")
 
 		taskrequest = task.request()
@@ -115,7 +115,7 @@ class WebSocketApi:
 		return run_single_task(task)
 
 	def sendrawtransaction(self, _hex, pre = 0):
-		task = Task(Config.BASEAPI_PATH + "/ws/gettransaction.json")
+		task = Task(Config.BASEAPI_PATH + "/ws/sendrawtransaction.json")
 		task.set_type("ws")
 
 		taskrequest = task.request()
@@ -125,7 +125,7 @@ class WebSocketApi:
 		return run_single_task(task)
 
 	def getstorage(self, _hex, key):
-		task = Task(Config.BASEAPI_PATH + "/ws/gettransaction.json")
+		task = Task(Config.BASEAPI_PATH + "/ws/getstorage.json")
 		task.set_type("ws")
 
 		taskrequest = task.request()

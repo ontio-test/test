@@ -1,50 +1,94 @@
 {
-	"RPC_URL": "http://xxxx:20336/jsonrpc",
+	"RPC_URL": "http://127.0.0.1:20336/jsonrpc",
 	"CLIRPC_URL": "http://127.0.0.1:20000/cli",
-	"RESTFUL_URL": "http://xxx:20334",
-	"WS_URL": "ws://xxx:20335",
+	"RESTFUL_URL": "http://127.0.0.1:20334",
+	"WS_URL": "ws://127.0.0.1:20335",
 	"NODES": [{
-		"ip": "139.219.133.116",
-		"ontid": "did:ont:AcVb7HZB4nMDscQHXXoqKvnNFwrpL3V1u3",
-		"address": "AcVb7HZB4nMDscQHXXoqKvnNFwrpL3V1u3",
-		"pubkey": "02eb607c494cf1efa434c7e284c3fff8f382a0decfc8d6c1b02e2ea5b7e70cf518"
+		"ip": "139.219.128.177",
+		"ontid": "did:ont:AG4pZwKa9cr8ca7PED7FqzUfcwnrQ2N26w",
+		"address": "AG4pZwKa9cr8ca7PED7FqzUfcwnrQ2N26w",
+		"pubkey": "02e3ff56206295e71295aeaf47b7f3681f93fb98b692a66b103feb7b756667c74d"
 	},
 	{
-		"ip": "139.219.138.114",
-		"ontid": "did:ont:AWRZuDyXoPKs2Exp8Ejr6gra8Zu8WC4Pzd",
-		"address": "AWRZuDyXoPKs2Exp8Ejr6gra8Zu8WC4Pzd",
-		"pubkey": "032e907d3b2bad8187c59bd7ca9d89b992a4d66ccd30229f9b78258a39cabc5cf4"
+		"ip": "139.219.141.110",
+		"ontid": "did:ont:AUSyZx1BoQbTy3avMKygvJrkw8mRbzt6Aa",
+		"address": "AUSyZx1BoQbTy3avMKygvJrkw8mRbzt6Aa",
+		"pubkey": "02ca35fd7f3d78f01a423e17a85fe122715c2bcece7c5c8c851adcb265eb59486c"
 	},
 	{
-		"ip": "139.219.140.190",
-		"ontid": "did:ont:Ae4pKZ1siPgpLfB3WQ8jMQ8XbTTgS23dVP",
-		"address": "Ae4pKZ1siPgpLfB3WQ8jMQ8XbTTgS23dVP",
-		"pubkey": "023cc3f73a998666d7787c87e31a7990fc30a23f7317e146c8992d54e4c3edcf4c"
+		"ip": "139.219.141.33",
+		"ontid": "did:ont:AM12FAbshNvugLaHG4KzAfHGvUG1t5SpAv",
+		"address": "AM12FAbshNvugLaHG4KzAfHGvUG1t5SpAv",
+		"pubkey": "0231a74176e87fb7bc8953d04f982f6e1c48a1659ff3e460e4be4894f22fcc7ea0"
 	},
 	{
-		"ip": "139.219.141.104",
-		"ontid": "did:ont:AK7wzmkdgjKxbXAJBiaW91YhUokTu9pa5X",
-		"address": "AK7wzmkdgjKxbXAJBiaW91YhUokTu9pa5X",
-		"pubkey": "03e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dc"
+		"ip": "139.219.136.233",
+		"ontid": "did:ont:AW7xyBsZD4Hzx8e1PY8iLCXuMFc6Wfm9BJ",
+		"address": "AW7xyBsZD4Hzx8e1PY8iLCXuMFc6Wfm9BJ",
+		"pubkey": "03ddf2c26298f07d3546582dbb0b3f33f9a679485d358f2efeb3ce7d5e9593ccf7"
 	},
 	{
-		"ip": "139.219.135.92",
-		"ontid": "did:ont:AV6qj3uZngw1rxzNUANBHybnKPibXhWB2h",
-		"address": "AV6qj3uZngw1rxzNUANBHybnKPibXhWB2h",
-		"pubkey": "02f59dbaf056dedfbdc2fedd2cf700a585df1acdd777561d65ba484b5f519287ef"
+		"ip": "139.219.129.234",
+		"ontid": "did:ont:Acy5NwtDhKH3qdkMJ8fL4PNCqotCvkDpPQ",
+		"address": "Acy5NwtDhKH3qdkMJ8fL4PNCqotCvkDpPQ",
+		"pubkey": "03a02bec6c8d99facfdeb5e11f53a22d30228e88381fcbf1ae8bcdf80f49599abe"
 	},
 	{
-		"ip": "139.219.136.15",
-		"ontid": "did:ont:AXbevnGZBypZrcQwQfdYZxXj5zcFTtiMEA",
-		"address": "AXbevnGZBypZrcQwQfdYZxXj5zcFTtiMEA",
-		"pubkey": "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+		"ip": "139.219.129.166",
+		"ontid": "did:ont:AdYYmEJmLtyzrBVeBxDkSXsfQLupRH8GtJ",
+		"address": "AdYYmEJmLtyzrBVeBxDkSXsfQLupRH8GtJ",
+		"pubkey": "0295415b752ca38bef5048a026bcebf97c7d4104aa285bcafb18eb95dd9076a05a"
 	},
 	{
-		"ip": "139.219.128.181",
-		"ontid": "did:ont:AY3et8uTcHQXMPZQLRzrURc7qorgis1q7b",
-		"address": "AY3et8uTcHQXMPZQLRzrURc7qorgis1q7b",
-		"pubkey": "0354fe669e9df891698ef8c4cbc9e3fbfa503ee93e237e1b38d3e3e4c7869886ee"
+		"ip": "139.219.137.201",
+		"ontid": "did:ont:ATrzgmtkGhp8b7i8w2gM5o38p6bpX8vWG7",
+		"address": "ATrzgmtkGhp8b7i8w2gM5o38p6bpX8vWG7",
+		"pubkey": "0257024d773e4c0487efc217fe47caea5d902488b6dc2ae57a719c44e5642bcde4"
+	},
+	{
+		"ip" : "139.219.136.33",
+		"ontid": "did:ont:AWoQ8oFXXz9EwGBTP2mncqe5ngr1VnKagZ",
+		"address": "AWoQ8oFXXz9EwGBTP2mncqe5ngr1VnKagZ",
+		"pubkey": "0270e533740e9db0eb5204a01a16121b0d5750326f7da1ebd83b6f1e835689b216"
+	},
+	{
+		"ip" : "139.219.134.70",
+		"ontid": "did:ont:AMenxEPoVJKTRcuEzbf9YSi55hmC7j4hqP",
+		"address": "AMenxEPoVJKTRcuEzbf9YSi55hmC7j4hqP",
+		"pubkey": "0233cb06b41ed1ee232fef8178fa519ad8714d50cef7e5e7b52fe519e698605b8a"
+	},
+	{
+		"ip" : "139.219.129.124",
+		"ontid": "did:ont:AFwKyiRzN2KDLXTHwvW5Pkud1muQSqXa4V",
+		"address": "AFwKyiRzN2KDLXTHwvW5Pkud1muQSqXa4V",
+		"pubkey": "0212bc152bec0387c1814e80a24d47361aa906b6053ce268cd9722379d679d5141"
+	},
+	{
+		"ip" : "139.219.131.138",
+		"ontid": "did:ont:AMNMTt8akMnzWGFAMex6yze1hwg7vxPRgz",
+		"address": "AMNMTt8akMnzWGFAMex6yze1hwg7vxPRgz",
+		"pubkey": "03dcc9d034c16157a0aca5085c4618154c9eac91b16d0476963177881b3d8669c6"
+	},
+	{
+		"ip" : "139.219.142.130",
+		"ontid": "did:ont:ANUmnxGDYzQp4Mx2ZVNXq62gyJnvb1sDjd",
+		"address": "ANUmnxGDYzQp4Mx2ZVNXq62gyJnvb1sDjd",
+		"pubkey": "03fcca5b902b5fc033e4a09b26304b09b1c89e7a5f63946b92b11859d99248c13e"
+	},
+	{
+		"ip" : "139.219.129.127",
+		"ontid": "did:ont:AaGKEKX51Dz3biB8UjaWyiATtsio9cNp7u",
+		"address": "AaGKEKX51Dz3biB8UjaWyiATtsio9cNp7u",
+		"pubkey": "0391e42a75c7d1e37b88c9ae495ea85867c4505cd5371555f9f6b59b7db2fc5693"
+	},
+	{
+		"ip" : "139.219.141.196",
+		"ontid": "did:ont:AcDDvYTkCahZMrfcu2cSBsMAs8G7Wq7T2a",
+		"address": "AcDDvYTkCahZMrfcu2cSBsMAs8G7Wq7T2a",
+		"pubkey": "0229a8d473f091e7bb0fe309f88810c52b699dc6e4636b3b882643f199434aff89"
 	}],
-	"ROOT_PATH": "/home/ubuntu/ontology/test"
+	"ROOT_PATH": "/home/ubuntu/ontology/test",
+	"MULTI_SIGNED_ADDRESS" : "AJroHBLRsfPTPQocSKjpADp4AKybg8GZuz",
+	"INIT_AMOUNT_ONG" : "1000000000000000"
 	
 }

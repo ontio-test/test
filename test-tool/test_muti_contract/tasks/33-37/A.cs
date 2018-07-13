@@ -9,7 +9,7 @@ namespace Example
 {
     public class AppContract : SmartContract
     {
-        [Appcall("7779864dd2a9a9d0e04c897656a009f6b0d1bae9")] //智能合约B的地址
+        [Appcall("a836bac33389c60c22591030248016a8a7f008da")] //智能合约B的地址
         public static extern object ContractB(string op, object[] token, object[] args);
 
         public static object Main(string operation, object[] token)
@@ -25,7 +25,7 @@ namespace Example
         {
             object ret = ContractB("contractB_Func_A", token, null);
 			if ((bool)ret == false) {
-				return "Invoke contractB's FuncA FAILED.";
+				return false;
 			}
             return ret;
         }

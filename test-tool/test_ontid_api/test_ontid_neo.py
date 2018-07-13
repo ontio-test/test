@@ -47,7 +47,7 @@ class TestContract(ParametrizedTestCase):
 					"value" : "did:ont:AS24hCPUxkbPzrFDeeemiE13cqJviuxuab"
 				},{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				}]
 		
 		self.start(log_path)
@@ -68,7 +68,7 @@ class TestContract(ParametrizedTestCase):
 					"value" : "0200a7eaadc780320547566c6d9e671638f8fba3a9d929422b245ff432eef9a8f2"
 				},{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				}]
 		
 		self.start(log_path)
@@ -89,7 +89,7 @@ class TestContract(ParametrizedTestCase):
 					"value" : "0200a7eaadc780320547566c6d9e671638f8fba3a9d929422b245ff432eef9a8f2"
 				},{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				}]
 		
 		self.start(log_path)
@@ -110,7 +110,7 @@ class TestContract(ParametrizedTestCase):
 					"value" : recoveryaddress
 				},{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				}]
 		
 		self.start(log_path)
@@ -136,7 +136,7 @@ class TestContract(ParametrizedTestCase):
 		
 		self.start(log_path)
 		
-		(result, response) = forNeo(contract_address,functionName,params,public_key, node_index)
+		(result, response) = forNeo(contract_address,functionName,params,public_key, node_index, recovery_address_Array = recoveryaddress_Array)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -158,7 +158,7 @@ class TestContract(ParametrizedTestCase):
 				},
 				{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				},
 				{
 					"type" : "array",
@@ -194,7 +194,7 @@ class TestContract(ParametrizedTestCase):
 				},
 				{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				}
 				]
 		
@@ -218,7 +218,7 @@ class TestContract(ParametrizedTestCase):
 				},
 				{
 					"type" : "bytearray",
-					"value" : "02006a6490f7055a694e9dab01e57a1400c106a2d9e93bf8d50bb70af1d5b9a3cd"
+					"value" : node_now_pubkey
 				}
 				]
 		

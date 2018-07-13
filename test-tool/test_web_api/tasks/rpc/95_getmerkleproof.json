@@ -8,8 +8,6 @@
 		"id": "abc"
 	},
 	"RESPONSE": {
-        "id": "abc",
-		"error": 41001,
-		"result": ""
+		"error": 0
     }
 }

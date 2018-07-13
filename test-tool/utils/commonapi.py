@@ -59,7 +59,7 @@ def _check_md5(node_list, request):
 	isSame = True
 	if node_list:
 		for index in node_list:
-			ip = Config.SERVICES[int(index)]["ip"]
+			ip = Config.NODES[int(index)]["ip"]
 			response = utils.base.con_test_service(ip, request)
 			if not response or "result" not in response:
 				print("no md5: "+ ip)
@@ -200,7 +200,7 @@ def call_signed_contract(signed_tx, pre = True, node_index = None):
 #judge: 是否需要比较结果
 #pre: 是否需要预执行
 # 返回值: (result: True or False, response: 网络请求， 如果result为False, 返回的是字符串)
-def call_contract(task, judge = True, pre = True, twice = False):
+def call_contract(task, judge = True, pre = True, twice = False, sleep = 5):
 	try:
 		logger.print("\n\n[-------------------------------]")
 		logger.print("[ RUN      ] "+ "contract" + "." + task.name())
@@ -222,8 +222,12 @@ def call_contract(task, judge = True, pre = True, twice = False):
 			deploy_contract_addr = deploy_contract(deploy_code_path)
 		#step 1: signed tx
 		expect_response = None
+		expect_signresponse = None
 		if "RESPONSE" in taskdata:
 			expect_response = taskdata["RESPONSE"]
+
+		if "SIGN_RESPONSE" in taskdata:
+			expect_signresponse = taskdata["SIGN_RESPONSE"]
 
 		if deploy_contract_addr:
 			taskdata["REQUEST"]["Params"]["address"] = deploy_contract_addr.strip()
@@ -234,6 +238,14 @@ def call_contract(task, judge = True, pre = True, twice = False):
 		logger.print("[ SIGNED TX ] " + json.dumps(taskdata, indent = 4))
 
 		#step 2: call contract
+		if expect_signresponse != None:				
+			result = cmp(expect_signresponse, response)
+			if result and "error_code" in response and int(response["error_code"]) != 0:
+				return (result, response) 
+
+			if not result:
+				raise Error("not except sign result")
+
 		signed_tx = None
 		if not response is None and "result" in response and not response["result"] is None and "signed_tx" in response["result"]:
 			signed_tx = response["result"]["signed_tx"]
@@ -243,7 +255,8 @@ def call_contract(task, judge = True, pre = True, twice = False):
 
 		if twice:
 			(result, response) = call_signed_contract(signed_tx, True, node_index)
-			call_signed_contract(signed_tx, False, node_index)
+			(result1, response2) = call_signed_contract(signed_tx, False, node_index)
+			response["txhash"] = response2["result"]
 		else:
 			(result, response) = call_signed_contract(signed_tx, pre, node_index)
 	
@@ -259,7 +272,7 @@ def call_contract(task, judge = True, pre = True, twice = False):
 		if deploy_contract_addr:
 			response["address"] = taskdata["REQUEST"]["Params"]["address"]
 		
-		time.sleep(5)
+		time.sleep(sleep)
 		return (result, response)
 
 	except Error as err:
@@ -289,7 +302,7 @@ def run_single_task(task, judge = True, process_log = True):
 	node_ip = None
 	print(node_index)
 	if node_index != None:
-		node_ip = Config.SERVICES[int(node_index)]["ip"]
+		node_ip = Config.NODES[int(node_index)]["ip"]
 		print("run on other service: " + str(node_index) + "  " + node_ip)
 		
 	response = utils.base.con(connecttype, node_ip, cfg_request)
@@ -363,11 +376,12 @@ def pause(msg):
 	return command
 
 #
-def start_nodes(indexs, start_params, clear_chain = False, clear_log = False):
+def start_nodes(indexs, start_params = Config.DEFAULT_NODE_ARGS, clear_chain = False, clear_log = False, program = "ontology", config = "config.json"):
 	for index in indexs:
-		start_node(index, start_params, clear_chain, clear_log)
+		start_node(index, start_params, clear_chain, clear_log, program, config)
 
-def start_node(index, start_params, clear_chain = False, clear_log = False):
+def start_node(index, start_params = Config.DEFAULT_NODE_ARGS, clear_chain = False, clear_log = False, program = "ontology", config = "config.json"):
+	print("start node: " + str(index) + " start_params:" + start_params + " clear_chain:" + str(clear_chain) + " clear_log:" + str(clear_log))
 	request = {
 		"method": "start_node",
 		"jsonrpc": "2.0",
@@ -375,27 +389,34 @@ def start_node(index, start_params, clear_chain = False, clear_log = False):
 		"params" : {
 			"clear_chain" : clear_chain,
 			"clear_log" : clear_log,
-			"node_args" : start_params
+			"name" : program,
+			"node_args" : start_params,
+			"config" : config
 		}
 	}
 
-	ip = Config.SERVICES[index]["ip"]
+	ip = Config.NODES[index]["ip"]
 	response = utils.base.con_test_service(ip, request)
 
 	return response
+
+def stop_all_nodes():
+	for node_index in range(len(Config.NODES)):
+		stop_nodes([node_index])
 
 def stop_nodes(indexs):
 	for index in indexs:
 		stop_node(index)
 
 def stop_node(index):
+	print("stop node: " + str(index))
 	request = {
 		"method": "stop_node",
 		"jsonrpc": "2.0",
 		"id": 0
 	}
 
-	ip = Config.SERVICES[index]["ip"]
+	ip = Config.NODES[index]["ip"]
 	response = utils.base.con_test_service(ip, request)
 
 	return response
@@ -478,26 +499,45 @@ def replace_config(index, config = None):
 		"params" : config
 	}
 
-	ip = Config.SERVICES[index]["ip"]
+	ip = Config.NODES[index]["ip"]
 	response = utils.base.con_test_service(ip, request)
 
 	return response
 
-def transfer_ont(from_index, to_index, amount):
+def transfer_ont(from_index, to_index, amount, price = 0):
 	request = {
 		"method": "transfer",
 		"jsonrpc": "2.0",
 		"id": 0,
 		"params" : {
-			"from" : Config.SERVICES[from_index]["address"],
-			"to" : Config.SERVICES[to_index]["address"],
-			"amount" : amount
+			"from" : Config.NODES[from_index]["address"],
+			"to" : Config.NODES[to_index]["address"],
+			"amount" : amount,
+			"price" : price
 		}
 	}
 
-	ip = Config.SERVICES[from_index]["ip"]
+	ip = Config.NODES[from_index]["ip"]
 	response = utils.base.con_test_service(ip, request)
+	time.sleep(5)
+	return response
 
+def transfer_ong(from_index, to_index, amount, price = 0):
+	request = {
+		"method": "transfer_ong",
+		"jsonrpc": "2.0",
+		"id": 0,
+		"params" : {
+			"from" : Config.NODES[from_index]["address"],
+			"to" : Config.NODES[to_index]["address"],
+			"amount" : amount,
+			"price" : price
+		}
+	}
+
+	ip = Config.NODES[from_index]["ip"]
+	response = utils.base.con_test_service(ip, request)
+	time.sleep(5)
 	return response
 
 def withdrawong(index):
@@ -507,12 +547,14 @@ def withdrawong(index):
 		"id": 0
 	}
 
-	ip = Config.SERVICES[index]["ip"]
+	ip = Config.NODES[index]["ip"]
 	response = utils.base.con_test_service(ip, request)
 
 	return response
 
 def script_hash_bl_reserver(input):
+	if input == None:
+		return ""
 	rstrs = input[::-1]
 	output = ""
 	for i in range(0, len(input), 2):
@@ -521,7 +563,9 @@ def script_hash_bl_reserver(input):
 	return output
 
 def base58_to_address(input):
-	address = None
+	if input == None:
+		return ""
+	address = ""
 	cmd = Config.TOOLS_PATH + "/base58ToAddress -base58 \"" + input + "\" > address.tmp"
 	os.system(cmd)
 	print(cmd)
@@ -537,3 +581,4 @@ def base58_to_address(input):
 			address = regroup.group(1)
 	tmpfile.close()
 	return address
+#check_node_state([0,1,2,3,4,5,6])

@@ -20,18 +20,27 @@ from utils.contractapi import *
 from test_api import *
 from test_ontid_config import *
 from utils.commonapi import call_contract
-
+from utils.init_ong_ont import *
 logger = LoggerInstance
 
 ####################################################
 #test cases
 class TestContract(ParametrizedTestCase):
+	@classmethod
+	def setUpClass(cls):
+		stop_all_nodes()
+		start_nodes(range(0, 8), Config.DEFAULT_NODE_ARGS, clear_chain = True, clear_log = True)
+		time.sleep(10)
+		init_ont_ong()
+		time.sleep(20)
+	def test(self):
+		transfer()
 	def start(self, log_path):
 		logger.open(log_path)
 		
 	def finish(self, task_name, log_path, result, msg):
 		if result:
-			logger.print("[ OK       ] ")
+			logger.print("[ OK	   ] ")
 			logger.append_record(task_name, "pass", log_path)
 		else:
 			logger.print("[ Failed   ] " + msg)
@@ -170,7 +179,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "017_addKey.log"
 		task_name = "017_addKey.log"
 		self.start(log_path)
-		(result, response) = addKey(ontId, new_publickey5,pubkey_re_address,node_index)
+		(result, response) = addKey(ontId, new_publickey5,pubkey_re_address,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -178,7 +187,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "018_addKey.log"
 		task_name = "018_addKey.log"
 		self.start(log_path)
-		(result, response) = addKey(ontId, menualPubKey1,pubkey_reAddress1,node_index,0)
+		(result, response) = addKey(ontId, addKey_018,pubkey_reAddress1,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -251,7 +260,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "027_removeKey.log"
 		task_name = "027_removeKey.log"
 		self.start(log_path)
-		(result, response) = addKey(ontId, del_pubkey1,pubkey_re_address,node_index,0)#先把这个key加上�?
+		(result, response) = addKey(ontId, del_pubkey1,pubkey_re_address,node_index,0)#先把这个key加上县
 		(result, response) = removeKey(ontId, del_pubkey1,pubkey_re_address,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
@@ -284,7 +293,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "031_removeKey.log"
 		task_name = "031_removeKey.log"
 		self.start(log_path)
-		(result, response) = removeKey(ontId, del_pubkey5,pubkey_re_address,node_index)
+		(result, response) = removeKey(ontId, del_pubkey5,pubkey_re_address,node_index,errorcode=0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -292,7 +301,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "032_removeKey.log"
 		task_name = "032_removeKey.log"
 		self.start(log_path)
-		(result, response) = addKey(ontId, removeKey_32,pubkey_reAddress1,node_index,0)#先注册公�?
+		(result, response) = addKey(ontId, removeKey_32,pubkey_reAddress1,node_index,0)#先注册公钿
 		(result, response) = removeKey(ontId, removeKey_32,pubkey_reAddress1,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
@@ -317,7 +326,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "035_removeKey.log"
 		task_name = "035_removeKey.log"
 		self.start(log_path)
-		(result, response) = addKey(ontId, removeKey_35,pubkey_reAddress1,node_index,0)#先注册公�?		
+		(result, response) = addKey(ontId, removeKey_35,pubkey_reAddress1,node_index,0)#先注册公钿		
 		(result, response) = removeKey(ontId, removeKey_35,pubkey_reAddress3,node_index,0,pubkey_reAddress3_Array)
 		self.finish(task_name, log_path, result,  "")
 
@@ -342,7 +351,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "038_addRecovery.log"
 		task_name = "038_addRecovery.log"
 		self.start(log_path)
-		(result, response) = regIDWithPublicKey(addRecovery_38,public_key,node_index,0)#先注册一个账�?
+		(result, response) = regIDWithPublicKey(addRecovery_38,public_key,node_index,0)#先注册一个账叿
 		(result, response) = addRecovery(addRecovery_38, recoveryaddress,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
@@ -375,7 +384,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "042_addRecovery.log"
 		task_name = "042_addRecovery.log"
 		self.start(log_path)
-		(result, response) = regIDWithPublicKey(addRecovery_42,public_key,node_index,0)#先注册一个账�?
+		(result, response) = regIDWithPublicKey(addRecovery_42,public_key,node_index,0)#先注册一个账叿
 		(result, response) = addRecovery(addRecovery_42, recoveryAddress1,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
@@ -400,7 +409,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "045_addRecovery.log"
 		task_name = "045_addRecovery.log"
 		self.start(log_path)
-		(result, response) = addRecovery(ontId, recoveryAddress4,public_key,node_index)
+		(result, response) = addRecovery(ontId, recoveryAddress4,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -408,7 +417,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "046_addRecovery.log"
 		task_name = "046_addRecovery.log"
 		self.start(log_path)
-		(result, response) = regIDWithPublicKey(addRecovery_46,public_key,node_index,0)#先注册一个账�?
+		(result, response) = regIDWithPublicKey(addRecovery_46,public_key,node_index,0)#先注册一个账叿
 		(result, response) = addRecovery(addRecovery_46, recoveryaddress,public_key4,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
@@ -425,7 +434,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "048_addRecovery.log"
 		task_name = "048_addRecovery.log"
 		self.start(log_path)
-		(result, response) = addRecovery(ontId, recoveryaddress,public_key2,node_index)
+		(result, response) = addRecovery(ontId, recoveryaddress,public_key2,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -441,7 +450,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "050_changeRecovery.log"
 		task_name = "050_changeRecovery.log"
 		self.start(log_path)
-		(result, response) = changeRecovery(userOntId6, new_recovery_address,old_recovery_address,public_key,node_index,0,old_recovery_address_Array)#先把它换成新�?
+		(result, response) = changeRecovery(userOntId6, new_recovery_address,old_recovery_address,public_key,node_index,0,old_recovery_address_Array)#先把它换成新皿
 		(result, response) = changeRecovery(userOntId6, old_recovery_address,new_recovery_address,public_key,node_index,0,new_recovery_address_Array)#再把它换回来
 		self.finish(task_name, log_path, result,  "")
 
@@ -474,7 +483,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "054_changeRecovery.log"
 		task_name = "054_changeRecovery.log"
 		self.start(log_path)
-		(result, response) = changeRecovery(ontId, new_recoveryAddress1,old_recovery_address,public_key,node_index,0,old_recovery_address_Array)#换这�?
+		(result, response) = changeRecovery(ontId, new_recoveryAddress1,old_recovery_address,public_key,node_index,0,old_recovery_address_Array)#换这丿
 		(result, response) = changeRecovery(ontId, old_recovery_address,new_recoveryAddress1,public_key,node_index,0,new_recoveryAddress1_Array)#再换回来
 		self.finish(task_name, log_path, result,  "")
 
@@ -499,7 +508,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "057_changeRecovery.log"
 		task_name = "057_changeRecovery.log"
 		self.start(log_path)
-		(result, response) = changeRecovery(ontId, new_recoveryAddress4,old_recovery_address,public_key,node_index)
+		(result, response) = changeRecovery(ontId, new_recoveryAddress4,old_recovery_address,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -507,8 +516,8 @@ class TestContract(ParametrizedTestCase):
 		log_path = "058_changeRecovery.log"
 		task_name = "058_changeRecovery.log"
 		self.start(log_path)
-		(result, response) = changeRecovery(ontId, new_recovery_address,old_recoverAddress1,public_key,node_index,0,old_recoverAddress1)#换这�?
-		(result, response) = changeRecovery(ontId, old_recoverAddress1,new_recovery_address,public_key,node_index,0,new_recovery_address)#再换回来
+		(result, response) = changeRecovery(ontId, new_recovery_address,old_recoverAddress1,public_key,node_index,0,old_recoverAddress1_Array)#换这丿
+		(result, response) = changeRecovery(ontId, old_recoverAddress1,new_recovery_address,public_key,node_index,0,new_recovery_address_Array)#再换回来
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -524,7 +533,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "060_changeRecovery.log"
 		task_name = "060_changeRecovery.log"
 		self.start(log_path)
-		(result, response) = changeRecovery(ontId, new_recovery_address,old_recoverAddress3,public_key,node_index)
+		(result, response) = changeRecovery(ontId, new_recovery_address,old_recoverAddress3,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -580,7 +589,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "067_regIDWithAttributes.log"
 		task_name = "067_regIDWithAttributes.log"
 		self.start(log_path)
-		(result, response) = regIDWithAttributes(newontId, attribute3,public_key,node_index)
+		(result, response) = regIDWithAttributes(newontId, attribute3,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -588,7 +597,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "068_regIDWithAttributes.log"
 		task_name = "068_regIDWithAttributes.log"
 		self.start(log_path)
-		(result, response) = regIDWithAttributes(newontId, attribute4,public_key,node_index)
+		(result, response) = regIDWithAttributes(newontId, attribute4,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -596,7 +605,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "069_regIDWithAttributes.log"
 		task_name = "069_regIDWithAttributes.log"
 		self.start(log_path)
-		(result, response) = regIDWithAttributes(newontId, attribute5,public_key,node_index)
+		(result, response) = regIDWithAttributes(newontId, attribute5,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -687,7 +696,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "080_addAttributes.log"
 		task_name = "080_addAttributes.log"
 		self.start(log_path)
-		(result, response) = addAttributes(ontId, attribute3,public_key,node_index)
+		(result, response) = addAttributes(ontId, attribute3,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -695,7 +704,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "081_addAttributes.log"
 		task_name = "081_addAttributes.log"
 		self.start(log_path)
-		(result, response) = addAttributes(ontId, attribute4,public_key,node_index)
+		(result, response) = addAttributes(ontId, attribute4,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -703,7 +712,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "082_addAttributes.log"
 		task_name = "082_addAttributes.log"
 		self.start(log_path)
-		(result, response) = addAttributes(ontId, attribute5,public_key,node_index)
+		(result, response) = addAttributes(ontId, attribute5,public_key,node_index,900,errorkey="error_code")
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -861,7 +870,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "101_getPublicKeys.log"
 		task_name = "101_getPublicKeys.log"
 		self.start(log_path)
-		(result, response) = getPublicKeys(userOntId7,public_key,node_index)
+		(result, response) = getPublicKeys(userOntId7,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -869,7 +878,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "102_getPublicKeys.log"
 		task_name = "102_getPublicKeys.log"
 		self.start(log_path)
-		(result, response) = getPublicKeys(userOntId4,public_key,node_index,900,errorkey="error_code")
+		(result, response) = getPublicKeys(userOntId4,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -957,7 +966,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "113_getAttributes.log"
 		task_name = "113_getAttributes.log"
 		self.start(log_path)
-		(result, response) = getAttributes(userOntId7,public_key,node_index)
+		(result, response) = getAttributes(userOntId7,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -965,7 +974,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "114_getAttributes.log"
 		task_name = "114_getAttributes.log"
 		self.start(log_path)
-		(result, response) = getAttributes(userOntId4,public_key,node_index,900,errorkey="error_code")
+		(result, response) = getAttributes(userOntId4,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -989,7 +998,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "117_getDDO.log"
 		task_name = "117_getDDO.log"
 		self.start(log_path)
-		(result, response) = getDDO(userOntId7,public_key,node_index)
+		(result, response) = getDDO(userOntId7,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 
@@ -997,7 +1006,7 @@ class TestContract(ParametrizedTestCase):
 		log_path = "118_getDDO.log"
 		task_name = "118_getDDO.log"
 		self.start(log_path)
-		(result, response) = getDDO(userOntId4,public_key,node_index,900,errorkey="error_code")
+		(result, response) = getDDO(userOntId4,public_key,node_index,0)
 		self.finish(task_name, log_path, result,  "")
 
 

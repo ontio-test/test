@@ -98,6 +98,21 @@ namespace Example
                 return B();
             }
 
+            if (operation == "C")
+            {
+                //we need to check if the caller is authorized to invoke foo
+                if (!VerifyToken(operation, token)) return false;
+
+                return B();
+            }
+            if (operation == "")
+            {
+                //we need to check if the caller is authorized to invoke foo
+                if (!VerifyToken(operation, token)) return false;
+
+                return B();
+            }
+
             if (operation == "transfer")
             {
 
@@ -230,11 +245,11 @@ namespace Example
                 //did:ont:
 		public static readonly byte[] mAdminOntID = { 
                 0x64, 0x69, 0x64, 0x3a, 0x6f, 0x6e, 0x74, 0x3a,
-				0x41, 0x4b, 0x37, 0x77, 0x7a, 0x6d, 0x6b, 0x64, 
-                0x67, 0x6a, 0x4b, 0x78, 0x62, 0x58, 0x41, 0x4a, 
-                0x42, 0x69, 0x61, 0x57, 0x39, 0x31, 0x59, 0x68, 
-                0x55, 0x6f, 0x6b, 0x54, 0x75, 0x39, 0x70, 0x61, 
-                0x35, 0x58};
+				0x41, 0x53, 0x38, 0x37, 0x65, 0x6b, 0x58, 0x64, 
+                0x63, 0x77, 0x74, 0x7a, 0x59, 0x4d, 0x34, 0x36, 
+                0x33, 0x4a, 0x6f, 0x79, 0x6a, 0x4a, 0x67, 0x71, 
+                0x36, 0x71, 0x51, 0x6a, 0x53, 0x6b, 0x45, 0x54, 
+                0x52, 0x70};
         public static object InitContractAdmin()
         {
             byte[] address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6 };
