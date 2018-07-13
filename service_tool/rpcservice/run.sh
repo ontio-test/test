@@ -1,2 +1,2 @@
 killall test_service
-nohup python3 rpcserver.py &
+python3 -u rpcserver.py > `date +%F_%H_%M_%S`.log 2>&1 &

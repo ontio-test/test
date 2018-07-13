@@ -106,9 +106,35 @@ def transfer_ont(**kwargs):
   _from = kwargs["from"]
   to = kwargs["to"]
   amount = kwargs["amount"]
+  price = kwargs["price"]
 
   cmd = "cd " + config.NODE_PATH + "\n";
-  cmd = cmd + "echo 123456|" + config.NODE_PATH + "/ontology asset transfer --from=\"" + str(_from) + "\" " + "--to=\"" + str(to) + "\"" + " --amount=\"" + str(amount) + "\" > .tmp"
+  cmd = cmd + "echo 123456|" + config.NODE_PATH + "/ontology asset transfer --asset=ont --from=\"" + str(_from) + "\" " + "--to=\"" + str(to) + "\"" + " --amount=\"" + str(amount) + "\""
+  if price > 0:
+    cmd = cmd + " --gasprice=" + str(price)
+  cmd = cmd + " > .tmp"
+  print(cmd)
+  os.system(cmd)
+
+  tmpfile = open(config.NODE_PATH + "/.tmp", "r+")  # 打开文件
+  contents = tmpfile.readlines()
+  return contents
+
+@dispatcher.add_method
+def transfer_ong(**kwargs):
+  if os.path.exists(".tmp"):
+    os.remove(".tmp")
+
+  _from = kwargs["from"]
+  to = kwargs["to"]
+  amount = kwargs["amount"]
+  price = kwargs["price"]
+
+  cmd = "cd " + config.NODE_PATH + "\n";
+  cmd = cmd + "echo 123456|" + config.NODE_PATH + "/ontology asset transfer --asset=ong  --from=\"" + str(_from) + "\" " + "--to=\"" + str(to) + "\"" + " --amount=\"" + str(amount) + "\""
+  if price > 0:
+    cmd = cmd + " --gasprice=" + str(price)
+  cmd = cmd + " > .tmp"
   print(cmd)
   os.system(cmd)
 
@@ -172,6 +198,14 @@ def start_node(**kwargs):
 
   return True
 
+@dispatcher.add_method
+def exec_cmd(**kwargs):
+  cmd = ""
+  if "cmd" in kwargs:
+    cmd = kwargs["cmd"]
+  os.system(cmd)
+  return True
+
 @Request.application
 def application(request):
     # Dispatcher is dictionary {<method_name>: callable}
@@ -183,12 +217,22 @@ def application(request):
     dispatcher["stop_node"] = stop_node
     dispatcher["replace_node_config"] = replace_node_config
     dispatcher["transfer"] = transfer_ont
+    dispatcher["transfer_ong"] = transfer_ong
     dispatcher["withdrawong"] = withdrawong
 
     response = JSONRPCResponseManager.handle(
         request.data, dispatcher)
-    return Response(response.json, mimetype='application/json')
-
+    print(request)
+    responseobj =json.loads(response.json)
+    if "error" not in responseobj:
+        responseobj["error"] = 0
+    else:
+        if "message" in responseobj["error"]:
+          responseobj["desc"] = responseobj["error"]["message"]
+        if "code" in responseobj["error"]:
+          responseobj["error"] = responseobj["error"]["code"]
+    print(json.dumps(responseobj))
+    return Response(json.dumps(responseobj), mimetype='application/json')
 
 if __name__ == '__main__':
     run_simple(get_host_ip(), config.PORT, application)
