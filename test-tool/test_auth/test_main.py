@@ -264,7 +264,8 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = transfer(self.CONTRACT_ADDRESS_INCORRECT_1, self.ontID_A)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_19_transfer(self):
 		log_path = "19_transfer.log"
@@ -272,7 +273,8 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		# init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = transfer(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 	
 	def test_20_transfer(self):
 		log_path = "20_transfer.log"
@@ -304,7 +306,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = transfer(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_24_transfer(self):
 		log_path = "24_transfer.log"
@@ -401,15 +403,16 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_36_assignFuncsToRole(self):
 		log_path = "36_assignFuncsToRole.log"
 		task_name = "36_assignFuncsToRole"
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
-		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		self.finish(task_name, log_path, not result,  "")
+		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_B, self.ROLE_CORRECT, [self.FUNCTION_A])
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_37_assignFuncsToRole(self):
 		log_path = "37_assignFuncsToRole.log"
@@ -417,7 +420,8 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_C, self.ROLE_CORRECT, [self.FUNCTION_A])
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_38_assignFuncsToRole(self):
 		log_path = "38_assignFuncsToRole.log"
@@ -425,7 +429,8 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_D, self.ROLE_CORRECT, [self.FUNCTION_A])
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_39_assignFuncsToRole(self):
 		log_path = "39_assignFuncsToRole.log"
@@ -458,7 +463,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_INCORRECT_2, [self.FUNCTION_A])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_43_assignFuncsToRole(self):
 		log_path = "43_assignFuncsToRole.log"
@@ -483,7 +488,7 @@ class TestContract(ParametrizedTestCase):
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])		
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A, self.FUNCTION_B, self.FUNCTION_C])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_46_assignFuncsToRole(self):
 		log_path = "46_assignFuncsToRole.log"
@@ -492,7 +497,7 @@ class TestContract(ParametrizedTestCase):
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])		
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_47_assignFuncsToRole(self):
 		log_path = "47_assignFuncsToRole.log"
@@ -509,7 +514,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_D])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 	
 	def test_49_assignFuncsToRole(self):
 		log_path = "49_assignFuncsToRole.log"
@@ -517,7 +522,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A, self.FUNCTION_D])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_50_assignFuncsToRole(self):
 		log_path = "50_assignFuncsToRole.log"
@@ -604,7 +609,7 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_60_assignOntIDsToRole(self):
 		log_path = "60_assignOntIDsToRole.log"
@@ -613,6 +618,7 @@ class TestContract(ParametrizedTestCase):
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_B, self.ROLE_CORRECT, [self.ontID_A])
+		result = (response["result"]["Result"] == "00")
 		self.finish(task_name, log_path, not result,  "")
 
 	def test_61_assignOntIDsToRole(self):
@@ -622,6 +628,7 @@ class TestContract(ParametrizedTestCase):
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_C, self.ROLE_CORRECT, [self.ontID_A])
+		result = (response["result"]["Result"] == "00")
 		self.finish(task_name, log_path, not result,  "")
 
 	def test_62_assignOntIDsToRole(self):
@@ -631,6 +638,7 @@ class TestContract(ParametrizedTestCase):
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_D, self.ROLE_CORRECT, [self.ontID_A])
+		result = (response["result"]["Result"] == "00")
 		self.finish(task_name, log_path, not result,  "")
 
 	def test_63_assignOntIDsToRole(self):
@@ -649,7 +657,7 @@ class TestContract(ParametrizedTestCase):
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_INCORRECT_3, [self.ontID_A])
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_65_assignOntIDsToRole(self):
 		log_path = "65_assignOntIDsToRole.log"
@@ -729,7 +737,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A], public_key)
+		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		self.finish(task_name, log_path, result,  "")
 
@@ -739,7 +747,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A], public_key)
+		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_INCORRECT_4, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		self.finish(task_name, log_path, not result,  "")
 
@@ -749,7 +757,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A], public_key)
+		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_INCORRECT_5, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		self.finish(task_name, log_path, not result,  "")
 
@@ -759,7 +767,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A], public_key)
+		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_INCORRECT_6, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		self.finish(task_name, log_path, not result,  "")
 
@@ -769,7 +777,7 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
-		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A], public_key)
+		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		self.finish(task_name, log_path, result,  "")
 
@@ -783,6 +791,7 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT)
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_B, self.ontID_E, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT, node_index=2)
+		result = (response["result"]["Result"] == "00")
 		self.finish(task_name, log_path, not result,  "")
 
 	def test_79_delegate(self):
@@ -964,6 +973,7 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_INCORRECT_1)		
+		result = (response["result"]["Result"] == "00")
 		self.finish(task_name, log_path, not result,  "")
 
 	def test_97_delegate(self):
@@ -974,6 +984,7 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_role_function(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.FUNCTION_A])
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_INCORRECT_2)		
+		result = (response["result"]["Result"] == "00")
 		self.finish(task_name, log_path, not result,  "")
 
 	def test_98_delegate(self):
@@ -1111,7 +1122,7 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT)
-		self.finish(task_name, log_path, not result,  "")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_111_withdraw(self):
 		log_path = "111_withdraw.log"
@@ -1155,7 +1166,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_A, self.ROLE_CORRECT)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_115_withdraw(self):
 		log_path = "115_withdraw.log"
@@ -1166,7 +1178,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_A, self.ROLE_CORRECT)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_116_withdraw(self):
 		log_path = "116_withdraw.log"
@@ -1177,7 +1190,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_A, self.ROLE_CORRECT)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_117_withdraw(self):
 		log_path = "117_withdraw.log"
@@ -1188,7 +1202,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_C, self.ROLE_CORRECT)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_118_withdraw(self):
 		log_path = "118_withdraw.log"
@@ -1199,7 +1214,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_D, self.ROLE_CORRECT)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_119_withdraw(self):
 		log_path = "119_withdraw.log"
@@ -1221,7 +1237,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_INCORRECT_3)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_121_withdraw(self):
 		log_path = "121_withdraw.log"
@@ -1232,7 +1249,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_INCORRECT_2)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 
 	def test_122_withdraw(self):
 		log_path = "122_withdraw.log"
@@ -1243,7 +1261,8 @@ class TestContract(ParametrizedTestCase):
 		(result, response) = bind_user_role( self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ROLE_CORRECT, [self.ontID_A])
 		(result, response) = delegate_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_CORRECT, self.PERIOD_CORRECT, self.LEVEL_CORRECT)
 		(result, response) = withdraw_user_role(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A, self.ontID_B, self.ROLE_INCORRECT_1)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "00")
+		self.finish(task_name, log_path, result,  "")
 	
 	
 	def test_134_withdraw(self):
@@ -1304,7 +1323,8 @@ class TestContract(ParametrizedTestCase):
 		self.start(log_path)
 		init_admin(self.CONTRACT_ADDRESS_CORRECT, self.ontID_A)
 		(result, response) = invoke_function(self.CONTRACT_ADDRESS_139, "contractA_Func_A", self.ontID_A)
-		self.finish(task_name, log_path, not result,  "")
+		result = (response["result"]["Result"] == "323232")
+		self.finish(task_name, log_path, result,  "")
 
 	
 	

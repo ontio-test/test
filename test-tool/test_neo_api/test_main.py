@@ -32,14 +32,14 @@ logger = LoggerInstance
 class TestNeoAPI(ParametrizedTestCase):
 	
 	def setUp(self):
-		'''
+		
 		time.sleep(2)
 		print("stop all")
 		stop_nodes([0,1,2,3,4,5,6])
 		print("start all")
 		start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
-		time.sleep(5)
-		'''
+		time.sleep(20)
+		
 		(self.contract_addr, self.contract_tx_hash) = deploy_contract_full("./tasks/neo_1_194.neo")
 		(self.contract_addr_1, self.contract_tx_hash_1) = deploy_contract_full("./tasks/neo_1_194.neo", price=1000000000)
 		
@@ -49,6 +49,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		self.CONTRACT_ADDRESS = self.contract_addr
 
 		self.PUBLICKEY =Config.NODES[0]["pubkey"]
+		self.PUBLICKEY1 =Config.NODES[7]["pubkey"]
 
 		time.sleep(5)
 		
@@ -234,7 +235,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "11_blockchain_get_header"
 		self.start(log_path)
 		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, self.GET_BLOCK_FUNC_NAME, self.PARAM_TYPE_BYTEARRAY, self.BLOCK_HASH_INCORRECT_4)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_12_blockchain_get_transaction(self):
 		log_path = "12_blockchain_get_transaction.log"
@@ -248,7 +249,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "13_blockchain_get_transaction"
 		self.start(log_path)
 		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, self.GET_TRANSACTION_FUNC_NAME, self.PARAM_TYPE_BYTEARRAY, self.TX_HASH_INCORRECT_4)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_15_blockchain_get_transaction(self):
 		log_path = "15_blockchain_get_transaction.log"
@@ -269,14 +270,14 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "17_blockchain_get_contact"
 		self.start(log_path)
 		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, self.GET_CONTRACT_FUNC_NAME, self.PARAM_TYPE_BYTEARRAY, self.SCRIPT_HASH_INCORRECT_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_18_blockchain_get_contact(self):
 		log_path = "18_blockchain_get_contact.log"
 		task_name = "18_blockchain_get_contact"
 		self.start(log_path)
 		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, self.GET_CONTRACT_FUNC_NAME, self.PARAM_TYPE_BYTEARRAY, self.SCRIPT_HASH_INCORRECT_2)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_20_blockchain_get_hash(self):
 		log_path = "20_blockchain_get_hash.log"
@@ -363,14 +364,14 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "39_blockchain_get_transactions"
 		self.start(log_path)
 		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, self.GET_BLOCK_TRANSACTIONS_FUNC_NAME, self.PARAM_TYPE_INT, "2")
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_40_blockchain_get_transactions(self):
 		log_path = "40_blockchain_get_transaction.log"
 		task_name = "40_blockchain_get_transaction"
 		self.start(log_path)
 		(result, response) = invoke_func_with_2_param(self.CONTRACT_ADDRESS, "GetBlockTransaction_40", self.PARAM_TYPE_INT, "1", self.PARAM_TYPE_INT, "0")
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_41_blockchain_get_transaction(self):
 		log_path = "41_blockchain_get_transaction.log"
@@ -463,14 +464,14 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "59_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_INCORRECT_1, self.NAME_1, self.VERSION_1, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, not result, "")
+		self.finish(task_name, log_path, result, "")
 
 	def test_60_getcontract_create(self):
 		log_path = "60_getcontract_create.log"
 		task_name = "60_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_INCORRECT_3, self.NAME_1, self.VERSION_1, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, not result, "")
+		self.finish(task_name, log_path, result, "")
 
 	def test_61_getcontract_create(self):
 		log_path = "61_getcontract_create.log"
@@ -498,14 +499,14 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "64_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_4, self.VERSION_1, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_65_getcontract_create(self):
 		log_path = "65_getcontract_create.log"
 		task_name = "65_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_5, self.VERSION_1, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, not result, "")
+		self.finish(task_name, log_path, result, "")
 
 	def test_66_getcontract_create(self):
 		log_path = "66_getcontract_create.log"
@@ -526,7 +527,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "68_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_1, self.VERSION_3, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_69_getcontract_create(self):
 		log_path = "69_getcontract_create.log"
@@ -561,7 +562,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "73_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_1, self.VERSION_1, self.AUTHOR_3, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_74_getcontract_create(self):
 		log_path = "74_getcontract_create.log"
@@ -596,7 +597,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "78_getcontract_create"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_1, self.VERSION_1, self.AUTHOR_1, self.EMAIL_3, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_79_getcontract_create(self):
 		log_path = "79_getcontract_create.log"
@@ -724,7 +725,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "98_storage_get"
 		self.start(log_path)
 		(result, response) = invoke_func_with_2_param(self.CONTRACT_ADDRESS, "Get_98", self.PARAM_TYPE_BYTEARRAY, self.KEY_INCORRECT_1, self.PARAM_TYPE_BYTEARRAY, self.VALUE_CORRECT)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_99_storage_put(self):
 		log_path = "99_storage_put.log"
@@ -766,7 +767,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "104_storage_put"
 		self.start(log_path)
 		(result, response) = invoke_func_with_2_param(self.CONTRACT_ADDRESS, "Put_99", self.PARAM_TYPE_BYTEARRAY, self.KEY_CORRECT_2, self.PARAM_TYPE_BYTEARRAY, self.VALUE_CORRECT)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_105_storage_put(self):
 		log_path = "105_storage_put.log"
@@ -927,14 +928,14 @@ class TestNeoAPI(ParametrizedTestCase):
 		log_path = "128_check_witness.log"
 		task_name = "128_check_witness"
 		self.start(log_path)
-		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, "CheckWitness", self.PARAM_TYPE_BYTEARRAY, self.PUBLICKEY)
-		self.finish(task_name, log_path, not result, "")
+		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, "CheckWitness", self.PARAM_TYPE_BYTEARRAY, self.PUBLICKEY1)
+		self.finish(task_name, log_path, result, "")
 
 	def test_129_check_witness(self):
 		log_path = "129_check_witness.log"
 		task_name = "129_check_witness"
 		self.start(log_path)
-		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, "CheckWitness", self.PARAM_TYPE_BYTEARRAY, self.PUBLICKEY+"11")
+		(result, response) = invoke_func_with_1_param(self.CONTRACT_ADDRESS, "CheckWitness", self.PARAM_TYPE_BYTEARRAY, "11" + self.PUBLICKEY)
 		self.finish(task_name, log_path, not result, "")
 	
 	def test_130_notify(self):
@@ -1089,14 +1090,14 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "173_getcontract_migrate"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_4, self.VERSION_1, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_174_getcontract_migrate(self):
 		log_path = "174_getcontract_migrate.log"
 		task_name = "174_getcontract_migrate"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_5, self.VERSION_1, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, not result, "")
+		self.finish(task_name, log_path, result, "")
 
 	def test_175_getcontract_migrate(self):
 		log_path = "175_getcontract_migrate.log"
@@ -1117,7 +1118,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "177_getcontract_migrate"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_1, self.VERSION_3, self.AUTHOR_1, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_178_getcontract_migrate(self):
 		log_path = "178_getcontract_migrate.log"
@@ -1152,7 +1153,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "182_getcontract_migrate"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_1, self.VERSION_1, self.AUTHOR_3, self.EMAIL_1, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_183_getcontract_migrate(self):
 		log_path = "183_getcontract_migrate.log"
@@ -1187,7 +1188,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		task_name = "187_getcontract_migrate"
 		self.start(log_path)
 		(result, response) = invoke_contract_create(self.CONTRACT_ADDRESS, self.SCRIPT_HASH_CORRECT, self.NAME_1, self.VERSION_1, self.AUTHOR_1, self.EMAIL_3, self.DESC_1)
-		self.finish(task_name, log_path, result, "")
+		self.finish(task_name, log_path, not result, "")
 
 	def test_188_getcontract_migrate(self):
 		log_path = "188_getcontract_migrate.log"
