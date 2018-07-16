@@ -22,7 +22,7 @@ from utils.base import WebSocket
 
 time.sleep(2)
 print("stop all")
-stop_nodes([0,1,2,3,4,5,6])
+stop_all_nodes()
 print("start all")
 start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
 time.sleep(60)
@@ -36,6 +36,8 @@ wsapi = WebSocketApi()
 
 
 class TestWebAPI(ParametrizedTestCase):
+		
+
 	def start(self, log_path):
 		logger.open(log_path)
 

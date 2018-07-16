@@ -348,8 +348,7 @@ class TestConsensus_10_13(ParametrizedTestCase):
 		pass
 		
 	def init_bft_node(self, bft_index):
-		for i in range(0, 14):
-			stop_nodes([i])
+		stop_all_nodes()
 		start_nodes([0,1,2,3,4], Config.DEFAULT_NODE_ARGS, True, True, program = "ontology")
 		print("start bft node: " + "ontology-bft_" + str(bft_index))
 		start_nodes([5,6], Config.DEFAULT_NODE_ARGS, True, True, program = "ontology-bft_" + str(bft_index))

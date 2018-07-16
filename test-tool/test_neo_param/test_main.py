@@ -46,7 +46,8 @@ class Test(ParametrizedTestCase):
 		result = False
 		logger.open("test_02.log", "test_02")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "int","value": "-1"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 	
 	def test_03(self):
 		result = False
@@ -58,37 +59,43 @@ class Test(ParametrizedTestCase):
 		result = False
 		logger.open("test_04.log", "test_04")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "int","value": "65536"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		#logger.close(not result or response["result"]["Result"] != '01')
 		
 	def test_05(self):
 		result = False
 		logger.open("test_05.log", "test_05")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "string","value": "abc"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')		
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')		
 	
 	def test_06(self):
 		result = False
 		logger.open("test_06.log", "test_06")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "string","value": ""}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')	
+		logger.close(result and response["result"]["Result"] == '01')
+		#logger.close(not result or response["result"]["Result"] != '01')	
 
 	def test_07(self):
 		result = False
 		logger.open("test_07.log", "test_07")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "bytearray","value": "111122223333"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')	
+		logger.close(result and response["result"]["Result"] == '01')
+		#logger.close(not result or response["result"]["Result"] != '01')	
 
 	def test_08(self):
 		result = False
 		logger.open("test_08.log", "test_08")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "bool","value": "true"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')	
+		logger.close(result and response["result"]["Result"] == '01')
+		#logger.close(not result or response["result"]["Result"] != '01')	
 
 	def test_09(self):
 		result = False
 		logger.open("test_09.log", "test_09")
 		(result, response) = invoke_function(self.m_contract_address, "int_to_int", "", argvs = [{"type": "bool","value": "false"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')	
+		logger.close(result and response["result"]["Result"] == '01')
+		#logger.close(not result or response["result"]["Result"] != '01')	
 	
 	#string to int
 	def test_10(self):
@@ -113,25 +120,29 @@ class Test(ParametrizedTestCase):
 		result = False
 		logger.open("test_13.log", "test_13")
 		(result, response) = invoke_function(self.m_contract_address, "string_to_int", "", argvs = [{"type": "int","value": "123"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 
 	def test_14(self):
 		result = False
 		logger.open("test_14.log", "test_14")
 		(result, response) = invoke_function(self.m_contract_address, "string_to_int", "", argvs = [{"type": "bytearray","value": "111122223333"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		#logger.close(not result or response["result"]["Result"] != '01')
 
 	def test_15(self):
 		result = False
 		logger.open("test_15.log", "test_15")
 		(result, response) = invoke_function(self.m_contract_address, "string_to_int", "", argvs = [{"type": "bool","value": "true"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')		
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')		
 
 	def test_16(self):
 		result = False
 		logger.open("test_16.log", "test_16")
 		(result, response) = invoke_function(self.m_contract_address, "string_to_int", "", argvs = [{"type": "bool","value": "false"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')		
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')		
 
 	def test_24(self):
 		result = False
@@ -155,25 +166,29 @@ class Test(ParametrizedTestCase):
 		result = False
 		logger.open("test_27.log", "test_27")
 		(result, response) = invoke_function(self.m_contract_address, "bool_to_int", "", argvs = [{"type": "int","value": "1"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 		
 	def test_28(self):
 		result = False
 		logger.open("test_28.log", "test_28")
 		(result, response) = invoke_function(self.m_contract_address, "bool_to_int", "", argvs = [{"type": "string","value": "abc"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 	
 	def test_29(self):
 		result = False
 		logger.open("test_29.log", "test_29")
 		(result, response) = invoke_function(self.m_contract_address, "bool_to_int", "", argvs = [{"type": "string","value": ""}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 	
 	def test_30(self):
 		result = False
 		logger.open("test_30.log", "test_30")
 		(result, response) = invoke_function(self.m_contract_address, "bool_to_int", "", argvs = [{"type": "bytearray","value": "111122223333"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 
 	def test_31(self):
 		result = False
@@ -185,31 +200,36 @@ class Test(ParametrizedTestCase):
 		result = False
 		logger.open("test_32.log", "test_32")
 		(result, response) = invoke_function(self.m_contract_address, "byte_to_int", "", argvs = [{"type": "bytearray","value": ""}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 	
 	def test_33(self):
 		result = False
 		logger.open("test_33.log", "test_33")
 		(result, response) = invoke_function(self.m_contract_address, "byte_to_int", "", argvs = [{"type": "int","value": "123"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 		
 	def test_34(self):
 		result = False
 		logger.open("test_34.log", "test_34")
 		(result, response) = invoke_function(self.m_contract_address, "byte_to_int", "", argvs = [{"type": "string","value": "zxcvbnm!@"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 
 	def test_35(self):
 		result = False
 		logger.open("test_35.log", "test_35")
 		(result, response) = invoke_function(self.m_contract_address, "byte_to_int", "", argvs = [{"type": "bool","value": "true"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 		
 	def test_36(self):
 		result = False
 		logger.open("test_36.log", "test_36")
 		(result, response) = invoke_function(self.m_contract_address, "byte_to_int", "", argvs = [{"type": "bool","value": "false"}], node_index = 0)
-		logger.close(not result or response["result"]["Result"] != '01')
+		logger.close(result and response["result"]["Result"] == '01')
+		# logger.close(not result or response["result"]["Result"] != '01')
 		
 	def test_37(self):
 		result = False

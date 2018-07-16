@@ -35,7 +35,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		
 		time.sleep(2)
 		print("stop all")
-		stop_nodes([0,1,2,3,4,5,6])
+		stop_all_nodes()
 		print("start all")
 		start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
 		time.sleep(20)
@@ -52,7 +52,7 @@ class TestNeoAPI(ParametrizedTestCase):
 		self.PUBLICKEY1 =Config.NODES[7]["pubkey"]
 
 		time.sleep(5)
-		
+
 		self.BLOCK_HEIGHT_WITH_TX = str(rpcApi.getblockheightbytxhash(tx_hash=self.contract_tx_hash)[1]["result"])
 		self.BLOCK_HEIGHT_WITHOUT_TX = str(rpcApi.getblockheightbytxhash(tx_hash=self.contract_tx_hash)[1]["result"]+1)
 		time.sleep(5)
