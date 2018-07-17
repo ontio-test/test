@@ -261,6 +261,18 @@ class TestConsensus_1_9__19_32(ParametrizedTestCase):
 		
 		start_nodes(stopnodes, Config.DEFAULT_NODE_ARGS)
 		time.sleep(3)
+
+	def start(self, log_path):
+		logger.open(log_path)
+
+	def finish(self, task_name, log_path, result, msg):
+		if result:
+			logger.print("[ OK       ] ")
+			logger.append_record(task_name, "pass", log_path)
+		else:
+			logger.print("[ Failed   ] " + msg)
+			logger.append_record(task_name, "fail", log_path)
+		logger.close()
 	
 	def test_19_consensus(self):
 		log_path = "19_consensus.log"
@@ -315,27 +327,27 @@ class TestConsensus_1_9__19_32(ParametrizedTestCase):
 		log_path = "30_consensus.log"
 		task_name = "30_consensus"
 		self.start(log_path)
-		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "100000000")
-		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_C, "100000000")
+		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "1000")
+		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_C, "1000")
 		self.finish(task_name, log_path, result,  "")
 
 	def test_31_consensus(self):
 		log_path = "31_consensus.log"
 		task_name = "31_consensus"
 		self.start(log_path)
-		(result, response) = approve_31(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "100000000")
-		(result, response) = approve_31(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "100000000")
-		(result, response) = allowance(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "100000000")
-		(result, response) = allowance(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "100000000")
+		(result, response) = approve_31(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "1000")
+		(result, response) = approve_31(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "1000")
+		(result, response) = allowance(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "1000")
+		(result, response) = allowance(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "1000")
 		self.finish(task_name, log_path, result,  "")
 
 	def test_32_consensus(self):
 		log_path = "32_consensus.log"
 		task_name = "32_consensus"
 		self.start(log_path)
-		(result, response) = approve_32(self.CONTRACT_ADDRESS, self.ADDRESS_C, self.ADDRESS_B, "100000000")
-		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "100000000")
-		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_C, "100000000")
+		(result, response) = approve_32(self.CONTRACT_ADDRESS, self.ADDRESS_C, self.ADDRESS_B, "1000")
+		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_B, "1000")
+		(result, response) = transfer_19(self.CONTRACT_ADDRESS, self.ADDRESS_A, self.ADDRESS_C, "1000")
 		(result, response) = allowance_32(self.ADDRESS_A, self.ADDRESS_A)
 		self.finish(task_name, log_path, result,  "")
 		

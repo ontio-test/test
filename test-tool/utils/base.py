@@ -193,3 +193,4 @@ class WebSocket():
 				#ws.send(json.dumps(self.load_cfg(request)))
 			except Exception as e:
 				print(e)
+				break
