@@ -17,6 +17,145 @@ from utils.hexstring import *
 from utils.error import Error
 from utils.commonapi import *
 from utils.parametrizedtestcase import ParametrizedTestCase
+from utils.multi_sig import *
+from utils.rpcapi import *
+
+class Common:
+	AdminNum=5
+	AdminPublicKeyList=[Config.NODES[0]["pubkey"],Config.NODES[1]["pubkey"],Config.NODES[2]["pubkey"],Config.NODES[3]["pubkey"],Config.NODES[4]["pubkey"],Config.NODES[5]["pubkey"],Config.NODES[6]["pubkey"]]
+	ontid_map = {}
+
+	node_Admin = 0
+	ontID_Admin = ByteToHex(bytes(Config.NODES[node_Admin]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_Admin] = node_Admin
+	
+	node_A = 1
+	ontID_A = ByteToHex(bytes(Config.NODES[node_A]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_A] = node_A
+	
+	node_B = 2
+	ontID_B = ByteToHex(bytes(Config.NODES[node_B]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_B] = node_B
+	
+	node_C = 3
+	ontID_C = ByteToHex(bytes(Config.NODES[node_C]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_C] = node_C
+	
+	node_D = 4
+	ontID_D = ByteToHex(bytes(Config.NODES[node_D]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_D] = node_D
+	
+	node_E = 5
+	ontID_E = ByteToHex(bytes(Config.NODES[node_E]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_E] = node_E
+	
+	node_F = 6
+	ontID_F = ByteToHex(bytes(Config.NODES[node_F]["ontid"], encoding = "utf8"))
+	ontid_map[ontID_F] = node_F
+
+def getStorageConf(confName):
+	rpcapiTest=RPCApi()
+	return rpcapiTest.getstorage("0700000000000000000000000000000000000000",ByteToHex(confName.encode("utf-8")))
+
+def invoke_function_consensus(pubKey):
+    request = {
+        "NODE_INDEX":0,
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signativeinvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": "0700000000000000000000000000000000000000",
+                "method": "commitDpos",
+                "version": 0,
+                "params": [
+		                  ]
+                    }
+                },
+        "RESPONSE":{"error" : 0}
+    }
+
+    return multi_contract(Task(name="invoke_function_commitDpos", ijson=request),Common.AdminNum,Common.AdminPublicKeyList)
+
+
+def invoke_function_approve(pubKey):
+    request = {
+        "NODE_INDEX":0,
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signativeinvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": "0700000000000000000000000000000000000000",
+                "method": "approveCandidate",
+                "version": 0,
+                "params": [
+                            pubKey
+		                  ]
+                    }
+                },
+        "RESPONSE":{"error" : 0}
+    }
+        
+    return multi_contract(Task(name="invoke_function_candidate", ijson=request),Common.AdminNum,Common.AdminPublicKeyList)
+
+
+def native_transfer_ont(pay_address, get_address, amount, node_index=None, errorcode=0, gas_price=0):
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signativeinvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": "0100000000000000000000000000000000000000",
+                "method": "transfer",
+                "version": 1,
+                "params": [
+                    [
+                        [
+                            pay_address,
+                            get_address,
+                            amount
+                        ]
+                    ]
+                ]
+            }
+        },
+        "RESPONSE": {"error": errorcode},
+        "NODE_INDEX": node_index
+    }
+    return call_contract(Task(name="transfer", ijson=request), twice=True)
+
+def native_transfer_ong(pay_address, get_address, amount, node_index=None, errorcode=0, gas_price=0):
+    amount = str(int(amount)*1000000000)
+    request = {
+        "REQUEST": {
+            "Qid": "t",
+            "Method": "signativeinvoketx",
+            "Params": {
+                "gas_price": 0,
+                "gas_limit": 1000000000,
+                "address": "0200000000000000000000000000000000000000",
+                "method": "transfer",
+                "version": 1,
+                "params": [
+                    [
+                        [
+                            pay_address,
+                            get_address,
+                            amount
+                        ]
+                    ]
+                ]
+            }
+        },
+        "RESPONSE": {"error": errorcode},
+        "NODE_INDEX": node_index
+    }
+    return call_contract(Task(name="transfer", ijson=request), twice=True)
 
 def transfer(contract_address,from_address,to_address,amount, node_index = None):
 	request = {

@@ -601,5 +601,101 @@ class TestConsensus_14_18(ParametrizedTestCase):
 		logger.close(result)  
 
 
+def add_candidate_node(new_node, init_ont = 5000000, init_ong = 1000, init_pos = 10000, from_node = 0):
+	#新加入节点, 并申请候选节点
+	start_nodes([new_node], clear_chain = True, clear_log = True)
+	time.sleep(5)
+	regIDWithPublicKey(new_node)
+	(result, response) = bind_role_function("0700000000000000000000000000000000000000", ByteToHex(bytes(Config.NODES[0]["ontid"], encoding = "utf8")), ByteToHex(b"roleA"),["registerCandidate"])
+	if not result:
+		return (result, response)
+		
+	(result, response) = bind_user_role("0700000000000000000000000000000000000000",ByteToHex(bytes(Config.NODES[0]["ontid"], encoding = "utf8")), ByteToHex(b"roleA"),[ByteToHex(bytes(Config.NODES[new_node]["ontid"], encoding = "utf8"))])
+	if not result:
+		return (result, response)
+		
+	native_transfer_ont(Config.NODES[from_node]["address"], Config.NODES[new_node]["address"], str(init_ont), 0)
+	native_transfer_ong(Config.NODES[from_node]["address"], Config.NODES[new_node]["address"], str(init_ong), 0)
+	
+	time.sleep(10)
+	
+	(result, response) = invoke_function_register(Config.NODES[new_node]["pubkey"], Config.NODES[new_node]["address"], str(init_pos), ByteToHex(bytes(Config.NODES[new_node]["ontid"], encoding = "utf8")), "1", new_node)
+	if not result:
+		return (result, response)	
+		
+	(result, response) = invoke_function_approve(Config.NODES[new_node]["pubkey"])		
+	return (result, response)
+
+
+class TestConsensus_33_34(ParametrizedTestCase):
+	
+	def setUp(self):
+		
+		self.m_checknode = 4
+		time.sleep(2)
+		print("stop all")
+		for node_index in range(len(Config.NODES)):
+			stop_nodes([node_index])
+		print("start all")
+		start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
+		time.sleep(10)
+		for i in range(0, 7):
+			regIDWithPublicKey(i)
+		init_ont_ong()
+	
+	def test_33_consensus(self):
+		result = False
+		logger.open("TestConsensus33.log", "TestConsensus33.log")
+		try:
+			add_candidate_node(7, init_pos = 2000, from_node = 0)
+			getStorageConf("vbftConfig")
+			# step 2 wallet A unvote in the second round
+			(result, response) = invoke_function_consensus(Config.NODES[0]["pubkey"])
+			time.sleep(5)
+			#if not result:
+			#	raise Error("unvote error")
+
+			getStorageConf("vbftConfig")
+
+		except Exception as e:
+			print(e.msg)
+
+		logger.close(result)
+
+	def test_34_consensus(self):
+		result = False
+		logger.open("TestConsensus34.log", "TestConsensus34")
+		vote_node = 13 #投票节点
+		peer_node1 = 7 #被投票节点1
+		peer_node2 = 8 #被投票节点2
+		peer_node3 = 9 #被投票节点3
+		try:
+			
+			start_nodes([vote_node], Config.DEFAULT_NODE_ARGS, True, True)
+			native_transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "5000000", 0)
+			native_transfer_ong(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "1000", 0)
+
+			for i in range(7, 14):
+				add_candidate_node(i, init_pos = 10000, from_node = 0)
+
+			(result, response) = invoke_function_vote(Config.NODES[vote_node]["address"], [Config.NODES[peer_node1]["pubkey"], Config.NODES[peer_node2]["pubkey"], Config.NODES[peer_node3]["pubkey"]], ["15000", "15000", "15000"])
+			if not result:
+				raise Error("vote error")
+			
+			getStorageConf("vbftConfig")
+			# step 2 wallet A unvote in the second round
+			(result, response) = invoke_function_consensus(Config.NODES[0]["pubkey"])
+			time.sleep(5)
+			#if not result:
+			#	raise Error("unvote error")
+
+			getStorageConf("vbftConfig")
+
+		except Exception as e:
+			print(e.msg)
+
+		logger.close(result)
+
+
 if __name__ == '__main__':
     unittest.main()
