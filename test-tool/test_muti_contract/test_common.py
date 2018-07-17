@@ -21,7 +21,6 @@ from utils.logger import LoggerInstance
 from utils.hexstring import *
 from utils.error import Error
 from utils.parametrizedtestcase import ParametrizedTestCase
-from test_api import *
 from utils.contractapi import *
 
 def set_premise(neo_path):
