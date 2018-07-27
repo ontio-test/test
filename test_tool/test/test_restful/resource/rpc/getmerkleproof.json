@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+	  "jsonrpc": "2.0",
+	  "method": "getmerkleproof",
+	  "params": ["0087217323d87284d21c3539f216dd030bf9da480372456d1fa02eec74c3226d"],
+	  "id": 1
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

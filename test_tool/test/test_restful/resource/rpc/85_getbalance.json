@@ -1,0 +1,19 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getbalance",
+		"params": [
+			"TA5uYzLU2vBvvfCMxyV2sdzc9kPqJzGZWq"
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+        "id": 1,
+		"error": 0,
+		"result": {
+			"ont": "2500",
+			"ong": "0",
+			"ong_appove": "0"
+		   }
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/hash/100"
+	},
+	"RESPONSE": {
+        "Action": "getblockhash",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": "6c7f76be5873aeb177f44c3fb64e6468b06efa901671378f9c472fe696401627",
+        "Desc": "SUCCESS"
+	}
+}

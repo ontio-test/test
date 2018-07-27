@@ -1,0 +1,9 @@
+{
+	"REQUEST": {
+	    "Action": "heartbeat",
+	    "Version": "1.0.0"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

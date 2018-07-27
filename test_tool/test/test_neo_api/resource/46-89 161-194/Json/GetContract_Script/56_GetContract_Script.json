@@ -1,0 +1,28 @@
+{
+"REQUEST": {
+"Qid": "t",
+"Method": "signeovminvoketx",
+"Params": {
+"gas_price": 0,
+"gas_pimit": 0,
+"address": "312ff7c76bedc932135d2a0d4e8b17e534b49209",
+"version": 1,
+"params":[
+			{
+				"type":"string",
+				"value":"GetContract_Script"
+			},
+			{
+				"type":"array",
+				"value":[{
+							"type":"bytearray",
+							"value":"0992b434e5178b4e0d2a5d1332c9ed6bc7f72f31"
+						}]
+			}
+		]
+		}
+		},
+"RESPONSE": {}
+}
+
+

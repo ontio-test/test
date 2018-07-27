@@ -1,0 +1,15 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getconnectioncount",
+		"params": [
+			
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 0,
+		"result": 0
+	}
+}

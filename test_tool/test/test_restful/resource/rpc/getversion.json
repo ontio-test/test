@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+	  "jsonrpc": "2.0",
+	  "method": "getversion",
+	  "params": [],
+	  "id": 3
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

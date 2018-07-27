@@ -1,0 +1,67 @@
+{
+    "ConsensusType": "vbft",
+    "VBFT": {
+        "peer_handshake_timeout": 10,
+        "max_block_change_view": 1000,
+        "admin_ont_id": "did:ont:AG4pZwKa9cr8ca7PED7FqzUfcwnrQ2N26w",
+        "peers": [
+            {
+                "address": "AG4pZwKa9cr8ca7PED7FqzUfcwnrQ2N26w",
+                "peerPubkey": "02e3ff56206295e71295aeaf47b7f3681f93fb98b692a66b103feb7b756667c74d",
+                "initPos": 10000,
+                "index": 1
+            },
+            {
+                "address": "AUSyZx1BoQbTy3avMKygvJrkw8mRbzt6Aa",
+                "peerPubkey": "02ca35fd7f3d78f01a423e17a85fe122715c2bcece7c5c8c851adcb265eb59486c",
+                "initPos": 10000,
+                "index": 2
+            },
+            {
+                "address": "AM12FAbshNvugLaHG4KzAfHGvUG1t5SpAv",
+                "peerPubkey": "0231a74176e87fb7bc8953d04f982f6e1c48a1659ff3e460e4be4894f22fcc7ea0",
+                "initPos": 10000,
+                "index": 3
+            },
+            {
+                "address": "AW7xyBsZD4Hzx8e1PY8iLCXuMFc6Wfm9BJ",
+                "peerPubkey": "03ddf2c26298f07d3546582dbb0b3f33f9a679485d358f2efeb3ce7d5e9593ccf7",
+                "initPos": 10000,
+                "index": 4
+            },
+            {
+                "address": "Acy5NwtDhKH3qdkMJ8fL4PNCqotCvkDpPQ",
+                "peerPubkey": "03a02bec6c8d99facfdeb5e11f53a22d30228e88381fcbf1ae8bcdf80f49599abe",
+                "initPos": 10000,
+                "index": 5
+            },
+            {
+                "address": "AdYYmEJmLtyzrBVeBxDkSXsfQLupRH8GtJ",
+                "peerPubkey": "0295415b752ca38bef5048a026bcebf97c7d4104aa285bcafb18eb95dd9076a05a",
+                "initPos": 10000,
+                "index": 6
+            },
+            {
+                "address": "ATrzgmtkGhp8b7i8w2gM5o38p6bpX8vWG7",
+                "peerPubkey": "0257024d773e4c0487efc217fe47caea5d902488b6dc2ae57a719c44e5642bcde4",
+                "initPos": 10000,
+                "index": 7
+            }
+        ],
+        "vrf_value": "1c9810aa9822e511d5804a9c4db9dd08497c31087b0daafa34d768a3253441fa20515e2f30f81741102af0ca3cefc4818fef16adb825fbaa8cad78647f3afb590e",
+        "min_init_stake": 10000,
+        "hash_msg_delay": 10000,
+        "l": 112,
+        "k": 7,
+        "c": 2,
+        "n": 7,
+        "block_msg_delay": 10000,
+        "vrf_proof": "c57741f934042cb8d8b087b44b161db56fc3ffd4ffb675d36cd09f83935be853d8729f3f5298d12d6fd28d45dde515a4b9d7f67682d182ba5118abf451ff1988"
+    },
+    "SeedList": [
+        "139.219.128.177:20338",
+        "139.219.141.110:20338",
+        "139.219.141.33:20338",
+        "139.219.136.233:20338"
+    ]
+}

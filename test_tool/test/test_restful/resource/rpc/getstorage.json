@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+	  "jsonrpc": "2.0",
+	  "method": "getstorage",
+	  "params": ["03febccf81ac85e3d795bc5cbd4e84e907812aa3", "5065746572"],
+	  "id": 15
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/storage/ff00000000000000000000000000000000000001/0144587c1094f6929ed7362d6328cffff4fb4da2"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

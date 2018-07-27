@@ -1,0 +1,10 @@
+{
+	"REQUEST": {
+		"Action": "getsmartcodeeventbyhash",
+    "Version": "1.0.0",
+    "Hash": "3e23cf222a47739d4141255da617cd42925a12638ac19cadcc85501f907972c8"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

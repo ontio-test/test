@@ -1,0 +1,15 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getbalance",
+		"params": [
+			"TA5uYzLU2vBvvfCMxyV2sdzc9kPqJzG000"
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+        "id": 1,
+		"error": 44001,
+		"result": ""
+    }
+}

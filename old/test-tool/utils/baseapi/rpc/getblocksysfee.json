@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+	  "jsonrpc": "2.0",
+	  "method": "getblocksysfee",
+	  "params": [1005434],
+	  "id": 1
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

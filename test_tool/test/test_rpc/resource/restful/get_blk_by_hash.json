@@ -1,0 +1,8 @@
+{
+	"REQUEST": {
+	  "api": "/api/v1/block/details/hash/b32750da54b9b2e717768f91e0ce5036ffa8ad3e9bd79ec5aaa04ed42b3e78af"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

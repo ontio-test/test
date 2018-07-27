@@ -1,0 +1,16 @@
+{
+  "TYPE" : "restful",
+  "REQUEST": {
+	  "api": "/api/v1/smartcode/event/transactions/0"
+	},
+	"RESPONSE": {
+        "Action": "getsmartcodeeventbyheight",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": [
+            "8b149e417c6e367b74f40706e685bba0457cb920ab2f62bd772b74dc6bb6d1d3",
+            "180b80d339ba55238106a670f0d2a495ac7c6da5b64b2832116844aec59d1f7f"
+        ],
+        "Desc": "SUCCESS"
+	    }
+}

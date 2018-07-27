@@ -1,0 +1,37 @@
+{
+	"REQUEST": {
+		"Qid":"t",
+		"Method":"siginvoketx",
+		"Params":{
+			"gas_price":0,
+			"gas_pimit":0,
+			"address":"TMeR92CBLMzkTwqiu5WuJvVtzG4UxaZtYY",
+			"version":0,
+			"params":[{
+				"type":"string",
+				"value":"CheckSig"
+			},
+			{
+				"type":"array",
+				"value":[
+				{
+					"type":"bytearray",
+					"value":"12020390c9f71385bf0b21bf4c9feae5693c08b38bab078171c63398c06d174b19a413"
+				},
+				{
+					"type":"bytearray",
+					"value":""
+				},
+				{
+					"type":"bytearray",
+					"value":"00d16ad3075b00000000000000000000000000000000012fb107114042ac1b32af419d041d3b2eca8619802167000080eef2af4463640d3323bebca36b88a3da2e2837000803313233033132330001012312020390c9f71385bf0b21bf4c9feae5693c08b38bab078171c63398c06d174b19a41301014101bb242dd1aa847618a0941870302cc5003fc67acdfa78dd9f641cbe814341380c54340ad81442a657b03d71a62fb10340e24994792090fdaf502e95137f1b298c"
+				}
+				]
+			}
+			]
+		}
+	},
+	"RESPONSE": {
+
+	}
+}

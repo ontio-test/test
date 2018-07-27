@@ -1,0 +1,57 @@
+{
+    "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/details/hash/b32750da54b9b2e717768f91e0ce5036ffa8ad3e9bd79ec5aaa04ed42b3e78af"
+	},
+	"RESPONSE": {
+        "Action": "getblockbyhash",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": {
+            "Header": {
+                "TransactionsRoot": "18f2be1fb70ad2b335cb94729773a181f8f6f828c048ae8ea9fe0337bf63f683",
+                "Hash": "b32750da54b9b2e717768f91e0ce5036ffa8ad3e9bd79ec5aaa04ed42b3e78af",
+                "Timestamp": 1525928763,
+                "BlockRoot": "5fa88685468840f8695abee92cb1cec5871ee80555aa771bbbdb5d01fc94884a",
+                "Bookkeepers": [
+                    "1202023a36cbf365877305db8c9cc0ca2f4f7965517be16a32724625cf5f736458f996"
+                ],
+                "Height": 22,
+                "SigData": [
+                    "01b60ea72344736d1b8757a70b9576bb4f9158d4a1dde0124a216b7a4b9afb1a32428db6b67abedb66718de3de1a8af7042f395b64b394a16a366bd6471523d1c9"
+                ],
+                "Version": 0,
+                "PrevBlockHash": "2b130b325c05982c89b0869428943212509540078ecd64f1876acec3d5053b98",
+                "NextBookkeeper": "TABEaBWnAVBGyDMtepMeBDbAZTametq2hc",
+                "ConsensusData": 17808398789508961001
+            },
+            "Hash": "b32750da54b9b2e717768f91e0ce5036ffa8ad3e9bd79ec5aaa04ed42b3e78af",
+            "Transactions": [
+                {
+                    "Nonce": 0,
+                    "NetworkFee": 0,
+                    "Fee": [],
+                    "Hash": "18f2be1fb70ad2b335cb94729773a181f8f6f828c048ae8ea9fe0337bf63f683",
+                    "TxType": 0,
+                    "Sigs": [
+                        {
+                            "SigData": [
+                                "018a1ab05bcd5d8f2eda362fb05080bb688c04b1a5eb5aa3bc43bdd7a9c0d89bbe14c9c3f21dc875cd9cb2c80bf4136b34a2deca0ace340cb17001e1c63d7a0003"
+                            ],
+                            "PubKeys": [
+                                "1202023a36cbf365877305db8c9cc0ca2f4f7965517be16a32724625cf5f736458f996"
+                            ],
+                            "M": 1
+                        }
+                    ],
+                    "Version": 0,
+                    "Attributes": [],
+                    "Payload": {
+                        "Nonce": 1525928763448078800
+                    }
+                }
+            ]
+        },
+        "Desc": "SUCCESS"
+	}
+}

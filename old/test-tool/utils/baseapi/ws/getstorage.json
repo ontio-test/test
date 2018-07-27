@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+		"Action": "getstorage",
+    "Version": "1.0.0",
+    "Hash": "0144587c1094f6929ed7362d6328cffff4fb4da2",
+    "Key" : "4587c1094f6"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

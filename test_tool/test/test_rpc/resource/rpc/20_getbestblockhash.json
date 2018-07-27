@@ -1,0 +1,15 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getbestblockhash",
+		"params": [
+			
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 0,
+		"result": "0f4f48816551abc87b790ce90bb534f7c178fd9b43fdc1ed419c8710ed5200d5"
+	}
+}

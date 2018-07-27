@@ -1,0 +1,10 @@
+{
+	"REQUEST": {
+		"Action": "getblocktxsbyheight",
+    "Version": "1.0.0",
+    "Height": 100
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

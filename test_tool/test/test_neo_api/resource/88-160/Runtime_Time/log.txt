@@ -1,0 +1,6 @@
+Deploy contract:
+  Contract Address:TMgR1pZ6T2LMGocbTCiv9RP4aLxvoZJ7mw
+  TxHash:a0274651f05f8e497397ab499ef9cc8a6f508feda33c1a40c0fb9376eea5a96e
+
+Tip:
+  Using './ontology info status a0274651f05f8e497397ab499ef9cc8a6f508feda33c1a40c0fb9376eea5a96e' to query transaction status

@@ -5,3 +5,4 @@ class Configure():
 
 	# path
 	NODE_PATH = "/home/ubuntu/ontology/node"
+	TEST_PATH = "/home/ubuntu/ontology/test"

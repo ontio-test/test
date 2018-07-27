@@ -1,0 +1,27 @@
+{
+	"REQUEST": {
+		"Qid": "t",
+		"Method": "signativeinvoketx",
+		"Params": {
+			"gas_price": 0,
+			"gas_limit": 40000,
+			"address": "ff00000000000000000000000000000000000006",
+			"method": "withdraw",
+			"version": 0,
+			"params": [
+				[
+					[
+						"8074775331499ebc81ff785e299d406f55224a4c",
+						"TA7TSQ5aJcA8sU5MpqJNyTG1r13AQYLYpR",
+						"TA82XAPQXtVzncQMczcY9SVytjb2VuTQy4",
+						"",
+						"100",
+						"1",
+						"1"
+					]
+				]
+			]
+		}
+	},
+	"RESPONSE": {}
+}

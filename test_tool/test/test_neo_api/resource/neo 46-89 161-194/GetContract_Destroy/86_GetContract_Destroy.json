@@ -1,0 +1,26 @@
+{
+    "REQUEST": {
+    "Qid": "t",
+    "Method": "siginvoketx",
+    "Params": {
+    "gas_price": 0,
+    "gas_pimit": 0,
+    "address": "TMgPvAHwESBWdNH2bfqotSU2uTsgrrCjtZ",
+    "version": 1,
+    "params":[
+                {
+                    "type":"string",
+                    "value":"GetContract_Destroy"
+                },
+                {
+                    "type":"array",
+                    "value":[]
+                }
+            ]
+            }
+            },
+    "RESPONSE": {}
+    }
+    
+    
+    

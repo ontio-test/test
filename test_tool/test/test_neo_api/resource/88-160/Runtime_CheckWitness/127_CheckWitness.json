@@ -1,0 +1,30 @@
+{
+	"DEPLOY" : true,
+	"CODE_PATH" : "tasks/test.neo",
+	"REQUEST": {
+		"Qid": "t",
+		"Method": "signeovminvoketx",
+		"Params": {
+			"gas_price": 0,
+			"gas_limit": 1000000000,
+			"address": "TMfPjThoyw4S66cXTUtrc1BHk67fnHJuuY",
+			"version": 1,
+			"params": [
+				{
+					"type": "string",
+					"value": "CheckWitness"
+				},
+				{
+					"type": "array",
+					"value": [
+						{
+							"type": "bytearray",
+							"value": "03e05d01e5df2c85e6a9a5526c70d080b6c7dce0fa7c66f8489c18b8569dc269dc"
+						}
+					]
+				}
+			]
+		}
+	},
+	"RESPONSE": {}
+}

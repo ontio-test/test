@@ -1,0 +1,25 @@
+{
+    "DEPLOY" : true,
+    "CODE_PATH" : "tasks/neo_1_45.neo",
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_pimit": 0,
+            "address": "TMhwCRaT4aMtj6h6unqeCJWUn8vomadk7s",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "GetHeight"
+                },
+                {
+                    "type": "array",
+                    "value": []
+                }
+            ]
+        }
+    },
+    "RESPONSE": {}
+}

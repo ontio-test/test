@@ -1,0 +1,74 @@
+{
+	"RPC_URL": "http://139.219.128.177:20336/jsonrpc",
+	"CLIRPC_URL": "http://127.0.0.1:20000/cli",
+	"RESTFUL_URL": "http://139.219.128.177:20334",
+	"WS_URL": "ws://139.219.128.177:20335",
+	"NODES": [{
+		"ip": "139.219.128.177",
+		"wallet" : "wallet00.dat"
+	},
+	{
+		"ip": "139.219.141.110",
+		"wallet" : "wallet01.dat"
+	},
+	{
+		"ip": "139.219.141.33",
+		"wallet" : "wallet02.dat"
+	},
+	{
+		"ip": "139.219.136.233",
+		"wallet" : "wallet03.dat"
+	},
+	{
+		"ip": "139.219.129.234",
+		"wallet" : "wallet04.dat"
+	},
+	{
+		"ip": "139.219.129.166",
+		"wallet" : "wallet05.dat"
+	},
+	{
+		"ip": "139.219.137.201",
+		"wallet" : "wallet06.dat"
+	},
+	{
+		"ip" : "139.219.136.33",
+		"wallet" : "wallet07.dat"
+	},
+	{
+		"ip" : "139.219.134.70",
+		"wallet" : "wallet08.dat"
+	},
+	{
+		"ip" : "139.219.129.124",
+		"wallet" : "wallet09.dat"
+	},
+	{
+		"ip" : "139.219.128.249",
+		"wallet" : "wallet10.dat"
+	},
+	{
+		"ip" : "139.219.131.138",
+		"wallet" : "wallet11.dat"
+	},
+	{
+		"ip" : "139.219.142.130",
+		"wallet" : "wallet12.dat"
+	},
+	{
+		"ip" : "139.219.129.127",
+		"wallet" : "wallet13.dat"
+	},
+	{
+		"ip" : "139.219.141.196",
+		"wallet" : "wallet14.dat"
+	},
+	{
+		"ip" : "139.219.143.101",
+		"wallet" : "wallet15.dat"
+	}],
+	"MULTI_SIGNED_ADDRESS" : "AJroHBLRsfPTPQocSKjpADp4AKybg8GZuz",
+	"INIT_AMOUNT_ONG" : "1000000000000000",
+	"DEFAULT_NODE_ARGS" : "--ws --rest --loglevel=0 --enableconsensus --networkid=299  --gasprice 0 --gaslimit 20000 ",
+	"NODE_PATH" : "/home/ubuntu/ontology/node"
+}

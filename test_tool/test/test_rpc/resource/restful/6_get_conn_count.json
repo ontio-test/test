@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": ""
+	},
+	"RESPONSE": {
+        "Action": "getconnectioncount",
+        "Error": 0,
+        "Version": "1.0.0",
+        "Result": 0,
+        "Desc": "SUCCESS"
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"REQUEST": {
+		"jsonrpc": "2.0",
+		"method": "getsmartcodeevent",
+		"params": [
+			3
+		],
+		"id": 1
+	},
+	"RESPONSE": {
+		"id": 1,
+		"error": 0,
+		"result": {
+			"TxHash": "20046da68ef6a91f6959caa798a5ac7660cc80cf4098921bc63604d93208a8ac",
+			"State": 1,
+			"GasConsumed": 0,
+			"Notify": [
+				{
+					"ContractAddress": "ff00000000000000000000000000000000000001",
+					"States": [
+						"transfer",
+						"T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb",
+						"TA4WVfUB1ipHL8s3PRSYgeV1HhAU3KcKTq",
+						1000000000
+					]
+				}
+			]
+		}
+	}
+}

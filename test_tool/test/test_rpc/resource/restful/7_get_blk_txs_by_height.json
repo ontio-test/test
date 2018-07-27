@@ -1,0 +1,17 @@
+{
+    "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/transactions/height/100"
+	},
+	"RESPONSE": {
+    "Version": "1.0.0",
+    "Desc": "SUCCESS",
+    "Action": "getblocktxsbyheight",
+    "Error": 0,
+    "Result": {
+        "Height": 100,
+        "Hash": "6d578c6b702a2bcb5084b9f29e2504b93c9d45f592c62a31ad9f641d6bb5a135",
+        "Transactions": []
+        }
+    }
+}

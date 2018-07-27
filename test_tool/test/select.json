@@ -1,0 +1,18 @@
+{
+	"test_auth" : false,
+    "test_benefit_model" : false,
+    "test_consensus" : false,
+    "test_erncryption" : false,
+    "test_governance" : false,
+    "test_governance_api" : false,
+    "test_muti_contract" :false,
+    "test_neo_api" :false,
+    "test_neo_param" :false,
+    "test_ong_native" :false,
+    "test_ontid_api" :false,
+    "test_ontid_others" :false,
+    "test_ont_native" :false,
+    "test_restful" :false,
+    "test_rpc" :false,
+    "test_websocket" :false
+}

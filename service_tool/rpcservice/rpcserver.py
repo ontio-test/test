@@ -8,6 +8,9 @@ import json
 import requests
 import os
 import setproctitle
+import stat
+import subprocess
+import time
 
 from werkzeug.wrappers import Request, Response
 from werkzeug.serving import run_simple
@@ -16,6 +19,22 @@ from jsonrpc import JSONRPCResponseManager, dispatcher
 from config import Configure as config
 
 setproctitle.setproctitle("test_service")
+
+
+def calc_md5_for_file(_file):
+  md5 = hashlib.md5()
+  with open(_file, "rb") as f:
+    md5.update(f.read())
+  return md5.hexdigest()
+
+def calc_md5_for_folder(folder):
+  md5 = hashlib.md5()
+  files = os.listdir(folder)
+  files.sort()
+  for _file in files:
+    print (os.path.join(folder, _file))
+    md5.update(str(calc_md5_for_file(os.path.join(folder, _file))).encode())
+  return md5.hexdigest()
 
 def get_db_md5(db_name):
   print("---------------------------------")
@@ -180,10 +199,13 @@ def start_node(**kwargs):
   if "node_args" in kwargs:
     node_args = kwargs["node_args"]
 
+  if not os.path.exists(config.NODE_PATH + "/" + program_name):
+      return False
+
   if clear_chain:
-    os.system("rm -rf " + config.NODE_PATH + "/Chain")
+    os.system("mv -f " + config.NODE_PATH + "/Chain" + " " + config.NODE_PATH + "/Chain_bak")
   if clear_log:
-    os.system("rm -rf " + config.NODE_PATH + "/Log")
+    os.system("mv -f " + config.NODE_PATH + "/Log" + " " + config.NODE_PATH + "/Log_bak")
 
   if node_args:
     cmd = "cd " + config.NODE_PATH + "\n";
@@ -206,6 +228,192 @@ def exec_cmd(**kwargs):
   os.system(cmd)
   return True
 
+@dispatcher.add_method
+def stop_sigsvr(**kwargs):
+  os.popen("killall -9 sigsvr-linux")
+  os.popen("killall -9 sigsvr")
+  return True
+
+@dispatcher.add_method
+def start_sigsvr(**kwargs):
+  program_name = "sigsvr"
+  if "wallet" in kwargs:
+    wallet = kwargs["wallet"]
+  cmd = "cd " + config.NODE_PATH + "\n"
+  cmd = cmd + "echo 123456|" + config.NODE_PATH + "/" + program_name + " -w=\"" + wallet + "\" &"
+  print(cmd)
+  os.system(cmd)
+  return True
+
+@dispatcher.add_method
+def heart_beat(**kwargs):
+  return "I'm OK."
+
+@dispatcher.add_method
+def check_xmode_ontology(**kwargs):
+  ontology_path = config.NODE_PATH + "/ontology"
+  if not os.path.exists(ontology_path):
+    return ontology_path + " doesnot exists."
+  
+  if not os.access(ontology_path, os.X_OK):
+    # chmod 777
+    os.chmod(ontology_path, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
+  
+  return True
+
+@dispatcher.add_method
+def check_xmode_sigsvr(**kwargs):
+  sigsvr_path = None
+  for sigsvr in ["sigsvr"]:
+    sigsvr_path = config.NODE_PATH + "/" + sigsvr
+    if os.path.exists(sigsvr_path):
+      break
+    else:
+      sigsvr_path = None
+
+  if not sigsvr_path:
+    return "sigsvr doesnot exists."
+  
+  if not os.access(sigsvr_path, os.X_OK):
+    # chmod 777
+    os.chmod(sigsvr_path, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
+  
+  return True
+
+@dispatcher.add_method
+def check_xmode_tools(**kwargs):
+  tools_path = None
+  for tools in ["base58ToAddress"]:
+    tools_path = config.TEST_PATH + "/tools/" + tools
+    if not os.path.exists(tools_path):
+      return tools_path + " doesnot exists."
+  
+    if not os.access(tools_path, os.X_OK):
+      # chmod 777
+      os.chmod(tools_path, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
+
+  return True
+
+@dispatcher.add_method
+def get_version_ontology(**kwargs):
+  result = {}
+  ontology_path = config.NODE_PATH + "/ontology"
+
+  if not os.path.exists(ontology_path):
+    return ontology_path + " doesnot exists."
+
+  #get version
+  cmd = "cd ~/ontology/node\n"
+  cmd += ontology_path + " --version" 
+  print(cmd)
+  p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
+  time.sleep(1)
+  version = p.stdout.read()
+  p.stdout.close()
+  p.terminate()
+
+  # get md5
+  md5 = calc_md5_for_file(ontology_path)
+
+  result["version"] = str(version).strip("'b\\n")
+  result["md5"] = str(md5)
+
+  return result
+
+@dispatcher.add_method
+def get_version_wallet(**kwargs):
+  wallet_path = config.NODE_PATH + "/wallet.dat"
+  if not os.path.exists(wallet_path):
+    return wallet_path + " doesnot exists."
+
+  # get md5
+  md5 = calc_md5_for_file(wallet_path)
+
+  return md5
+
+@dispatcher.add_method
+def get_version_onto_config(**kwargs):
+  onto_config_path = config.NODE_PATH + "/config.json"
+  if not os.path.exists(onto_config_path):
+    return onto_config_path + " doesnot exists."
+
+  # get md5
+  md5 = calc_md5_for_file(onto_config_path)
+
+  return md5
+
+@dispatcher.add_method
+def get_version_test_config(**kwargs):
+  test_config_path = config.TEST_PATH + "/config.json"
+  if not os.path.exists(test_config_path):
+    return test_config_path + " doesnot exists."
+
+  # get md5
+  md5 = calc_md5_for_file(test_config_path)
+
+  return md5
+
+@dispatcher.add_method
+def get_version_sigsvr(**kwargs):
+  sigsvr_path = None
+  result = {}
+
+  for sigsvr in ["sigsvr"]:
+    sigsvr_path = config.NODE_PATH + "/" + sigsvr
+    if os.path.exists(sigsvr_path):
+      break
+    else:
+      sigsvr_path = None
+
+  if not sigsvr_path:
+    return "sigsvr doesnot exists."
+
+  #get version
+  cmd = "cd ~/ontology/node\n"
+  cmd += sigsvr_path + " --version" 
+  print(cmd)
+  p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
+  time.sleep(1)
+  version = p.stdout.read()
+  p.stdout.close()
+  p.terminate()
+
+  # get md5
+  md5 = calc_md5_for_file(sigsvr_path)
+
+  result["version"] = str(version).strip("'b\\n")
+  result["md5"] = str(md5)
+
+  return result
+
+@dispatcher.add_method
+def get_version_abi(**kwargs):
+  abi_path = config.NODE_PATH + "/abi"
+  if not os.path.exists(abi_path):
+    return abi_path + " doesnot exists."
+
+  # get md5
+  md5 = calc_md5_for_folder(abi_path)
+
+  return md5
+
+@dispatcher.add_method
+def get_version_test_service(**kwargs):
+  test_service_path = "/home/ubuntu/ontology/test_service/rpcserver.py"
+  if not os.path.exists(test_service_path):
+    return test_service_path + " doesnot exists."
+
+  # get md5
+  md5 = calc_md5_for_file(test_service_path)
+
+  return md5
+
+@dispatcher.add_method
+def stop_test_service(**kwargs):
+  os.popen("killall -9 test_service")
+  return True
+
+
 @Request.application
 def application(request):
     # Dispatcher is dictionary {<method_name>: callable}
@@ -219,11 +427,27 @@ def application(request):
     dispatcher["transfer"] = transfer_ont
     dispatcher["transfer_ong"] = transfer_ong
     dispatcher["withdrawong"] = withdrawong
+    dispatcher["exec_cmd"] = exec_cmd
+    dispatcher["start_sigsvr"] = start_sigsvr
+    dispatcher["stop_sigsvr"] = stop_sigsvr
+    dispatcher["heart_beat"] = heart_beat
+    dispatcher["check_xmode_ontology"] = check_xmode_ontology
+    dispatcher["check_xmode_sigsvr"] = check_xmode_sigsvr
+    dispatcher["check_xmode_tools"] = check_xmode_tools
+    dispatcher["get_version_ontology"] = get_version_ontology
+    dispatcher["get_version_wallet"] = get_version_wallet
+    dispatcher["get_version_onto_config"] = get_version_onto_config
+    dispatcher["get_version_test_config"] = get_version_test_config
+    dispatcher["get_version_sigsvr"] = get_version_sigsvr
+    dispatcher["get_version_abi"] = get_version_abi
+    dispatcher["get_version_test_service"] = get_version_test_service
+    dispatcher["stop_test_service"] = stop_test_service
 
     response = JSONRPCResponseManager.handle(
         request.data, dispatcher)
     print(request)
     responseobj =json.loads(response.json)
+    print(responseobj)
     if "error" not in responseobj:
         responseobj["error"] = 0
     else:

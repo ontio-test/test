@@ -1,0 +1,40 @@
+{
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_limit": 1000000000,
+            "address": "80be7d3f63b915a2b1396f486111c946d0213d1a",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "verifyToken"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "8016dc67c2741462c652a8859143749db4db22ec"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "54413643744634685a7771416d586463366f7061344237396652533137594a6a5835"
+                        },
+                        {
+                            "type": "bytearray",
+                            "value": "617070726f766531"
+                        },
+                        {
+                            "type": "int",
+                            "value": "1"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "RESPONSE": {}
+}

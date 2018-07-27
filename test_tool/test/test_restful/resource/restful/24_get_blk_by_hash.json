@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+	"REQUEST": {
+	  "api": "/api/v1/block/details/hash/ea5e5219d2f1591f4feef89885c3f38c83d3a3474a5622cf8cd3de1b93849603"
+	},
+	"RESPONSE": {
+        "Action": "getblockbyhash",
+        "Error": 44003,
+        "Version": "1.0.0",
+        "Result": null,
+        "Desc": "UNKNOWN BLOCK"
+	}
+}

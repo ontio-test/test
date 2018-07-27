@@ -1,0 +1,25 @@
+{
+    "resource":{
+        "root":"/home/ubuntu/ontology/git/test/test_tool/resource",
+        "ontology_source_name": "ontology",
+        "wallet_source_name": "wallet",
+        "onto_config_source_name": "onto_config.json",
+        "test_config_source_name": "test_config.json",
+        "sigsvr_source_name": "sigsvr",
+        "abi_source_name": "abi",
+        "test_service_source_name": "rpcserver.py"
+    },
+    
+    "node":{
+        "root":"/home/ubuntu/ontology/node/",
+        "onto_name": "ontology",
+        "wallet_name": "wallet.dat",
+        "onto_config_name": "config.json",
+        "sigsvr_name": "sigsvr",
+        "abi_name": "abi"
+    },
+
+    "test_config_path": "/home/ubuntu/ontology/test/config.json",
+    "default_node_args": " --ws --rest --loglevel=0 --enableconsensus --networkid=6666  --gasprice 0 --gaslimit 20000 ",
+    "test_service_path": "/home/ubuntu/ontology/test_service/rpcserver.py"
+}

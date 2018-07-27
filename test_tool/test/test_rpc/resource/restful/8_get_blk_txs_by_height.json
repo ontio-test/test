@@ -1,0 +1,28 @@
+{
+    "TYPE" : "restful",
+      "REQUEST": {
+        "api": "/api/v1/block/transactions/height/0"
+      },
+      "RESPONSE": {
+    "Action": "getblocktxsbyheight",
+      "Result": {
+          "Height": 0,
+          "Transactions": [
+              "74dd3f4375b0425152b8200593e950becc90315644e39517f2437723d3b2d365",
+              "0147cc607ebb6e84a504aa4dc12cc46b6906afe5356815c2be65d14d935c7ee6",
+              "90024cd67169a17d3da7c50c948e99af4c820cf12e47b9a89d2e30bab9b2095d",
+              "261c2f5b14684f36cb6cb0bd1e5b1df8228638b1666d6510f359c46414d292e4",
+              "de271d59275a5c0f23a8a76d525a5623bfccf6d15d1ad66718ec7e26da2d59e6",
+              "bb0ed3724fb9d5e30923f82001579dc45e79a2cdce6b669e5228f0e425ed4278",
+              "524c26ce30ffa51b3fe15c48d4665177a9a51fc7fb76a5fa04aefc197ef7a4b8",
+              "3e50135ba0ad4145bef78bea746f1137ac6e333e835956f967baf9d4fd198c7e",
+              "3bf5613441cf451ca039502b368775d524f334f28688e3e56642eb974a7b6180",
+              "9fc2b021d314b456782785830ba74842cab47a3ce488f78094cfe7e8b340e57f"
+          ],
+          "Hash": "d4479f060ff7b9403efb471af37fded6aefcfb257dae2d86046219d76fdd7cfa"
+      },
+      "Error": 0,
+      "Version": "1.0.0",
+      "Desc": "SUCCESS"
+     }
+  }

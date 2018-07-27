@@ -1,0 +1,14 @@
+{
+	"REQUEST": {
+	    "Action": "subscribe",
+	    "Version": "1.0.0",
+	    "ConstractsFilter":["constractAddress"], 
+	    "SubscribeEvent":true, 
+	    "SubscribeJsonBlock":true, 
+	    "SubscribeRawBlock":true, 
+	    "SubscribeBlockTxHashs":true 
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

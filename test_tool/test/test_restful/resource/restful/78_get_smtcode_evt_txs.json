@@ -1,0 +1,13 @@
+{
+  "TYPE" : "restful",
+  "REQUEST": {
+	  "api": "/api/v1/smartcode/event/transactions/"
+	},
+	"RESPONSE": {
+        "Action": "getsmartcodeeventbyheight",
+        "Error": 42002,
+        "Version": "1.0.0",
+        "Result": "",
+        "Desc": "INVALID PARAMS"
+	    }
+}

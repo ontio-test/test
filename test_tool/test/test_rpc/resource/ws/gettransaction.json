@@ -1,0 +1,11 @@
+{
+	"REQUEST": {
+		"Action": "gettransaction",
+    "Version": "1.0.0",
+    "Hash": "3b90ddc4d33c4954c3d87736120e94915f963546861987757f358c9376422255",
+    "Raw": "0"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

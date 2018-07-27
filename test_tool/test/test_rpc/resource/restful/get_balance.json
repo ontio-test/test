@@ -1,0 +1,8 @@
+{
+	"REQUEST": {
+	  "api": "/api/v1/balance/TA5uYzLU2vBvvfCMxyV2sdzc9kPqJzGZWq"
+	},
+	"RESPONSE": {
+	  "error":0
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"REQUEST": {
+		"Qid": "t",
+		"Method": "siginvoketx",
+		"Params": {
+			"version": 0,
+			"address": "ff00000000000000000000000000000000000001",
+			"method": "name",
+			"args": []
+		}
+	},
+	"RESPONSE": {
+		"error": 0
+	}
+}

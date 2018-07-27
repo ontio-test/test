@@ -1,0 +1,56 @@
+{
+"REQUEST": {
+"Qid": "t",
+"Method": "signeovminvoketx",
+"Params": {
+"gas_price": 0,
+"gas_pimit": 0,
+"address": "221b65b65d01284d60c9cb92ec70d77e3e270ebc",
+"version": 1,
+"params":[	
+			{
+				"type":"string",
+				"value":"GetContract_Create"
+			},
+			{
+				"type":"array",
+				"value":[{
+							"type":"bytearray",
+							"value":"b28426a912072b61b145e96c5df91e1ea9c05146cb68fe1b3b660fc61d5fcce3"
+						},
+						{
+							"type":"bool",
+							"value":"true"
+						},
+						{
+							"type":"string",
+							"value":"testContract"
+							
+						},
+						{
+							"type":"string",
+							"value":"1"
+							
+						},
+						{	
+							"type":"string",
+							"value":"yangjc"
+							
+						},
+						{
+							"type":"string",
+							"value":"test"
+							
+						},
+						{
+							"type":"string",
+							"value":"this is my first test contract"
+							
+						}]
+
+			}
+		]
+		}
+		},
+"RESPONSE": {}
+}

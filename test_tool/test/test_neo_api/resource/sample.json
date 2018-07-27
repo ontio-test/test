@@ -1,0 +1,30 @@
+{
+    "DEPLOY" : true,
+    "CODE_PATH" : "tasks/sample.neo",
+    "REQUEST": {
+        "Qid": "t",
+        "Method": "signeovminvoketx",
+        "Params": {
+            "gas_price": 0,
+            "gas_pimit": 0,
+            "address": "TMhwCRaT4aMtj6h6unqeCJWUn8vomadk7s",
+            "version": 1,
+            "params": [
+                {
+                    "type": "string",
+                    "value": "GetBlock"
+                },
+                {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "bytearray",
+                            "value": "8599cb99b9a8578277f82e6be1c92d9247ecfe5e22a8f571a5744cf7c72a117d"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "RESPONSE": {}
+}
