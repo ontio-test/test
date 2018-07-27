@@ -55,8 +55,7 @@ class TestMonitor:
 		print("recover env...")
 		#restart node
 		API.node().stop_all_nodes()
-		for node_index in range(len(Config.NODES)):
-			API.node().start_nodes([node_index], clear_chain = True, clear_log = True)
+		API.node().start_nodes(range(len(Config.NODES)), clear_chain = True, clear_log = True)
 
 		#restart sigserver
 		for node_index in range(len(Config.NODES)):
