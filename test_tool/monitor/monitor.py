@@ -60,7 +60,7 @@ class TestMonitor:
 		#restart sigserver
 		for node_index in range(len(Config.NODES)):
 			API.node().stop_sigsvr(node_index)
-			API.node().start_sigsvr("wallet.dat", node_index)
+			API.node().start_sigsvr(Config.NODE_PATH.replace("node", "") + "/wallet.dat", node_index)
 
 		return True
 
