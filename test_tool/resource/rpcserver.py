@@ -199,10 +199,13 @@ def start_node(**kwargs):
   if "node_args" in kwargs:
     node_args = kwargs["node_args"]
 
+  if not os.path.exists(config.NODE_PATH + "/" + program_name):
+      return False
+
   if clear_chain:
-    os.system("rm -rf " + config.NODE_PATH + "/Chain")
+    os.system("mv -f " + config.NODE_PATH + "/Chain" + " " + config.NODE_PATH + "/Chain_bak")
   if clear_log:
-    os.system("rm -rf " + config.NODE_PATH + "/Log")
+    os.system("mv -f " + config.NODE_PATH + "/Log" + " " + config.NODE_PATH + "/Log_bak")
 
   if node_args:
     cmd = "cd " + config.NODE_PATH + "\n";
@@ -228,11 +231,12 @@ def exec_cmd(**kwargs):
 @dispatcher.add_method
 def stop_sigsvr(**kwargs):
   os.popen("killall -9 sigsvr-linux")
+  os.popen("killall -9 sigsvr")
   return True
 
 @dispatcher.add_method
 def start_sigsvr(**kwargs):
-  program_name = "sigsvr-linux"
+  program_name = "sigsvr"
   if "wallet" in kwargs:
     wallet = kwargs["wallet"]
   cmd = "cd " + config.NODE_PATH + "\n"
@@ -260,7 +264,7 @@ def check_xmode_ontology(**kwargs):
 @dispatcher.add_method
 def check_xmode_sigsvr(**kwargs):
   sigsvr_path = None
-  for sigsvr in ["sigsvr", "sigsvr-linux"]:
+  for sigsvr in ["sigsvr"]:
     sigsvr_path = config.NODE_PATH + "/" + sigsvr
     if os.path.exists(sigsvr_path):
       break
@@ -354,7 +358,7 @@ def get_version_sigsvr(**kwargs):
   sigsvr_path = None
   result = {}
 
-  for sigsvr in ["sigsvr", "sigsvr-linux"]:
+  for sigsvr in ["sigsvr"]:
     sigsvr_path = config.NODE_PATH + "/" + sigsvr
     if os.path.exists(sigsvr_path):
       break

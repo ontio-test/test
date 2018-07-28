@@ -129,13 +129,13 @@ class ContractApi:
     # 返回值: (result: True or False, response: 网络请求， 如果result为False, 返回的是字符串)
     def call_contract(self, task, judge = True, pre = True, twice = False, sleep = 5):
         try:
-            logger.print("\n\n[-------------------------------]")
+            logger.print("[-------------------------------]")
             logger.print("[ RUN      ] "+ "contract" + "." + task.name())
             
             taskdata = task.data()
             node_index = None
-            deploy_first = False;
-            deploy_code_path = None;
+            deploy_first = False
+            deploy_code_path = None
             deploy_contract_addr = None
             for key in taskdata:
                 if key.upper() == "DEPLOY":
@@ -231,7 +231,7 @@ class ContractApi:
 
         (result, response) = self.sign_transction(task)#Task(name="multi", ijson=request))
         if not result:
-            logger.print("call_multisig_contract.sign_transction error!")
+            logger.error("call_multisig_contract.sign_transction error!")
             return (result, response)
         signed_tx = response["result"]["signed_tx"]
         
@@ -256,13 +256,13 @@ class ContractApi:
                     request1["NODE_INDEX"] = node_index 
                     (result, response) = self.sign_multi_transction(Task(name="multi", ijson=request1))
                     if not result:
-                        logger.print("call_multisig_contract.sign_multi_transction error![1]")
+                        logger.error("call_multisig_contract.sign_multi_transction error![1]")
                         return (result, response)
                     if response["error_code"] != 0:
-                        logger.print("call_multisig_contract.sign_multi_transction error![2]")
+                        logger.error("call_multisig_contract.sign_multi_transction error![2]")
                         return (False, response)
                     signed_raw = response["result"]["signed_tx"]
-                    print("multi sign tx:" + str(execNum)+pubkey)
+                    logger.info("multi sign tx:" + str(execNum)+pubkey)
                     execNum=execNum+1
                     break
                     

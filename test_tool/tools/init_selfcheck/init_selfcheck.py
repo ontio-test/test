@@ -5,6 +5,7 @@ import logging
 import paramiko
 import hashlib
 import json
+import time
 
 sys.path.append('..')
 sys.path.append('../..')
@@ -13,9 +14,8 @@ sys.path.append('../..')
 from utils.logger import LoggerInstance as logger
 from utils.hexstring import *
 from utils.error import Error
-from utils.api.commonapi import *
 from utils.config import Config
-from utils.api.rpcapi import RPCApi
+from api.apimanager import API
 
 logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.INFO)
@@ -78,8 +78,7 @@ def calc_md5_for_folder(folder):
   return md5.hexdigest()
 
 def get_connected_nodes():
-    rpcApi = RPCApi()
-    return int(rpcApi.getconnectioncount()[1]["result"])
+    return int(API.rpc().getconnectioncount()[1]["result"])
 
 
 class InitConfig():
@@ -97,12 +96,18 @@ class InitConfig():
         self.initconfig["sigsvr_source_path"] = cf["resource"]["root"] + cf["resource"]["sigsvr_source_name"]
         self.initconfig["abi_source_path"] = cf["resource"]["root"] + cf["resource"]["abi_source_name"]
         self.initconfig["test_service_source_path"] = cf["resource"]["root"] + cf["resource"]["test_service_source_name"]
+        self.initconfig["ontology_dbft_1_source_name"] = cf["resource"]["root"] + cf["resource"]["ontology_dbft_1_source_name"]
+        self.initconfig["ontology_dbft_2_source_name"] = cf["resource"]["root"] + cf["resource"]["ontology_dbft_2_source_name"]
+        self.initconfig["ontology_dbft_3_source_name"] = cf["resource"]["root"] + cf["resource"]["ontology_dbft_3_source_name"]
 
         self.initconfig["node_path"] = cf["node"]["root"] + cf["node"]["onto_name"]
         self.initconfig["wallet_path"] = cf["node"]["root"] + cf["node"]["wallet_name"]
         self.initconfig["onto_config_path"] = cf["node"]["root"] + cf["node"]["onto_config_name"]
         self.initconfig["sigsvr_path"] = cf["node"]["root"] + cf["node"]["sigsvr_name"]
         self.initconfig["abi_path"] = cf["node"]["root"] + cf["node"]["abi_name"]
+        self.initconfig["ntology_dbft_1_path"] = cf["node"]["root"] + cf["node"]["ontology_dbft_1_name"]
+        self.initconfig["ntology_dbft_2_path"] = cf["node"]["root"] + cf["node"]["ontology_dbft_2_name"]
+        self.initconfig["ntology_dbft_3_path"] = cf["node"]["root"] + cf["node"]["ontology_dbft_3_name"]
 
         self.initconfig["test_service_path"] = cf["test_service_path"]
         self.initconfig["test_config_path"] = cf["test_config_path"]
@@ -122,6 +127,9 @@ class SelfCheck():
         self.sigsvr_source_path = initconfig["sigsvr_source_path"]
         self.abi_source_path = initconfig["abi_source_path"]
         self.test_service_source_path = initconfig["test_service_source_path"]
+        self.ontology_dft_1_source_path = initconfig["ontology_dbft_1_source_name"]
+        self.ontology_dft_2_source_path = initconfig["ontology_dbft_2_source_name"]
+        self.ontology_dft_3_source_path = initconfig["ontology_dbft_3_source_name"]
 
         self.node_path = initconfig["node_path"]
         self.wallet_path = initconfig["wallet_path"]
@@ -130,6 +138,9 @@ class SelfCheck():
         self.sigsvr_path = initconfig["sigsvr_path"]
         self.abi_path = initconfig["abi_path"]
         self.test_service_path = initconfig["test_service_path"]
+        self.ontology_dft_1_path = initconfig["ntology_dbft_1_path"]
+        self.ontology_dft_2_path = initconfig["ntology_dbft_2_path"]
+        self.ontology_dft_3_path = initconfig["ntology_dbft_3_path"]
 
         self.ontology_correct_md5 = str(calc_md5_for_file(self.ontology_source_path))
         self.wallet_correct_md5 = calc_md5_for_files(self.wallet_source_path)
@@ -142,13 +153,16 @@ class SelfCheck():
 
     def stop_nodes(self):
         logger.info("stop all nodes ontology and sigsvr")
-        stop_all_nodes()
-        stop_sigsvrs(list(range(len(Config.NODES))))
+        API.node().stop_all_nodes()
+        API.node().stop_sigsvrs(list(range(len(Config.NODES))))
+        for i in range(len(Config.NODES)):
+            API.node().exec_cmd("killall sigsvr", i)
+            API.node().exec_cmd("killall sigsvr-linux", i)
 
     def start_nodes(self):
         logger.info("start all nodes ontology and sigsvr")
-        start_nodes(list(range(len(Config.NODES))), start_params=self.default_node_args, clear_chain = True, clear_log = True)
-        start_sigsvrs(self.wallet_path, list(range(len(Config.NODES))))
+        API.node().start_nodes(list(range(len(Config.NODES))), start_params=self.default_node_args, clear_chain = True, clear_log = True)
+        API.node().start_sigsvrs(self.wallet_path, list(range(len(Config.NODES))))
         logger.info("waiting for 10 seconds......")
         time.sleep(10)
 
@@ -158,18 +172,33 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " ontology......")
-            response = get_version_ontology(i)
+            response = API.node().get_version_ontology(i)
             if "doesnot exists" in response["result"] or (response["result"]["md5"] != self.ontology_correct_md5):
                 logger.error("node " + str(i+1) + " ontology version error or not exists")
                 logger.info("start transfer ontology from node 1 to node " + str(i+1))
                 sftp_transfer(self.ontology_source_path, self.node_path, i, "put")
                 logger.info("transfer ontology OK ")
             
-            check_xmode_ontology(i)
+            API.node().check_xmode_ontology(i)
 
             logger.info("checking node " + str(i+1) + " ontology OK\n")
 
         logger.info("checking all nodes ontology OK")
+        logger.info("----------------------------------\n\n")
+
+    def check_ontology_dft(self):
+        logger.info("----------------------------------")
+        logger.info("start checking all nodes ontology_dft\n")
+
+        for i in range(self.nodecounts):
+            logger.info("checking node " + str(i+1) + " ontology_dft......")
+            sftp_transfer(self.ontology_dft_1_source_path, self.ontology_dft_1_path, i, "put")
+            sftp_transfer(self.ontology_dft_2_source_path, self.ontology_dft_2_path, i, "put")
+            sftp_transfer(self.ontology_dft_3_source_path, self.ontology_dft_3_path, i, "put")
+            
+            logger.info("checking node " + str(i+1) + " ontology_dft OK\n")
+
+        logger.info("checking all nodes ontology_dft OK")
         logger.info("----------------------------------\n\n")
 
     def check_wallet(self):
@@ -178,7 +207,7 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " wallet......")
-            response = get_version_wallet(i)
+            response = API.node().get_version_wallet(i)
             if "doesnot exists" in response["result"] or (response["result"] != self.wallet_correct_md5[i]):
                 logger.error("node " + str(i+1) + " wallet version error or not exists")
                 logger.info("start transfer wallet from node 1 to node " + str(i+1))
@@ -197,7 +226,7 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " ontology config......")
-            response = get_version_onto_config(i)
+            response = API.node().get_version_onto_config(i)
             if "doesnot exists" in response["result"] or (response["result"] != self.onto_config_md5):
                 logger.error("node " + str(i+1) + " ontology config version error or not exists")
                 logger.info("start transfer ontology config from node 1 to node " + str(i+1))
@@ -215,7 +244,7 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " test config......")
-            response = get_version_test_config(i)
+            response = API.node().get_version_test_config(i)
             if "doesnot exists" in response["result"] or (response["result"] != self.test_config_md5):
                 logger.error("node " + str(i+1) + " test config version error or not exists")
                 logger.info("start transfer test config from node 1 to node " + str(i+1))
@@ -234,14 +263,14 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " sigsvr......")
-            response = get_version_sigsvr(i)
+            response = API.node().get_version_sigsvr(i)
             if "doesnot exists" in response["result"] or (response["result"]["md5"] != self.sigsvr_md5):
                 logger.error("node " + str(i+1) + " sigsvr version error or not exists")
                 logger.info("start transfer sigsvr from node 1 to node " + str(i+1))
                 sftp_transfer(self.sigsvr_source_path, self.sigsvr_path, i, "put")
                 logger.info("transfer sigsvr OK ")
             
-            check_xmode_sigsvr(i)
+            API.node().check_xmode_sigsvr(i)
 
             logger.info("checking node " + str(i+1) + " sigsvr OK\n")
 
@@ -254,7 +283,7 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " abi......")
-            response = get_version_abi(i)
+            response = API.node().get_version_abi(i)
             if "doesnot exists" in response["result"] or (response["result"] != self.abi_md5):
                 logger.error("node " + str(i+1) + " abi version error or not exists")
                 logger.info("start transfer abi from node 1 to node " + str(i+1))
@@ -273,7 +302,7 @@ class SelfCheck():
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " tools......")
             
-            response = check_xmode_tools(i)
+            response = API.node().check_xmode_tools(i)
             if isinstance(response["result"], str) and "doesnot exists" in response["result"]:
                 logger.error(response["result"])
 
@@ -288,13 +317,13 @@ class SelfCheck():
 
         for i in range(self.nodecounts):
             logger.info("checking node " + str(i+1) + " test service......")
-            response = get_version_test_service(i)
+            response = API.node().get_version_test_service(i)
             if "doesnot exists" in response["result"] or (response["result"] != self.test_service_md5):
                 logger.error("node " + str(i+1) + " test service version error or not exists")
                 logger.info("start transfer test service from node 1 to node " + str(i+1))
                 sftp_transfer(self.test_service_source_path, self.test_service_path, i, "put")
                 logger.info("transfer test service OK ")
-                stop_test_service(i)
+                API.node().stop_test_service(i)
 
             logger.info("checking node " + str(i+1) + " test service OK\n")
 
@@ -349,6 +378,9 @@ class SelfCheck():
 
         # check ontology exec mode and md5 value  
         self.check_ontology()
+
+        # check ontology dbft 
+        self.check_ontology_dft()
 
         # check abi md5 value
         self.check_abi()

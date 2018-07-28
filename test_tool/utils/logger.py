@@ -36,16 +36,42 @@ class Logger():
 		self.logtitle = title if title else os.path.splitext(filepath)[0]
 	#write
 	def print(self, str):
-		str = str + "  [" + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())) + "]"
-		print(str)
+		strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+
+		strlist = str.split("\n")
+		str = ""
+		for line in strlist:
+			str = str + strtime + ": " + line + "\n"
+		
+		print(str, end='')
 		if self.logfile:
-			self.logfile.write(str + "\n")
+			self.logfile.write(str)
 
 	def error(self, str):
-		str = "[ ERROR ]  " + str  + "  [" + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())) + "]"
-		print(str)
+		strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+		str = "[ ERROR ]  " + str
+
+		strlist = str.split("\n")
+		str = ""
+		for line in strlist:
+			str = str + strtime + ": " + line + "\n"
+
+		print(str, end='')
 		if self.logfile:
-			self.logfile.write(str + "\n")
+			self.logfile.write(str)
+
+	def info(self, str):
+		strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+		str = "[ INFO ]  " + str
+
+		strlist = str.split("\n")
+		str = ""
+		for line in strlist:
+			str = str + strtime + ": " + line + "\n"
+
+		print(str, end='')
+		if self.logfile:
+			self.logfile.write(str)
 
 	def close(self, result = None, msg = None):
 		if not result is None:

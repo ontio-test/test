@@ -115,7 +115,7 @@ class NodeApi:
 		time.sleep(10)
 
 	def start_node(self, index, start_params = Config.DEFAULT_NODE_ARGS, clear_chain = False, clear_log = False, program = "ontology", config = "config.json"):
-		print("start node: " + str(index) + " start_params:" + start_params + " clear_chain:" + str(clear_chain) + " clear_log:" + str(clear_log))
+		logger.info("start node: " + str(index) + " start_params:" + start_params + " clear_chain:" + str(clear_chain) + " clear_log:" + str(clear_log))
 		request = {
 			"method": "start_node",
 			"jsonrpc": "2.0",
@@ -142,7 +142,7 @@ class NodeApi:
 			self.stop_node(index)
 
 	def stop_node(self, index):
-		print("stop node: " + str(index))
+		logger.info("stop node: " + str(index))
 		request = {
 			"method": "stop_node",
 			"jsonrpc": "2.0",

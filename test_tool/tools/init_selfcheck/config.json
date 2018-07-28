@@ -1,7 +1,10 @@
 {
     "resource":{
-        "root":"/home/ubuntu/ontology/git/test/test_tool/resource",
+        "root":"/home/ubuntu/ontology/git/test/test_tool/resource/",
         "ontology_source_name": "ontology",
+        "ontology_dbft_1_source_name": "ontology-bft_1",
+        "ontology_dbft_2_source_name": "ontology-bft_2",
+        "ontology_dbft_3_source_name": "ontology-bft_3",
         "wallet_source_name": "wallet",
         "onto_config_source_name": "onto_config.json",
         "test_config_source_name": "test_config.json",
@@ -13,6 +16,9 @@
     "node":{
         "root":"/home/ubuntu/ontology/node/",
         "onto_name": "ontology",
+        "ontology_dbft_1_name": "ontology-bft_1",
+        "ontology_dbft_2_name": "ontology-bft_2",
+        "ontology_dbft_3_name": "ontology-bft_3",
         "wallet_name": "wallet.dat",
         "onto_config_name": "config.json",
         "sigsvr_name": "sigsvr",
