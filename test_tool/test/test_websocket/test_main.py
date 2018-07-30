@@ -85,7 +85,7 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 	
-	
+	'''
 	def test_abnormal_003_heartbeat(self):
 		try:
 			API.ws = WebSocket()
@@ -94,7 +94,7 @@ class test_websocket_1(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			process=False
-	
+	'''
 	def test_base_004_subscribe(self):
 		try:
 			(process, response) = API.ws().subscribe([test_config.CONTRACT_ADDRESS_CORRECT])
