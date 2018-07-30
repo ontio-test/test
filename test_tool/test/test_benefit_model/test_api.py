@@ -60,11 +60,12 @@ class test_api:
         if totalyi == 0:
             return 0
         
-        print("totalgas: " + str(totalgas)) 
-        print("initpos: " + str(initpos)) 
-        print("avgpos: " + str(avgpos)) 
-        print("totalyi: " + str(totalyi)) 
-        print("get_yi: " + str(test_api.get_yi(initpos, avgpos)))
+        logger.info("get_benifit_value.totalgas: " + str(totalgas)) 
+        logger.info("get_benifit_value.initpos: " + str(initpos)) 
+        logger.info("get_benifit_value.avgpos: " + str(avgpos)) 
+        logger.info("get_benifit_value.totalyi: " + str(totalyi)) 
+        logger.info("get_benifit_value.get_yi: " + str(test_api.get_yi(initpos, avgpos)))
+        logger.info("get_benifit_value: " + str(totalgas * test_api.get_yi(initpos, avgpos) / totalyi))
 
         return totalgas * test_api.get_yi(initpos, avgpos) / totalyi
 
@@ -80,8 +81,9 @@ class test_api:
         #新加入节点, 并申请候选节点
         API.node().start_nodes([new_node], clear_chain = True, clear_log = True)
         
-        API.native().regid_with_publickey(new_node)
-
+        (process, response) = API.native().regid_with_publickey(new_node)
+        if not process:
+            return (process, response)
         (process, response) = API.native().bind_role_function("0700000000000000000000000000000000000000", ByteToHex(bytes(Config.NODES[0]["ontid"], encoding = "utf8")), ByteToHex(b"roleA"),["registerCandidate"])
         if not process:
             return (process, response)

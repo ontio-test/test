@@ -60,7 +60,7 @@ class TestMonitor:
 		#restart sigserver
 		for node_index in range(len(Config.NODES)):
 			API.node().stop_sigsvr(node_index)
-			API.node().start_sigsvr(Config.NODE_PATH.replace("node", "") + "/wallet.dat", node_index)
+			API.node().start_sigsvr(Config.NODE_PATH + "/wallet.dat", node_index)
 
 		return True
 
@@ -89,10 +89,11 @@ class TestMonitor:
 				print("catch connect error...")
 				catch_connet_error = True
 
-			if line.startswith('[ CALL CONTRACT ] {') or line.startswith("[ SIGNED TX ] {"):
+			if line.find('[ CALL CONTRACT ] {') >= 0 or line.find("[ SIGNED TX ] {") >= 0:
 				JSONBody = "{"
 			elif JSONBody != "":
-				JSONBody = JSONBody + line
+				JSONBody = JSONBody + line[len("1970-00-00 00:00:00:"):]
+				#print(JSONBody)
 			try:
 				JSONObj = json.loads(JSONBody)
 				if JSONObj:
@@ -111,6 +112,10 @@ class TestMonitor:
 							if RESPONSE["error_code"] != 0:
 								print("catch faild [3]")
 								self.faild_step_count = self.faild_step_count + 1
+						elif "Error" in RESPONSE:
+							if RESPONSE["Error"] == "Connection Error":
+								print("catch connection error [4]")
+								catch_connet_error = True
 					else:
 						self.faild_step_count = self.faild_step_count + 1
 

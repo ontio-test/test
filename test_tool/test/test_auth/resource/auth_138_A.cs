@@ -1,15 +1,16 @@
-using Neo.SmartContract.Framework;
-using Neo.SmartContract.Framework.Services.Neo;
-using Neo.SmartContract.Framework.Services.System;
+using Ont.SmartContract.Framework;
+using Ont.SmartContract.Framework.Services.Ont;
+using Ont.SmartContract.Framework.Services.System;
 using System;
 using System.ComponentModel;
 using System.Numerics;
 
-namespace Example
+namespace Ont.SmartContract
 {
-    public class AppContract : SmartContract
+    public class AppContract : Framework.SmartContract
     {
-        [Appcall("80881676d7a87f5d9cd3d1656f819158584cc091")] //智能合约B的地址
+        //  "77c526f7922789612a087aca4406125a50f484b5"
+        [Appcall("77c526f7922789612a087aca4406125a50f484b5")]
         public static extern object ContractB(string op, object[] token, object[] args);
 
         public static object Main(string operation, object[] token)

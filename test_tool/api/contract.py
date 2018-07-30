@@ -37,7 +37,7 @@ class ContractApi:
             
             logger.print("[ DEPLOY ] ")
             cmd = Config.TOOLS_PATH + "/deploy_contract.sh " + neo_code_path + " \"" + name + "\" \"" + desc + "\" \"" + str(price) +  "\" > tmp"
-            print(cmd)
+            logger.print(cmd)
             p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
             begintime = time.time()
             secondpass = 0
@@ -46,7 +46,7 @@ class ContractApi:
                 secondpass = time.time() - begintime
                 if secondpass > timeout:
                     p.terminate()
-                    print("Error: execute " + cmd + " time out!")
+                    logger.error("Error: execute " + cmd + " time out!")
                 time.sleep(0.1)
             p.stdout.close()
 
@@ -82,7 +82,7 @@ class ContractApi:
 
     def sign_transction(self, task, judge = True, process_log = True):
         if task.node_index() != None:
-            print("sign transction with other node: " + str(task.node_index()))
+            logger.info("sign transction with other node: " + str(task.node_index()))
             task.set_type("st")
             request = task.request()
             task.set_request({
@@ -129,6 +129,7 @@ class ContractApi:
     # 返回值: (result: True or False, response: 网络请求， 如果result为False, 返回的是字符串)
     def call_contract(self, task, judge = True, pre = True, twice = False, sleep = 5):
         try:
+            logger.print("\n")
             logger.print("[-------------------------------]")
             logger.print("[ RUN      ] "+ "contract" + "." + task.name())
             
@@ -173,6 +174,7 @@ class ContractApi:
                 if not result:
                     raise Error("not except sign result")
 
+
             signed_tx = None
             if not response is None and "result" in response and not response["result"] is None and "signed_tx" in response["result"]:
                 signed_tx = response["result"]["signed_tx"]
@@ -208,7 +210,7 @@ class ContractApi:
 
     def sign_multi_transction(self, task, judge = True, process_log = True):
         if task.node_index() != None:
-            print("sign transction with other node: " + str(task.node_index()))
+            logger.info("sign transction with other node: " + str(task.node_index()))
             task.set_type("st")
             request = task.request()
             task.set_request({
@@ -258,7 +260,7 @@ class ContractApi:
                     if not result:
                         logger.error("call_multisig_contract.sign_multi_transction error![1]")
                         return (result, response)
-                    if response["error_code"] != 0:
+                    if "error_code" not in response or response["error_code"] != 0:
                         logger.error("call_multisig_contract.sign_multi_transction error![2]")
                         return (False, response)
                     signed_raw = response["result"]["signed_tx"]

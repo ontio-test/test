@@ -240,7 +240,7 @@ class NativeApi:
                     
         return CONTRACT_API.call_contract(Task(name="transfer_admin", ijson=request), twice = True, sleep=sleep)
 
-    def bind_role_function(self, contract_address, admin_address, role_str, functions, public_key="1", node_index = 0, errorcode = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
+    def bind_role_function(self, contract_address, admin_address, role_str, functions, public_key="1", node_index = None, errorcode = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
         request = {
             "REQUEST": {
                 "Qid": "t",
@@ -270,7 +270,7 @@ class NativeApi:
             request["NODE_INDEX"] = node_index
         return CONTRACT_API.call_contract(Task(name="bind_role_function", ijson=request), twice = True, sleep=sleep)
 
-    def bind_user_role(self, contract_address, admin_address, role_str, ontIDs, public_key="1", node_index = 0, error_code = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
+    def bind_user_role(self, contract_address, admin_address, role_str, ontIDs, public_key="1", node_index = None, error_code = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
         request = {
             "REQUEST": {
                 "Qid": "t",
@@ -301,7 +301,7 @@ class NativeApi:
             
         return CONTRACT_API.call_contract(Task(name="bind_user_role", ijson=request), twice = True, sleep=sleep)
 
-    def delegate_user_role(self, contract_address, owner_user, delegate_user, delegate_role, period, level, public_key="1", node_index = 0, errorcode = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
+    def delegate_user_role(self, contract_address, owner_user, delegate_user, delegate_role, period, level, public_key="1", node_index = None, errorcode = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
         request = {
             "REQUEST": {
                 "Qid": "t",
@@ -335,7 +335,7 @@ class NativeApi:
         return CONTRACT_API.call_contract(Task(name="delegate_user_role", ijson=request), twice = True, sleep=sleep)
 
 
-    def withdraw_user_role(self, contract_address, call_user, delegate_user, delegate_role, public_key="1", node_index = 0, errorcode = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
+    def withdraw_user_role(self, contract_address, call_user, delegate_user, delegate_role, public_key="1", node_index = None, errorcode = 0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
         request = {
             "REQUEST": {
                 "Qid": "t",

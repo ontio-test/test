@@ -4,6 +4,7 @@ from utils.logger import LoggerInstance as logger
 
 class Error(Exception):
 	def __init__(self, msg):
+		Exception.__init__(self, msg)
 		self.msg = msg
 
 class TestError(Error):

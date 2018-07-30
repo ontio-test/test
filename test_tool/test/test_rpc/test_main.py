@@ -61,6 +61,7 @@ class test_rpc_1(ParametrizedTestCase):
 	
 class test_rpc_2(ParametrizedTestCase):
 	def test_init(self):
+		
 		API.node().stop_all_nodes()
 		API.node().start_nodes([0, 1, 2, 3, 4, 5, 6], Config.DEFAULT_NODE_ARGS, True, True)
 		API.node().wait_gen_block()

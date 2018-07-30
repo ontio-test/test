@@ -28,22 +28,7 @@ from test_consensus.test_config import test_config
 #正常节点和vbft共识
 class test_consensus_1(ParametrizedTestCase):
 	def test_init(self):
-		
-		API.node().stop_all_nodes()
-		API.node().start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
-		for index in range(7):
-			API.native().regid_with_publickey(index)
-		
-		API.native().init_ont_ong()
-		time.sleep(10)
-		
-		(test_config.m_contract_addr, test_config.m_contract_txhash) = API.contract().deploy_contract_full(test_config.deploy_neo_1, test_config.name1, test_config.desc, test_config.price)
-		(test_config.m_contract_addr2, test_config.m_contract_txhash2) = API.contract().deploy_contract_full(test_config.deploy_neo_2, test_config.name2, test_config.desc2, test_config.price)
-		
-		#A节点是Admin节点
-		(process, response) = API.contract().init_admin(test_config.m_contract_addr, Config.ontID_A)
-		(process, response) = API.native().bind_role_function(test_config.m_contract_addr, Config.ontID_A, Config.roleA_hex, ["auth_put"])
-
+		test_api.init()
 
 	def setUp(self):
 		logger.open("test_consensus/" + self._testMethodName+".log",self._testMethodName)
@@ -135,7 +120,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function get error...[1]")
-			self.ASSERT(response["result"]["Result"] != storage_value, "invoke_function get error...[2]")
+			self.ASSERT(response["result"]["Result"] == storage_value, "invoke_function get error...[2]")
 
 			API.node().start_nodes(stopnodes, Config.DEFAULT_NODE_ARGS)
 			time.sleep(3)
@@ -168,6 +153,7 @@ class test_consensus_1(ParametrizedTestCase):
 			process = False
 			(process, response) = test_api.transfer(test_config.m_contract_addr, Config.NODES[test_config.m_current_node]["address"], Config.NODES[1]["address"], test_config.AMOUNT, test_config.m_current_node)
 			self.ASSERT(process, "transfer error...")
+			API.node().wait_gen_block()
 			API.node().wait_gen_block()
 
 			(process, response) = API.rpc().getblockheightbytxhash(response["txhash"])
@@ -246,6 +232,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_normal_024_consensus(self):
 		try:
+			test_api.init()
 			m = 4
 			pubkey_array = [test_config.PUBLIC_KEY_2, test_config.PUBLIC_KEY_3, test_config.PUBLIC_KEY_4, test_config.PUBLIC_KEY_5]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_A, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=0)
@@ -255,6 +242,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_abnormal_025_consensus(self):
 		try:
+			test_api.init()
 			m = 4
 			pubkey_array = [test_config.PUBLIC_KEY_3, test_config.PUBLIC_KEY_4, test_config.PUBLIC_KEY_5, test_config.PUBLIC_KEY_6]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_A, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=1)
@@ -264,6 +252,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_base_030_consensus(self):
 		try:
+			test_api.init()
 			# ensure balance of wallet A is 1000
 			balance_of_wallet_A1 = int(API.rpc().getbalance(test_config.ADDRESS_A)[1]["result"]["ont"]) 
 			(process, response) = API.native().transfer_ont(test_config.ADDRESS_A, test_config.ADDRESS_B, str(balance_of_wallet_A1-1000), 0)
@@ -286,6 +275,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_abnormal_031_consensus(self):
 		try:
+			test_api.init()
 			# ensure balance of wallet A is 1000
 			balance_of_wallet_A = int(API.rpc().getbalance(test_config.ADDRESS_A)[1]["result"]["ont"]) 
 			(process, response) = API.native().transfer_ont(test_config.ADDRESS_A, test_config.ADDRESS_B, str(balance_of_wallet_A-1000), 0)
@@ -310,6 +300,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_abnormal_032_consensus(self):
 		try:
+			test_api.init()
 			# ensure balance of wallet A is 1000
 			balance_of_wallet_A = int(API.rpc().getbalance(test_config.ADDRESS_A)[1]["result"]["ont"]) 
 			(process, response) = API.native().transfer_ont(test_config.ADDRESS_A, test_config.ADDRESS_B, str(balance_of_wallet_A-1000), 0)
@@ -588,7 +579,7 @@ class test_consensus_4(ParametrizedTestCase):
 
 			for i in range(7, 14):
 				test_api.add_candidate_node(i, init_pos = 10000, from_node = 0)
-			(process, response) = API.native().vote_for_peer(Config.NODES[vote_node]["address"], [Config.NODES[peer_node1]["pubkey"], Config.NODES[peer_node2]["pubkey"], Config.NODES[peer_node3]["pubkey"]], ["15000", "15000", "15000"], 8, vote_node)
+			(process, response) = API.native().vote_for_peer(Config.NODES[vote_node]["address"], [Config.NODES[peer_node1]["pubkey"], Config.NODES[peer_node2]["pubkey"], Config.NODES[peer_node3]["pubkey"]], ["15000", "15000", "15000"])
 			self.ASSERT(process, "vote_for_peer error")
 			
 			test_api.getStorageConf("vbftConfig")

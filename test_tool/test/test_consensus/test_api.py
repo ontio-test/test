@@ -21,10 +21,29 @@ from utils.error import Error
 from utils.common import Common
 
 from api.apimanager import API
+from test_consensus.test_config import test_config
 
 CONTRACT_API = API.contract()
 
 class test_api:
+	@staticmethod
+	def init():
+		API.node().stop_all_nodes()
+		API.node().start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
+		for index in range(7):
+			API.native().regid_with_publickey(index)
+		
+		API.native().init_ont_ong()
+		time.sleep(10)
+		
+		(test_config.m_contract_addr, test_config.m_contract_txhash) = API.contract().deploy_contract_full(test_config.deploy_neo_1, test_config.name1, test_config.desc, test_config.price)
+		(test_config.m_contract_addr2, test_config.m_contract_txhash2) = API.contract().deploy_contract_full(test_config.deploy_neo_2, test_config.name2, test_config.desc2, test_config.price)
+		
+		#A节点是Admin节点
+		(process, response) = API.contract().init_admin(test_config.m_contract_addr, Config.ontID_A)
+		(process, response) = API.native().bind_role_function(test_config.m_contract_addr, Config.ontID_A, Config.roleA_hex, ["auth_put"])
+
+
 	@staticmethod
 	def getStorageConf(confName):
 		return API.rpc().getstorage("0700000000000000000000000000000000000000",ByteToHex(confName.encode("utf-8")))

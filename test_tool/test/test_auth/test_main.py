@@ -37,16 +37,9 @@ class test_auth_1(ParametrizedTestCase):
 		API.node().stop_all_nodes()
 		print("start all")
 		API.node().start_nodes([0,1,2,3,4,5,6,7,8], Config.DEFAULT_NODE_ARGS, True, True)
-		
-		API.native().regid_with_publickey(0)
-		API.native().regid_with_publickey(1)
-		API.native().regid_with_publickey(2)
-		API.native().regid_with_publickey(3)
-		API.native().regid_with_publickey(4)
-		API.native().regid_with_publickey(5)
-		API.native().regid_with_publickey(6)
-		API.native().regid_with_publickey(7)
-		API.native().regid_with_publickey(8)
+
+		for i in range(9):
+			API.native().regid_with_publickey(i, sleep=0)
 		
 		API.native().init_ont_ong()
 		
@@ -69,8 +62,8 @@ class test_auth_1(ParametrizedTestCase):
 		test_config.CONTRACT_ADDRESS_INCORRECT_2 = test_config.contract_addr_2         # null ontid
 		test_config.CONTRACT_ADDRESS_INCORRECT_3 = test_config.contract_addr_3         # init twice
 		test_config.CONTRACT_ADDRESS_INCORRECT_4 = test_config.contract_addr + "11"    # not real contract
-		test_config.CONTRACT_ADDRESS_INCORRECT_5 = "45445566"              # messy code
-		test_config.CONTRACT_ADDRESS_INCORRECT_6 = ""                      # null
+		test_config.CONTRACT_ADDRESS_INCORRECT_5 = "45445566"              			   # messy code
+		test_config.CONTRACT_ADDRESS_INCORRECT_6 = ""                                  # null
 		test_config.CONTRACT_ADDRESS_INCORRECT_10 = test_config.contract_addr_10       # verifytoken contract with wrong address
 		test_config.CONTRACT_ADDRESS_INCORRECT_11 = test_config.contract_addr_11       # verifytoken contract with messy code address
 		test_config.CONTRACT_ADDRESS_INCORRECT_12 = test_config.contract_addr_12       # verifytoken contract with wrong address
@@ -120,8 +113,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_004_initContractAdmin(self):
-		#log_path = "04_initContractAdmin.log"
-		#task_name ="04_initContractAdmin"
 		try:
 			(process, response) = init_admin(test_config.CONTRACT_ADDRESS_INCORRECT_3, test_config.ontID_A)
 			if isinstance(response, dict) and response["result"]:
@@ -132,9 +123,8 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 	
 	def test_base_005_verifyToken(self):
-		#log_path = "05_verifyToken.log"
-		#task_name ="05_verifyToken"
 		try:
+			(process, response) = init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A, test_config.ontID_A)
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "41", "")
@@ -144,10 +134,8 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_006_verifyToken(self):
-		#log_path = "06_verifyToken.log"
-		#task_name ="06_verifyToken"
 		try:
-			
+			(process, response) = init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A, test_config.ontID_B)
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "00", "")
@@ -157,8 +145,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_007_verifyToken(self):
-		#log_path = "07_verifyToken.log"
-		#task_name ="07_verifyToken"
 		try:
 			
 			(process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A, test_config.ontID_C)
@@ -525,6 +511,7 @@ class test_auth_1(ParametrizedTestCase):
 		#task_name ="35_assignFuncsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
+			(process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_B)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "00", "")
@@ -603,8 +590,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_041_assignFuncsToRole(self):
-		#log_path = "41_assignFuncsToRole.log"
-		#task_name ="41_assignFuncsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_INCORRECT_1, [test_config.FUNCTION_A])
@@ -615,22 +600,18 @@ class test_auth_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_abnormal_042_assignFuncsToRole(self):
-		#log_path = "42_assignFuncsToRole.log"
-		#task_name ="42_assignFuncsToRole"
+	def test_normal_042_assignFuncsToRole(self):
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_INCORRECT_2, [test_config.FUNCTION_A])
 			if isinstance(response, dict) and response["result"]:
-				self.ASSERT(response["result"]["Result"] == "00", "")
+				self.ASSERT(response["result"]["Result"] == "01", "")
 			else:
-				self.ASSERT(True, "")
+				self.ASSERT(False, "")
 		except Exception as e:
 			logger.print(e.args[0])
 
 	def test_normal_043_assignFuncsToRole(self):
-		#log_path = "43_assignFuncsToRole.log"
-		#task_name ="43_assignFuncsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -668,7 +649,7 @@ class test_auth_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_abnormal_046_assignFuncsToRole(self):
+	def test_normal_046_assignFuncsToRole(self):
 		#log_path = "46_assignFuncsToRole.log"
 		#task_name ="46_assignFuncsToRole"
 		try:
@@ -676,9 +657,9 @@ class test_auth_1(ParametrizedTestCase):
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])		
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
 			if isinstance(response, dict) and response["result"]:
-				self.ASSERT(response["result"]["Result"] == "00", "")
+				self.ASSERT(response["result"]["Result"] == "01", "")
 			else:
-				self.ASSERT(True, "")
+				self.ASSERT(False, "")
 		except Exception as e:
 			logger.print(e.args[0])
 
@@ -831,8 +812,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_058_assignOntIDsToRole(self):
-		#log_path = "58_assignOntIDsToRole.log"
-		#task_name ="58_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -845,12 +824,10 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 	
 	def test_abnormal_059_assignOntIDsToRole(self):
-		#log_path = "59_assignOntIDsToRole.log"
-		#task_name ="59_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
-			(process, response) = API.native().delegate_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ontID_B, test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT)
+			(process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_B)
 			(process, response) = API.native().bind_user_role( test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.ontID_A])
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "00", "")
@@ -860,8 +837,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_060_assignOntIDsToRole(self):
-		#log_path = "60_assignOntIDsToRole.log"
-		#task_name ="60_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -947,8 +922,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_066_assignOntIDsToRole(self):
-		#log_path = "66_assignOntIDsToRole.log"
-		#task_name ="66_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -961,8 +934,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_067_assignOntIDsToRole(self):
-		#log_path = "67_assignOntIDsToRole.log"
-		#task_name ="67_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -975,8 +946,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_068_assignOntIDsToRole(self):
-		#log_path = "68_assignOntIDsToRole.log"
-		#task_name ="68_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -989,8 +958,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_069_assignOntIDsToRole(self):
-		#log_path = "69_assignOntIDsToRole.log"
-		#task_name ="69_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1003,8 +970,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_070_assignOntIDsToRole(self):
-		#log_path = "70_assignOntIDsToRole.log"
-		#task_name ="70_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1017,8 +982,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_071_assignOntIDsToRole(self):
-		#log_path = "71_assignOntIDsToRole.log"
-		#task_name ="71_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1031,8 +994,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_072_assignOntIDsToRole(self):
-		#log_path = "72_assignOntIDsToRole.log"
-		#task_name ="72_assignOntIDsToRole"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1045,8 +1006,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_base_073_delegate(self):
-		#log_path = "73_delegate.log"
-		#task_name ="73_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1060,8 +1019,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_074_delegate(self):
-		#log_path = "74_delegate.log"
-		#task_name ="74_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1075,8 +1032,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_075_delegate(self):
-		#log_path = "75_delegate.log"
-		#task_name ="75_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1090,8 +1045,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_076_delegate(self):
-		#log_path = "76_delegate.log"
-		#task_name ="76_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1105,8 +1058,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_077_delegate(self):
-		#log_path = "77_delegate.log"
-		#task_name ="77_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1120,8 +1071,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_078_delegate(self):
-		#log_path = "78_delegate.log"
-		#task_name ="78_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1137,8 +1086,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_079_delegate(self):
-		#log_path = "79_delegate.log"
-		#task_name ="79_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1152,8 +1099,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_080_delegate(self):
-		#log_path = "80_delegate.log"
-		#task_name ="80_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1167,8 +1112,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_081_delegate(self):
-		#log_path = "81_delegate.log"
-		#task_name ="81_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1182,13 +1125,12 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_082_delegate(self):
-		#log_path = "82_delegate.log"
-		#task_name ="82_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
 			(process, response) = API.native().bind_user_role( test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.ontID_A])
 			(process, response) = API.native().delegate_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ontID_B, test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT)
+			time.sleep(5)
 			(process, response) = API.native().delegate_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ontID_B, test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT)
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "01", "")
@@ -1273,8 +1215,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_abnormal_088_delegate(self):
-		#log_path = "88_delegate.log"
-		#task_name ="88_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1288,8 +1228,6 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_normal_089_delegate(self):
-		#log_path = "89_delegate.log"
-		#task_name ="89_delegate"
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
@@ -1302,18 +1240,16 @@ class test_auth_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_abnormal_090_delegate(self):
-		#log_path = "90_delegate.log"
-		#task_name ="90_delegate"
+	def test_normal_090_delegate(self):
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
 			(process, response) = API.native().bind_user_role( test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.ontID_A])
 			(process, response) = API.native().delegate_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ontID_B, test_config.ROLE_CORRECT, test_config.PERIOD_INCORRECT_1, test_config.LEVEL_CORRECT)		
 			if isinstance(response, dict) and response["result"]:
-				self.ASSERT(response["result"]["Result"] == "00", "")
+				self.ASSERT(response["result"]["Result"] == "01", "")
 			else:
-				self.ASSERT(True, "")
+				self.ASSERT(False, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	
@@ -1882,10 +1818,8 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	def test_base_138_appcall(self):
-		#log_path = "138_appcall.log"
-		#task_name ="138_appcall"
 		try:
-			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
+			# init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = invoke_function(test_config.CONTRACT_ADDRESS_138, "contractA_Func_A", test_config.ontID_A)
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "323232", "")
@@ -1898,7 +1832,7 @@ class test_auth_1(ParametrizedTestCase):
 		#log_path = "139_appcall.log"
 		#task_name ="139_appcall"
 		try:
-			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
+			# init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = invoke_function(test_config.CONTRACT_ADDRESS_139, "contractA_Func_A", test_config.ontID_A)
 			if isinstance(response, dict) and response["result"]:
 				self.ASSERT(response["result"]["Result"] == "323232", "")
@@ -1908,7 +1842,7 @@ class test_auth_1(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	
-	
+	'''
 	def test_abnormal_140_appcall(self):
 		#log_path = "140_appcall.log"
 		#task_name ="140_appcall"
@@ -1921,7 +1855,7 @@ class test_auth_1(ParametrizedTestCase):
 				self.ASSERT(True, "")
 		except Exception as e:
 			logger.print(e.args[0])
-	
+	'''
 	def test_base_146_verifyToken(self):
 		#log_path = "146_verifyToken.log"
 		#task_name ="146_verifyToken"

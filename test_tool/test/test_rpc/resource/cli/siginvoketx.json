@@ -3,6 +3,8 @@
 		"Qid": "t",
 		"Method": "signativeinvoketx",
 		"Params": {
+			"gas_price": 0,
+            "gas_limit": 1000000000,
 			"version": 0,
 			"address": "0100000000000000000000000000000000000000",
 			"method": "name",

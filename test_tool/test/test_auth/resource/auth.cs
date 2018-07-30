@@ -1,13 +1,13 @@
-using Neo.SmartContract.Framework;
-using Neo.SmartContract.Framework.Services.Neo;
-using Neo.SmartContract.Framework.Services.System;
+using Ont.SmartContract.Framework;
+using Ont.SmartContract.Framework.Services.Ont;
+using Ont.SmartContract.Framework.Services.System;
 using System;
 using System.ComponentModel;
 using System.Numerics;
 
-namespace Example
+namespace Ont.SmartContract
 {
-    public class AppContract : SmartContract
+    public class AppContract : Framework.SmartContract
     {
         struct initContractAdminParam
         {

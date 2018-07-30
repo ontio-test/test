@@ -110,7 +110,7 @@ def regIDWithPublicKey(ontId, public_key, node_index = None,errorcode=47001):
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="regIDWithPublicKey", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="regIDWithPublicKey", ijson=request), twice = True)
 
 def addKey(ontId, new_public_key,public_key, node_index = None,errorcode=47001,public_key_Array=[]):
     request = {
@@ -140,7 +140,7 @@ def addKey(ontId, new_public_key,public_key, node_index = None,errorcode=47001,p
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     if len(public_key_Array)==0 or len(public_key_Array)>2:
-        return API.contract().call_contract(Task(name="addKey", ijson=request), twice = True,sleep=2)
+        return API.contract().call_contract(Task(name="addKey", ijson=request), twice = True)
     else:
         return multi_contract(Task(name="addKey", ijson=request),public_key_Array[0],public_key_Array[1])    
 
@@ -172,7 +172,7 @@ def removeKey(ontId, remove_public_Key,public_key, node_index = None,errorcode=4
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     if len(public_key_Array)==0 or len(public_key_Array)>2:
-        return API.contract().call_contract(Task(name="removeKey", ijson=request), twice = True,sleep=2)
+        return API.contract().call_contract(Task(name="removeKey", ijson=request), twice = True)
     else:
         return multi_contract(Task(name="removeKey", ijson=request),public_key_Array[0],public_key_Array[1])
 	
@@ -204,7 +204,7 @@ def addRecovery(ontId, recovery_address,public_key, node_index = None,errorcode=
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="addRecovery", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="addRecovery", ijson=request), twice = True)
 	
 def changeRecovery(ontId, new_recovery_address,old_recovery_address,public_key, node_index = None,errorcode=47001,old_recovery_address_Array=[]):
     request = {
@@ -234,7 +234,7 @@ def changeRecovery(ontId, new_recovery_address,old_recovery_address,public_key, 
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index
     if len(old_recovery_address_Array)==0 or len(old_recovery_address_Array)>2:
-        return API.contract().call_contract(Task(name="changeRecovery", ijson=request), twice = True,sleep=2)
+        return API.contract().call_contract(Task(name="changeRecovery", ijson=request), twice = True)
     else:
         return multi_contract(Task(name="changeRecovery", ijson=request),old_recovery_address_Array[0],old_recovery_address_Array[1])
 
@@ -267,7 +267,7 @@ def regIDWithAttributes(ontId, attributes_array,public_key, node_index = None,er
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="regIDWithAttributes", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="regIDWithAttributes", ijson=request), twice = True)
 	
 def addAttributes(ontId, attributes_array,public_key, node_index = None,errorcode=47001):
     request = {
@@ -297,7 +297,7 @@ def addAttributes(ontId, attributes_array,public_key, node_index = None,errorcod
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="addAttributes", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="addAttributes", ijson=request), twice = True)
 def removeAttribute(ontId, attributePath,public_key, node_index = None,errorcode=47001):
     request = {
 
@@ -326,7 +326,7 @@ def removeAttribute(ontId, attributePath,public_key, node_index = None,errorcode
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="removeAttribute", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="removeAttribute", ijson=request), twice = True)
 	
 def getPublicKeys(ontId,public_key, node_index = None,errorcode=47001):
     request = {
@@ -354,7 +354,7 @@ def getPublicKeys(ontId,public_key, node_index = None,errorcode=47001):
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="getPublicKeys", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="getPublicKeys", ijson=request), twice = True)
 def getKeyState(ontId,keyNum,public_key, node_index = None,errorcode=47001,resultStr=""):
     request = {
 
@@ -386,7 +386,7 @@ def getKeyState(ontId,keyNum,public_key, node_index = None,errorcode=47001,resul
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="getKeyState", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="getKeyState", ijson=request), twice = True)
 		
 def getAttributes(ontId,public_key, node_index = None,errorcode=47001):
     request = {
@@ -414,7 +414,7 @@ def getAttributes(ontId,public_key, node_index = None,errorcode=47001):
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="getAttributes", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="getAttributes", ijson=request), twice = True)
 		
 def getDDO(ontId,public_key, node_index = None,errorcode=47001):
     request = {
@@ -442,7 +442,7 @@ def getDDO(ontId,public_key, node_index = None,errorcode=47001):
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="getDDO", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="getDDO", ijson=request), twice = True)
 	
 def verifySignature(ontId,keyNum,public_key, node_index = None,errorcode=47001):
     request = {
@@ -471,7 +471,7 @@ def verifySignature(ontId,keyNum,public_key, node_index = None,errorcode=47001):
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="verifySignature", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="verifySignature", ijson=request), twice = True)
 def forNeo(contract_address,functionName,params,public_key, node_index = None):
     request = {
         "REQUEST": {
@@ -504,4 +504,4 @@ def forNeo(contract_address,functionName,params,public_key, node_index = None):
         node_index = Config.ontid_map[public_key]
         request["NODE_INDEX"] = node_index      
     
-    return API.contract().call_contract(Task(name="forNeo", ijson=request), twice = True,sleep=2)
+    return API.contract().call_contract(Task(name="forNeo", ijson=request), twice = True)

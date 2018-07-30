@@ -3,12 +3,14 @@ import unittest
 import os
 import sys, getopt
 import json
+import setproctitle
 
 sys.path.append('..')
 sys.path.append('../..')
 
 from monitor.monitor import TestMonitor
 
+setproctitle.setproctitle("run_alltest")
 
 class TestCaseRunner():
 	#通过读config文件，来获取测试例

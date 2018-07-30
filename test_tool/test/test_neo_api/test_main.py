@@ -756,6 +756,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "102_storagePut.log"
 		# task_name = "102_storagePut"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_2_param(test_config.CONTRACT_ADDRESS, "Put_99", test_config.PARAM_TYPE_BYTEARRAY, test_config.KEY_CORRECT, test_config.PARAM_TYPE_BYTEARRAY, test_config.VALUE_CORRECT)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -820,6 +821,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "109_storagePut.log"
 		# task_name = "109_storagePut"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_2_param(test_config.CONTRACT_ADDRESS, "Put_99", test_config.PARAM_TYPE_BYTEARRAY, test_config.KEY_CORRECT, test_config.PARAM_TYPE_BYTEARRAY, test_config.VALUE_CORRECT_1)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -874,6 +876,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "115_storageDelete.log"
 		# task_name = "115_storageDelete"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_2_param(test_config.CONTRACT_ADDRESS, "Delete_115", test_config.PARAM_TYPE_BYTEARRAY, test_config.KEY_CORRECT, test_config.PARAM_TYPE_BYTEARRAY, test_config.VALUE_CORRECT)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -919,6 +922,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "120_storageDelete.log"
 		# task_name = "120_storageDelete"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_2_param(test_config.CONTRACT_ADDRESS, "Delete_120", test_config.PARAM_TYPE_BYTEARRAY, "", test_config.PARAM_TYPE_BYTEARRAY, test_config.VALUE_CORRECT)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -964,6 +968,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "126_checkWitness.log"
 		# task_name = "126_checkWitness"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_1_param(test_config.CONTRACT_ADDRESS, "CheckWitness", test_config.PARAM_TYPE_BYTEARRAY, "")
 			self.ASSERT(not process, "")
 		except Exception as e:
@@ -1000,6 +1005,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "130_notify.log"
 		# task_name = "130_notify"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_0_param(test_config.CONTRACT_ADDRESS, "Notify_130")
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1045,6 +1051,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "135_log.log"
 		# task_name = "135_log"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_0_param(test_config.CONTRACT_ADDRESS, "Log_135")
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1081,6 +1088,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "153_script_container.log"
 		# task_name = "153_script_container"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_0_param(test_config.CONTRACT_ADDRESS, "GetScriptContainer")
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1117,6 +1125,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "163_tx_type.log"
 		# task_name = "163_tx_type"
 		try:
+			self.test_init()
 			(process, response) = test_api.invoke_func_with_1_param(test_config.CONTRACT_ADDRESS, "GetTransaction_Type", test_config.PARAM_TYPE_BYTEARRAY, test_config.TX_HASH_CORRECT)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1162,6 +1171,8 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "170getcontractMigrate.log"
 		# task_name = "170getcontractMigrate"
 		try:
+			self.test_init()
+
 			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1207,6 +1218,8 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "175getcontractMigrate.log"
 		# task_name = "175getcontractMigrate"
 		try:
+			self.test_init()
+
 			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1252,6 +1265,8 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "180getcontractMigrate.log"
 		# task_name = "180getcontractMigrate"
 		try:
+			self.test_init()
+
 			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1297,6 +1312,8 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "185getcontractMigrate.log"
 		# task_name = "185getcontractMigrate"
 		try:
+			self.test_init()
+
 			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1342,6 +1359,8 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "190getcontractMigrate.log"
 		# task_name = "190getcontractMigrate"
 		try:
+			self.test_init()
+
 			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1387,6 +1406,8 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "195_checkWitness.log"
 		# task_name = "195_checkWitness"
 		try:
+			self.test_init()
+			
 			(process, response) = test_api.invoke_func_with_1_param(test_config.CONTRACT_ADDRESS, "CheckWitness", test_config.PARAM_TYPE_BYTEARRAY, "1111"+test_config.PUBLICKEY)
 			self.ASSERT(not process, "")
 		except Exception as e:

@@ -34,16 +34,11 @@ from test_ontid_others.test_config import *
 #############################################
 #test cases
 class test_ontid_others_1(ParametrizedTestCase):
-	def test_init(self):
-		API.node().stop_all_nodes()
-		API.node().start_nodes(range(0, 8), Config.DEFAULT_NODE_ARGS, clear_chain = True, clear_log = True)
-		#time.sleep(10)
-		API.native().init_ont_ong()
-		#time.sleep(20)
+	# # @classmethod
+  # # def setUpClass(self):
+		# ###
+    # init_server()
 		
-		#test_config.contract_address = API.contract().deploy_contract(test_path + "/resource/ontid.json")
-		#(process,response) = regIDWithPublicKey(test_config.userOntId6, test_config.public_key,test_config.node_index,0)
-		#API.node().wait_gen_block()
 		
 	def setUp(self):
 		logger.open( "test_ontid_others/"+self._testMethodName+".log",self._testMethodName)
@@ -66,7 +61,7 @@ class test_ontid_others_1(ParametrizedTestCase):
 			(process, response) = getKeyState(test_config.tc001_ontid,"1",test_config.tc001_pubkey2,test_config.node_self,0,"in use")
 			if not process:
 				raise Error("failed")
-			self.ASSERT(process, "")
+				self.ASSERT(not process, "")
 		except Error as e:
 			logger.print(e.args[0])
 		except Exception as e2:

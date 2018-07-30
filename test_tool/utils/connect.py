@@ -69,7 +69,7 @@ def con_cli(ip, request):
 		response = requests.post(url, data=json.dumps(request), headers=Config.RPC_HEADERS, timeout = 10)
 		return response.json()
 	except Exception as e:
-		print("con_cli:",  e)
+		logger.error("con_cli:"+str(e.args[0]))
 		raise TestError(54004)
 
 def con_rpc(ip, request):
@@ -79,12 +79,10 @@ def con_rpc(ip, request):
 			con_url = "http://" + ip + ":20336/jsonrpc"
 		else:
 			con_url = Config.RPC_URL
-		print("send...")
 		response = requests.post(con_url, data=json.dumps(request), headers=Config.RPC_HEADERS, timeout = 10)
-		print("send end")
 		return response.json()
 	except Exception as e:
-		print("con_rpc:",  e)
+		logger.error("con_rpc:"+str(e.args[0]))
 		raise TestError(54001)
 
 def con_restful(ip, api_request):
@@ -113,7 +111,7 @@ def con_restful(ip, api_request):
 			response = urllib.request.urlopen(api_url)
 			return json.loads(response.read().decode("utf-8"))
 	except Exception as e:
-		print("con_restful:",  e)
+		logger.error("con_restful:"+str(e.args[0]))
 		raise TestError(54002)
 
 def con_ws(ip, request):
@@ -130,7 +128,7 @@ def con_ws(ip, request):
 		ws.close()
 		return json.loads(response)
 	except Exception as e:
-		print("con_ws:",  e)
+		logger.error("con_ws:"+str(e.args[0]))
 		raise TestError(54003)
 
 def con_test_service(ip, request):
@@ -144,7 +142,7 @@ def con_test_service(ip, request):
 		response = requests.post(con_url, data=json.dumps(request), headers=Config.RPC_HEADERS, timeout = 10)
 		return response.json()
 	except Exception as e:
-		print("con_test_service:",  e)
+		logger.error("con_test_service:"+str(e.args[0]))
 		raise TestError(54005)
 
 class WebSocket():
@@ -161,7 +159,7 @@ class WebSocket():
 			if message_cb:
 				message_cb(message)
 
-		def on_error(ws, error):
+		def on_error(ws):
 			self.terminated = True
 
 		def on_close(ws):
@@ -180,13 +178,13 @@ class WebSocket():
 
 	def ws_heartbeat_thread(self, heartbeat_gap = 5):
 		while True:
-			time.sleep(1)
+			time.sleep(heartbeat_gap)
 			try:
 				if self.terminated:
 					raise TestError("Error")
 				self.LONG_LIVE_WS.send(json.dumps(Task(Config.BASEAPI_PATH + "/ws/heartbeat.json").data()["REQUEST"]))
 			except Exception as e:
-				logger.print(e.args[0])
+				logger.error(str(e.args[0]))
 				return False
 
 	def exec(self, heartbeat_gap = 5, message_cb = None):

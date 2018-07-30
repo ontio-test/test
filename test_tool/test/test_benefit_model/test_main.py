@@ -64,7 +64,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "can't gen block")
-			API.node().wait_gen_block()
 			
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error")
@@ -91,7 +90,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 			
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 
 			(process, response) = API.rpc().getbalance(address1)
@@ -120,7 +118,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			(process, response) = API.rpc().getbalance(address)
@@ -155,7 +152,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 			
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			(process, response) = API.rpc().getbalance(address1)
@@ -197,13 +193,11 @@ class test_benefit_model_1(ParametrizedTestCase):
 					
 			#进行第一轮共识
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
 
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 
 			
@@ -245,7 +239,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 		
 			#进行第一轮共识
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			(process, response) = API.rpc().getbalance(Config.NODES[self.m_checknode]["address"])
@@ -277,7 +270,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 			except_benifit = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 1000, [1000, 1000, 1000, 1000, 1000, 1000, 1000]))
 			logger.print("except_benifit: " + str(except_benifit))
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")		
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error[2]")
@@ -311,62 +303,108 @@ class test_benefit_model_1(ParametrizedTestCase):
 			self.BLOCK(process, "get balance error")
 			ong1 = int(response["result"]["ong"])
 			
+			##for debug
+			for i in range(7):
+				print("get balance[0]: " + str(i))
+				API.rpc().getbalance(Config.NODES[i]["address"])
+
+			print("get balance[0.2]: " + str("AFmseVrdL9f9oyCzZefL9tG6UbviEH9ugK"))
+			API.rpc().getbalance("AFmseVrdL9f9oyCzZefL9tG6UbviEH9ugK")	
 			####################################################################################
 			#发生一笔交易，并第一次分红
-			process = API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			process = API.native().transfer_ont(pay_address = Config.NODES[0]["address"],
+												get_address = Config.NODES[0]["address"], 
+												amount = "1", 
+												node_index = 0,
+												gas_price = test_config.PRICE_TEST, 
+												sleep = 0)
+			self.BLOCK(process, "transfer_ont error")
+			time.sleep(15)
+			print("get balance[0.1]: " + str(i))
+			API.rpc().getbalance(Config.NODES[0]["address"])
+
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
+			time.sleep(15)
 			self.BLOCK(process, "commit_dpos error")
+
+			##for debug
+			for i in range(7):
+				print("get balance[1]: " + str(i))
+				API.rpc().getbalance(Config.NODES[i]["address"])
 
 			#2.消耗的0.2ong的50%被平均分给七个节点
 			except_benifit = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 10000, [10000, 10000, 10000, 10000, 10000, 10000, 10000]))
 			except_benifit2 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5 * 0.5, 10000, [10000, 10000, 10000, 10000, 10000, 10000, 10000]))
 			except_benifit3 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5 * 0.5 *0.5, 10000, [10000, 10000, 10000, 10000, 10000, 10000, 10000]))
-			except_benifit4 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5 * 0.5 *0.5, candidate_pos, [candidate_pos]))
-			logger.print("except_benifit: " + str(except_benifit))
+			except_benifit4 = int(test_api.get_candidate_benifit_value(20000 * test_config.PRICE_TEST * 0.5 * 0.5 *0.5, candidate_pos, [candidate_pos]))
+			logger.print("except_benifit[1]: " + str(except_benifit))
 			logger.print("except_benifit[2]: " + str(except_benifit2))
 			logger.print("except_benifit[3]: " + str(except_benifit3))
 			logger.print("except_benifit[4]: " + str(except_benifit4))
 			(process, response) = API.rpc().getbalance(address4)
 			self.BLOCK(process, "get balance error")
-			
 			ong2 = int(response["result"]["ong"])
-			print("before cost[1]: " + str(ong1))
-			print("after cost[1]: " + str(ong2))
+
+			logger.info("before cost[1]: " + str(ong1))
+			logger.info("after cost[1]: " + str(ong2))
 			process = (int(ong2 - ong1) == int(except_benifit))
 			self.ASSERT(process, "first benefit error")
 			
 			####################################################################################
 			#添加候选节点1
-			(process, response) = test_api.add_candidate_node(new_node, init_ong = candidate_pos)
+			(process, response) = test_api.add_candidate_node(new_node, init_ong = candidate_initong)
 			self.ASSERT(process, "add candidate node error")
-			
+			print("get balance[1.1]: " + str(0))
+			API.rpc().getbalance(Config.NODES[0]["address"])
+
 			#4.消耗的0.2ong的50%被分配给刚加入的候选节点
 			(process, response) = API.rpc().getbalance(Config.NODES[new_node]["address"])
 			self.ASSERT(process, "get balance error")
-
 			ong3 = int(response["result"]["ong"])
 			
 			#区块到达分红数量要求
 			#print("33333333333333: ")
 			#nodeCountCheck([], 7)
+			time.sleep(15)
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
+			time.sleep(15)
+
+			for i in range(7):
+				print("get balance[2]: " + str(i))
+				API.rpc().getbalance(Config.NODES[i]["address"])
+
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()			
 			self.BLOCK(process, "commit_dpos error")
+			time.sleep(15)
+
 			#print("44444444444444: ")
 			#nodeCountCheck([], 7)
 			#4.消耗的0.2ong的50%被分配给刚加入的候选节点
+			(process, response) = API.rpc().getbalance(address4)
+			self.BLOCK(process, "get balance error")
+			ong2 = int(response["result"]["ong"])
+
 			(process, response) = API.rpc().getbalance(Config.NODES[new_node]["address"])
 			self.BLOCK(process, "get balance error")
-			
 			ong4 = int(response["result"]["ong"])
 			
-			print("before cost[1]: " + str(ong3))
-			print("after cost[1]: " + str(ong4))
+			logger.info("normal node before cost[1]: " + str(ong1))
+			logger.info("normal node after cost[2]: " + str(ong2))
+			logger.info("normal except: " + str(except_benifit3 + except_benifit2 + except_benifit))
+
+			logger.info("cadidate node before cost[2]: " + str(ong3))
+			logger.info("cadidate node after cost[2]: " + str(ong4))
 			process = abs((int(ong4 - ong3) - int(except_benifit4))) < 10
+
+			##for debug
+			for i in range(7):
+				print("get balance[3]: " + str(i))
+				API.rpc().getbalance(Config.NODES[i]["address"])
+
+			print("get balance[3.1]: " + str("AFmseVrdL9f9oyCzZefL9tG6UbviEH9ugK"))
+			API.rpc().getbalance("AFmseVrdL9f9oyCzZefL9tG6UbviEH9ugK")	
+
 			self.ASSERT(process, "benefit error")
 
 		except Exception as e:
@@ -404,14 +442,14 @@ class test_benefit_model_1(ParametrizedTestCase):
 	
 			#第一次分红，只分红共识节点的，因为候选节点要在下个周期才分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			#第二次分红，候选节点也分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
+			API.node().wait_gen_block()
+
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error")
 			normal_ong2 = int(response["result"]["ong"])
@@ -434,15 +472,12 @@ class test_benefit_model_1(ParametrizedTestCase):
 			process = abs(int(candidate1_ong_2 - candidate1_ong_1) - int(except_candidate_benifit1)) < 10
 			self.ASSERT(process, "first benefit error[candidate node][2]")
 		
-			
-			
 			#添加候选节点2
 			(process, response) = test_api.add_candidate_node(new_node2)
 			self.BLOCK(process, "add candidate node error")
 
 			#第一次共识，确保下次一起分红，因为候选节点要在下个周期才分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			
@@ -462,7 +497,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 			
 			#第二次分红，候选节点也分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			(process, response) = API.rpc().getbalance(address1)
@@ -511,7 +545,6 @@ class test_benefit_model_1(ParametrizedTestCase):
 
 			#第一次共识，没有ong分润，但是候选节点会成为共识节点
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 
 			API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
@@ -526,17 +559,16 @@ class test_benefit_model_1(ParametrizedTestCase):
 			
 			#第二次共识，有ong分润
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 
 			except_benifit1 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 10000, [10000, 10000, 10000, 10000, 10000, 10000, 10000]))
 			except_benifit3 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 20000, [20000, 10000, 10000, 10000, 10000, 10000, 10000]))
 			except_candidate_benifit1 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 10000, [10000]))
 			except_candidate_benifit2 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 20000, [20000]))
-			print(except_benifit1)
-			print(except_benifit3)
-			print(except_candidate_benifit1)
-			print(except_candidate_benifit2)
+			logger.info("except_benifit1:" + str(except_benifit1))
+			logger.info("except_benifit3:" + str(except_benifit3))
+			logger.info("except_candidate_benifit1:" + str(except_candidate_benifit1))
+			logger.info("except_candidate_benifit2:" + str(except_candidate_benifit2))
 			
 			(process, response) = API.rpc().getbalance(address4)
 			self.BLOCK(process, "get balance error")
@@ -545,8 +577,8 @@ class test_benefit_model_1(ParametrizedTestCase):
 			self.BLOCK(process, "get balance error")
 			candidate_ong2 = int(response["result"]["ong"])
 			
-			print("normal_ong2: " + str(normal_ong2))
-			print("candidate_ong2: " + str(candidate_ong2))
+			logger.info("normal_ong2: " + str(normal_ong2))
+			logger.info("candidate_ong2: " + str(candidate_ong2))
 			process = abs((int(candidate_ong2 - candidate_ong) - int(except_benifit3))) < 10
 			self.ASSERT(process, "benefit error")
 		
@@ -570,7 +602,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 		API.native().init_ont_ong()
 
 	def tearDown(self):
-		logger.close(self.m_result)
+		logger.close(self.result())
 		
 	def test_normal_011_benefit(self):
 		try:
@@ -596,10 +628,8 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			#先共识一次，确保节点都会在下一次共识分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			
@@ -614,7 +644,6 @@ class test_benefit_model_2(ParametrizedTestCase):
 			candidate_ong = int(response["result"]["ong"])
 			
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			(process, response) = API.rpc().getbalance(Config.NODES[peer_node1]["address"])
@@ -626,17 +655,17 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			except_benifit1 = int(test_api.get_candidate_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 5000, [5000, 5000, 5000, 10000, 10000, 10000]))
 			except_benifit2 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 20000, [20000, 20000, 20000, 10000, 10000, 10000, 10000]))
-			print("normal_ong2: " + str(normal_ong2))
-			print("except_benifit1: " + str(except_benifit1))
+			logger.info("normal_ong2: " + str(normal_ong2))
+			logger.info("except_benifit1: " + str(except_benifit1))
 			
-			print("candidate_ong2: " + str(candidate_ong2))
-			print("except_benifit2: " + str(except_benifit2))
+			logger.info("candidate_ong2: " + str(candidate_ong2))
+			logger.info("except_benifit2: " + str(except_benifit2))
 			self.ASSERT((normal_ong2 - normal_ong) == except_benifit2, "benefit normal node error")
 			self.ASSERT((candidate_ong2 - candidate_ong) == except_benifit1, "benefit candidate node error")
 
 			
 		except Exception as e:
-			logger.print(e.args[0])
+			logger.error(e.args[0])
 
 			
 	def test_normal_012_benefit(self):
@@ -653,7 +682,6 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			#先共识一次，确保节点都会在下一次共识分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			#交易
@@ -667,7 +695,6 @@ class test_benefit_model_2(ParametrizedTestCase):
 			candidate_ong = int(response["result"]["ong"])
 			
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			(process, response) = API.rpc().getbalance(address)
@@ -700,7 +727,6 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			#先共识一次，确保节点都会在下一次共识分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 			
 			#交易
@@ -713,7 +739,6 @@ class test_benefit_model_2(ParametrizedTestCase):
 			self.BLOCK(process, "get balance error")
 			candidate_ong = int(response["result"]["ong"])
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			API.node().wait_gen_block()
 			self.BLOCK(process, "commit_dpos error")
 
 			(process, response) = API.rpc().getbalance(address)
@@ -725,8 +750,10 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			except_benifit1 = int(test_api.get_candidate_benifit_value(20000 * test_config.PRICE_TEST, 5000, [5000, 5000, 5000, 5000, 5000, 5000, 5000]))
 			except_benifit2 = 0
-			print("normal_ong2: " + str(normal_ong2))
-			print("candidate_ong2: " + str(candidate_ong2))
+			logger.info("normal_ong1: " + str(normal_ong))
+			logger.info("normal_ong2: " + str(normal_ong2))
+			logger.info("candidate_ong1: " + str(candidate_ong))
+			logger.info("candidate_ong2: " + str(candidate_ong2))
 			self.ASSERT((normal_ong2 - normal_ong) == except_benifit2, "benefit normal node error")
 			self.ASSERT((candidate_ong2 - candidate_ong) == except_benifit1, "benefit candidate node error")
 			
