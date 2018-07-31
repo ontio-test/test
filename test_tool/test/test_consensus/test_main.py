@@ -57,7 +57,7 @@ class test_consensus_1(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 02')
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function put error...")
-		
+			API.node().wait_gen_block()
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function get error...")
 			self.ASSERT(response["result"]["Result"] == storage_value, "invoke_function get error...")
@@ -71,7 +71,7 @@ class test_consensus_1(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 03')
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "auth_put", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}])
 			self.ASSERT(process, "invoke_function put error...")
-		
+			API.node().wait_gen_block()
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key}])
 			self.ASSERT(response["result"]["Result"] == '', "invoke_function get error...")
 		
@@ -85,7 +85,7 @@ class test_consensus_1(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 04')
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function put error...")
-		
+			API.node().wait_gen_block()
 			process = API.node().check_node_state([0,1,2,3,4,5,6])
 			self.ASSERT(process, "")
 
@@ -99,7 +99,7 @@ class test_consensus_1(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 05')
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function put error...")
-		
+			API.node().wait_gen_block()
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr2, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function get error...[1]")
 			self.ASSERT(response["result"]["Result"] != storage_value, "invoke_function get error...[2]")
@@ -117,7 +117,7 @@ class test_consensus_1(ParametrizedTestCase):
 			process = False
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function put error...")
-
+			API.node().wait_gen_block()
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
 			self.ASSERT(process, "invoke_function get error...[1]")
 			self.ASSERT(response["result"]["Result"] == storage_value, "invoke_function get error...[2]")
@@ -138,7 +138,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "auth_put", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}])
 			self.ASSERT(process, "invoke_function put error...")
-
+			API.node().wait_gen_block()
 			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key}])
 			self.ASSERT(response["result"]["Result"] == '', "invoke_function get error...")
 			
@@ -342,7 +342,7 @@ class test_consensus_2(ParametrizedTestCase):
 	def init_bft_node(self, bft_index):
 		API.node().stop_all_nodes()
 		API.node().start_nodes([0,1,2,3,4], Config.DEFAULT_NODE_ARGS, True, True, program = "ontology")
-		print("start bft node: " + "ontology-bft_" + str(bft_index))
+		logger.info("start bft node: " + "ontology-bft_" + str(bft_index))
 		API.node().start_nodes([5,6], Config.DEFAULT_NODE_ARGS, True, True, program = "ontology-bft_" + str(bft_index))
 		
 		for node_index in range(7):			
@@ -574,7 +574,7 @@ class test_consensus_4(ParametrizedTestCase):
 			peer_node3 = 9 #被投票节点3
 				
 			API.node().start_nodes([vote_node], Config.DEFAULT_NODE_ARGS, True, True)
-			API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "5000000", 0)
+			API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "1000000", 0)
 			API.native().transfer_ong(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "1000000000000", 0)
 
 			for i in range(7, 14):

@@ -62,7 +62,7 @@ class TestMonitor:
 		for node_index in range(len(Config.NODES)):
 			API.node().stop_sigsvr(node_index)
 			API.node().start_sigsvr(Config.NODE_PATH + "/wallet.dat", node_index)
-
+		time.sleep(10)
 		return True
 
 	def retry(self):

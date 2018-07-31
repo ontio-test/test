@@ -59,7 +59,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 
 			ong1=int(response["result"]["ong"])
 			
-			API.node().transfer_ont(0, 0 , 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
@@ -86,7 +86,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 
 			ong1=int(response["result"]["ong"])
 			
-			API.node().transfer_ont(0, 0 , 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
@@ -148,7 +148,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			self.BLOCK(process, "get balance error[2]")
 
 			ong1=int(response["result"]["ong"])
-			API.node().transfer_ont(0, 0 , 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
@@ -195,7 +195,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
 			
-			API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
@@ -228,7 +228,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			self.BLOCK(process, "get balance error")
 			ong1 = int(response["result"]["ong"])
 			
-			API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			
 			(process, response) = API.rpc().getbalance(Config.NODES[self.m_checknode]["address"])
 			self.BLOCK(process, "get balance error")
@@ -264,7 +264,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 
 			ong1=int(response["result"]["ong"])
 			
-			process = API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			
 			#判断是否分润，至少需要等待1个共识时间
 			except_benifit = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 1000, [1000, 1000, 1000, 1000, 1000, 1000, 1000]))
@@ -285,7 +285,9 @@ class test_benefit_model_1(ParametrizedTestCase):
 	
 	#第7个节点为新加入节点
 	def test_normal_008_benefit(self):
+		
 		try:
+			
 			process = False
 			
 			candidate_initong = 1000 #候选节点初始ong
@@ -293,7 +295,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			candidate_pos = 1000 #候选节点初始pos
 			new_node = self.m_new_2_nodes[0] #新加入节点
 			
-
+			
 			(process, response) = API.native().update_global_param("0", "1000", "32", "1", "50", "50", "5", "5", sleep = 0)
 			self.BLOCK(process, "updateGlobalParam error")
 			API.node().wait_gen_block()
@@ -322,11 +324,11 @@ class test_benefit_model_1(ParametrizedTestCase):
 			time.sleep(15)
 			print("get balance[0.1]: " + str(i))
 			API.rpc().getbalance(Config.NODES[0]["address"])
-
+			
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			time.sleep(15)
 			self.BLOCK(process, "commit_dpos error")
-
+			
 			##for debug
 			for i in range(7):
 				print("get balance[1]: " + str(i))
@@ -352,11 +354,12 @@ class test_benefit_model_1(ParametrizedTestCase):
 			
 			####################################################################################
 			#添加候选节点1
+			
 			(process, response) = test_api.add_candidate_node(new_node, init_ong = candidate_initong)
 			self.ASSERT(process, "add candidate node error")
 			print("get balance[1.1]: " + str(0))
 			API.rpc().getbalance(Config.NODES[0]["address"])
-
+			
 			#4.消耗的0.2ong的50%被分配给刚加入的候选节点
 			(process, response) = API.rpc().getbalance(Config.NODES[new_node]["address"])
 			self.ASSERT(process, "get balance error")
@@ -425,7 +428,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			API.native().update_global_param("0", "1000", "32", "1", "50", "50", "5", "5")
 			
 			#发生一笔交易
-			API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			time.sleep(5)
 
 			#添加候选节点1
@@ -482,7 +485,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			
 			
 			#4.消耗的0.2ong的50%被分配给刚加入的候选节点
-			process = API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			self.BLOCK(process, "transfer ont error")
 			time.sleep(5)
 		
@@ -547,7 +550,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
 
-			API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			time.sleep(5)
  
 			(process, response) = API.rpc().getbalance(address4)
@@ -615,10 +618,9 @@ class test_benefit_model_2(ParametrizedTestCase):
  
 			API.native().update_global_param("0", "1000", "32", "10", "50","50", "5", "5")
 			
-			API.node().start_nodes([vote_node], Config.DEFAULT_NODE_ARGS, True, True)
-			API.node().transfer_ont(0, vote_node, 5000000, price = 0)
-			API.node().transfer_ong(0, vote_node, 1000, price = 0)
-			
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "5000000", gas_price = 0)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "1000", gas_price = 0)
+
 			for i in range(7, 13):
 				test_api.add_candidate_node(i, init_pos = 5000, from_node = i - 7)
 			
@@ -634,7 +636,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			
 			#交易
-			response = API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
 			(process, response) = API.rpc().getbalance(Config.NODES[peer_node1]["address"])
 			self.BLOCK(process, "get balance error")
@@ -685,7 +687,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			self.BLOCK(process, "commit_dpos error")
 			
 			#交易
-			response = API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
 			(process, response) = API.rpc().getbalance(address)
 			self.BLOCK(process, "get balance error")
@@ -730,7 +732,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			self.BLOCK(process, "commit_dpos error")
 			
 			#交易
-			response = API.node().transfer_ont(0, 0, 1, test_config.PRICE_TEST)
+			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
 			(process, response) = API.rpc().getbalance(address)
 			self.BLOCK(process, "get balance error")

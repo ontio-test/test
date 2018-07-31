@@ -191,10 +191,10 @@ class test_config():
 
 	##################  10-updateConfig  #########################
 	updateConfig_param0_1 = "8" #Ŀǰ�ڵ�������ֵ
-	updateConfig_param0_2 = "7" #С��Ŀǰ�ڵ�������ֵ
+	updateConfig_param0_2 = "6" #С��Ŀǰ�ڵ�������ֵ
 	updateConfig_param0_3 = "9" #����Ŀǰ�ڵ�������ֵ
 	updateConfig_param0_4 = "2147483646" #2147483646
-	updateConfig_param0_5 = "2147483649" #2147483649
+	updateConfig_param0_5 = "4294967296" #4294967296
 	updateConfig_param0_6 = "-1" #-1
 	updateConfig_param1_1 = "2" #Ŀǰ�ڵ�������ֵ/3
 	updateConfig_param1_2 = "1" #С��Ŀǰ�ڵ�����/3��ֵ
@@ -205,43 +205,43 @@ class test_config():
 	updateConfig_param2_2 = "6" #С��Ŀǰ��ʶ�ڵ�������ֵ
 	updateConfig_param2_3 = "9" #����Ŀǰ��ʶ�ڵ�������ֵ
 	updateConfig_param2_4 = "7" #����Ŀǰ��ʶ�ڵ�����
-	updateConfig_param3_1 = "112" #Ŀǰ��ʶ�ڵ�����*16��ֵ
-	updateConfig_param3_2 = "111" #С��Ŀǰ��ʶ�ڵ�����*16��ֵ
-	updateConfig_param3_3 = "113" #����Ŀǰ��ʶ�ڵ�����*16��ֵ
+	updateConfig_param3_1 = "128" #Ŀǰ��ʶ�ڵ�����*16��ֵ
+	updateConfig_param3_2 = "127" #С��Ŀǰ��ʶ�ڵ�����*16��ֵ
+	updateConfig_param3_3 = "129" #����Ŀǰ��ʶ�ڵ�����*16��ֵ
 	updateConfig_param3_4 = "2147483646" #2147483646
-	updateConfig_param3_5 = "2147483649" #2147483649
+	updateConfig_param3_5 = "4294967296" #4294967296
 	updateConfig_param3_6 = "-1" #-1
 	updateConfig_param4_1 = "5033" #100
 	updateConfig_param4_2 = "2147483646" #2147483646
-	updateConfig_param4_3 = "2147483649" #2147483649
+	updateConfig_param4_3 = "4294967296" #4294967296
 	updateConfig_param4_4 = "0" #0
 	updateConfig_param4_5 = "-1" #-1
 	updateConfig_param5_1 = "5000" #100
 	updateConfig_param5_2 = "2147483646" #2147483646
-	updateConfig_param5_3 = "2147483649" #2147483649
+	updateConfig_param5_3 = "4294967296" #4294967296
 	updateConfig_param5_4 = "0" #0
 	updateConfig_param5_5 = "-1" #-1
 	updateConfig_param6_1 = "100" #100
 	updateConfig_param6_2 = "2147483646" #2147483646
-	updateConfig_param6_3 = "2147483649" #2147483649
+	updateConfig_param6_3 = "4294967296" #4294967296
 	updateConfig_param6_4 = "0" #0
 	updateConfig_param6_5 = "-1" #-1
 	updateConfig_param7_1 = "100" #100
 	updateConfig_param7_2 = "2147483646" #2147483646
 	updateConfig_param7_2 = "2147483646" #2147483646
-	updateConfig_param7_3 = "2147483649" #2147483649
+	updateConfig_param7_3 = "4294967296" #4294967296
 	updateConfig_param7_4 = "0" #0
 	updateConfig_param7_5 = "-1" #-1
 
 	##################  11-updateGlobalParam  #########################
 	updateGlobalParam_param0_1 = "101010000000" #141
 	updateGlobalParam_param0_2 = "2147483646" #2147483648
-	updateGlobalParam_param0_3 = "2147483649" #2147483649
+	updateGlobalParam_param0_3 = "4294967296" #4294967296
 	updateGlobalParam_param0_4 = "0" #0
 	updateGlobalParam_param0_5 = "-1" #-1
 	updateGlobalParam_param1_1 = "101" #141
 	updateGlobalParam_param1_2 = "2147483646" #2147483648
-	updateGlobalParam_param1_3 = "2147483649" #2147483649
+	updateGlobalParam_param1_3 = "4294967296" #4294967296
 	updateGlobalParam_param1_4 = "0" #0
 	updateGlobalParam_param1_5 = "-1" #-1
 	updateGlobalParam_param2_1 = "28" #��ʶ�ڵ���������*4
@@ -252,7 +252,7 @@ class test_config():
 	updateGlobalParam_param3_1 = "1" #1
 	updateGlobalParam_param3_2 = "10" #10
 	updateGlobalParam_param3_3 = "2147483646" #2147483648
-	updateGlobalParam_param3_4 = "2147483649" #2147483649
+	updateGlobalParam_param3_4 = "4294967296" #4294967296
 	updateGlobalParam_param3_5 = "0" #0
 	updateGlobalParam_param3_6 = "-1" #-1
 	updateGlobalParam_param4_1 = "50" #50
@@ -269,7 +269,7 @@ class test_config():
 	updateGlobalParam_param5_6 = "101" #142
 	updateGlobalParam_param6_1 = "10" #141
 	updateGlobalParam_param6_2 = "2147483646" #214713536135
-	updateGlobalParam_param6_3 = "2147483649" #214713536136
+	updateGlobalParam_param6_3 = "4294967296" #214713536136
 	updateGlobalParam_param6_4 = "0" #0
 	updateGlobalParam_param6_5 = "-1" #-1
 	updateGlobalParam_param7_1 = "10" #141

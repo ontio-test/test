@@ -54,7 +54,7 @@ class test_cost(ParametrizedTestCase):
 			logger.print(e.args[0])
 		
 	def test_normal_004(self):
-		priceTest=366780
+		priceTest=681280
 		try:
 			(process1, response)= API.rpc().getbalance(test_config.address)
 			
@@ -62,7 +62,7 @@ class test_cost(ParametrizedTestCase):
 			print(response["result"])
 			ong1=int(response["result"]["ong"])
 			ont1=response["result"]["ont"]
-			task=Task(name = "cost 366780 ong", ijson = test_config.task004)
+			task=Task(name = "cost 681280 ong", ijson = test_config.task004)
 			(process, response) = API.contract().call_contract(task,pre=False)
 			
 			(process1, response)= API.rpc().getbalance(test_config.address)

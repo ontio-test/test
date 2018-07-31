@@ -10,7 +10,7 @@ namespace Ont.SmartContract
     public class AppContract : Framework.SmartContract
     {
         //  "77c526f7922789612a087aca4406125a50f484b5"
-        [Appcall("77c526f7922789612a087aca4406125a50f484b5")]
+        [Appcall("77608870e066d484f82b0d729428ce0f7d750832")]
         public static extern object ContractB(string op, object[] token, object[] args);
 
         public static object Main(string operation, object[] token)

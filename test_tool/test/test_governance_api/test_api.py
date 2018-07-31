@@ -41,6 +41,8 @@ def init(node_index=7, candidate=False, register_ontid=False, restart=False, pub
 		API.native().regid_with_publickey(0, sleep=0)
 		API.native().regid_with_publickey(node_index, sleep=0)
 
+	API.node().wait_gen_block()
+
 	if candidate:
 		# create role and bind ONTID with role
 		(process, response) = API.native().bind_role_function("0700000000000000000000000000000000000000", ByteToHex(bytes(Config.NODES[0]["ontid"], encoding = "utf8")), ByteToHex(b"roleA"),["registerCandidate"])

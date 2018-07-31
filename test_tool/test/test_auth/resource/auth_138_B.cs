@@ -29,8 +29,6 @@ namespace Ont.SmartContract
             
             if (operation == "contractB_Func_A")
             {
-                if (!VerifyToken(operation, token)) return false;
-
                 return contractB_Func_A(args);
             }
 
