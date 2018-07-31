@@ -171,6 +171,20 @@ class TestMonitor:
 					line.rstrip().replace('pass', 'block')
 					line.rstrip().replace('fail', 'block')
 
+	def set_block(self, case):
+		for path in self.retry_logger_path:
+			if path.find(case._testMethodName) >= 0:
+				with open(path, 'a+') as f:
+					f.write('[ BLOCK ]')
+
+				collectionlogpath = os.path.dirname(path) + "/collection_log.csv"
+				for line in fileinput.input(collectionlogpath, backup='.bak', inplace=1):
+					if os.path.basename(path) in line.rstrip():
+						line.rstrip().replace('pass', 'block')
+						line.rstrip().replace('fail', 'block')
+				return
+
+
 	def exec(self, runner, testcases, monitor = True):
 		self.alltestcase = testcases.copy()
 		self.unittestrunner = runner
@@ -191,7 +205,7 @@ class TestMonitor:
 						self.recover_env()
 						self.initmap = {}
 						if not self.run_case(case):
-							self.set_retry_block()
+							self.set_block(case)
 
 					if self.need_retry():
 						print("need retry...[1]")
