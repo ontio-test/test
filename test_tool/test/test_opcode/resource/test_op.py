@@ -12,14 +12,10 @@ from boa.interop.Neo.Header import GetTimestamp, GetNextConsensus
 def Main(operation, args):
     
     if operation == 'add':
-        a = args[0]
-        b = args[1]
-        return Add(a, b)
+        return Add(1, 1)
     
     if operation == 'sub':
-        a = args[0]
-        b = args[1]
-        return Sub(a, b)
+        return Sub(1, 0)
     
     if operation == 'Push0':
         return Push0()
@@ -70,128 +66,82 @@ def Main(operation, args):
         return Dup()
     
     if operation == 'Inc':
-        a = args[0]
-        return Inc(a)
+        return Inc(1)
     
     if operation == 'Dec':
-        a = args[0]
-        return Dec(a)
+        return Dec(1)
     
     if operation == 'Negate':
-        a = args[0]
-        return Negate(a)
+        return Negate(1)
     
     if operation == 'Abs':
-        a = args[0]
-        return Abs(a)
+        return Abs(1)
     
     if operation == 'Not':
-        a = args[0]
-        return Not(a)
+        return Not(1)
     
     if operation == 'Nz':
-        a = args[0]
-        return Nz(a)
+        return Nz(1)
     
     if operation == 'Mul':
-        a = args[0]
-        b = args[1]
-        return Mul(a, b)
+        return Mul(1, 1)
     
     if operation == 'Div':
-        a = args[0]
-        b = args[1]
-        return Div(a, b)
+        return Div(1, 1)
     
     if operation == 'Mod':
-        a = args[0]
-        b = args[1]
-        return Mod(a, b)
+        return Mod(1, 1)
     
     if operation == 'Shl':
-        a = args[0]
-        b = args[1]
-        return Shl(a, b)
+        return Shl(1, 1)
     
     if operation == 'Shr':
-        a = args[0]
-        b = args[1]
-        return Shr(a, b)
+        return Shr(1, 1)
     
     if operation == 'BoolAnd':
-        a = args[0]
-        b = args[1]
-        return BoolAnd(a, b)
+        return BoolAnd(1, 1)
     
     if operation == 'BoolOr':
-        a = args[0]
-        b = args[1]
-        return BoolOr(a, b)
+        return BoolOr(1, 1)
     
     if operation == 'NumeQual':
-        a = args[0]
-        b = args[1]
-        return NumeQual(a, b)
+        return NumeQual(1, 1)
     
     if operation == 'NumNotEqual':
-        a = args[0]
-        b = args[1]
-        return NumNotEqual(a, b)
+        return NumNotEqual(1, 2)
     
     if operation == 'Lt':
-        a = args[0]
-        b = args[1]
-        return Lt(a, b)
+        return Lt(1, 1)
     
     if operation == 'Gt':
-        a = args[0]
-        b = args[1]
-        return Gt(a, b)
+        return Gt(1, 1)
     
     if operation == 'Lte':
-        a = args[0]
-        b = args[1]
-        return Lte(a, b)
+        return Lte(1, 1)
     
     if operation == 'Gte':
-        a = args[0]
-        b = args[1]
-        return Gte(a, b)
+        return Gte(1, 1)
     
     if operation == 'Min':
-        a = args[0]
-        b = args[1]
-        return Min(a, b)
+        return Min(1, 1)
     
     if operation == 'Max':
-        a = args[0]
-        b = args[1]
-        return Max(a, b)
+        return Max(1, 1)
     
     if operation == 'Within':
-        a = args[0]
-        b = args[1]
-        c = args[2]
-        return Within(a, b, c)
+        return Within(1, 1, 1)
     
     if operation == 'And':
-        a = args[0]
-        b = args[1]
-        return And(a, b)
+        return And(1, 1)
     
     if operation == 'Or':
-        a = args[0]
-        b = args[1]
-        return Or(a, b)
+        return Or(1, 1)
     
     if operation == 'Xor':
-        a = args[0]
-        b = args[1]
-        return Xor(a, b)
+        return Xor(0, 1)
     
     if operation == 'Invert':
-        a = args[0]
-        return Invert(a)
+        return Invert(1)
     
     if operation == 'CAT':
         return CAT()
@@ -281,14 +231,16 @@ def Jmpif(a, b):
     if a == b:
         pass
     else:
-        return b
+        return 1
+    return 1
 
 # JMPIFNOT
 def Jmpifnot(a, b):
     if not a == b:
         pass
     else:
-        return b
+        return 1
+    return 1
 
 # CALL
 def Call():
@@ -296,11 +248,12 @@ def Call():
 
 def p():
     print("hello")
+    return 1
 
 # SYSCALL
 def Syscall():
     print("hello")
-
+    return 1
 
 # TOALTSTACK
 def Toaltstack():
@@ -319,14 +272,14 @@ def Roll():
     a = 1
     b = 2
     del a
-    return b
+    return 1
 
 # DROP
 def Drop():
     a = 1
     b = 2
     del a
-    return b
+    return 1
 
 # DUP
 def Dup():
@@ -334,7 +287,7 @@ def Dup():
     b = 2
     c = 1
     del a
-    return b
+    return 1
 
 # INC
 def Inc(a):
@@ -447,7 +400,7 @@ def Or(a, b):
 
 # XOR
 def Xor(a, b):
-    return a ^ b 
+    return a ^ b
 
 # CAT
 def CAT():
@@ -459,7 +412,7 @@ def CAT():
 def Left():
     a = 'test1'
     b = 'test2'
-    return Left(a,1)
+    return a < b
     
 # SIZE
 def SIZE():
@@ -494,7 +447,7 @@ def NEWARRAY():
     
 # NEWSTRUCT
 def NEWSTRUCT():
-    d1 = {'a': 'b', 'c': 'd'}
+    d1 = {'a': '1', 'c': 'd'}
     return d1
     
 # APPEND
