@@ -4,6 +4,7 @@ import unittest
 import sys
 import json
 import fileinput
+import traceback
 
 sys.path.append('..')
 sys.path.append('../..')
@@ -204,4 +205,5 @@ class TestMonitor:
 							print("need retry...[2]")
 							self.set_retry_block()
 			except Exception as e:
-				print(e.args)
+				print("monitor catch: ", e.args)
+				traceback.print_exc()

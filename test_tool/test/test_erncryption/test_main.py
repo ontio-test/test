@@ -31,12 +31,15 @@ from api.apimanager import API
 #test cases
 class test_erncryption_1(ParametrizedTestCase):
 	def test_init(self):
-		os.system(test_config.nodePath+ "/ontology account import -s resource/wallettest.dat -w "+test_config.nodePath+"/wallet.dat")
+		API.node().stop_all_nodes()  
+		API.node().start_nodes(range(0, 7), Config.DEFAULT_NODE_ARGS, clear_chain = True, clear_log = True)
+		API.native().init_ont_ong()
+		os.system(test_config.nodePath+ "/ontology account import -s "+test_path+"resource/wallettest.dat -w "+test_config.nodePath+"/wallet.dat")
 		#deploy_contract #API.contract().deploy_contract();
 		test_config.contractaddress=API.contract().deploy_contract(test_path + "/resource/transferong_ont.json")
 		
 	def setUp(self):
-		os.system(test_config.nodePath+ "/ontology account import -s resource/wallettest.dat -w "+test_config.nodePath+"/wallet.dat")
+		#os.system(test_config.nodePath+ "/ontology account import -s resource/wallettest.dat -w "+test_config.nodePath+"/wallet.dat")
 		logger.open("test_erncrytion/"+ self._testMethodName+".log",self._testMethodName)
 		
 	def tearDown(self):
