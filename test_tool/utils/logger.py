@@ -88,15 +88,20 @@ class Logger():
 			self.logfile.close()
 			self.logfile = None
 
-	def append_record(self, name, status, logpath):
-		newfile = False
-		if not os.path.exists(os.path.dirname(self.logpath) + "/collection_log.csv"):
-			newfile = True
-		self.collectionfile = open(os.path.dirname(self.logpath) + "/collection_log.csv", "a+")  # 打开文件
-		
-		if newfile:
-			self.collectionfile.write("NAME,STATUS,LOG PATH\n")
-		self.collectionfile.write(name + "," + status + "," + logpath + "\n")
-		self.collectionfile.close()
+	def append_record(self, name, status, logpath, retrytimes = 0):
+		filename = "collection_log"
+		try:
+			newfile = False
+			if not os.path.exists(os.path.dirname(self.logpath) + "/" + filename + ".csv"):
+				newfile = True
+			self.collectionfile = open(os.path.dirname(self.logpath) + "/" + filename + ".csv", "a+")  # 打开文件
+			
+			if newfile:
+				self.collectionfile.write("NAME,STATUS,LOG PATH\n")
+			self.collectionfile.write(name + "," + status + "," + logpath + "\n")
+			self.collectionfile.close()
+		except Exception as e:
+			print("append_record:", e)
+			#append_record(name, status, logpath, retrytimes = retrytimes + 1)
 
 LoggerInstance = Logger()
