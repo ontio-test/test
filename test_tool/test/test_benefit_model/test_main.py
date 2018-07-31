@@ -618,8 +618,8 @@ class test_benefit_model_2(ParametrizedTestCase):
 			unpeer_node = 10 #未被投票节点
  
 			API.native().update_global_param("0", "1000", "32", "10", "50","50", "5", "5")
-			
-			API.node().start_nodes([13], Config.DEFAULT_NODE_ARGS, True, True)
+	
+			API.node().start_nodes([vote_node], Config.DEFAULT_NODE_ARGS, True, True)
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "5000000", gas_price = 0)
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "1000", gas_price = 0)
 
