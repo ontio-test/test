@@ -104,8 +104,10 @@ class NativeApi:
         if node_index != None:
             request["NODE_INDEX"] = node_index
         else:
-            node_index = Config.ontid_map[pay_address]
-            request["NODE_INDEX"] = node_index
+            for index in range(len(Config.NODES)):
+                if Config.NODES[index]["address"] == pay_address             
+                    request["NODE_INDEX"] = index
+                    break
 
         return CONTRACT_API.call_contract(Task(name="transfer_ont", ijson=request), twice=twice, sleep=sleep, pre=pre)
 
@@ -186,9 +188,11 @@ class NativeApi:
         if node_index != None:
             request["NODE_INDEX"] = node_index
         else:
-            node_index = Config.ontid_map[pay_address]
-            request["NODE_INDEX"] = node_index
-            
+            for index in range(len(Config.NODES)):
+                if Config.NODES[index]["address"] == pay_address             
+                    request["NODE_INDEX"] = index
+                    break
+
         return CONTRACT_API.call_contract(Task(name="transfer_ong", ijson=request), twice=True, sleep=sleep)
 
     ##############################################
