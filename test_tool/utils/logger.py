@@ -6,7 +6,7 @@ from utils.config import Config
 class Logger():
 	def __init__(self):
 		self.prefix = Config.LOG_PATH + "/" + time.strftime('%Y-%m-%d_%H-%M-%S',time.localtime(time.time()))
-		self.prefixFul = self.prefix;
+		self.prefixFul = self.prefix
 		self.init = False
 		#self.prefix = "logs/" + time.strftime('%Y-%m-%d',time.localtime(time.time()))
 		self.logfile = None
@@ -24,69 +24,84 @@ class Logger():
 		return self.logpath
 
 	def open(self, filepath, title = None):
-		self.logpath = self.prefixFul + "/" + filepath
-		logdir = self.prefixFul + "/" + os.path.dirname(filepath)
-		if not os.path.exists(logdir):
-			os.makedirs(logdir)
+		try:
+			self.logpath = self.prefixFul + "/" + filepath
+			logdir = self.prefixFul + "/" + os.path.dirname(filepath)
+			if not os.path.exists(logdir):
+				os.makedirs(logdir)
 
-		if not self.init:
-			self.init = True
+			if not self.init:
+				self.init = True
 
-		self.logfile = open(self.logpath, "w")  # 打开文件
-		self.logtitle = title if title else os.path.splitext(filepath)[0]
+			self.logfile = open(self.logpath, "w")  # 打开文件
+			self.logtitle = title if title else os.path.splitext(filepath)[0]
+		except Exception as e:
+			print("logger open: ", e)
 	#write
 	def print(self, str):
-		strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+		try:
+			strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
 
-		strlist = str.split("\n")
-		str = ""
-		for line in strlist:
-			str = str + strtime + ": " + line + "\n"
-		
-		print(str, end='')
-		if self.logfile:
-			self.logfile.write(str)
+			strlist = str.split("\n")
+			str = ""
+			for line in strlist:
+				str = str + strtime + ": " + line + "\n"
+			
+			print(str, end='')
+			if self.logfile:
+				self.logfile.write(str)
+		except Exception as e:
+			print("logger print: ", e)
 
 	def error(self, str):
-		strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
-		str = "[ ERROR ]  " + str
+		try:
+			strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+			str = "[ ERROR ]  " + str
 
-		strlist = str.split("\n")
-		str = ""
-		for line in strlist:
-			str = str + strtime + ": " + line + "\n"
+			strlist = str.split("\n")
+			str = ""
+			for line in strlist:
+				str = str + strtime + ": " + line + "\n"
 
-		print(str, end='')
-		if self.logfile:
-			self.logfile.write(str)
+			print(str, end='')
+			if self.logfile:
+				self.logfile.write(str)
+		except Exception as e:
+			print("logger error: ", e)
 
 	def info(self, str):
-		strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
-		str = "[ INFO ]  " + str
+		try:
+			strtime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+			str = "[ INFO ]  " + str
 
-		strlist = str.split("\n")
-		str = ""
-		for line in strlist:
-			str = str + strtime + ": " + line + "\n"
+			strlist = str.split("\n")
+			str = ""
+			for line in strlist:
+				str = str + strtime + ": " + line + "\n"
 
-		print(str, end='')
-		if self.logfile:
-			self.logfile.write(str)
+			print(str, end='')
+			if self.logfile:
+				self.logfile.write(str)
+		except Exception as e:
+			print("logger info: ", e)
 
 	def close(self, result = None, msg = None):
-		if not result is None:
-			if result == "pass":
-				self.print("[ OK       ] ")
-				self.append_record(self.logtitle, "pass", self.logpath.replace(self.prefix + "/", ""))
-			elif result == "fail":
-				self.print("[ Failed   ] ")
-				self.append_record(self.logtitle, "fail", self.logpath.replace(self.prefix + "/", ""))
-			else:
-				self.print("[ Block    ] ")
-				self.append_record(self.logtitle, "block", self.logpath.replace(self.prefix + "/", ""))
-		if self.logfile:
-			self.logfile.close()
-			self.logfile = None
+		try:
+			if not result is None:
+				if result == "pass":
+					self.print("[ OK       ] ")
+					self.append_record(self.logtitle, "pass", self.logpath.replace(self.prefix + "/", ""))
+				elif result == "fail":
+					self.print("[ Failed   ] ")
+					self.append_record(self.logtitle, "fail", self.logpath.replace(self.prefix + "/", ""))
+				else:
+					self.print("[ Block    ] ")
+					self.append_record(self.logtitle, "block", self.logpath.replace(self.prefix + "/", ""))
+			if self.logfile:
+				self.logfile.close()
+				self.logfile = None
+		except Exception as e:
+			print("logger close: ", e)
 
 	def append_record(self, name, status, logpath, retrytimes = 0):
 		filename = "collection_log"
@@ -101,7 +116,7 @@ class Logger():
 			self.collectionfile.write(name + "," + status + "," + logpath + "\n")
 			self.collectionfile.close()
 		except Exception as e:
-			print("append_record:", e)
+			print("logger append_record:", e)
 			#append_record(name, status, logpath, retrytimes = retrytimes + 1)
 
 LoggerInstance = Logger()
