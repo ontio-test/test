@@ -105,7 +105,7 @@ class NativeApi:
             request["NODE_INDEX"] = node_index
         else:
             for index in range(len(Config.NODES)):
-                if Config.NODES[index]["address"] == pay_address             
+                if Config.NODES[index]["address"] == pay_address:      
                     request["NODE_INDEX"] = index
                     break
 
@@ -189,7 +189,7 @@ class NativeApi:
             request["NODE_INDEX"] = node_index
         else:
             for index in range(len(Config.NODES)):
-                if Config.NODES[index]["address"] == pay_address             
+                if Config.NODES[index]["address"] == pay_address:            
                     request["NODE_INDEX"] = index
                     break
 
