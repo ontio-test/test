@@ -166,10 +166,15 @@ class TestMonitor:
 				f.write('[ BLOCK ]')
 
 			collectionlogpath = os.path.dirname(path) + "/collection_log.csv"
-			for line in fileinput.input(collectionlogpath, backup='.bak', inplace=1):
-				if os.path.basename(path) in line.rstrip():
-					line.rstrip().replace('pass', 'block')
-					line.rstrip().replace('fail', 'block')
+			with open(collectionlogpath, 'r') as f:
+				contents = ""
+				for line in f.readlines():
+					if line.find(os.path.basename(path)) >=0:
+						line.replace('pass', 'block')
+						line.replace('fail', 'block')
+					contents += line
+			with open(collectionlogpath, 'w+') as f:
+				f.write(contents)
 
 	def set_block(self, case):
 		for path in self.retry_logger_path:
@@ -178,12 +183,16 @@ class TestMonitor:
 					f.write('[ BLOCK ]')
 
 				collectionlogpath = os.path.dirname(path) + "/collection_log.csv"
-				for line in fileinput.input(collectionlogpath, backup='.bak', inplace=1):
-					if os.path.basename(path) in line.rstrip():
-						line.rstrip().replace('pass', 'block')
-						line.rstrip().replace('fail', 'block')
+				with open(collectionlogpath, 'r') as f:
+					contents = ""
+					for line in f.readlines():
+						if line.find(os.path.basename(path)) >=0:
+							line.replace('pass', 'block')
+							line.replace('fail', 'block')
+						contents += line
+				with open(collectionlogpath, 'w+') as f:
+					f.write(contents)
 				return
-
 
 	def exec(self, runner, testcases, monitor = True):
 		self.alltestcase = testcases.copy()

@@ -11,6 +11,7 @@ class Logger():
 		#self.prefix = "logs/" + time.strftime('%Y-%m-%d',time.localtime(time.time()))
 		self.logfile = None
 		self.logpath = ""
+		self.filename = ""
 		self.collectionfile = None
 
 	def __del__(self):
@@ -33,6 +34,7 @@ class Logger():
 			if not self.init:
 				self.init = True
 
+			self.filename = os.path.basename(self.logpath)
 			self.logfile = open(self.logpath, "w")  # 打开文件
 			self.logtitle = title if title else os.path.splitext(filepath)[0]
 		except Exception as e:
@@ -90,13 +92,13 @@ class Logger():
 			if not result is None:
 				if result == "pass":
 					self.print("[ OK       ] ")
-					self.append_record(self.logtitle, "pass", self.logpath.replace(self.prefix + "/", ""))
+					self.append_record(self.logtitle, "pass", self.filename)
 				elif result == "fail":
 					self.print("[ Failed   ] ")
-					self.append_record(self.logtitle, "fail", self.logpath.replace(self.prefix + "/", ""))
+					self.append_record(self.logtitle, "fail", self.filename)
 				else:
 					self.print("[ Block    ] ")
-					self.append_record(self.logtitle, "block", self.logpath.replace(self.prefix + "/", ""))
+					self.append_record(self.logtitle, "block", self.filename)
 			if self.logfile:
 				self.logfile.close()
 				self.logfile = None

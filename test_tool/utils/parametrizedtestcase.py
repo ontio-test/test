@@ -17,6 +17,7 @@ class ParametrizedTestCase(unittest.TestCase):
             print(e)
 
     def setUp(self):
+        self.m_result = "init"
         self.m_assertcount = 0
         pass
                 

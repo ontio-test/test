@@ -64,7 +64,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "can't gen block")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error")
 
@@ -91,7 +91,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error")
 			ong2=int(response["result"]["ong"])
@@ -119,7 +119,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(address)
 			self.BLOCK(process, "get balance error[2]")
 			
@@ -153,7 +153,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#判断是否分润，至少需要等待1个共识时间
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error[3]")
 			ong2=int(response["result"]["ong"])
@@ -194,12 +194,12 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#进行第一轮共识
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-
+			API.node().wait_gen_block()
 			
 			(process, response) = API.rpc().getbalance(Config.NODES[self.m_checknode]["address"])
 			self.BLOCK(process, "get balance error")
@@ -240,7 +240,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#进行第一轮共识
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(Config.NODES[self.m_checknode]["address"])
 			self.BLOCK(process, "get balance error")
 			ong3 = int(response["result"]["ong"])
@@ -270,7 +270,8 @@ class test_benefit_model_1(ParametrizedTestCase):
 			except_benifit = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 1000, [1000, 1000, 1000, 1000, 1000, 1000, 1000]))
 			logger.print("except_benifit: " + str(except_benifit))
 			(process, response) = API.native().commit_dpos(sleep = 0)
-			self.BLOCK(process, "commit_dpos error")		
+			self.BLOCK(process, "commit_dpos error")
+			API.node().wait_gen_block()	
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error[2]")
 
@@ -446,7 +447,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#第一次分红，只分红共识节点的，因为候选节点要在下个周期才分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			#第二次分红，候选节点也分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
@@ -482,7 +483,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#第一次共识，确保下次一起分红，因为候选节点要在下个周期才分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			
 			#4.消耗的0.2ong的50%被分配给刚加入的候选节点
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
@@ -501,7 +502,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#第二次分红，候选节点也分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(address1)
 			self.BLOCK(process, "get balance error")
 			normal_ong4 = int(response["result"]["ong"])
@@ -549,7 +550,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#第一次共识，没有ong分润，但是候选节点会成为共识节点
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-
+			API.node().wait_gen_block()
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 			time.sleep(5)
  
@@ -563,7 +564,7 @@ class test_benefit_model_1(ParametrizedTestCase):
 			#第二次共识，有ong分润
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-
+			API.node().wait_gen_block()
 			except_benifit1 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 10000, [10000, 10000, 10000, 10000, 10000, 10000, 10000]))
 			except_benifit3 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 20000, [20000, 10000, 10000, 10000, 10000, 10000, 10000]))
 			except_candidate_benifit1 = int(test_api.get_benifit_value(20000 * test_config.PRICE_TEST * 0.5, 10000, [10000]))
@@ -618,6 +619,7 @@ class test_benefit_model_2(ParametrizedTestCase):
  
 			API.native().update_global_param("0", "1000", "32", "10", "50","50", "5", "5")
 			
+			API.node().start_nodes([13], Config.DEFAULT_NODE_ARGS, True, True)
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "5000000", gas_price = 0)
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[vote_node]["address"], "1000", gas_price = 0)
 
@@ -631,9 +633,10 @@ class test_benefit_model_2(ParametrizedTestCase):
 			#先共识一次，确保节点都会在下一次共识分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
+			API.node().wait_gen_block()
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			
 			#交易
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
@@ -647,7 +650,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(Config.NODES[peer_node1]["address"])
 			self.BLOCK(process, "get balance error")
 			normal_ong2 = int(response["result"]["ong"])
@@ -685,7 +688,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			#先共识一次，确保节点都会在下一次共识分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			#交易
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
@@ -698,6 +701,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
+			API.node().wait_gen_block()
 			
 			(process, response) = API.rpc().getbalance(address)
 			self.BLOCK(process, "get balance error")
@@ -730,7 +734,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			#先共识一次，确保节点都会在下一次共识分红
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-			
+			API.node().wait_gen_block()
 			#交易
 			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[0]["address"], "1", gas_price = test_config.PRICE_TEST)
 
@@ -742,7 +746,7 @@ class test_benefit_model_2(ParametrizedTestCase):
 			candidate_ong = int(response["result"]["ong"])
 			(process, response) = API.native().commit_dpos(sleep = 0)
 			self.BLOCK(process, "commit_dpos error")
-
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getbalance(address)
 			self.BLOCK(process, "get balance error")
 			normal_ong2 = int(response["result"]["ong"])
