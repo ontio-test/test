@@ -209,6 +209,7 @@ class test_neo_api_1(ParametrizedTestCase):
 	def test_base_022_blockchainGetVersion(self):
 		# log_path = "22_blockchainGetVersion.log"
 		# task_name = "22_blockchainGetVersion"
+		self.test_init()
 		try:
 			(process, response) = test_api.invoke_func_with_1_param(test_config.CONTRACT_ADDRESS, test_config.GET_HEADER_VERSION_FUNC_NAME, test_config.PARAM_TYPE_INT, test_config.HEIGHT_CORRECT)
 			self.ASSERT(process, "")
@@ -683,6 +684,7 @@ class test_neo_api_1(ParametrizedTestCase):
 	def test_normal_087_getcontractDestroy(self):
 		# log_path = "87Getcontract_destroy.log"
 		# task_name = "87Getcontract_destroy"
+		self.test_init()
 		try:
 			(process, response) = test_api.invoke_func_with_0_param(test_config.CONTRACT_ADDRESS, test_config.GET_CONTRACT_DESTROY_FUNC_NAME)
 			result = str(API.rpc().getblockheightbytxhash(tx_hash=test_config.contract_tx_hash)[1]["result"])
@@ -1135,7 +1137,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "166getcontractMigrate.log"
 		# task_name = "166getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1144,7 +1146,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "167getcontractMigrate.log"
 		# task_name = "167getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_2, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_2, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1153,7 +1155,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "168getcontractMigrate.log"
 		# task_name = "168getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_INCORRECT_2, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_INCORRECT_2, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1162,7 +1164,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "169getcontractMigrate.log"
 		# task_name = "169getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, "", test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, "", test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1173,7 +1175,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		try:
 			self.test_init()
 
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1182,7 +1184,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "171getcontractMigrate.log"
 		# task_name = "171getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_2, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_2, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1191,7 +1193,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "172getcontractMigrate.log"
 		# task_name = "172getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_3, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_3, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1200,7 +1202,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "173getcontractMigrate.log"
 		# task_name = "173getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_4, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_4, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1209,7 +1211,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "174getcontractMigrate.log"
 		# task_name = "174getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_5, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_5, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1220,7 +1222,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		try:
 			self.test_init()
 
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1229,7 +1231,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "176getcontractMigrate.log"
 		# task_name = "176getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_2, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_2, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1238,7 +1240,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "177getcontractMigrate.log"
 		# task_name = "177getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_3, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_3, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1247,7 +1249,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "178getcontractMigrate.log"
 		# task_name = "178getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_4, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_4, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1256,7 +1258,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "179getcontractMigrate.log"
 		# task_name = "179getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_5, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_5, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1267,7 +1269,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		try:
 			self.test_init()
 
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1276,7 +1278,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "181getcontractMigrate.log"
 		# task_name = "181getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_2, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_2, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1285,7 +1287,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "182getcontractMigrate.log"
 		# task_name = "182getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_3, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_3, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1294,7 +1296,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "183getcontractMigrate.log"
 		# task_name = "183getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_4, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_4, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1303,7 +1305,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "184getcontractMigrate.log"
 		# task_name = "184getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_5, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_5, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1314,7 +1316,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		try:
 			self.test_init()
 
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1323,7 +1325,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "186getcontractMigrate.log"
 		# task_name = "186getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_2, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_2, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1332,7 +1334,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "187getcontractMigrate.log"
 		# task_name = "187getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_3, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_3, test_config.DESC_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1341,7 +1343,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "188getcontractMigrate.log"
 		# task_name = "188getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_4, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_4, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1350,7 +1352,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "189getcontractMigrate.log"
 		# task_name = "189getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_5, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_5, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1361,7 +1363,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		try:
 			self.test_init()
 
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_1)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1370,7 +1372,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "191getcontractMigrate.log"
 		# task_name = "191getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_2)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_2)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1379,7 +1381,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "192getcontractMigrate.log"
 		# task_name = "192getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_3)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_3)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1388,7 +1390,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "193getcontractMigrate.log"
 		# task_name = "193getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_4)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_4)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
@@ -1397,7 +1399,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		# log_path = "194getcontractMigrate.log"
 		# task_name = "194getcontractMigrate"
 		try:
-			(process, response) = test_api.invoke_contract_create(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_5)
+			(process, response) = test_api.invoke_contract_migrate(test_config.CONTRACT_ADDRESS, test_config.SCRIPT_HASH_CORRECT, test_config.NAME_1, test_config.VERSION_1, test_config.AUTHOR_1, test_config.EMAIL_1, test_config.DESC_5)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])

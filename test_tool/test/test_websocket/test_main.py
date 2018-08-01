@@ -812,7 +812,7 @@ class test_websocket_2(ParametrizedTestCase):
 			ws = WebSocket()
 			process=ws.exec(heartbeat_gap=320)
 			# (result, response) = API.ws().heartbeat()
-			self.ASSERT(process, "")
+			self.ASSERT(not process, "")
 		except Exception as e:
 			process=False
 

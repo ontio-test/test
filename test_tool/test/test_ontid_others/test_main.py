@@ -61,7 +61,7 @@ class test_ontid_others_1(ParametrizedTestCase):
 			(process, response) = getKeyState(test_config.tc001_ontid,"1",test_config.tc001_pubkey2,test_config.node_self,0,"in use")
 			if not process:
 				raise Error("failed")
-				self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Error as e:
 			logger.print(e.args[0])
 		except Exception as e2:

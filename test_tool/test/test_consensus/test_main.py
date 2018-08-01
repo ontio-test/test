@@ -468,7 +468,7 @@ class test_consensus_3(ParametrizedTestCase):
 		try:
 			(process, response) = test_api.transfer(test_config.m_contract_addr, Config.NODES[test_config.m_current_node]["address"], Config.NODES[1]["address"], test_config.AMOUNT, test_config.m_current_node)
 			self.ASSERT(process, "transfer error...")
-			
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getblockheightbytxhash(response["txhash"])
 			self.ASSERT(process, "not a valid block...")
 
