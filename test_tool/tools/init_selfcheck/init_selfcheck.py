@@ -386,7 +386,7 @@ class SelfCheck():
         self.check_abi()
 
         # check test service md5 value
-        self.check_test_service()
+        # self.check_test_service()
 
         # check wallets and config in resource
         self.check_self_wallets()
