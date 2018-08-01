@@ -713,6 +713,7 @@ class test_rpc_2(ParametrizedTestCase):
 			logger.print(e.args[0])
 
 	# can not test
+	'''
 	def test_abnormal_096_getmerkleproof(self):
 		try:
 			task = Task(testpath+"/resource/rpc/96_getmerkleproof.json")
@@ -720,6 +721,7 @@ class test_rpc_2(ParametrizedTestCase):
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
+	'''
 	
 	def test_abnormal_097_getmerkleproof(self):
 		try:

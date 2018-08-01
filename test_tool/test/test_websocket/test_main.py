@@ -29,7 +29,6 @@ from test_websocket.test_api import *
 
 
 class test_websocket_1(ParametrizedTestCase):
-
 	def test_init(self):
 		time.sleep(2)
 		print("stop all")
@@ -85,16 +84,6 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 	
-	'''
-	def test_abnormal_003_heartbeat(self):
-		try:
-			API.ws = WebSocket()
-			process=API.ws.exec(heartbeat_gap=320)
-			# (result, response) = API.ws().heartbeat()
-			self.ASSERT(process, "")
-		except Exception as e:
-			process=False
-	'''
 	def test_base_004_subscribe(self):
 		try:
 			(process, response) = API.ws().subscribe([test_config.CONTRACT_ADDRESS_CORRECT])
@@ -256,15 +245,15 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	# def test_abnormal_027_getconnectioncount(self):
-		# try:
-			# API.node().stop_node(0)
-			# (process, response) = API.ws().getconnectioncount()
-			# API.node().start_node(0, Config.DEFAULT_NODE_args)
-			# time.sleep(5)
-			# self.ASSERT(not process, "")
-		# except Exception as e:
-			# logger.print(e.args[0])
+	 def test_abnormal_027_getconnectioncount(self):
+		try:
+			API.node().stop_node(0)
+			(process, response) = API.ws().getconnectioncount()
+			API.node().start_node(0, Config.DEFAULT_NODE_args)
+			time.sleep(5)
+			self.ASSERT(not process, "")
+		except Exception as e:
+			logger.print(e.args[0])
 
 	def test_normal_028_getconnectioncount(self):
 		try:
@@ -808,7 +797,26 @@ class test_websocket_1(ParametrizedTestCase):
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-	
+
+class test_websocket_2(ParametrizedTestCase):
+	def setUp(self):
+		logger.open("test_websocket/" + self._testMethodName+".log",self._testMethodName)
+		if self._testMethodName == "test_init":
+			return 
+		
+	def tearDown(self):
+		logger.close(self.result())
+
+	def test_abnormal_003_heartbeat(self):
+		try:
+			API.ws = WebSocket()
+			process=API.ws.exec(heartbeat_gap=320)
+			# (result, response) = API.ws().heartbeat()
+			self.ASSERT(process, "")
+		except Exception as e:
+			process=False
+
+
 	'''
 	def test_107_getstorage(self):
 		log_path = "107_getstorage.log"
