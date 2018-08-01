@@ -1129,18 +1129,19 @@ class test_auth_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_normal_082_delegate(self):
+	def test_abnormal_082_delegate(self):
 		try:
 			init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.FUNCTION_A])
 			(process, response) = API.native().bind_user_role( test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ROLE_CORRECT, [test_config.ontID_A])
 			(process, response) = API.native().delegate_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ontID_B, test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT, node_index=0)
-			time.sleep(5)
+			API.node().wait_gen_block()
+			time.sleep(10)
 			(process, response) = API.native().delegate_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A, test_config.ontID_B, test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT, node_index=0)
 			if isinstance(response, dict) and response["result"]:
-				self.ASSERT(response["result"]["Result"] == "01", "")
+				self.ASSERT(response["result"]["Result"] == "00", "")
 			else:
-				self.ASSERT(False, "")
+				self.ASSERT(True, "")
 		except Exception as e:
 			logger.print(e.args[0])
 

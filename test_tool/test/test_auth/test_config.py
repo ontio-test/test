@@ -79,7 +79,7 @@ class test_config():
 	KEY_NO_2 = "abc"                                                             # wrong keyno
 	KEY_NO_3 = ""                                                                # null
 
-	PERIOD_CORRECT = "20"                                                        # correct period
+	PERIOD_CORRECT = "60"                                                        # correct period
 	PERIOD_INCORRECT_1 = "0"                                                     # period 0
 	PERIOD_INCORRECT_2 = "-1"                                                    # wrong period -1
 	PERIOD_INCORRECT_3 = "2.04"                                                  # wrong period 2.04

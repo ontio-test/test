@@ -116,20 +116,23 @@ class test_governance_api_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 	
-	def test_abnormal_010_registerCandidate(self):
+	def test_normal_010_registerCandidate(self):
 		try:
 			API.native().update_global_param("2000000000","10000","32","10","50","50","50","50")
 			API.node().wait_gen_block()
 			time.sleep(15)
 			(process, response) = invoke_function_register("registerCandidate",test_config.registerCandidate_pubKey_1,test_config.registerCandidate_walletAddress_1,test_config.registerCandidate_ontCount_2,test_config.registerCandidate_ontID_1,test_config.registerCandidate_user_1)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	
-	def test_abnormal_011_registerCandidate(self):
+	def test_normal_011_registerCandidate(self):
 		try:
+			API.native().update_global_param("2000000000","10000","32","10","50","50","50","50")
+			API.node().wait_gen_block()
+			time.sleep(15)
 			(process, response) = invoke_function_register("registerCandidate",test_config.registerCandidate_pubKey_1,test_config.registerCandidate_walletAddress_1,test_config.registerCandidate_ontCount_3,test_config.registerCandidate_ontID_1,test_config.registerCandidate_user_1)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	
@@ -1375,7 +1378,9 @@ class test_governance_api_11(ParametrizedTestCase):
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_3,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
+			# self.ASSERT(True, "")
 			logger.print(e.args[0])
+
 	def test_abnormal_138_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_4,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
@@ -1658,14 +1663,13 @@ class test_governance_api_13(ParametrizedTestCase):
 		logger.open( "test_governance_api/" +self._testMethodName + ".log",self._testMethodName)
 
 		init(candidate=True, register_ontid=True, restart=True, pub_key="1", ont_count="10000")
-		time.sleep(15)
 		(process, response) = invoke_function_register("registerCandidate", test_config.transferPenalty_pubKey_1,
 													   test_config.transferPenalty_walletAddress_pre,
 													   test_config.transferPenalty_ontCount_1,
 													   test_config.transferPenalty_ontID_1,
 													   test_config.transferPenalty_user_1, 0)
-		time.sleep(15)
 		(process, response) = invoke_function_node("blackNode", test_config.transferPenalty_pubKey_1, 0)
+		API.node().wait_gen_block()
 		time.sleep(15)
 
 	def tearDown(self):
@@ -1697,13 +1701,13 @@ class test_governance_api_13(ParametrizedTestCase):
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
+
 	def test_normal_178_transferPenalty(self):
 		try:
-			(process, response) = invoke_function_node("blackNode",test_config.transferPenalty_pubKey_1,0)
 			(process, response) = invoke_function_candidate("whiteNode",test_config.transferPenalty_pubKey_1, 0)
 			if process:
 				(process, response) = invoke_function_commitDpos(0)
-				(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_4,test_config.transferPenalty_walletAddress_1)
+				(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_1)
 
 
 			self.ASSERT(process, "")
