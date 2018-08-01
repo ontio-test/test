@@ -143,6 +143,14 @@ class test_config():
 
 			test_config.PARAM_TYPE_INT = "int"
 			test_config.PARAM_TYPE_BYTEARRAY = "bytearray"
+
+			test_config.CONTRACT_AVM = ""
+			with open(test_config.deploy_neo, 'r') as f:
+				for line in f.readlines():
+					test_config.CONTRACT_AVM += line
+
+			(test_config.CONTRACT_ADDRESS2, test_config.contract_tx_hash_tmp) = API.contract().deploy_contract_full(test_config.testpath + "/resource/neo_168.neo")
+			(test_config.CONTRACT_ADDRESS3, test_config.contract_tx_hash_tmp) = API.contract().deploy_contract_full(test_config.testpath + "/resource/neo_169.neo")
 		except Exception as e:
 			print("test config error: ", e.args)
 	
