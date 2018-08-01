@@ -1,63 +1,74 @@
 {
-	"RPC_URL": "http://139.219.133.116:20336/jsonrpc",
+	"RPC_URL": "http://139.219.128.177:20336/jsonrpc",
 	"CLIRPC_URL": "http://127.0.0.1:20000/cli",
-	"RESTFUL_URL": "http://139.219.133.116:20334",
-	"WS_URL": "ws://139.219.133.116:20335",
+	"RESTFUL_URL": "http://139.219.128.177:20334",
+	"WS_URL": "ws://139.219.128.177:20335",
 	"NODES": [{
-		"ip": "139.219.133.116",
-		"ontid": "did:ont:AS9S7j6VWUgg3sX89pok6KHeYU9DenKwbS",
-		"address": "AS9S7j6VWUgg3sX89pok6KHeYU9DenKwbS",
-		"pubkey": "02bdbb76d134c06cb0af54ac39789b7f826bf6b8ebfd27b7ff58a48dacabbaf00e"
+		"ip": "139.219.128.177",
+		"wallet" : "wallet00.dat"
 	},
 	{
-		"ip": "139.219.138.114",
-		"ontid": "did:ont:AMjExWrNSNyPjEct7ryp2LPSz5WbGpaYtG",
-		"address": "AMjExWrNSNyPjEct7ryp2LPSz5WbGpaYtG",
-		"pubkey": "03f46fbc68f533e2d6c8eca9c7275e7623b114700263b12db195d2f9986f1abbd1"
+		"ip": "139.219.141.110",
+		"wallet" : "wallet01.dat"
 	},
 	{
-		"ip": "139.219.140.190",
-		"ontid": "did:ont:AQDspn6obAELKbXHpyUJMXbqxJTxwEwTSN",
-		"address": "AQDspn6obAELKbXHpyUJMXbqxJTxwEwTSN",
-		"pubkey": "03c8dec6ab022208129e8aeed74127deba685322b864faca1433eb7ee78f3e6105"
+		"ip": "139.219.141.33",
+		"wallet" : "wallet02.dat"
 	},
 	{
-		"ip": "139.219.141.104",
-		"ontid": "did:ont:AQ6GXgXt8iTBoEU6BZzPn1JhEWKRoRPJ1S",
-		"address": "AQ6GXgXt8iTBoEU6BZzPn1JhEWKRoRPJ1S",
-		"pubkey": "02d16867ede1ac7ce49b4870434049185c061a7cf2adc96577e575facaaf22f2ee"
+		"ip": "139.219.136.233",
+		"wallet" : "wallet03.dat"
 	},
 	{
-		"ip": "139.219.135.92",
-		"ontid": "did:ont:AHh5AKF33XQ8FMTg5jFyeiGmHT9Sn3e1yQ",
-		"address": "AHh5AKF33XQ8FMTg5jFyeiGmHT9Sn3e1yQ",
-		"pubkey": "0302f3d221519a80948b454b55476465465deb29c7fe4c2af932d96e6225199694"
+		"ip": "139.219.129.234",
+		"wallet" : "wallet04.dat"
 	},
 	{
-		"ip": "139.219.136.15",
-		"ontid": "did:ont:ATjtdE7NCy4WECM8hZFdYadH65BbhQZdv1",
-		"address": "ATjtdE7NCy4WECM8hZFdYadH65BbhQZdv1",
-		"pubkey": "02e89f4262226956fb14a40db5534c693e64d85813e18b6f34a8dd2d52f4ba07b3"
+		"ip": "139.219.129.166",
+		"wallet" : "wallet05.dat"
 	},
 	{
-		"ip": "139.219.128.181",
-		"ontid": "did:ont:AK8zAwnzoWDvuFA8PzHgz7Mo2AkiaFQSQc",
-		"address": "AK8zAwnzoWDvuFA8PzHgz7Mo2AkiaFQSQc",
-		"pubkey": "03e1c39128f760f3e6282ea99e08f874b5d30e823468a1788103d7a21f5b02d249"
+		"ip": "139.219.137.201",
+		"wallet" : "wallet06.dat"
 	},
 	{
-		"ip": "139.219.143.101",
-		"ontid": "did:ont:AULa695Q2z3o6PBEiqSziVupULQuSp2PPT",
-		"address": "AULa695Q2z3o6PBEiqSziVupULQuSp2PPT",
-		"pubkey": "02a44df2151aab96b1f2a1dc2865f1b9088f66926430ad9fd8b30d4ab0b9e73f29"
+		"ip" : "139.219.136.33",
+		"wallet" : "wallet07.dat"
 	},
 	{
-		"ip": "139.219.141.196",
-		"ontid": "did:ont:AcDDvYTkCahZMrfcu2cSBsMAs8G7Wq7T2a",
-		"address": "AcDDvYTkCahZMrfcu2cSBsMAs8G7Wq7T2a",
-		"pubkey": "0229a8d473f091e7bb0fe309f88810c52b699dc6e4636b3b882643f199434aff89"
+		"ip" : "139.219.134.70",
+		"wallet" : "wallet08.dat"
+	},
+	{
+		"ip" : "139.219.129.124",
+		"wallet" : "wallet09.dat"
+	},
+	{
+		"ip" : "139.219.128.249",
+		"wallet" : "wallet10.dat"
+	},
+	{
+		"ip" : "139.219.131.138",
+		"wallet" : "wallet11.dat"
+	},
+	{
+		"ip" : "139.219.142.130",
+		"wallet" : "wallet12.dat"
+	},
+	{
+		"ip" : "139.219.129.127",
+		"wallet" : "wallet13.dat"
+	},
+	{
+		"ip" : "139.219.141.196",
+		"wallet" : "wallet14.dat"
+	},
+	{
+		"ip" : "139.219.143.101",
+		"wallet" : "wallet15.dat"
 	}],
-	"ROOT_PATH": "/home/ubuntu/ontology/test",
-	"MULTI_SIGNED_ADDRESS" : "AWrgK1Yeq9RwmaH4hPxmfyz2PsCaeUjDNH",
-	"INIT_AMOUNT_ONG" : "10000000000000"
+	"MULTI_SIGNED_ADDRESS" : "AJroHBLRsfPTPQocSKjpADp4AKybg8GZuz",
+	"INIT_AMOUNT_ONG" : "1000000000000000",
+	"DEFAULT_NODE_ARGS" : "--ws --rest --loglevel=0 --enableconsensus --networkid=299  --gasprice=0 --gaslimit=20000 ",
+	"NODE_PATH" : "/home/ubuntu/ontology/node"
 }

@@ -385,15 +385,15 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 	
-	# def test_normal_048_getblockheight(self):
-		# try:
-			# API.node().stop_nodes([0, 1, 2, 3, 4, 5, 6])
-			# start_nodes([0, 1, 2, 3, 4, 5, 6], Config.DEFAULT_NODE_args)
-			# time.sleep(10)
-			# (process, response) = API.ws().getblockheight()
-			# self.ASSERT(process, "")
-		# except Exception as e:
-			# logger.print(e.args[0])
+	def test_normal_048_getblockheight(self):
+		try:
+			API.node().stop_nodes([0, 1, 2, 3, 4, 5, 6])
+			API.node().start_nodes([0, 1, 2, 3, 4, 5, 6], Config.DEFAULT_NODE_ARGS)
+			time.sleep(10)
+			(process, response) = API.ws().getblockheight()
+			self.ASSERT(process, "")
+		except Exception as e:
+			logger.print(e.args[0])
 	
 	def test_base_049_getblockhashbyheight(self):
 		try:
@@ -799,15 +799,15 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	# def test_abnormal_106_getsessioncount(self):
-		# try:
-			# API.node().stop_node(0)
-			# (process, response) = API.ws().getsessioncount()
-			# API.node().start_node(0, Config.DEFAULT_NODE_args)
-			# time.sleep(5)
-			# self.ASSERT(not process, "")
-		# except Exception as e:
-			# logger.print(e.args[0])
+	def test_abnormal_106_getsessioncount(self):
+		try:
+			API.node().stop_node(0)
+			(process, response) = API.ws().getsessioncount()
+			API.node().start_node(0, Config.DEFAULT_NODE_ARGS)
+			time.sleep(5)
+			self.ASSERT(not process, "")
+		except Exception as e:
+			logger.print(e.args[0])
 	
 	'''
 	def test_107_getstorage(self):

@@ -661,7 +661,7 @@ class test_governance_api_7(ParametrizedTestCase):
 	def test_abnormal_054_VoteForPeer(self):
 		try:
 			(process, response) = invoke_function_vote("voteForPeer",test_config.voteForPeer_walletAddress_1,test_config.voteForPeer_voteList_3,test_config.voteForPeer_voteList_2_count,node_index=test_config.voteForPeer_walletNode_1)
-			self.ASSERT(process, "")
+			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 
@@ -961,7 +961,7 @@ class test_governance_api_9(ParametrizedTestCase):
 	def test_normal_083_withdraw(self):
 		try:
 			(process, response) = invoke_function_vote("withdraw",test_config.withdraw_walletAddress_1,test_config.withdraw_voteList_1,test_config.withdraw_voteCount_1,node_index=test_config.withdraw_walletNode_1)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	

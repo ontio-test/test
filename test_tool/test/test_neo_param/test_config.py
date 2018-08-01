@@ -27,7 +27,8 @@ from api.apimanager import API
 
 
 class test_config():
-	deploy_neo="resource/A.neo"
+	test_path = os.path.dirname(os.path.realpath(__file__))
+	deploy_neo=test_path+"/resource/A.neo"
 	name="test"
 	desc="test name"
 	m_contract_address= ""
