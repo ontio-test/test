@@ -24,7 +24,7 @@ from test_cost.test_config import test_config
 #test cases
 class test_cost(ParametrizedTestCase):
 	def setUp(self):
-		logger.open("test_auth/" + self._testMethodName+".log",self._testMethodName)
+		logger.open("test_cost/" + self._testMethodName+".log",self._testMethodName)
 		
 	def tearDown(self):
 		logger.close(self.result())
