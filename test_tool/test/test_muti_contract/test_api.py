@@ -31,6 +31,7 @@ class test_api:
         contract_address = None
         
         contract_address = API.contract().deploy_contract(neo_path)
+        time.sleep(5)
 
         (result, response) = API.contract().init_admin(contract_address, Config.ontID_A)
         if not result:
@@ -57,6 +58,7 @@ class test_api:
 
         # 部署智能合约A
         contract_address_A = API.contract().deploy_contract(neo_path_a)
+        time.sleep(5)
 
         (result, response) = API.contract().init_admin(contract_address_B, Config.ontID_A)
         if not result:
@@ -81,6 +83,7 @@ class test_api:
     def set_premise_b(neo_path):
         result = False
         contract_address = API.contract().deploy_contract(neo_path)
+        time.sleep(5)
 
         (result, response) = API.contract().init_admin(contract_address, Config.ontID_A)
         if not result:
@@ -110,6 +113,7 @@ class test_api:
 
         # 部署智能合约A
         contract_address_A = API.contract().deploy_contract(neo_path_a)
+        time.sleep(5)
 
         (result, response) = API.contract().init_admin(contract_address_A, Config.ontID_A)
         if not result:

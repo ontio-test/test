@@ -249,7 +249,7 @@ class test_websocket_1(ParametrizedTestCase):
 		try:
 			API.node().stop_node(0)
 			(process, response) = API.ws().getconnectioncount()
-			API.node().start_node(0, Config.DEFAULT_NODE_args)
+			API.node().start_node(0, Config.DEFAULT_NODE_ARGS)
 			time.sleep(5)
 			self.ASSERT(not process, "")
 		except Exception as e:
