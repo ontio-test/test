@@ -1840,7 +1840,7 @@ class test_auth_1(ParametrizedTestCase):
 			# init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
 			(process, response) = invoke_function(test_config.CONTRACT_ADDRESS_139, "contractA_Func_A", test_config.ontID_A)
 			if isinstance(response, dict) and response["result"]:
-				self.ASSERT(response["result"]["Result"] == "01", "")
+				self.ASSERT(response["result"]["Result"] == "323232", "")
 			else:
 				self.ASSERT(True, "")
 		except Exception as e:

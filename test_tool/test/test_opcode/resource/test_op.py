@@ -225,6 +225,7 @@ def PushN(n):
 def Nop():
     if True:
         pass
+    return 1
 
 # JMPIF
 def Jmpif(a, b):
@@ -244,15 +245,13 @@ def Jmpifnot(a, b):
 
 # CALL
 def Call():
-    p()
+    return p()
 
 def p():
-    print("hello")
     return 1
 
 # SYSCALL
 def Syscall():
-    print("hello")
     return 1
 
 # TOALTSTACK

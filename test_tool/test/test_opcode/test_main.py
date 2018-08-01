@@ -34,7 +34,6 @@ class TestOpCode(ParametrizedTestCase):
 
     def setUp(self):
         logger.open("test_opcode/" + self._testMethodName+".log",self._testMethodName)
-        self.test_init()
 
     def tearDown(self):
         logger.close(self.result())
@@ -91,6 +90,7 @@ class TestOpCode(ParametrizedTestCase):
     def test_normal_008_Jmpif(self):
         try:
             (process, response) = invoke_function_opCode(test_config.contract_address,"Jmpif",test_config.param_1,test_config.param_2)
+            self.ASSERT(process, "")
         except Exception as e:
             logger.print(e.args[0])
 

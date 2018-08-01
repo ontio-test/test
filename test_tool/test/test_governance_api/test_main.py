@@ -120,6 +120,7 @@ class test_governance_api_1(ParametrizedTestCase):
 		try:
 			API.native().update_global_param("2000000000","10000","32","10","50","50","50","50")
 			API.node().wait_gen_block()
+			time.sleep(15)
 			(process, response) = invoke_function_register("registerCandidate",test_config.registerCandidate_pubKey_1,test_config.registerCandidate_walletAddress_1,test_config.registerCandidate_ontCount_2,test_config.registerCandidate_ontID_1,test_config.registerCandidate_user_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
@@ -405,7 +406,7 @@ class test_governance_api_4(ParametrizedTestCase):
 	def test_abormal_035_blackNode(self):
 		try:
 			(process, response) = invoke_function_node("blackNode",test_config.blackNode_pubKey_6)
-			self.ASSERT(process, "")
+			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 
@@ -1043,6 +1044,8 @@ class test_governance_api_9(ParametrizedTestCase):
 
 
 class test_governance_api_10(ParametrizedTestCase):
+	def test_init(self):
+		init(candidate=True, register_ontid=True, restart=True, pub_key="1", ont_count="10000")
 	def setUp(self):
 		if self._testMethodName == "test_init":
 			return
@@ -1637,6 +1640,7 @@ class test_governance_api_12(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
+
 	def test_abnormal_174_updateSplitCurve(self):
 		try:
 			(process, response) = invoke_function_SplitCurve("updateSplitCurve",test_config.updateSplitCurve_array_4)
@@ -1647,21 +1651,22 @@ class test_governance_api_12(ParametrizedTestCase):
 
 
 class test_governance_api_13(ParametrizedTestCase):
-	def test_init(self):
-		#restart all node
-		if self._testMethodName == "test_init":
-			return
-		init( candidate=True, register_ontid=True, restart=True, pub_key="1", ont_count="10000")
-		time.sleep(15)
-		(process, response) = invoke_function_register("registerCandidate",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_pre,test_config.transferPenalty_ontCount_1,test_config.transferPenalty_ontID_1,test_config.transferPenalty_user_1,0)
-		time.sleep(15)
-		(process, response) = invoke_function_node("blackNode",test_config.transferPenalty_pubKey_1,0)
-		time.sleep(15)
 		
 	def setUp(self):
 		if self._testMethodName == "test_init":
 			return
 		logger.open( "test_governance_api/" +self._testMethodName + ".log",self._testMethodName)
+
+		init(candidate=True, register_ontid=True, restart=True, pub_key="1", ont_count="10000")
+		time.sleep(15)
+		(process, response) = invoke_function_register("registerCandidate", test_config.transferPenalty_pubKey_1,
+													   test_config.transferPenalty_walletAddress_pre,
+													   test_config.transferPenalty_ontCount_1,
+													   test_config.transferPenalty_ontID_1,
+													   test_config.transferPenalty_user_1, 0)
+		time.sleep(15)
+		(process, response) = invoke_function_node("blackNode", test_config.transferPenalty_pubKey_1, 0)
+		time.sleep(15)
 
 	def tearDown(self):
 		logger.close(self.result())
@@ -1749,6 +1754,7 @@ class test_governance_api_13(ParametrizedTestCase):
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
+			self.ASSERT(True, "")
 	
 	def test_abnormal_184_transferPenalty(self):
 		try:
@@ -1758,6 +1764,7 @@ class test_governance_api_13(ParametrizedTestCase):
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
+			self.ASSERT(True, "")
 			
 ####################################################
 if __name__ == '__main__':
