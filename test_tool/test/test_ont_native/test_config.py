@@ -48,10 +48,10 @@ class test_config():
 		
 
 			
-		amount1= "10"  #amount_正确的数�?0_正常
-		amount2= "0"  #amount_正确的数�?_正常
+		amount1= "10"  #amount_正确的数�?0_正常
+		amount2= "0"  #amount_正确的数�?_正常
 		amount3= "-1"  #amount_错误的数量（-1）_异常
-		amount4= "20000000000000000"  #amount_错误的数量（from账户不存在这么多数量的ont）_异常
+		amount4= "2000000000"  #amount_错误的数量（from账户不存在这么多数量的ont）_异常
 		amount5= "abc"  #amount_错误的数量（abc）_异常
 		amount6= ""  #amount_错误的数量（留空）_异常
 		from4= from2  #from_错误的from值_异常
@@ -80,7 +80,7 @@ class test_config():
 		from6= "ASK6GGsZfPf8WfSYhWUhw7SaZxnZ111111"  #from_错误的from值（账户不存在）_异常
 		to4= to1  #to_正确的to值（账户存在）_正常
 		to5= from6  #to_错误的to值（账户不存在）_异常
-		amount7= "10"  #amount_正确的数�?0_异常
+		amount7= "10"  #amount_正确的数�?0_异常
 		address1= from1  #address_正确的address值_正常
 		address2= from2  #address_错误的address值_异常
 		address3= ""  #address_留空_异常

@@ -325,7 +325,7 @@ class test_ont_native_1(ParametrizedTestCase):
 			(process, response) = approve1(test_config.contract_address,test_config.pay_address,test_config.get_address, test_config.amount,test_config.node_index,0)
 			if process:
 				API.node().wait_gen_block()
-				time.sleep(5)
+				time.sleep(8)
 			(process, response) = transferFrom(test_config.contract_address,test_config.sender,test_config.pay_address,test_config.get_address, test_config.amount1,test_config.sender_node,test_config.senderType,0)
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -704,7 +704,7 @@ class test_ont_native_1(ParametrizedTestCase):
 			(process, response) = approve1(test_config.contract_address,test_config.pay_address,test_config.get_address, test_config.amount,test_config.node_index,0)
 			if process:
 				API.node().wait_gen_block()
-				time.sleep(5)
+				time.sleep(8)
 			(process, response) = transferFrom1(test_config.contract_address,test_config.sender2,test_config.pay_address,test_config.get_address, test_config.amount,test_config.sender2_node,test_config.sender2Type,0)
 			self.ASSERT(process, "")
 		except Exception as e:
