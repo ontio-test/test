@@ -245,7 +245,7 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	 def test_abnormal_027_getconnectioncount(self):
+	def test_abnormal_027_getconnectioncount(self):
 		try:
 			API.node().stop_node(0)
 			(process, response) = API.ws().getconnectioncount()
@@ -809,8 +809,8 @@ class test_websocket_2(ParametrizedTestCase):
 
 	def test_abnormal_003_heartbeat(self):
 		try:
-			API.ws = WebSocket()
-			process=API.ws.exec(heartbeat_gap=320)
+			ws = WebSocket()
+			process=ws.exec(heartbeat_gap=320)
 			# (result, response) = API.ws().heartbeat()
 			self.ASSERT(process, "")
 		except Exception as e:
