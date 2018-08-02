@@ -138,7 +138,7 @@ class test_api:
 		return CONTRACT_API.call_multisig_contract(Task(name="multi_sig_transfer", ijson=request), m, pubkey_array)
 
 	@staticmethod
-	def add_candidate_node(new_node, init_ont = 100000, init_ong = 1000, init_pos = 10000, from_node = 0):
+	def add_candidate_node(new_node, init_ont = 100000, init_ong = 1000000000000, init_pos = 10000, from_node = 0):
 		#新加入节点, 并申请候选节点
 		API.node().start_nodes([new_node], clear_chain = True, clear_log = True)
 		API.native().regid_with_publickey(new_node)

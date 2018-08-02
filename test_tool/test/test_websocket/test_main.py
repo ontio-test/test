@@ -31,14 +31,16 @@ from test_websocket.test_api import *
 class test_websocket_1(ParametrizedTestCase):
 	def test_init(self):
 		time.sleep(2)
+		
 		print("stop all")
 		API.node().stop_all_nodes()
 		print("start all")
 		API.node().start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
 		time.sleep(60)
 		print("waiting for 60s......")
-
+		
 		(test_config.contract_addr, test_config.contract_tx_hash) = API.contract().deploy_contract_full(testpath+"/resource/test.neo")
+		API.node().wait_gen_block()
 		test_config.CONTRACT_ADDRESS_CORRECT = test_config.contract_addr
 		test_config.CONTRACT_ADDRESS_INCORRECT_2 = test_config.contract_addr + "11"
 		test_config.TX_HASH_CORRECT = test_config.contract_tx_hash

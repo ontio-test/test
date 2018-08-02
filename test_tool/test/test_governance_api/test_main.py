@@ -1049,6 +1049,7 @@ class test_governance_api_9(ParametrizedTestCase):
 class test_governance_api_10(ParametrizedTestCase):
 	def test_init(self):
 		init(candidate=True, register_ontid=True, restart=True, pub_key="1", ont_count="10000")
+		#pass
 	def setUp(self):
 		if self._testMethodName == "test_init":
 			return
@@ -1184,6 +1185,9 @@ class test_governance_api_10(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
+    
+    
+
     
 	def test_normal_112_updateConfig(self):
 		try:
@@ -1380,11 +1384,11 @@ class test_governance_api_11(ParametrizedTestCase):
 		except Exception as e:
 			# self.ASSERT(True, "")
 			logger.print(e.args[0])
-
-	def test_abnormal_138_updateGlobalParam(self):
+	
+	def test_normal_138_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_4,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	
@@ -1409,20 +1413,20 @@ class test_governance_api_11(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_abnormal_142_updateGlobalParam(self):
+	def test_normal_142_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_3,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	
 	def test_abnormal_143_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_4,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	
 	def test_abnormal_144_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_5,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
@@ -1596,14 +1600,14 @@ class test_governance_api_11(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
-	def test_abnormal_169_updateGlobalParam(self):
+	
+	def test_normal_169_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_2,test_config.updateGlobalParam_param7_3)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	
 	def test_abnormal_170_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_3,test_config.updateGlobalParam_param7_4)
@@ -1661,33 +1665,59 @@ class test_governance_api_13(ParametrizedTestCase):
 		if self._testMethodName == "test_init":
 			return
 		logger.open( "test_governance_api/" +self._testMethodName + ".log",self._testMethodName)
-
 		init(candidate=True, register_ontid=True, restart=True, pub_key="1", ont_count="10000")
 		(process, response) = invoke_function_register("registerCandidate", test_config.transferPenalty_pubKey_1,
 													   test_config.transferPenalty_walletAddress_pre,
 													   test_config.transferPenalty_ontCount_1,
 													   test_config.transferPenalty_ontID_1,
 													   test_config.transferPenalty_user_1, 0)
+		API.node().wait_gen_block()
 		(process, response) = invoke_function_node("blackNode", test_config.transferPenalty_pubKey_1, 0)
 		API.node().wait_gen_block()
-		time.sleep(15)
+		#time.sleep(15)
 
 	def tearDown(self):
 		logger.close(self.result())
 		
 	def test_base_175_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_1)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	
 	def test_abnormal_176_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_2,test_config.transferPenalty_walletAddress_1)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(not process, "")
 		except Exception as e:
@@ -1695,19 +1725,46 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_abnormal_177_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_3,test_config.transferPenalty_walletAddress_1)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	
 	def test_normal_178_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_candidate("whiteNode",test_config.transferPenalty_pubKey_1, 0)
+			API.node().wait_gen_block()
+			time.sleep(5)
 			if process:
 				(process, response) = invoke_function_commitDpos(0)
 				(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_1)
+				if process:
+					(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+					ontAdd=int(response1["result"]["ont"])-int(ont)
+					if ontAdd>0:
+						process=True
+					else:
+						process=False
 
 
 			self.ASSERT(process, "")
@@ -1716,7 +1773,21 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_abnormal_179_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_5,test_config.transferPenalty_walletAddress_1)
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 
 			self.ASSERT(not process, "")
@@ -1725,17 +1796,43 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_abnormal_180_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_6,test_config.transferPenalty_walletAddress_1)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	
 	def test_normal_181_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_1)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1743,8 +1840,22 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_normal_182_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_2)
-	
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
+
 
 			self.ASSERT(process, "")
 		except Exception as e:
@@ -1752,8 +1863,21 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_abnormal_183_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_3)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(not process, "")
 		except Exception as e:
@@ -1762,8 +1886,21 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_abnormal_184_transferPenalty(self):
 		try:
+			API.native().commit_dpos()
+			API.node().wait_gen_block()
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			ong=response["result"]["ong"]
+			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_4)
-
+			API.node().wait_gen_block()
+			time.sleep(5)
+			if process:
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				ontAdd=int(response1["result"]["ont"])-int(ont)
+				if ontAdd>0:
+					process=True
+				else:
+					process=False
 
 			self.ASSERT(not process, "")
 		except Exception as e:

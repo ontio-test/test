@@ -39,6 +39,16 @@ class test_consensus_1(ParametrizedTestCase):
 		logger.close(self.result())
 	
 	def test_base_001_consensus(self):
+		storage_key = ByteToHex(b'Test Key 02')
+		storage_value = ByteToHex(b'Test Value 02')
+		for i in range(10):
+			print("test put---------------------", i)
+			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
+			API.node().wait_gen_block()
+			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
+			API.node().wait_gen_block()
+		return
+
 		process = False
 		try:
 			(process, response) = test_api.transfer(test_config.m_contract_addr, Config.NODES[test_config.m_current_node]["address"], Config.NODES[1]["address"], test_config.AMOUNT, test_config.m_current_node)
@@ -425,7 +435,7 @@ class test_consensus_2(ParametrizedTestCase):
 				for j in range(10):
 					(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
 					self.ASSERT(process, "invoke_function put error...")
-					time.sleep(10)
+					API.node().wait_gen_block()
 						
 		except Exception as e:
 			logger.print(e.args[0])

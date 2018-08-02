@@ -198,7 +198,7 @@ class test_config():
 	updateConfig_param0_6 = "-1" #-1
 	updateConfig_param1_1 = "2" #Ŀǰ�ڵ�������ֵ/3
 	updateConfig_param1_2 = "1" #С��Ŀǰ�ڵ�����/3��ֵ
-	updateConfig_param1_3 = "3" #����Ŀǰ�ڵ�����/3��ֵ
+	updateConfig_param1_3 = "4" #����Ŀǰ�ڵ�����/3��ֵ
 	updateConfig_param1_4 = "0" #0
 	updateConfig_param1_5 = "-1" #-1
 	updateConfig_param2_1 = "7" #7
@@ -207,7 +207,7 @@ class test_config():
 	updateConfig_param2_4 = "7" #����Ŀǰ��ʶ�ڵ�����
 	updateConfig_param3_1 = "112" #Ŀǰ��ʶ�ڵ�����*16��ֵ
 	updateConfig_param3_2 = "111" #С��Ŀǰ��ʶ�ڵ�����*16��ֵ
-	updateConfig_param3_3 = "113" #����Ŀǰ��ʶ�ڵ�����*16��ֵ
+	updateConfig_param3_3 = "119" #����Ŀǰ��ʶ�ڵ�����*16��ֵ
 	updateConfig_param3_4 = "2147483646" #2147483646
 	updateConfig_param3_5 = "4294967296" #4294967296
 	updateConfig_param3_6 = "-1" #-1
