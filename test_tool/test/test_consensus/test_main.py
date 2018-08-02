@@ -242,7 +242,7 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_normal_024_consensus(self):
 		try:
-			test_api.init()
+			# test_api.init()
 			m = 4
 			pubkey_array = [test_config.PUBLIC_KEY_2, test_config.PUBLIC_KEY_3, test_config.PUBLIC_KEY_4, test_config.PUBLIC_KEY_5]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_A, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=0)

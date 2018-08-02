@@ -28,17 +28,18 @@ CONTRACT_API = API.contract()
 class test_api:
 	@staticmethod
 	def init():
+		
 		API.node().stop_all_nodes()
 		API.node().start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
 		for index in range(7):
-			API.native().regid_with_publickey(index)
+			API.native().regid_with_publickey(index, sleep=1)
 		
 		API.native().init_ont_ong()
 		time.sleep(10)
 		
 		(test_config.m_contract_addr, test_config.m_contract_txhash) = API.contract().deploy_contract_full(test_config.deploy_neo_1, test_config.name1, test_config.desc, test_config.price)
 		(test_config.m_contract_addr2, test_config.m_contract_txhash2) = API.contract().deploy_contract_full(test_config.deploy_neo_2, test_config.name2, test_config.desc2, test_config.price)
-		time.sleep(10)
+		API.node().wait_gen_block()
 		
 		#A节点是Admin节点
 		(process, response) = API.contract().init_admin(test_config.m_contract_addr, Config.ontID_A)
@@ -110,6 +111,10 @@ class test_api:
 						{
 							"type": "string",
 							"value": "transfer"
+						},
+						{	
+							"type" : "string",
+							"value" : ""
 						},
 						{
 							"type": "array",
