@@ -230,13 +230,25 @@ class ContractApi:
 
     def call_multisig_contract(self, task, m, pubkeyArray, sleep = 5):
         taskdata = task.data()
+        expect_signresponse = None
+        if "SIGN_RESPONSE" in taskdata:
+            expect_signresponse = taskdata["SIGN_RESPONSE"]
 
         (result, response) = self.sign_transction(task)#Task(name="multi", ijson=request))
         if not result:
             logger.error("call_multisig_contract.sign_transction error!")
             return (result, response)
-        signed_tx = response["result"]["signed_tx"]
         
+        if expect_signresponse != None:             
+            result = Common.cmp(expect_signresponse, response)
+            if result and "error_code" in response and int(response["error_code"]) != 0:
+                return (result, response) 
+
+            if not result:
+                raise Error("not except sign result")
+
+        signed_tx = response["result"]["signed_tx"]
+
         #print(request1)
         execNum=0
         signed_raw=signed_tx

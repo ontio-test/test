@@ -39,21 +39,11 @@ class test_consensus_1(ParametrizedTestCase):
 		logger.close(self.result())
 	
 	def test_base_001_consensus(self):
-		storage_key = ByteToHex(b'Test Key 02')
-		storage_value = ByteToHex(b'Test Value 02')
-		for i in range(10):
-			print("test put---------------------", i)
-			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
-			API.node().wait_gen_block()
-			(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
-			API.node().wait_gen_block()
-		return
-
 		process = False
 		try:
 			(process, response) = test_api.transfer(test_config.m_contract_addr, Config.NODES[test_config.m_current_node]["address"], Config.NODES[1]["address"], test_config.AMOUNT, test_config.m_current_node)
 			self.ASSERT(process, "transfer error...")
-	
+			API.node().wait_gen_block()
 			(process, response) = API.rpc().getblockheightbytxhash(response["txhash"])
 			self.ASSERT(process, "not a valid block...")
 		except Exception as e:
@@ -370,8 +360,11 @@ class test_consensus_2(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 10')
 			for i in range(1, 4):
 				self.init_bft_node(i)
-				time.sleep(30)
-				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
+				API.node().wait_gen_block()
+				time.sleep(5)
+				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node, sleep = 0)
+				API.node().wait_gen_block()
+				time.sleep(5)
 				self.ASSERT(process, "invoke_function error...")
 
 				(process, response) = API.rpc().getblockheightbytxhash(response["txhash"])
@@ -388,10 +381,13 @@ class test_consensus_2(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 11')
 			for i in range(1, 4):
 				self.init_bft_node(i)
-				time.sleep(30)
-				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node)
+				API.node().wait_gen_block()
+				time.sleep(5)
+				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "put", "", "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], node_index = test_config.m_current_node, sleep = 0)
 				self.ASSERT(process, "invoke_function put error...")
-				
+				API.node().wait_gen_block()
+				time.sleep(5)
+
 				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", "", "1", argvs = [{"type": "bytearray","value": storage_key}], node_index = test_config.m_current_node)
 				self.ASSERT(process, "invoke_function error...[1]")
 				self.ASSERT(response["result"]["Result"] == storage_value, "invoke_function error...[2]")
@@ -406,18 +402,21 @@ class test_consensus_2(ParametrizedTestCase):
 			storage_value = ByteToHex(b'Test Value 12')
 			for i in range(1, 4):
 				self.init_bft_node(i)
-				time.sleep(30)
-				
+				API.node().wait_gen_block()
+				time.sleep(5)
 				#A节点是Admin节点
-				(process, response) = API.contract().init_admin(test_config.m_contract_addr, Config.ontID_A)
+				(process, response) = API.contract().init_admin(test_config.m_contract_addr, Config.ontID_A, sleep = 0)
 				self.ASSERT(process, "init_admin error...")
-					
-				(process, response) = API.native().bind_role_function(test_config.m_contract_addr, Config.ontID_A, Config.roleA_hex, ["auth_put"])
+				API.node().wait_gen_block()
+				time.sleep(2)
+				(process, response) = API.native().bind_role_function(test_config.m_contract_addr, Config.ontID_A, Config.roleA_hex, ["auth_put"], sleep = 0)
 				self.ASSERT(process, "bind_role_function error...")
-				
-				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "auth_put", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}])
+				API.node().wait_gen_block()
+				time.sleep(2)
+				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "auth_put", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key},{"type": "bytearray","value": storage_value}], sleep = 0)
 				self.ASSERT(process, "invoke_function put error...")
-				
+				API.node().wait_gen_block()
+				time.sleep(2)
 				(process, response) = API.contract().invoke_function(test_config.m_contract_addr, "get", Config.ontID_B, "1", argvs = [{"type": "bytearray","value": storage_key}])
 				self.ASSERT(response["result"]["Result"] == '', "invoke_function get error...")
 

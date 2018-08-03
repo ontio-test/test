@@ -1490,7 +1490,7 @@ class test_muti_contract(ParametrizedTestCase):
 		except Exception as e2:
 			logger.print(e2.args[0])
 
-	def test_abnormal_045_mutiContract(self):
+	def test_normal_045_mutiContract(self):
 		try:
 			process = False
 
@@ -1499,7 +1499,7 @@ class test_muti_contract(ParametrizedTestCase):
 			# 用户A调用智能合约A中的A方法
 			(process, response) = API.contract().invoke_function(contract_addressA, "A", Config.ontID_A)		
 				
-			process = (not process or response["result"]["Result"] == "00")		
+			#process = (process or response["result"]["Result"] == "00")		
 			
 			self.ASSERT(process, "")
 		except Error as e:

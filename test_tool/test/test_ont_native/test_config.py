@@ -51,7 +51,7 @@ class test_config():
 		amount1= "10"  #amount_正确的数�?0_正常
 		amount2= "0"  #amount_正确的数�?_正常
 		amount3= "-1"  #amount_错误的数量（-1）_异常
-		amount4= "200000000"  #amount_错误的数量（from账户不存在这么多数量的ont）_异常
+		amount4= "20000000"  #amount_错误的数量（from账户不存在这么多数量的ont）_异常
 		amount5= "abc"  #amount_错误的数量（abc）_异常
 		amount6= ""  #amount_错误的数量（留空）_异常
 		from4= from2  #from_错误的from值_异常

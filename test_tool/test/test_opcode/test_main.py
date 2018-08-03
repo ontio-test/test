@@ -21,7 +21,7 @@ from test_opcode.test_config import test_config
 from api.apimanager import API
 
 # test cases
-class TestOpCode(ParametrizedTestCase):
+class test_opcode_1(ParametrizedTestCase):
     def test_init(self):
 
         API.node().stop_all_nodes()

@@ -25,24 +25,24 @@ class TestCaseRunner():
 		print("---------------------:" + str(test_case.__class__))
 		runner.run(case)
 
-	def filter_test_cases(self, test_suites, filterfile, filtertype, filterstr):
+	def filter_test_cases(self, test_suites, filterfile, filtertype, filterstr, excludestr):
 		filter_condition = {"files":None, "class":None, "method":None, "except":[]}
 
 		result = []
 		try:
 			if filterstr:
-				if "!" in filterstr:
-					except_cases = filterstr.strip("()!").split(",")
-					except_cases = list(map(lambda x : x.strip(" "), except_cases))
-					filter_condition["except"] = [t.split(".")[1] for t in except_cases]
-				else:
-					test_cases = filterstr.split(",")
-					test_cases = list(map(lambda x : x.strip(" "), test_cases))
-					filter_condition["class"] = [t.split(".")[0] for t in test_cases]
-					filter_condition["method"] = [t.split(".")[1] for t in test_cases]
+				test_cases = filterstr.split(",")
+				test_cases = list(map(lambda x : x.strip(" "), test_cases))
+				filter_condition["class"] = [t.split(".")[0] for t in test_cases]
+				filter_condition["method"] = [t.split(".")[1] for t in test_cases]
 
-					filter_condition["class"] = list(set(filter_condition["class"]))
-					filter_condition["method"] = list(set(filter_condition["method"]))
+				filter_condition["class"] = list(set(filter_condition["class"]))
+				filter_condition["method"] = list(set(filter_condition["method"]))
+
+			if excludestr:
+				except_cases = excludestr.split(",")
+				except_cases = list(map(lambda x : x.strip(" "), except_cases))
+				filter_condition["except"] = [t.split(".")[1] for t in except_cases]
 
 			if filterfile:
 				files = []
@@ -100,9 +100,10 @@ class TestCaseRunner():
 		filterfile = ""
 		filtertype = ""
 		filterstr = ""
+		excludestr = ""
 		test_suites = None
 		needmonitor = True
-		opts, args = getopt.getopt(sys.argv[1:], "c:t:f:m:", ["config=", "type=","filter=","monitor"])
+		opts, args = getopt.getopt(sys.argv[1:], "c:t:f:e:m:", ["config=", "type=","filter=","exclude=","monitor"])
 		for op, value in opts:
 			if op in ("-c", "--config"):
 				filterfile = value
@@ -110,6 +111,8 @@ class TestCaseRunner():
 				filtertype = value
 			if op in ("-f", "--filter"):
 				filterstr = value
+			if op in ("-e", "--exclude"):
+				excludestr = value
 			if op in ("-m", "--monitor"):
 				needmonitor = str(value)
 				if needmonitor == "0":
@@ -128,7 +131,7 @@ class TestCaseRunner():
 			
 		print("test_suites", test_suites)
 
-		cases = self.filter_test_cases(test_suites, filterfile, filtertype, filterstr)
+		cases = self.filter_test_cases(test_suites, filterfile, filtertype, filterstr, excludestr)
 		if cases == None:
 			print("no test case found...")
 			return

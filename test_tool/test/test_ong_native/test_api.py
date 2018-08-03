@@ -218,6 +218,10 @@ def name(contract_address,node_index = None,errorcode=47001):
 					{
 						"type": "string",
 						"value": "name"
+					},
+					{
+						"type": "string",
+						"value": "name"
 					}
 				]
 			}
@@ -240,6 +244,10 @@ def symbol(contract_address,node_index = None,errorcode=47001):
 					{
 						"type": "string",
 						"value": "symbol"
+					},
+					{
+						"type": "string",
+						"value": "name"
 					}
 				]
 			}
@@ -262,6 +270,10 @@ def decimals(contract_address,node_index = None,errorcode=47001):
 					{
 						"type": "string",
 						"value": "decimals"
+					},
+					{
+						"type": "string",
+						"value": "name"
 					}
 				]
 			}
@@ -284,6 +296,10 @@ def totalSupply(contract_address,node_index = None,errorcode=47001):
 					{
 						"type": "string",
 						"value": "totalSupply"
+					},
+					{
+						"type": "string",
+						"value": "name"
 					}
 				]
 			}

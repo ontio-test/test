@@ -1339,7 +1339,7 @@ class test_governance_api_10(ParametrizedTestCase):
 	def test_abnormal_133_updateConfig(self):
 		try:
 			(process, response) = invoke_function_update("updateConfig",test_config.updateConfig_param0_1,test_config.updateConfig_param1_1,test_config.updateConfig_param2_1,test_config.updateConfig_param3_1,test_config.updateConfig_param4_1,test_config.updateConfig_param5_1,test_config.updateConfig_param6_1,test_config.updateConfig_param7_4)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 
@@ -1379,7 +1379,7 @@ class test_governance_api_11(ParametrizedTestCase):
 	
 	def test_abnormal_137_updateGlobalParam(self):
 		try:
-			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_3,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
+			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_3,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1,errorkey="error_code",errorcode=900)
 			self.ASSERT(not process, "")
 		except Exception as e:
 			# self.ASSERT(True, "")
@@ -1423,7 +1423,7 @@ class test_governance_api_11(ParametrizedTestCase):
 	def test_abnormal_143_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_4,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	
@@ -1842,14 +1842,14 @@ class test_governance_api_13(ParametrizedTestCase):
 		try:
 			API.native().commit_dpos()
 			API.node().wait_gen_block()
-			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_2)
 			ong=response["result"]["ong"]
 			ont=response["result"]["ont"]
 			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_2)
 			API.node().wait_gen_block()
 			time.sleep(5)
 			if process:
-				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
+				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_2)
 				ontAdd=int(response1["result"]["ont"])-int(ont)
 				if ontAdd>0:
 					process=True
@@ -1863,46 +1863,19 @@ class test_governance_api_13(ParametrizedTestCase):
 	
 	def test_abnormal_183_transferPenalty(self):
 		try:
-			API.native().commit_dpos()
-			API.node().wait_gen_block()
-			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
-			ong=response["result"]["ong"]
-			ont=response["result"]["ont"]
-			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_3)
-			API.node().wait_gen_block()
-			time.sleep(5)
-			if process:
-				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
-				ontAdd=int(response1["result"]["ont"])-int(ont)
-				if ontAdd>0:
-					process=True
-				else:
-					process=False
+			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_3,errorkey="error_code",errorcode=900)
 
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 			self.ASSERT(True, "")
 	
 	def test_abnormal_184_transferPenalty(self):
 		try:
-			API.native().commit_dpos()
-			API.node().wait_gen_block()
-			(process, response)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
-			ong=response["result"]["ong"]
-			ont=response["result"]["ont"]
-			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_4)
-			API.node().wait_gen_block()
-			time.sleep(5)
-			if process:
-				(process, response1)=API.rpc().getbalance(test_config.transferPenalty_walletAddress_1)
-				ontAdd=int(response1["result"]["ont"])-int(ont)
-				if ontAdd>0:
-					process=True
-				else:
-					process=False
-
-			self.ASSERT(not process, "")
+			
+			(process, response) = invoke_function_TransferPenalty("transferPenalty",test_config.transferPenalty_pubKey_1,test_config.transferPenalty_walletAddress_4,errorkey="error_code",errorcode=900)
+			
+			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 			self.ASSERT(True, "")

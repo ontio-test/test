@@ -281,7 +281,7 @@ class test_api():
 
 
     @staticmethod
-    def invoke_contract_migrate(contract_address, script_hash, name, version, author, email, desc, node_index = None):
+    def invoke_contract_migrate(contract_address, script_hash, name, version, author, email, desc, node_index = None, sleep = 5):
         request = {
             "REQUEST": {
                 "Qid": "t",
@@ -335,7 +335,7 @@ class test_api():
             "RESPONSE": {}
         }
             
-        return API.contract().call_contract(Task(name="GetContract_Migrate", ijson=request), twice = True)
+        return API.contract().call_contract(Task(name="GetContract_Migrate", ijson=request), twice = True, sleep = sleep)
 
 
     @staticmethod

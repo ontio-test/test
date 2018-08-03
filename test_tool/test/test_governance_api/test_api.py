@@ -263,7 +263,7 @@ def invoke_function_vote(func_,walletAddress,voteList,voteCount,errorcode=0,node
 		request["NODE_INDEX"] = node_index
 	return API.contract().call_contract(Task(name="invoke_function_vote", ijson=request), twice = True)
 
-def invoke_function_update(func_,param0,param1,param2,param3,param4,param5,param6,param7,errorcode=0):
+def invoke_function_update(func_,param0,param1,param2,param3,param4,param5,param6,param7,errorcode=0,errorkey="error"):
 	if(func_=="updateConfig"):
 		filename="vbftConfig"
 	else:
@@ -293,6 +293,8 @@ def invoke_function_update(func_,param0,param1,param2,param3,param4,param5,param
 				},
 		"RESPONSE":{"error" : errorcode}
 	}
+	if (errorkey =="error_code"):
+		request["SIGN_RESPONSE"]={errorkey : errorcode}
 	(result,response)=	API.contract().call_multisig_contract(Task(name="invoke_function_update", ijson=request),Config.AdminNum,Config.AdminPublicKeyList)
 	time.sleep(5)
 	getStorageConf(filename)
@@ -411,7 +413,7 @@ def invoke_function_quitNode(func_,pubKey,walletAddress,node_index=None,errorcod
 	}
 
 	return API.contract().call_contract(Task(name="invoke_function_quitNode", ijson=request), twice = True)
-def invoke_function_TransferPenalty(func_,pubKey,walletAddress,errorcode=0):
+def invoke_function_TransferPenalty(func_,pubKey,walletAddress,errorcode=0,errorkey="error"):
 	request = {
 		"NODE_INDEX":0,
 		"REQUEST": {
@@ -431,7 +433,8 @@ def invoke_function_TransferPenalty(func_,pubKey,walletAddress,errorcode=0):
 				},
 		"RESPONSE":{"error" : errorcode}
 	}
-
+	if (errorkey =="error_code"):
+		request["SIGN_RESPONSE"]={errorkey : errorcode}
 	return API.contract().call_multisig_contract(Task(name="invoke_function_TransferPenalty", ijson=request),Config.AdminNum,Config.AdminPublicKeyList)
 
 def invoke_function_SplitCurve(func_,array):
