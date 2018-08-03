@@ -1,6 +1,6 @@
 {
     "resource":{
-        "root":"/home/ubuntu/ontology/git/test/test_tool/resource/",
+        "root":"/home/ubuntu/ontology/sourceCode/test/test_tool/resource/",
         "ontology_source_name": "ontology",
         "ontology_dbft_1_source_name": "ontology-bft_1",
         "ontology_dbft_2_source_name": "ontology-bft_2",
@@ -25,7 +25,7 @@
         "abi_name": "abi"
     },
 
-    "test_config_path": "/home/ubuntu/ontology/test/config.json",
+    "test_config_path": "/home/ubuntu/ontology/sourceCode/test/test_tool/config.json",
     "default_node_args": " --ws --rest --loglevel=0 --enableconsensus --networkid=6666  --gasprice 0 --gaslimit 20000 ",
     "test_service_path": "/home/ubuntu/ontology/test_service/rpcserver.py"
 }
