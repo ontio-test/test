@@ -103,6 +103,30 @@ class Common:
 		return address
 
 	@staticmethod
+	def address_to_base58(input):
+		if input == None:
+			return ""
+		input = Common.bl_reserver(input)
+
+		base58 = ""
+		cmd = Config.TOOLS_PATH + "/addressToBase58 \"" + input + "\" > base58.tmp"
+		os.system(cmd)
+		print(cmd)
+		tmpfile = open("base58.tmp", "r+")  # 打开文件
+		contents = tmpfile.readlines()
+		for line in contents:
+			#for log
+			logger.print(line.strip('\n'))
+
+		for line in contents:
+			#regroup = re.search(r'address: (([0-9]|[a-z]|[A-Z])*)', line)
+			#if regroup:
+			base58 = line.strip()
+		tmpfile.close()
+		return base58
+
+	@staticmethod
 	def bl_address(input):
 		return Common.bl_reserver(Common.base58_to_address(input))
+
 	#check_node_state([0,1,2,3,4,5,6])
