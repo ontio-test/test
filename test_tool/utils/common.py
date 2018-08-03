@@ -106,7 +106,7 @@ class Common:
 	def address_to_base58(input):
 		if input == None:
 			return ""
-		input = Common.bl_reserver(input)
+		#input = Common.bl_reserver(input)
 
 		base58 = ""
 		cmd = Config.TOOLS_PATH + "/addressToBase58 \"" + input + "\" > base58.tmp"
