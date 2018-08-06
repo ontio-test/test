@@ -1380,7 +1380,7 @@ class test_governance_api_11(ParametrizedTestCase):
 	def test_abnormal_137_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_3,test_config.updateGlobalParam_param1_1,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1,errorkey="error_code",errorcode=900)
-			self.ASSERT(not process, "")
+			self.ASSERT(process, "")
 		except Exception as e:
 			# self.ASSERT(True, "")
 			logger.print(e.args[0])
@@ -1413,10 +1413,10 @@ class test_governance_api_11(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_normal_142_updateGlobalParam(self):
+	def test_abnormal_142_updateGlobalParam(self):
 		try:
 			(process, response) = invoke_function_update("updateGlobalParam",test_config.updateGlobalParam_param0_1,test_config.updateGlobalParam_param1_3,test_config.updateGlobalParam_param2_1,test_config.updateGlobalParam_param3_1,test_config.updateGlobalParam_param4_1,test_config.updateGlobalParam_param5_1,test_config.updateGlobalParam_param6_1,test_config.updateGlobalParam_param7_1)
-			self.ASSERT(process, "")
+			self.ASSERT(not process, "")
 		except Exception as e:
 			logger.print(e.args[0])
 	
