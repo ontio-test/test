@@ -288,7 +288,7 @@ class ContractApi:
                 
         return (False, {"error_info":"multi times lesss than except!only "+str(execNum)})
 
-    def init_admin(self, contract_address, admin_address, node_index = None):
+    def init_admin(self, contract_address, admin_address, node_index = None, sleep = 5):
         request = {
             "REQUEST": {
                 "Qid": "t",
@@ -333,7 +333,7 @@ class ContractApi:
             node_index = Config.ontid_map[admin_address]
             request["NODE_INDEX"] = node_index		
     	
-        return self.call_contract(Task(name="init_admin", ijson=request), twice = True)
+        return self.call_contract(Task(name="init_admin", ijson=request), twice = True, sleep = sleep)
 
     def invoke_function(self, contract_address, function_str, callerOntID, public_key="1", argvs = [{"type": "string","value": ""}], node_index = None, sleep = 5):
         request = {
