@@ -705,17 +705,17 @@ class test_ont_native_1(ParametrizedTestCase):
 		
 
 
-	def test_normal_079_transferFrom1(self):
-		try:
-			(process, response) = approve1(test_config.contract_address,test_config.pay_address,test_config.get_address, test_config.amount,test_config.node_index,0)
-			if process:
-				API.node().wait_gen_block()
-				time.sleep(8)
-			(process, response) = transferFrom1(test_config.contract_address,test_config.sender2,test_config.pay_address,test_config.get_address, test_config.amount,test_config.sender2_node,test_config.sender2Type,0)
-			API.node().wait_gen_block()
-			self.ASSERT(process, "")
-		except Exception as e:
-			logger.print (e.args[0]) 
+	# def test_normal_079_transferFrom1(self):
+		# try:
+			# (process, response) = approve1(test_config.contract_address,test_config.pay_address,test_config.get_address, test_config.amount,test_config.node_index,0)
+			# if process:
+				# API.node().wait_gen_block()
+				# time.sleep(8)
+			# (process, response) = transferFrom1(test_config.contract_address,test_config.sender2,test_config.pay_address,test_config.get_address, test_config.amount,test_config.sender2_node,test_config.sender2Type,0)
+			# API.node().wait_gen_block()
+			# self.ASSERT(process, "")
+		# except Exception as e:
+			# logger.print (e.args[0]) 
 		
 
 

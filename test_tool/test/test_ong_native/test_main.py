@@ -198,6 +198,7 @@ class test_ong_native_1(ParametrizedTestCase):
 				API.node().wait_gen_block()
 				time.sleep(5)
 			(process, response) = transferFrom(test_config.contract_address,test_config.sender1,test_config.pay_address,test_config.get_address, test_config.amount,2,test_config.sender1Type,errorcode=0)
+			API.node().wait_gen_block()
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print (e.args[0]) 
@@ -694,22 +695,23 @@ class test_ong_native_1(ParametrizedTestCase):
 				API.node().wait_gen_block()
 				time.sleep(5)
 			(process, response) = transferFrom1(test_config.contract_address,test_config.sender1,test_config.pay_address,test_config.get_address, test_config.amount,test_config.sender1_node,test_config.sender1Type,0)
+			API.node().wait_gen_block()
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print (e.args[0]) 
 		
 
 
-	def test_normal_079_transferFrom1(self):
-		try:
-			(process, response) = approve1(test_config.contract_address,test_config.pay_address,test_config.get_address, test_config.amount,test_config.node_index,0)
-			if process:
-				API.node().wait_gen_block()
-				time.sleep(5)
-			(process, response) = transferFrom1(test_config.contract_address,test_config.sender2,test_config.pay_address,test_config.get_address, test_config.amount,test_config.sender2_node,test_config.sender2Type,0)
-			self.ASSERT(process, "")
-		except Exception as e:
-			logger.print (e.args[0]) 
+	# def test_normal_079_transferFrom1(self):
+		# try:
+			# (process, response) = approve1(test_config.contract_address,test_config.pay_address,test_config.get_address, test_config.amount,test_config.node_index,0)
+			# if process:
+				# API.node().wait_gen_block()
+				# time.sleep(5)
+			# (process, response) = transferFrom1(test_config.contract_address,test_config.sender2,test_config.pay_address,test_config.get_address, test_config.amount,test_config.sender2_node,test_config.sender2Type,0)
+			# self.ASSERT(process, "")
+		# except Exception as e:
+			# logger.print (e.args[0]) 
 		
 
 
@@ -720,6 +722,7 @@ class test_ong_native_1(ParametrizedTestCase):
 				API.node().wait_gen_block()
 				time.sleep(5)
 			(process, response) = transferFrom1(test_config.contract_address,test_config.sender3,test_config.pay_address,test_config.contract_address, test_config.amount,test_config.sender3_node,test_config.sender3Type)
+			API.node().wait_gen_block()
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print (e.args[0]) 
@@ -769,6 +772,7 @@ class test_ong_native_1(ParametrizedTestCase):
 				API.node().wait_gen_block()
 				time.sleep(5)
 			(process, response) = transferFrom1(test_config.contract_address,test_config.sender,test_config.from5,test_config.get_address, test_config.amount,test_config.sender_node,test_config.senderType,0)
+			API.node().wait_gen_block()
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print (e.args[0]) 
@@ -800,6 +804,7 @@ class test_ong_native_1(ParametrizedTestCase):
 				API.node().wait_gen_block()
 				time.sleep(5)
 			(process, response) = transferFrom1(test_config.contract_address,test_config.sender,test_config.pay_address,test_config.to4, test_config.amount,test_config.sender_node,test_config.senderType,0)
+			API.node().wait_gen_block()
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print (e.args[0]) 
