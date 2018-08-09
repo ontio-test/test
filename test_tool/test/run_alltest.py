@@ -145,7 +145,6 @@ class TestCaseRunner():
 		case_dirc = {}
 		for case in cases:
 			foldername = str(case.__class__).strip('\'>').split('.')[-3].replace("<class '", "")
-			print(foldername)
 			if foldername in case_dirc:
 				case_dirc[foldername].append(case)
 			else:
@@ -153,6 +152,7 @@ class TestCaseRunner():
 
 		for foldername in case_dirc.keys():
 			start_time = time.time()
+			print(foldername, len(case_dirc[foldername]))
 			monitor.exec(runner, case_dirc[foldername], needmonitor)
 			end_time = time.time()
 			timecost = end_time - start_time
