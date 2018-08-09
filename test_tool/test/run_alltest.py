@@ -5,6 +5,7 @@ import sys, getopt
 import json
 import setproctitle
 import time
+import collections
 
 sys.path.append('..')
 sys.path.append('../..')
@@ -142,7 +143,7 @@ class TestCaseRunner():
 		runner = unittest.TextTestRunner()
 
 		
-		case_dirc = {}
+		case_dirc = collections.OrderedDict()
 		for case in cases:
 			foldername = str(case.__class__).strip('\'>').split('.')[-3].replace("<class '", "")
 			if foldername in case_dirc:
