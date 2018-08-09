@@ -158,15 +158,25 @@ class TestCaseRunner():
 			end_time = time.time()
 			timecost = end_time - start_time
 
+			'''
 			report = {"start_time" : time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(start_time)),
 					"end_time" : time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(end_time)),
 					"total_cost" : int(timecost)}
-
 			reportpath = logger.prefix + "/" + foldername + "/report.json"
 			if not os.path.exists(logger.prefix + "/" + foldername):
 				os.makedirs(logger.prefix + "/" + foldername)
 			with open(reportpath, 'w+') as f:
 				f.write(json.dumps(report))
+			'''
+			report ="[time]" + "\n" \
+					"start=" + str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(start_time))) + "\n" \
+					"end=" + str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(end_time))) + "\n" \
+					"cost=" + str(int(timecost))
+			reportpath = logger.prefix + "/" + foldername + "/report.ini"
+			if not os.path.exists(logger.prefix + "/" + foldername):
+				os.makedirs(logger.prefix + "/" + foldername)
+			with open(reportpath, 'w+') as f:
+				f.write(report)
 
 
 if __name__ == "__main__":
