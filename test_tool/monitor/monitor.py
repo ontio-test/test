@@ -197,6 +197,8 @@ class TestMonitor:
 				return
 
 	def exec(self, runner, testcases, monitor = True):
+		self.__init__()
+
 		self.alltestcase = testcases.copy()
 		self.unittestrunner = runner
 		testcaseremain = testcases.copy()

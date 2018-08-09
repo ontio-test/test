@@ -4,11 +4,13 @@ import os
 import sys, getopt
 import json
 import setproctitle
+import time
 
 sys.path.append('..')
 sys.path.append('../..')
 
 from monitor.monitor import TestMonitor
+from utils.logger import LoggerInstance as logger
 
 setproctitle.setproctitle("run_alltest")
 
@@ -138,7 +140,33 @@ class TestCaseRunner():
 
 		print(len(cases))
 		runner = unittest.TextTestRunner()
-		monitor.exec(runner, cases, needmonitor)
+
+		
+		case_dirc = {}
+		for case in cases:
+			foldername = str(case.__class__).strip('\'>').split('.')[-3].replace("<class '", "")
+			print(foldername)
+			if foldername in case_dirc:
+				case_dirc[foldername].append(case)
+			else:
+				case_dirc[foldername] = [case]
+
+		for foldername in case_dirc.keys():
+			start_time = time.time()
+			monitor.exec(runner, case_dirc[foldername], needmonitor)
+			end_time = time.time()
+			timecost = end_time - start_time
+
+			report = {"start_time" : time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(start_time)),
+					"end_time" : time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(end_time)),
+					"total_cost" : int(timecost)}
+
+			reportpath = logger.prefix + "/" + foldername + "/report.json"
+			if not os.path.exists(logger.prefix + "/" + foldername):
+				os.makedirs(logger.prefix + "/" + foldername)
+			with open(reportpath, 'w+') as f:
+				f.write(json.dumps(report))
+
 
 if __name__ == "__main__":
 	tmonitor = TestMonitor()
