@@ -172,7 +172,7 @@ class test_ontid_api_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print (e.args[0]) 
 
-
+	'''
 	def test_base_134_addAttributes(self):
 		
 		try:
@@ -203,7 +203,7 @@ class test_ontid_api_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print (e.args[0]) 
 
-
+	'''
 	def test_base_135_removeAttribute(self):
 		try:
 			functionName="removeAttribute"
