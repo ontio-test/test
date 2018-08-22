@@ -4,41 +4,39 @@
 	"RESTFUL_PORT": "20334",
 	"WS_PORT": "20335",
 	"TEST_SERVICE_PORT" : "23635",
-	
-	"DEFAULT_NODE_ARGS" : "--ws --rest --loglevel=0 --enableconsensus --networkid=366",
+	"TEST_MODE":false,
+	"DEFAULT_NODE_ARGS" : "--ws --rest --loglevel=0 --enableconsensus --networkid=399 --gasprice=0 --gaslimit=20000",
 	"MULTI_SIGNED_ADDRESS" : "",
 	"INIT_AMOUNT_ONG" : "7000000000000000",
 	"PWD" : "123456",
-	"NODES": [{
-		"ip": "139.219.134.32",
-		"wallet": "wallet0.dat"
-	},
-	{
-		"ip": "139.219.136.126",
-		"wallet": "wallet1.dat"
-	},
-	{
-		"ip": "139.219.130.42",
-		"wallet": "wallet2.dat"
-	},
-	{
-		"ip": "139.219.131.108",
-		"wallet": "wallet3.dat"
-	},
-	{
-		"ip": "139.219.132.96",
-		"wallet": "wallet4.dat"
-	},
-	{
-		"ip": "139.219.142.139",
-		"wallet": "wallet5.dat"
-	},
-	{
-		"ip": "139.219.134.164",
-		"wallet": "wallet6.dat"
-	},
-	{
-		"ip": "139.219.135.168",
-		"wallet": "wallet7.dat"
-	}]
+	"NODES": [
+		{
+			"ip": "139.219.138.201",
+			"wallet" : "wallet00.dat"
+		},
+		{
+			"ip": "42.159.154.145",
+			"wallet" : "wallet01.dat"
+		},
+		{
+			"ip": "42.159.155.217",
+			"wallet" : "wallet02.dat"
+		},
+		{
+			"ip": "42.159.152.241",
+			"wallet" : "wallet03.dat"
+		},
+		{
+			"ip": "42.159.152.247",
+			"wallet" : "wallet04.dat"
+		},
+		{
+			"ip": "42.159.153.98",
+			"wallet" : "wallet05.dat"
+		},
+		{
+			"ip": "139.219.128.213",
+			"wallet" : "wallet06.dat"
+		}
+	]
 }

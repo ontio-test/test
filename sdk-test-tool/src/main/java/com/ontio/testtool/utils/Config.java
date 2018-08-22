@@ -1,10 +1,5 @@
 package com.ontio.testtool.utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ontio.testtool.OntTest;
@@ -21,21 +16,22 @@ public class Config {
 	static public String DEFAULT_NODE_ARGS = json().getString("DEFAULT_NODE_ARGS");
 	static public String PWD = json().getString("PWD");
 	static public String RESOURCE_PATH = "resources";
+	static public boolean TEST_MODE = json().getBoolean("TEST_MODE");
 	static public String nodeIp(int index) {
 		if (index >= Config.NODES.size()) {
-			Logger.getInstance().error("set node: index out of range (" + index + ")");
+			Logger.getInstance().error("get node ip: index out of range (" + index + ")");
 			return "";
-		}
+		} 
 		
 		return Config.NODES.getJSONObject(index).getString("ip");
 	}
 	static public String nodeWallet(int index) {
 		if (index >= Config.NODES.size()) {
-			Logger.getInstance().error("set node: index out of range (" + index + ")");
+			Logger.getInstance().error("get node wallet: index out of range (" + index + ")");
 			return "";
 		}
 		
-		return Config.RESOURCE_PATH + "/wallets/" + Config.NODES.getJSONObject(index).getString("wallet");
+		return Config.RESOURCE_PATH + "/wallets/" + Config.NODES.getJSONObject(index).getString("wallet") + ".tmp";
 	}
 	
 	static public String rpcUrl(int index) {
@@ -58,27 +54,10 @@ public class Config {
 		return "http://" + nodeIp(index) + ":" + TEST_SERVICE_PORT + "/jsonrpc";
 	}
 	
-	static JSONObject json() {
-		if (jobj != null) {
-			return jobj;
+	static public JSONObject json() {
+		if (jobj == null) {
+			jobj = OntTest.common().loadJson("test_config.json");
 		}
-		String fileName = "test_config.json";
-		String contents = "";
-		String line = "";
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(fileName));
-			line=in.readLine();
-			while (line!=null) {
-				contents = contents + line;
-				line=in.readLine();
-			}
-			in.close();
-		 } catch (IOException e) {
-			e.printStackTrace();
-		 }
-		
-		jobj = JSON.parseObject(contents);
-
 		return jobj;
 	}
 }

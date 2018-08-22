@@ -44,7 +44,7 @@ public class RpcClient {
 
     public String getHost() {
         return url.getHost() + " " + url.getPort();
-    }
+    } 
     
     public Object call(String method, Object params) throws RpcException, IOException {
         Map req = makeRequest(method, params);

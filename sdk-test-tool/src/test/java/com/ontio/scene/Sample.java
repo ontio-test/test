@@ -1,8 +1,7 @@
-package com.ontio.sample;
+package com.ontio.scene;
  
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -18,12 +17,16 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.github.ontio.OntSdk;
 import com.github.ontio.account.Account;
 import com.github.ontio.common.Address;
+import com.github.ontio.common.Common;
 import com.github.ontio.common.Helper;
 import com.github.ontio.core.asset.State;
+import com.github.ontio.core.payload.InvokeCode;
 import com.github.ontio.core.transaction.Transaction;
 import com.github.ontio.network.exception.RpcException;
+import com.github.ontio.sdk.info.AccountInfo;
 import com.github.ontio.smartcontract.neovm.abi.AbiFunction;
 import com.github.ontio.smartcontract.neovm.abi.AbiInfo;
+import com.github.ontio.smartcontract.neovm.abi.BuildParams;
 import com.ontio.OntTestWatcher;
 import com.ontio.testtool.OntTest;
 import com.ontio.testtool.api.ContractApi;
@@ -46,7 +49,7 @@ class Balance{
     @JSONField(name="ong")
     String ong;
 
-    public String getOnt() {
+    public String getOnt() { 
         return ont;
     }
 
@@ -140,7 +143,7 @@ public class Sample {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		OntTest.init();
-		//OntTest.node().restartAll("ontology", "config.json", Config.DEFAULT_NODE_ARGS);
+		//OntTest.api().node().restartAll("ontology", "config.json", Config.DEFAULT_NODE_ARGS);
 		//Thread.sleep(5000);
 	}
 	
@@ -157,17 +160,18 @@ public class Sample {
 	@Test
 	public void testSample1() throws Exception {
 		OntTest.logger().description("合约开发-CLI 部署及调用");
+		
 		try {
 			OntTest.bindNode(7);
 			OntTest.logger().step("开启一个同步节点");
 			OntTest.logger().step("在中间开始继续同步区块，并同步到最新区块");
 			OntTest.logger().step("开启节点REST服务");
 			OntTest.logger().step("开启 --testmode");
-			OntTest.node().restart(7, "ontology", "config.json", "--testmode");
+			OntTest.api().node().restart(7, "ontology", "config.json", "--testmode");
 			Thread.sleep(6000);
 			
 			OntTest.logger().step("分配ONG给默认账户");
-			Account defaultAccount = ContractApi.getDefaultAccount();
+			Account defaultAccount = OntTest.common().getAccount(0);
             State st = new State(defaultAccount.getAddressU160(),defaultAccount.getAddressU160(),100000L);
             Transaction tx = OntTest.sdk().nativevm().ont().makeTransfer(new State[]{st}, defaultAccount.getAddressU160().toBase58(), 30000, 0);
             OntTest.sdk().addSign(tx,defaultAccount);
@@ -179,7 +183,7 @@ public class Sample {
             OntTest.logger().print(event.toString());
 			
 			OntTest.logger().step("部署合约。。。");
-			Map contractState = ContractApi.deployContract("resources/neo/sample.cs", null);
+			Map contractState = OntTest.api().contract().deployContract("resources/neo/sample.cs", null);
 			
 			OntTest.logger().step("调用合约方法。。。");
 			AbiInfo abiinfo = JSON.parseObject((String)contractState.get("abi"), AbiInfo.class);
@@ -187,11 +191,11 @@ public class Sample {
             OntTest.logger().print(func.toString());
             func.name = "Main";
             func.setParamsValue("Hello11", null);
-            Object obj = OntTest.sdk().neovm().sendTransaction((String)contractState.get("address"), ContractApi.getDefaultAccount(), ContractApi.getDefaultAccount(), OntTest.sdk().DEFAULT_GAS_LIMIT, 0, func, true);
+            Object obj = OntTest.sdk().neovm().sendTransaction((String)contractState.get("address"),OntTest.common().getAccount(0), OntTest.common().getAccount(0), OntTest.sdk().DEFAULT_GAS_LIMIT, 0, func, true);
             OntTest.logger().print("1111111111111: " + obj);
 			
 			OntTest.logger().step("网络切换到主网，并打开rest服务，完成同步");
-			OntTest.node().restart(7, "ontology", "config.json", Config.DEFAULT_NODE_ARGS);
+			OntTest.api().node().restart(7, "ontology", "config.json", Config.DEFAULT_NODE_ARGS);
 			Thread.sleep(5000);
 			while(true) {
 				Thread.sleep(1000);
@@ -206,12 +210,12 @@ public class Sample {
 				}
 			}
 			OntTest.bindNode(7);
-			Map contractState2 = ContractApi.deployContract("resources/neo/sample.cs", null);
+			Map contractState2 = OntTest.api().contract().deployContract("resources/neo/sample.cs", null);
 			AbiInfo abiinfo2 = JSON.parseObject((String)contractState2.get("abi"), AbiInfo.class);
             AbiFunction func2 = abiinfo.getFunction("Hello");
             OntTest.logger().print(func.toString());
             func.setParamsValue("hello success");
-            Object obj2 = OntTest.sdk().neovm().sendTransaction((String)contractState2.get("address"), ContractApi.getDefaultAccount(), ContractApi.getDefaultAccount(), 0, 0, func, true);
+            Object obj2 = OntTest.sdk().neovm().sendTransaction((String)contractState2.get("address"), OntTest.common().getAccount(0), OntTest.common().getAccount(0), 0, 0, func, true);
             OntTest.logger().print((String)obj);
 			
 		} catch(Exception e) {
@@ -222,11 +226,13 @@ public class Sample {
 
 	@Test
 	public void testSample2() throws Exception {
+		OntTest.logger().description("交易所应用 ont");
+
         //simulate a database using hashmap     
 		OntTest.bindNode(6);
         final HashMap<String,UserAcct> database = new HashMap<String,UserAcct>();
         final OntSdk ontSdk = OntTest.sdk();
-        final Account initAccount = ContractApi.getDefaultAccount();
+        final Account initAccount = OntTest.common().getAccount(0);
         final Account feeAct = initAccount;
         final String FEE_PROVIDER = feeAct.getAddressU160().toBase58();
 		final String INIT_ACCT_ADDR = initAccount.getAddressU160().toBase58();
@@ -234,15 +240,14 @@ public class Sample {
 		final String ONG_NATIVE_ADDRESS = Helper.reverse(ontSdk.nativevm().ong().getContractAddress());
 		final BigInteger ONT_NUM = BigInteger.valueOf(1000);//充值金额
 		OntTest.bindNode(7);
-		final Account mainAccount = ContractApi.getDefaultAccount();
+		final Account mainAccount = OntTest.common().getAccount(0);
 		final Address mainAccountAddr = mainAccount.getAddressU160();
         Account withdrawAcct1 = new Account(ontSdk.defaultSignScheme);
 		final String WITHDRAW_ADDRESS = withdrawAcct1.getAddressU160().toBase58();
 
-		OntTest.logger().description("交易所应用");
 		try {
 			OntTest.logger().step("启动交易所节点");
-			OntTest.node().restart(7, "ontology", "config.json", Config.DEFAULT_NODE_ARGS);
+			OntTest.api().node().restart(7, "ontology", "config.json", Config.DEFAULT_NODE_ARGS);
 			Thread.sleep(5000);
 			while(true) {
 				Thread.sleep(1000);
@@ -458,6 +463,155 @@ public class Sample {
 			OntTest.logger().error(e.toString());
 			fail();
 		}
+	}
+	
+	@Test
+	public void testSample3() throws Exception {
+		OntTest.logger().description("非法交易-重复交易[1]");
+
+		String privatekey1 = "02bdbb76d134c06cb0af54ac39789b7f826bf6b8ebfd27b7ff58a48dacabbaf00e";
+		String privatekey2 = "03f46fbc68f533e2d6c8eca9c7275e7623b114700263b12db195d2f9986f1abbd1";
+		String ADDR1_SALT = "AVbeRAqPJqAKAJZN89la6w==";
+		String ADDR2_SALT = "NwFRFcVcWBN2B8yNRngo0Q==";
+		String address1 = "AS9S7j6VWUgg3sX89pok6KHeYU9DenKwbS";
+		String address2 = "AMjExWrNSNyPjEct7ryp2LPSz5WbGpaYtG";
+		String PWD = "123456";
+		
+		OntSdk ontSdk = OntTest.sdk();
+		Account acc1 = ontSdk.getWalletMgr().getAccount(address1, PWD, Base64.getDecoder().decode(ADDR1_SALT));
+		Account acc2 = ontSdk.getWalletMgr().getAccount(address2, PWD, Base64.getDecoder().decode(ADDR2_SALT));
+		System.out.println("acct1:" + acc1.getAddressU160().toBase58());
+		System.out.println("acct2:" + acc2.getAddressU160().toBase58());
+	
+		Transaction tx = ontSdk.nativevm().ont().makeTransfer(acc1.getAddressU160().toBase58(), acc2.getAddressU160().toBase58(), 2, acc1.getAddressU160().toBase58(), 20000, 0);
+		
+		int nonce = tx.nonce;
+		System.out.println(tx.nonce);
+		ontSdk.addSign(tx,acc1);
+		ontSdk.addSign(tx,acc1);
+		System.out.println(tx.nonce);
+
+		Object obj = ontSdk.getConnect().sendRawTransaction(tx.toHexString());
+		
+		Transaction tx1 = ontSdk.nativevm().ont().makeTransfer(acc1.getAddressU160().toBase58(), acc2.getAddressU160().toBase58(), 3, acc1.getAddressU160().toBase58(), 20000, 0);
+		
+		tx1.sigs=tx.sigs;
+		tx1.payer=tx.payer;
+
+		System.out.println("nonce1:");
+		System.out.println(tx1.nonce);
+		tx1.nonce = 1531458249;
+		System.out.println("nonce2:");
+		System.out.println(tx1.nonce);
+		
+		ontSdk.addSign(tx1,acc2);
+		ontSdk.addSign(tx1,acc1);
+
+		Object obj1 = ontSdk.getConnect().sendRawTransaction(tx1.toHexString());
+	}
+	
+	@Test
+	public void testSample4() throws Exception {
+		OntTest.logger().description("非法交易-重复交易[2]");
+
+		String privatekey1 = "02bdbb76d134c06cb0af54ac39789b7f826bf6b8ebfd27b7ff58a48dacabbaf00e";
+		String privatekey2 = "03f46fbc68f533e2d6c8eca9c7275e7623b114700263b12db195d2f9986f1abbd1";
+		String ADDR1_SALT = "AVbeRAqPJqAKAJZN89la6w==";
+		String ADDR2_SALT = "NwFRFcVcWBN2B8yNRngo0Q==";
+		String address1 = "AS9S7j6VWUgg3sX89pok6KHeYU9DenKwbS";
+		String address2 = "AMjExWrNSNyPjEct7ryp2LPSz5WbGpaYtG";
+		String PWD = "123456";
+		
+		OntSdk ontSdk = OntTest.sdk();
+
+		Account acc1 = ontSdk.getWalletMgr().getAccount(address1,PWD,Base64.getDecoder().decode(ADDR1_SALT));
+		Account acc2 = ontSdk.getWalletMgr().getAccount(address2,PWD,Base64.getDecoder().decode(ADDR2_SALT));
+
+		System.out.println("acct1:" + acc1.getAddressU160().toBase58());
+		System.out.println("acct2:" + acc2.getAddressU160().toBase58());
+		
+		Transaction tx = ontSdk.nativevm().ont().makeTransfer(acc1.getAddressU160().toBase58(), acc2.getAddressU160().toBase58(), 2, acc1.getAddressU160().toBase58(), 20000, 0);
+		
+		int nonce = tx.nonce;
+		System.out.println(tx.nonce);
+		ontSdk.addSign(tx,acc1);
+		ontSdk.addSign(tx,acc1);
+		System.out.println(tx.nonce);
+
+		Object obj = ontSdk.getConnect().sendRawTransaction(tx.toHexString());
+		
+		Transaction tx1 = ontSdk.nativevm().ont().makeTransfer(acc1.getAddressU160().toBase58(), acc2.getAddressU160().toBase58(), 3, acc1.getAddressU160().toBase58(), 20000, 0);
+		
+		tx1.sigs=tx.sigs;
+		tx1.payer=tx.payer;
+		
+		ontSdk.addSign(tx1,acc2);
+		ontSdk.addSign(tx1,acc1);
+
+		Object obj1 = ontSdk.getConnect().sendRawTransaction(tx1.toHexString());
+	}
+	
+	@Test
+	public void testSample5() throws Exception {
+		OntTest.logger().description("非法交易-双花交易");
+
+		String privatekey1 = "02bdbb76d134c06cb0af54ac39789b7f826bf6b8ebfd27b7ff58a48dacabbaf00e";
+		String privatekey2 = "03f46fbc68f533e2d6c8eca9c7275e7623b114700263b12db195d2f9986f1abbd1";
+		String ADDR1_SALT = "AVbeRAqPJqAKAJZN89la6w==";
+		String ADDR2_SALT = "NwFRFcVcWBN2B8yNRngo0Q==";
+		String address1 = "AS9S7j6VWUgg3sX89pok6KHeYU9DenKwbS";
+		String address2 = "AMjExWrNSNyPjEct7ryp2LPSz5WbGpaYtG";
+		String PWD = "123456";
+		
+		OntSdk ontSdk = OntTest.sdk();
+
+		Account acc1 = ontSdk.getWalletMgr().getAccount(address1,PWD,Base64.getDecoder().decode(ADDR1_SALT));
+		Account acc2 = ontSdk.getWalletMgr().getAccount(address2,PWD,Base64.getDecoder().decode(ADDR2_SALT));
+
+		System.out.println("acct1:" + acc1.getAddressU160().toBase58());
+		System.out.println("acct2:" + acc2.getAddressU160().toBase58());
+
+		Transaction tx = ontSdk.nativevm().ont().makeTransfer(acc1.getAddressU160().toBase58(), acc2.getAddressU160().toBase58(), 2, acc1.getAddressU160().toBase58(), 20000, 0);
+		
+		int nonce = tx.nonce;
+		System.out.println(tx.nonce);
+		ontSdk.addSign(tx,acc1);
+		ontSdk.addSign(tx,acc1);
+		System.out.println(tx.nonce);
+
+		Object obj = ontSdk.getConnect().sendRawTransaction(tx.toHexString());
+		
+		Transaction tx1 = ontSdk.nativevm().ont().makeTransfer(acc1.getAddressU160().toBase58(), acc2.getAddressU160().toBase58(), 3, acc1.getAddressU160().toBase58(), 20000, 0);
+		
+		System.out.println("nonce1:");
+		System.out.println(tx1.nonce);
+		tx1.nonce = nonce + 1;
+		System.out.println("nonce2:");
+		System.out.println(tx1.nonce);
+		
+		ontSdk.addSign(tx1,acc2);
+		ontSdk.addSign(tx1,acc1);
+		
+		Object obj1 = ontSdk.getConnect().sendRawTransaction(tx1.toHexString());
+	}
+	
+	@Test
+	public void testSample6() throws Exception {
+		OntTest.api().node().initOntOng();
+		/*String codeaddr = "362cb5608b3eca61d4846591ebb49688900fedd0";
+		codeaddr = Helper.reverse(codeaddr);
+		Account account = OntTest.common().getAccount(0);
+        List list = new ArrayList<Object>();
+        list.add("Hello".getBytes());
+        List tmp = new ArrayList<Object>();
+        tmp.add(Helper.hexToBytes("dde1a09571bf98e04e62b1a8778b2d413747408f4594c946577965fa571de8e5"));
+        list.add(tmp);
+        byte[] params = BuildParams.createCodeParamsScript(list);
+		
+        Transaction tx = OntTest.sdk().vm().makeInvokeCodeTransaction( codeaddr, null, params, account.getAddressU160().toBase58(), 200000000, 0);
+		OntTest.sdk().signTx(tx, new Account[][]{{account}});
+		
+		System.out.println(OntTest.sdk().getConnect().sendRawTransactionPreExec(tx.toHexString()));*/
 	}
 }
      
