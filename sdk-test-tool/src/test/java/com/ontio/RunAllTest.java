@@ -121,7 +121,7 @@ public class RunAllTest {
         JUnitCore junitRunner = new JUnitCore();
         junitRunner.addListener(new TestMonitor());
         
-        double faultTolerance = 1;
+        double faultTolerance = 0.6;
         
         for (Class<?> _class : all_class) {
         	int total_cases = 0;
