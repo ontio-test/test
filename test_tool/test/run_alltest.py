@@ -14,6 +14,7 @@ from monitor.monitor import TestMonitor
 from utils.logger import LoggerInstance as logger
 
 setproctitle.setproctitle("run_alltest")
+os.system("chmod 777 ../tools/*")
 
 class TestCaseRunner():
 	#通过读config文件，来获取测试例
