@@ -332,12 +332,14 @@ class test_consensus_2(ParametrizedTestCase):
 		pass
 	
 	def setUp(self):
+		Config.GEN_BLOCK_TIMEOUT = 70
 		logger.open( "test_consensus/" + self._testMethodName+".log",self._testMethodName)
 		if self._testMethodName == "test_init":
 			return 
 		
 	def tearDown(self):
 		logger.close(self.result())
+		Config.GEN_BLOCK_TIMEOUT = 40
 		
 	def init_bft_node(self, bft_index):
 		API.node().stop_all_nodes()

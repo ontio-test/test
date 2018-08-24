@@ -140,7 +140,7 @@ class RPCApi:
 
 		return TaskRunner.run_single_task(task)
 
-	def getsmartcodeevent(self, height = None, tx_hash = None):
+	def getsmartcodeevent(self, height = None, tx_hash = None, process_log = True):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getsmartcodeevent.json")
 		taskrequest = task.request()
 		params = []
@@ -150,7 +150,7 @@ class RPCApi:
 			params.append(tx_hash)
 		taskrequest["params"] = params
 
-		return TaskRunner.run_single_task(task)
+		return TaskRunner.run_single_task(task, process_log = process_log)
 
 	def getblockheightbytxhash(self, tx_hash):
 		task = Task(Config.BASEAPI_PATH + "/rpc/getblockheightbytxhash.json")

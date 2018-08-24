@@ -93,35 +93,36 @@ class Config():
 	
 	INIT_AMOUNT_ONG = cfg_json["INIT_AMOUNT_ONG"]
 
+	GEN_BLOCK_TIMEOUT = 40
 	
 #####################################################################################
 	ontid_map = {}
 	node_Admin = 0
-	ontID_Admin = ByteToHex(bytes(NODES[node_Admin]["ontid"], encoding = "utf8"))
+	ontID_Admin = ByteToHex(bytes(NODES[node_Admin]["ontid"], encoding = "utf8")) if node_Admin < len(NODES) else ""
  
 	node_A = 1
-	ontID_A = ByteToHex(bytes(NODES[node_A]["ontid"], encoding = "utf8"))
+	ontID_A = ByteToHex(bytes(NODES[node_A]["ontid"], encoding = "utf8")) if node_A < len(NODES) else ""
 
 	node_B = 2
-	ontID_B = ByteToHex(bytes(NODES[node_B]["ontid"], encoding = "utf8"))
+	ontID_B = ByteToHex(bytes(NODES[node_B]["ontid"], encoding = "utf8")) if node_B < len(NODES) else ""
 
 	node_C = 3
-	ontID_C = ByteToHex(bytes(NODES[node_C]["ontid"], encoding = "utf8"))
+	ontID_C = ByteToHex(bytes(NODES[node_C]["ontid"], encoding = "utf8")) if node_C < len(NODES) else ""
 
 	node_D = 4
-	ontID_D = ByteToHex(bytes(NODES[node_D]["ontid"], encoding = "utf8"))
+	ontID_D = ByteToHex(bytes(NODES[node_D]["ontid"], encoding = "utf8")) if node_D < len(NODES) else ""
 
 	node_E = 5
-	ontID_E = ByteToHex(bytes(NODES[node_E]["ontid"], encoding = "utf8"))
+	ontID_E = ByteToHex(bytes(NODES[node_E]["ontid"], encoding = "utf8")) if node_E < len(NODES) else ""
 
 	node_F = 6
-	ontID_F = ByteToHex(bytes(NODES[node_F]["ontid"], encoding = "utf8"))
+	ontID_F = ByteToHex(bytes(NODES[node_F]["ontid"], encoding = "utf8")) if node_F < len(NODES) else ""
 
 	node_G = 7
-	ontID_G = ByteToHex(bytes(NODES[node_G]["ontid"], encoding = "utf8"))
+	ontID_G = ByteToHex(bytes(NODES[node_G]["ontid"], encoding = "utf8")) if node_G < len(NODES) else ""
 	
 	node_H = 8
-	ontID_H = ByteToHex(bytes(NODES[node_H]["ontid"], encoding = "utf8"))
+	ontID_H = ByteToHex(bytes(NODES[node_H]["ontid"], encoding = "utf8")) if node_H < len(NODES) else ""
 	
 	node_index = 0
 	for node in NODES:

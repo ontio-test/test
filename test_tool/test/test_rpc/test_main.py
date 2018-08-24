@@ -519,7 +519,7 @@ class test_rpc_2(ParametrizedTestCase):
 
 	def test_base_069_getmempooltxstate(self):
 		try:
-			(process, response) = API.contract().invoke_function(test_config.m_contractaddr_right, "put", "", "1", argvs = [{"type": "bytearray","value": test_config.m_getstorage_contract_key},{"type": "bytearray","value": test_config.m_getstorage_contract_value}], node_index = 0, sleep = 0)
+			(process, response) = API.contract().invoke_function(test_config.m_contractaddr_right, "put", "", "1", argvs = [{"type": "bytearray","value": test_config.m_getstorage_contract_key},{"type": "bytearray","value": test_config.m_getstorage_contract_value}], node_index = 0, sleep = 0, check_state=False)
 
 			(process, response) = API.rpc().getmempooltxstate(response["txhash"])
 			self.ASSERT(process, "")

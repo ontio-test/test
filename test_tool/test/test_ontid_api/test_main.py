@@ -804,7 +804,7 @@ class test_ontid_api_2(ParametrizedTestCase):##TestContract
 
 	def test_abnormal_055_changeRecovery(self):
 		try:
-			(process, response) = changeRecovery(test_config.ontId, test_config.old_recovery_address,test_config.old_recovery_address,test_config.public_key,test_config.node_index,47001,test_config.old_recovery_address_Array)
+			(process, response) = changeRecovery(test_config.ontId, test_config.old_recovery_address,test_config.old_recovery_address,test_config.public_key,test_config.node_index,0,test_config.old_recovery_address_Array)
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print (e.args[0]) 

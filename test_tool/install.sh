@@ -1,4 +1,5 @@
 sudo apt-get install python3-pip
+sudo apt-get install libssl-dev
 
 pip3 install requests
 pip3 install websocket-client

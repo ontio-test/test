@@ -55,6 +55,37 @@ def sftp_transfer(_from, _to, _node_index, _op="get"):
 
     transport.close()
 
+def sftp_transfer_dir(_from, _to, _node_index, _op="get"):
+    # on local host
+    if _node_index == 0:
+        cmd = "cp -rf " + _from + " " + _to
+        os.system(cmd)
+        return 
+
+    private_key = paramiko.RSAKey.from_private_key_file("../../resource/id_rsa", "367wxd")
+
+    transport = paramiko.Transport((Config.NODES[_node_index]["ip"] , 22))
+
+    transport.connect(username="ubuntu", pkey=private_key)
+
+    sftp = paramiko.SFTPClient.from_transport(transport)
+    
+    try:
+        sftp.mkdir(_to)
+    except:
+        pass
+
+    for item in os.listdir(_from):
+        if _op == "put":
+            sftp.put(os.path.join(_from, item), os.path.join(_to, item))
+        elif _op == "get":
+            sftp.get(os.path.join(_from, item), os.path.join(_to, item))
+        else:
+            logger.error("operation not supported")
+
+    transport.close()
+
+
 def calc_md5_for_file(_file):
     md5 = hashlib.md5()
     with open(_file, "rb") as f:
@@ -211,7 +242,7 @@ class SelfCheck():
             if "doesnot exists" in response["result"] or (response["result"] != self.wallet_correct_md5[i]):
                 logger.error("node " + str(i+1) + " wallet version error or not exists")
                 logger.info("start transfer wallet from node 1 to node " + str(i+1))
-                wallet_index = "0" + str(i+1) if i < 10 else str(i)
+                wallet_index = "0" + str(i) if i < 10 else str(i)
                 sftp_transfer(self.wallet_source_path+"/wallet"+wallet_index+".dat", self.wallet_path, i, "put")
                 logger.info("transfer wallet OK ")
 
@@ -287,7 +318,7 @@ class SelfCheck():
             if "doesnot exists" in response["result"] or (response["result"] != self.abi_md5):
                 logger.error("node " + str(i+1) + " abi version error or not exists")
                 logger.info("start transfer abi from node 1 to node " + str(i+1))
-                sftp_transfer(self.abi_source_path, self.abi_path, i, "put")
+                sftp_transfer_dir(self.abi_source_path, self.abi_path, i, "put")
                 logger.info("transfer abi OK ")
 
             logger.info("checking node " + str(i+1) + " abi OK\n")

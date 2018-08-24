@@ -1,8 +1,8 @@
 {
-	"RPC_URL": "http://139.219.128.177:20336/jsonrpc",
+	"RPC_URL": "http://127.0.0.1:20336/jsonrpc",
 	"CLIRPC_URL": "http://127.0.0.1:20000/cli",
-	"RESTFUL_URL": "http://139.219.128.177:20334",
-	"WS_URL": "ws://139.219.128.177:20335",
+	"RESTFUL_URL": "http://127.0.0.1:20334",
+	"WS_URL": "ws://127.0.0.1:20335",
 	"NODES": [{
 		"ip": "139.219.128.177",
 		"wallet" : "wallet00.dat"

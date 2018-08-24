@@ -73,11 +73,12 @@ def sample(contract_address,pay_address,get_address,node_index,charge=False,node
 	##case
 	if(charge):
 		os.system("echo 123456 | "+nodePath+ "/ontology asset transfer --from="+pay_address+" --to=1 --amount=10 --gasprice=0 --gaslimit=30000 --asset=ont -w "+nodePath+"/wallet.dat")
+		API.node().wait_gen_block(True)
 		os.system("echo 123456 | "+nodePath+ "/ontology asset transfer --from="+pay_address+" --to=1 --amount=0.00000001 --gasprice=0 --gaslimit=30000 --asset=ong -w "+nodePath+"/wallet.dat")
 	else:
 		(result, response) = forNeo(contract_address,pay_address,get_address, node_index)
 	#API.node().wait_gen_block()
-	API.node().wait_gen_block()
+	API.node().wait_gen_block(True)
 	
 	
 	#getont/ong

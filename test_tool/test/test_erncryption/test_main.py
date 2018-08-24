@@ -40,7 +40,7 @@ class test_erncryption_1(ParametrizedTestCase):
 		
 	def setUp(self):
 		#os.system(test_config.nodePath+ "/ontology account import -s resource/wallettest.dat -w "+test_config.nodePath+"/wallet.dat")
-		logger.open("test_erncrytion/"+ self._testMethodName+".log",self._testMethodName)
+		logger.open("test_erncryption/"+ self._testMethodName+".log",self._testMethodName)
 		
 	def tearDown(self):
 		logger.close(self.result())

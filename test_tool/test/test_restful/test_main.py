@@ -95,9 +95,9 @@ class test_restful_2(ParametrizedTestCase):
 	# 无区块
 	def test_abnormal_053_getcontract(self):
 		try:
-			(contractaddr_right, txhash_right) = API.contract().deploy_contract_full(testpath+"/resource/A.neo", "name", "desc", 0)
+			# (contractaddr_right, txhash_right) = API.contract().deploy_contract_full(testpath+"/resource/A.neo", "name", "desc", 0)
 			# time.sleep(10)
-			script_hash=contractaddr_right
+			script_hash = "8eeae0cd102461abc82a3fe5df58fa8c31121e0f"
 			(process, response) = API.restful().getcontract(script_hash) 
 			self.ASSERT(not process, "")
 		except Exception as e:

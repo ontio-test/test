@@ -77,7 +77,7 @@ class NativeApi:
             request["NODE_INDEX"] = node_index
         return CONTRACT_API.call_contract(Task(name="approve_ont", ijson=request), twice = True, sleep=5) 
 
-    def transfer_ont(self, pay_address, get_address, amount, node_index=None, errorcode=0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5, pre=True, twice=True):
+    def transfer_ont(self, pay_address, get_address, amount, node_index=None, errorcode=0, gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5, pre=True, twice=True, check_state=True):
         request = {
             "REQUEST": {
                 "Qid": "t",
@@ -109,7 +109,7 @@ class NativeApi:
                     request["NODE_INDEX"] = index
                     break
 
-        return CONTRACT_API.call_contract(Task(name="transfer_ont", ijson=request), twice=twice, sleep=sleep, pre=pre)
+        return CONTRACT_API.call_contract(Task(name="transfer_ont", ijson=request), twice=twice, sleep=sleep, pre=pre, check_state=check_state)
 
     ##############################################
     ###0200000000000000000000000000000000000000###
@@ -587,10 +587,11 @@ class NativeApi:
             "RESPONSE":{"error" : errorcode}
         }
 
-        (result, response) = CONTRACT_API.call_multisig_contract(Task(name="commit_dpos", ijson=request),Config.AdminNum,Config.AdminPublicKeyList, sleep=sleep)
+        (result, response) = CONTRACT_API.call_multisig_contract(Task(name="commit_dpos", ijson=request),Config.AdminNum,Config.AdminPublicKeyList, sleep=sleep, check_state = False)
 
         if result:
-            result = NODE_API.wait_gen_block()
+            NODE_API.wait_gen_block(True)
+            NODE_API.wait_gen_block(True)
 
         return (result, response)
 

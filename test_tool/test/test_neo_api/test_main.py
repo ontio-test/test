@@ -36,6 +36,7 @@ class test_neo_api_1(ParametrizedTestCase):
 		API.node().stop_all_nodes()
 		print("start all")
 		API.node().start_nodes([0,1,2,3,4,5,6], Config.DEFAULT_NODE_ARGS, True, True)
+		time.sleep(90)
 
 		test_config.init()
 
