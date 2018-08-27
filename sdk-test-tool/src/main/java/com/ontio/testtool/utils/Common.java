@@ -133,7 +133,7 @@ public class Common {
 				WalletMgr wm = new WalletMgr(Config.nodeWallet(0), OntTest.sdk().defaultSignScheme);
 				Wallet w = wm.getWalletFile();
 				List<com.github.ontio.sdk.wallet.Account> accountinfos = w.getAccounts();
-		        System.out.println("init ont&ong in test mode: " + accountinfos.size());
+		        System.out.println("get account in test mode: " + accountinfos.size());
 		        if (accountinfos.size() <= index) {
 		        	OntTest.logger().error("Get account: index out of range " + index);
 		        	return null;

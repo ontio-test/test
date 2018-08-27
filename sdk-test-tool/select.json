@@ -1,0 +1,14 @@
+{
+    "WebSocket_API":true,
+	"DigitalAccount":true,
+	"DigitalIdentity":true,
+	"MnemonicCodesStr":true,
+	"ONG_Native":true,
+	"ONT_Native":true,
+	"Ontid":true,
+	"Invoke":true,
+	"RPC_API":true,
+	"Restful_API":true,
+	"ClaimBase":true,
+	"ClaimRecord":true
+}
