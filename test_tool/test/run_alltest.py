@@ -132,7 +132,10 @@ class TestCaseRunner():
 														top_level_dir=None)
 		except Exception as e:
 			print("test discover", e)
-			
+		
+		# catch load errors
+		print(unittest.defaultTestLoader.errors)
+		
 		print("test_suites", test_suites)
 
 		cases = self.filter_test_cases(test_suites, filterfile, filtertype, filterstr, excludestr)
