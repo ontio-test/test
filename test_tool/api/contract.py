@@ -94,6 +94,8 @@ class ContractApi:
                                 "jsonrpc": "2.0",
                                 "id": 0,
                             })
+            request["account"] = Config.NODES[task.node_index()]["address"]
+            request["pwd"] = "123456"
             task.request()["params"] = request
 
             (result, response) = TaskRunner.run_single_task(task, False, process_log)
@@ -102,6 +104,10 @@ class ContractApi:
             return (result, response)
         else:
             task.set_type("cli")
+            request = task.request()
+            request["account"] = Config.NODES[nodeapi.get_current_node()]["address"]
+            request["pwd"] = "123456"
+            task.set_request(request)
             (result, response) = TaskRunner.run_single_task(task, False, process_log)
             return (result, response)
 
@@ -236,6 +242,8 @@ class ContractApi:
               "jsonrpc": "2.0",
               "id": 0,
             })
+            request["account"] = Config.NODES[task.node_index()]["address"]
+            request["pwd"] = "123456"
             task.request()["params"] = request
             (result, response) = TaskRunner.run_single_task(task, False, process_log)
             if result:
@@ -243,6 +251,10 @@ class ContractApi:
             return (result, response)
         else:
             task.set_type("cli")
+            request = task.request()
+            request["account"] = Config.NODES[nodeapi.get_current_node()]["address"]
+            request["pwd"] = "123456"
+            task.set_request(request)
             (result, response) = TaskRunner.run_single_task(task, False, process_log)
             return (result, response)
 
