@@ -240,7 +240,9 @@ def start_sigsvr(**kwargs):
   if "wallet" in kwargs:
     wallet = kwargs["wallet"]
   cmd = "cd " + config.NODE_PATH + "\n"
-  cmd = cmd + "echo 123456|" + config.NODE_PATH + "/" + program_name + " -w=\"" + wallet + "\" &"
+  cmd = cmd + "rm -rf " + config.NODE_PATH + "/wallet_data \n"
+  cmd = cmd + config.NODE_PATH + "/" + program_name + " import -w=\"" + wallet + "\"\n"
+  cmd = cmd + "echo 123456|" + config.NODE_PATH + "/" + program_name + " --abi=\"" + config.NODE_PATH + "/abi\" &"
   print(cmd)
   os.system(cmd)
   return True

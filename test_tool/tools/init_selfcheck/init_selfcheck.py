@@ -417,7 +417,8 @@ class SelfCheck():
         self.check_abi()
 
         # check test service md5 value
-        # self.check_test_service()
+        self.check_test_service()
+        time.sleep(10)
 
         # check wallets and config in resource
         self.check_self_wallets()
@@ -446,6 +447,7 @@ if __name__ == "__main__":
     initconfig = InitConfig()
     initconfig.get_init_config()
 
+    #API.node().start_sigsvrs(initconfig.initconfig["wallet_path"], list(range(len(Config.NODES))))
     # start self check
     selfcheck = SelfCheck(initconfig.initconfig)
     selfcheck.check_all()
