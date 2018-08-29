@@ -112,7 +112,7 @@ class NodeApi:
 			"jsonrpc": "2.0",
 			"id": 0,
 		}
-		return _check_md5(node_list, request)
+		return self._check_md5(node_list, request)
 
 	def check_node_ledgerevent(self, node_list):
 		request = {
@@ -120,7 +120,7 @@ class NodeApi:
 			"jsonrpc": "2.0",
 			"id": 0,
 		}
-		return _check_md5(node_list, request)
+		return self._check_md5(node_list, request)
 
 	def check_node_block(self, node_list):
 		request = {
@@ -128,7 +128,7 @@ class NodeApi:
 			"jsonrpc": "2.0",
 			"id": 0,
 		}
-		return _check_md5(node_list, request)
+		return self._check_md5(node_list, request)
 
 	#检查节点服务器State数据库是否一致
 	def check_node_all(self, node_list):
