@@ -715,7 +715,7 @@ class NativeApi:
                     "asset":assetStr,
                     "from":put_address,
                     "to":get_address,
-                    "amount":amount
+                    "amount":str(amount)
                 }
             },
             "RESPONSE":{errorkey : errorcode}
