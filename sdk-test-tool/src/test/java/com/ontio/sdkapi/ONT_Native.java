@@ -1,6 +1,7 @@
 package com.ontio.sdkapi;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -125,6 +126,7 @@ public class ONT_Native {
 			else {
 				OntTest.logger().print("转账失败！");
 			}
+			assertTrue(false);
 		} 
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -228,6 +230,7 @@ public class ONT_Native {
 			else {
 				OntTest.logger().print("转账失败！");
 			}
+			assertTrue(false);
 		} 
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -281,6 +284,7 @@ public class ONT_Native {
 			else {
 				OntTest.logger().print("转账失败！");
 			}
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -334,8 +338,8 @@ public class ONT_Native {
 			else {
 				OntTest.logger().print("转账失败！");
 				}
-			} 
-		
+			assertTrue(false);
+		} 
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
 			OntTest.logger().error(er.toString());
@@ -399,12 +403,13 @@ public class ONT_Native {
 			else {
 				assertEquals(true,flag == true);
 			}
-			} 
-		
-		catch(Exception e) {
+		} catch(SDKException e) {
+				System.out.println(e);
+				assertTrue(false);
+		}catch(Exception e) {
 			OntTest.logger().error(e.toString());
 			fail();
-			}
+		}
 	}
 	
 	@Test
@@ -438,16 +443,18 @@ public class ONT_Native {
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("转账成功！");
 				assertEquals(true, true);
-				}
+			}
 			else {
 				OntTest.logger().print("转账失败！");
 				assertEquals(true, false);
-				}
-			} 
-		catch(Exception e) {
+			}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		} catch(Exception e) {
 			OntTest.logger().error(e.toString());
 			fail();
-			}
+		}
 	}
 	
 	@Test
@@ -483,8 +490,9 @@ public class ONT_Native {
 				}
 			else {
 				OntTest.logger().print("转账失败！");
-				}
-			} 
+			}
+			assertTrue(false);
+		} 
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
 			OntTest.logger().error(er.toString());
@@ -534,11 +542,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("转账成功！");
-				}
+			}
 			else {
 				OntTest.logger().print("转账失败！");
-				}
-			} 
+			}
+			assertTrue(false);
+		} 
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
 			OntTest.logger().error(er.toString());
@@ -637,7 +646,8 @@ public class ONT_Native {
 			else {
 				OntTest.logger().print("转账失败！");
 				}
-			} 
+			assertTrue(false);
+		} 
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
 			OntTest.logger().error(er.toString());
@@ -690,7 +700,8 @@ public class ONT_Native {
 			else {
 				OntTest.logger().print("转账失败！");
 				}
-			} 
+			assertTrue(false);
+		} 
 		catch(RpcException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
 			OntTest.logger().error(er.toString());
@@ -738,19 +749,8 @@ public class ONT_Native {
 			long l = OntTest.sdk().nativevm().ont().queryBalanceOf("AbwJsJYQPBSw67SVP7hctkWsfzgikwNkvh");
 			String bal = String.valueOf(l);
 			OntTest.logger().print(bal);
-		}
-		catch(SDKException e) {
-			Map er = (Map)JSON.parse(e.getMessage());
-			OntTest.logger().error(er.toString());
-			String er_code = er.get("Error").toString();
-			if("58004".equals(er_code)) {
-				assertEquals(true,true);
-			}
-			else {
-				assertEquals(true,false);
-			}
-		}
-		catch(Exception e) {
+			assertEquals(true,l==0);
+		}catch(Exception e) {
 			OntTest.logger().error(e.toString());
 			fail();
 		}
@@ -765,6 +765,7 @@ public class ONT_Native {
 			long l = OntTest.sdk().nativevm().ont().queryBalanceOf("AbwJsJYQPBSw%&#SVP7hctkWsfzgikwNkv");
 			String bal = String.valueOf(l);
 			OntTest.logger().print(bal);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -792,6 +793,7 @@ public class ONT_Native {
 			long l = OntTest.sdk().nativevm().ont().queryBalanceOf("");
 			String bal = String.valueOf(l);
 			OntTest.logger().print(bal);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -865,6 +867,9 @@ public class ONT_Native {
 				OntTest.logger().print("失败！");
 				assertEquals(true, false);
 			}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -890,6 +895,7 @@ public class ONT_Native {
 			OntTest.logger().step("2.调用queryAllowance");
 			long l = OntTest.sdk().nativevm().ont().queryAllowance(addr1+"G", addr2);
 			OntTest.logger().print("queryAllowance:"+l);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -927,6 +933,7 @@ public class ONT_Native {
 			OntTest.logger().step("2.调用queryAllowance");
 			long l = OntTest.sdk().nativevm().ont().queryAllowance("Af296@#$TqHV5byLvXdCWCheW3HcpMpcNa", addr2);
 			OntTest.logger().print("queryAllowance:"+l);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -967,8 +974,11 @@ public class ONT_Native {
 			}
 			else{
 				OntTest.logger().print("失败！");
-				assertEquals(true, true);
+				assertEquals(true, false);
 			}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -992,6 +1002,7 @@ public class ONT_Native {
 			OntTest.logger().step("2.调用queryAllowance");
 			long l = OntTest.sdk().nativevm().ont().queryAllowance("" , addr2);
 			OntTest.logger().print("queryAllowance:"+l);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1031,6 +1042,9 @@ public class ONT_Native {
 				OntTest.logger().print("失败！");
 				assertEquals(true, false);
 			}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1053,6 +1067,7 @@ public class ONT_Native {
 			OntTest.logger().step("2.调用queryAllowance");
 			long l = OntTest.sdk().nativevm().ont().queryAllowance(addr1 , addr2+"G");
 			OntTest.logger().print("queryAllowance:"+l);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1087,6 +1102,10 @@ public class ONT_Native {
 			OntTest.logger().step("2.调用queryAllowance");
 			long l = OntTest.sdk().nativevm().ont().queryAllowance(addr1 , "AKv$%^sbk3ucmTHHg9hPK3kehoQHG5g9CG");
 			OntTest.logger().print("queryAllowance:"+l);
+			assertTrue(false);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1114,11 +1133,14 @@ public class ONT_Native {
 			if(l == 0) {
 			OntTest.logger().print("成功！");
 			assertEquals(true, true);
-		}
+			}
 		else{
 			OntTest.logger().print("失败！");
 			assertEquals(true, false);
 			}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1141,6 +1163,7 @@ public class ONT_Native {
 			OntTest.common().waitTransactionResult(ts);
 			long l = OntTest.sdk().nativevm().ont().queryAllowance(addr1 , "");
 			OntTest.logger().print("queryAllowance:"+l);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1207,6 +1230,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1242,6 +1266,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1277,6 +1302,10 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1301,6 +1330,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1339,10 +1369,13 @@ public class ONT_Native {
 			
 			if(l >= 10000) {
 				OntTest.logger().print("成功！");
+				assertTrue(true);
 			}
 			else{
 				OntTest.logger().print("失败！");
+				assertTrue(false);
 			}
+			
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1365,7 +1398,7 @@ public class ONT_Native {
 			OntTest.common().waitTransactionResult(ts);
 			long l = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			OntTest.logger().print("sendApprove:"+l);
-			
+			assertTrue(false);
 		}
 		catch(RpcException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1403,12 +1436,14 @@ public class ONT_Native {
 			OntTest.logger().print("sendApprove:"+s);
 			
 			if(s == 0) {
-				OntTest.logger().print("失败！");
 				assertEquals(true, s == 0);
 			}
 			else {
 				assertEquals(true, false);
 			}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		
 		catch(Exception e) {
@@ -1432,6 +1467,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1465,6 +1501,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1499,6 +1536,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1534,6 +1572,7 @@ public class ONT_Native {
 			long s = OntTest.sdk().nativevm().ont().queryAllowance(addr1, addr2);
 			String al = String.valueOf(s);
 			OntTest.logger().print(al);
+			assertTrue(false);
 		}
 		catch(RpcException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1620,7 +1659,7 @@ public class ONT_Native {
 			long after_bala2 = OntTest.sdk().nativevm().ont().queryBalanceOf(addr2);
 			OntTest.logger().print("账户1 的余额为"+after_bala1);
 			OntTest.logger().print("账户2 的余额为"+after_bala2);
-			
+			assertTrue(false);
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -1729,7 +1768,10 @@ public class ONT_Native {
 				assertEquals(true, false);
 			}
 			
-		}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		} 
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
 			fail();
@@ -1772,7 +1814,10 @@ public class ONT_Native {
 				assertEquals(true, false);
 			}
 			
-		}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		} 
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
 			fail();
@@ -1820,7 +1865,10 @@ public class ONT_Native {
 				assertEquals(true, true);
 			}
 			
-		}
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		} 
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
 			fail();
@@ -1856,9 +1904,11 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertTrue(false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertTrue(false);
 			}
 			
 		}
@@ -1908,11 +1958,16 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertTrue(false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertTrue(true);
 			}
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1955,6 +2010,9 @@ public class ONT_Native {
 				assertEquals(true, true);
 			}
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -1990,11 +2048,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2046,6 +2105,9 @@ public class ONT_Native {
 				assertEquals(true, true);
 			}
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -2082,11 +2144,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2133,11 +2196,15 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true,false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true,true);
 			}
-			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -2181,6 +2248,9 @@ public class ONT_Native {
 				assertEquals(true, true);
 			}
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -2216,11 +2286,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2268,11 +2339,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 >= 0 && after_bala2 - before_bala2 >= 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2319,11 +2391,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2370,13 +2443,16 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
-				assertEquals(true, true);
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
 				assertEquals(true, true);
 			}
 			
+		}catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		}
 		catch(Exception e) {
 			OntTest.logger().error(e.toString());
@@ -2454,11 +2530,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2505,11 +2582,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2598,11 +2676,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(SDKException e) {
 			Map er = (Map)JSON.parse(e.getMessage());
@@ -2650,11 +2729,12 @@ public class ONT_Native {
 			
 			if(before_bala1 - after_bala1 > 0 && after_bala2 - before_bala2 > 0) {
 				OntTest.logger().print("成功！");
+				assertEquals(true, false);
 			}
 			else {
 				OntTest.logger().print("失败！");
+				assertEquals(true, false);
 			}
-			
 		}
 		catch(RpcException e) {
 			Map er = (Map)JSON.parse(e.getMessage());

@@ -1,6 +1,7 @@
 package com.ontio.sdkapi;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -111,7 +112,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(RpcException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -194,7 +196,10 @@ public class Invoke {
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
 	        assertEquals(true,ret.equals(exp));
-		} catch(Exception e) {
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		}  catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
 			fail();
@@ -229,6 +234,9 @@ public class Invoke {
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
 	        assertEquals(true,ret.equals(exp));
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -265,7 +273,10 @@ public class Invoke {
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
 	        assertEquals(true,ret.equals(exp));
-		} catch(Exception e) {
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		}  catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
 			fail();
@@ -438,7 +449,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(RpcException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -478,7 +490,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(RpcException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -554,7 +567,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -596,7 +610,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -638,7 +653,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -681,7 +697,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
-	        assertEquals(true,ret.equals(exp));
+	        //assertEquals(true,ret.equals(exp));
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -723,13 +740,6 @@ public class Invoke {
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
 	        assertEquals(true,ret.equals(exp));
-		} catch(SDKException e) {
-	        Map err = (Map) JSON.parse(e.getMessage()); 
-			System.out.println("err = "+err);
-			int err_code = (int) err.get("Error");
-			int exp_errcode = 58004;
-			OntTest.logger().error(e.toString());
-			assertEquals(true,err_code==exp_errcode);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -764,13 +774,9 @@ public class Invoke {
 	        int ret = (int) b1.get("State");
 	        int exp = 1;
 	        assertEquals(true,ret!=exp);
-//		} catch(SDKException e) {
-//	        Map err = (Map) JSON.parse(e.getMessage()); 
-//			System.out.println("err = "+err);
-//			int err_code = (int) err.get("Error");
-//			int exp_errcode = 58004;
-//			OntTest.logger().error(e.toString());
-//			assertEquals(true,err_code==exp_errcode);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -822,6 +828,10 @@ public class Invoke {
 //			int exp_errcode = 43001;
 //			OntTest.logger().error(e.toString());
 //			assertEquals(true,err_code==exp_errcode);
+		} catch(SDKException e) {
+				System.out.println(e);
+				assertTrue(false);
+			 
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -856,8 +866,8 @@ public class Invoke {
 	        OntTest.logger().description("b1: " + b1);
 	        int ret = (int) b1.get("State");
 	        int exp = 1;
-	        assertEquals(false,ret==exp);
-	        
+	        //assertEquals(false,ret==exp);
+	        assertTrue(false);
 		} catch(RpcException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -915,7 +925,8 @@ public class Invoke {
 //	        OntTest.logger().description("ret1: " + ret1);
 ////	        String  ret0 = String.valueOf(ret0.get("Result"));
 ////	        boolean exp = true;
-	        assertEquals(true,ret!=exp);
+	        //assertEquals(true,ret!=exp);
+			assertTrue(false);
 		} catch(RpcException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -957,13 +968,6 @@ public class Invoke {
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
 	        assertEquals(true,ret.equals(exp));
-		} catch(SDKException e) {
-	        Map err = (Map) JSON.parse(e.getMessage()); 
-			System.out.println("err = "+err);
-			int err_code = (int) err.get("Error");
-			int exp_errcode = 58004;
-			OntTest.logger().error(e.toString());
-			assertEquals(true,err_code==exp_errcode);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -998,13 +1002,6 @@ public class Invoke {
 	        String  ret = String.valueOf(b1.get("Result"));
 	        String exp = "01";
 	        assertEquals(true,ret.equals(exp));
-		} catch(SDKException e) {
-	        Map err = (Map) JSON.parse(e.getMessage()); 
-			System.out.println("err = "+err);
-			int err_code = (int) err.get("Error");
-			int exp_errcode = 58004;
-			OntTest.logger().error(e.toString());
-			assertEquals(true,err_code==exp_errcode);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1049,6 +1046,9 @@ public class Invoke {
 //			int exp_errcode = 43001;
 //			OntTest.logger().error(e.toString());
 //			assertEquals(true,err_code==exp_errcode);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1095,14 +1095,10 @@ public class Invoke {
 	        int ret = (int) b1.get("State");
 	        int exp = 1;
 	        assertEquals(true,ret!=exp);
-		} catch(RpcException e) {
-	        Map err = (Map) JSON.parse(e.getMessage()); 
-			System.out.println("err = "+err);
-			int err_code = (int) err.get("error");
-			int exp_errcode = 43001;
-			OntTest.logger().error(e.toString());
-			assertEquals(true,err_code==exp_errcode);
-		} catch(Exception e) {
+		}  catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(false);
+		}catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
 			fail();

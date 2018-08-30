@@ -1,6 +1,7 @@
 package com.ontio.sdkapi;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Base64;
@@ -111,6 +112,9 @@ public class MnemonicCodesStr {
 			Map QRcode = WalletQR.exportIdentityQRCode(walletFile,identity);
 			OntTest.logger().description(QRcode.toString());
 			assertEquals(true,false);
+		}  catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -178,6 +182,9 @@ public class MnemonicCodesStr {
 			Map QRcode = WalletQR.exportIdentityQRCode(walletFile,identity);   
 			OntTest.logger().description(QRcode.toString());
 			assertEquals(true,false);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -244,7 +251,10 @@ public class MnemonicCodesStr {
 			Map QRcode = WalletQR.exportAccountQRCode(walletFile, account);
 			OntTest.logger().description(QRcode.toString());
 			assertEquals(true,false);
-		} catch(Exception e) {
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
+		}  catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
 			fail();
@@ -316,7 +326,10 @@ public class MnemonicCodesStr {
 			Map QRcode = WalletQR.exportAccountQRCode(walletFile,account);   
 			OntTest.logger().description(QRcode.toString());	
 			assertEquals(true,false);
-		} catch(Exception e) {
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
+		}  catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
 			fail();
@@ -363,7 +376,7 @@ public class MnemonicCodesStr {
 			String PriKey = WalletQR.getPriKeyFromQrCode(qrcode, password);
 			
 			OntTest.logger().description("PriKey = "+PriKey);
-			assertEquals(true,true);
+			assertEquals(true,false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -381,7 +394,7 @@ public class MnemonicCodesStr {
 			String PriKey = WalletQR.getPriKeyFromQrCode(qrcode, password);
 			
 			OntTest.logger().description("PriKey = "+PriKey);
-			assertEquals(true,true);
+			assertEquals(true,false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -426,7 +439,7 @@ public class MnemonicCodesStr {
 			String password = "111111";
 			String PriKey = WalletQR.getPriKeyFromQrCode(qrcode, password);			
 			OntTest.logger().description("PriKey = "+PriKey);
-
+			assertEquals(true, PriKey == null);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -455,7 +468,7 @@ public class MnemonicCodesStr {
 			String password = "@#$%^&";
 			String PriKey = WalletQR.getPriKeyFromQrCode(qrcode, password);			
 			OntTest.logger().description("PriKey = "+PriKey);
-
+			assertEquals(true, PriKey == null);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -484,7 +497,7 @@ public class MnemonicCodesStr {
 			String password = "";
 			String PriKey = WalletQR.getPriKeyFromQrCode(qrcode, password);
 			OntTest.logger().description("PriKey = "+PriKey);
-
+			assertEquals(true, PriKey == null);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -510,7 +523,7 @@ public class MnemonicCodesStr {
 			String codesStr = MnemonicCode.generateMnemonicCodesStr();
 			OntTest.logger().description(codesStr);
 //			assertEquals(true,ret.equals(exp));
-			
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -671,6 +684,9 @@ public class MnemonicCodesStr {
 			
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -693,6 +709,9 @@ public class MnemonicCodesStr {
 			
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -715,6 +734,9 @@ public class MnemonicCodesStr {
 			
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -736,6 +758,9 @@ public class MnemonicCodesStr {
 			OntTest.logger().description(ret);
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -781,6 +806,9 @@ public class MnemonicCodesStr {
 			
 	        assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -802,6 +830,9 @@ public class MnemonicCodesStr {
 	        OntTest.logger().description("encryptedStr = "+encryptedStr);	
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -823,6 +854,9 @@ public class MnemonicCodesStr {
 	        OntTest.logger().description("encryptedStr = "+encryptedStr);
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -845,6 +879,9 @@ public class MnemonicCodesStr {
 
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -973,6 +1010,9 @@ public class MnemonicCodesStr {
 	        OntTest.logger().description("encryptedStr = "+encryptedStr);
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -996,6 +1036,9 @@ public class MnemonicCodesStr {
 	        OntTest.logger().description("encryptedStr = "+encryptedStr);
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1019,6 +1062,9 @@ public class MnemonicCodesStr {
 	        OntTest.logger().description("encryptedStr = "+encryptedStr);
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1040,6 +1086,9 @@ public class MnemonicCodesStr {
 	        OntTest.logger().description("encryptedStr = "+encryptedStr);
 			assertEquals(true,false);
 			
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1089,8 +1138,11 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, account.getAddressU160().toBase58());
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(false,decryptStr.equals(mnemonicCodesStr));
-			
+			//assertEquals(false,decryptStr.equals(mnemonicCodesStr));
+			assertTrue(false);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1115,7 +1167,11 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, account.getAddressU160().toBase58());
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(false,decryptStr.equals(mnemonicCodesStr));
+			//assertEquals(false,decryptStr.equals(mnemonicCodesStr));
+			assertTrue(false);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1140,7 +1196,11 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, account.getAddressU160().toBase58());
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(false,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(false,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
+		} catch(SDKException e) {
+			System.out.println(e);
+			assertTrue(true);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1164,7 +1224,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, account.getAddressU160().toBase58());
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -1219,8 +1280,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, "111111", account.getAddressU160().toBase58());
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
-			
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 			String ret_err = String.valueOf(e);
 			String exp_err = "com.github.ontio.sdk.exception.SDKException: {\"Desc\":\"Account Error,Prikey length error\",\"Error\":51014}";
@@ -1249,7 +1310,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, "!@#$%^", account.getAddressU160().toBase58());
 			System.out.println("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -1280,7 +1342,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, "", account.getAddressU160().toBase58());
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -1339,7 +1402,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, address);
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -1374,7 +1438,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, address);
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -1409,7 +1474,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, address);
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);
@@ -1441,7 +1507,8 @@ public class MnemonicCodesStr {
 	        String decryptStr = com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedStr, password, address);
 			OntTest.logger().description("decryptStr = "+decryptStr);
 			
-			assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			//assertEquals(true,decryptStr.equals(mnemonicCodesStr));	
+			assertTrue(false);
 		} catch(SDKException e) {
 	        Map err = (Map) JSON.parse(e.getMessage()); 
 			System.out.println("err = "+err);

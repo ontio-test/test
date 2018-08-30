@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.*;
 
@@ -116,7 +117,7 @@ public class ClaimRecord {
 	        
 	        System.out.println(ret.toString());
 			
-			assertEquals(true, ret == null);
+	        assertTrue(false);
 			
 		} catch(SDKException e) {
 			System.out.println(e);
@@ -201,7 +202,7 @@ public class ClaimRecord {
 	        
 	        System.out.println(ret.toString());
 			
-			assertEquals(true, ret == null);
+	        assertTrue(false);
 			
 		} catch(SDKException e) {
 			System.out.println(e);
@@ -286,7 +287,7 @@ public class ClaimRecord {
 	        
 	        System.out.println(ret.toString());
 			
-			assertEquals(true, ret == null);
+	        assertTrue(false);
 			
 		} catch(SDKException e) {
 			System.out.println(e);
@@ -368,7 +369,7 @@ public class ClaimRecord {
 	        
 	        System.out.println(ret.toString());
 			
-			assertEquals(true, ret == null);
+	        assertTrue(false);
 			
 		} catch(SDKException e) {
 			System.out.println(e);
@@ -538,7 +539,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -568,7 +569,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -598,7 +599,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -727,7 +728,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -750,7 +751,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -804,7 +805,7 @@ public class ClaimRecord {
 	        
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -831,7 +832,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -888,7 +889,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -918,7 +919,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -948,7 +949,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1011,7 +1012,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1041,7 +1042,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1077,7 +1078,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1104,7 +1105,7 @@ public class ClaimRecord {
 			
 		} catch(SDKException e) {
 			System.out.println(e);
-			assertEquals(true, true);
+			assertTrue(false);
 		} catch(Exception e) {
 			System.out.println(e);
 			OntTest.logger().error(e.toString());
@@ -1514,6 +1515,8 @@ public class ClaimRecord {
 	        
 	        OntTest.logger().step("decrypt mnemonic codes string");
 	        com.github.ontio.crypto.MnemonicCode.decryptMnemonicCodesStr(encryptedMnemonicCodesStr, password, "");
+	        
+	        assertTrue(false);
 	        						
 		} catch(SDKException e) {
 			System.out.println(e);
