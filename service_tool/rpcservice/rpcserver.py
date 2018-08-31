@@ -179,7 +179,6 @@ def withdrawong(**kwargs):
 
 @dispatcher.add_method
 def start_node(**kwargs):
-  os.system("rm -rf " + config.NODE_PATH + "/Chain")
   clear_chain=None
   clear_log=None
   node_args=None
@@ -203,9 +202,9 @@ def start_node(**kwargs):
       return False
 
   if clear_chain:
-    os.system("mv -f " + config.NODE_PATH + "/Chain" + " " + config.NODE_PATH + "/Chain_bak")
+    os.system("rm -rf " + config.NODE_PATH + "/Chain")
   if clear_log:
-    os.system("mv -f " + config.NODE_PATH + "/Log" + " " + config.NODE_PATH + "/Log_bak")
+    os.system("rm -rf " + config.NODE_PATH + "/Log")
 
   if node_args:
     cmd = "cd " + config.NODE_PATH + "\n";
