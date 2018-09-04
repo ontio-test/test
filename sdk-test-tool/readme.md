@@ -8,7 +8,7 @@
 Java version：1.7及以上
 
 ### 三、文档分布  
-关于本系统如何使用，请参考[**document/Ontology_JavaSDK自动测试介绍.pdf](https://github.com/ontio-test/test/blob/master/sdk-test-tool/document/Ontology_JavaSDK%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D.pdf)。  
+关于本系统如何使用，请参考[**document/Ontology_JavaSDK自动测试介绍.pdf**](https://github.com/ontio-test/test/blob/master/sdk-test-tool/document/Ontology_JavaSDK%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D.pdf)。  
 关于本系统的框架api及详细介绍，请参考[**document/ontology_JavaSDK各接口说明.pdf**](https://github.com/ontio-test/test/blob/master/sdk-test-tool/document/ontology_JavaSDK%E5%90%84%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E.pdf)。  
 
 
