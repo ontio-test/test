@@ -20,9 +20,9 @@ e)	LOG的记录
 平台：linux  
 Python版本：3x，2x  
 ### 三、文档分布  
-关于本系统如何使用，请参考ontology python测试框架基础使用介绍.pdf。  
-关于本系统的框架api及详细介绍，请参考ontology python测试框架api及测试用例详细介绍.pdf。  
-关于本系统的设计文档，请参考TN_ONT.pdf。
+关于本系统如何使用，请参考**document/ontology python测试框架基础使用介绍.pdf**。  
+关于本系统的框架api及详细介绍，请参考**document/ontology python测试框架api及测试用例详细介绍.pdf**。  
+关于本系统的设计文档，请参考**document/TN_ONT.pdf*。
 
 
 
