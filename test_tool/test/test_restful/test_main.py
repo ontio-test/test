@@ -35,7 +35,7 @@ class test_restful_1(ParametrizedTestCase):
 		
 	def tearDown(self):
 		logger.close(self.result())
-			
+	'''		
 	def test_base_001_getgenerateblocktime(self):
 		try:
 			API.node().stop_all_nodes()
@@ -46,7 +46,7 @@ class test_restful_1(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	'''
 		
 class test_restful_2(ParametrizedTestCase):
 	def setUp(self):
@@ -132,14 +132,14 @@ class test_restful_3(ParametrizedTestCase):
 		
 	def tearDown(self):
 		logger.close(self.result())
-		
+	'''	
 	def test_normal_002_getgenerateblocktime(self):
 		try:
 			(process, response) = API.restful().getgenerateblocktime()
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-		
+	'''	
 	def test_base_003_getconnectioncount(self):
 		try:
 			(process, response) = API.restful().getconnectioncount()

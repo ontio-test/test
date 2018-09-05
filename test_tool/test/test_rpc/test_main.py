@@ -256,14 +256,14 @@ class test_rpc_2(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-			
+	'''		
 	def test_abnormal_026_getgenerateblocktime(self):
 		try:
 			(process, response) = API.rpc().getgenerateblocktime()
 			self.ASSERT(process and (not response["result"]), "")
 		except Exception as e:
 			logger.print(e.args[0])
-	
+	'''
 	def test_base_027_getrawtransaction(self):
 		try:
 			(process, response) = API.rpc().getrawtransaction(test_config.m_txhash_right)

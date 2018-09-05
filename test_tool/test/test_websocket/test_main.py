@@ -227,7 +227,7 @@ class test_websocket_1(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	'''
 	def test_base_024_getgenerateblocktime(self):
 		try:
 			(process, response) = API.ws().getgenerateblocktime()
@@ -241,7 +241,7 @@ class test_websocket_1(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	'''
 	def test_base_026_getconnectioncount(self):
 		try:
 			(process, response) = API.ws().getconnectioncount()
