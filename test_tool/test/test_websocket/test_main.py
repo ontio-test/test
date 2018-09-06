@@ -785,6 +785,7 @@ class test_websocket_1(ParametrizedTestCase):
 	def test_abnormal_106_getsessioncount(self):
 		try:
 			API.node().stop_node(0)
+			time.sleep(5)
 			(process, response) = API.ws().getsessioncount()
 			API.node().start_node(0, Config.DEFAULT_NODE_ARGS)
 			time.sleep(5)

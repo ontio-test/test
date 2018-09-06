@@ -87,7 +87,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
 
             (process, response) = init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -98,7 +98,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
 
             (process, response) = init_admin(test_config.CONTRACT_ADDRESS_INCORRECT_1, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -110,7 +110,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
 
             (process, response) = init_admin(test_config.CONTRACT_ADDRESS_INCORRECT_2, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -120,7 +120,7 @@ class test_auth_1(ParametrizedTestCase):
     def test_abnormal_004_initContractAdmin(self):
         try:
             (process, response) = init_admin(test_config.CONTRACT_ADDRESS_INCORRECT_3, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -137,7 +137,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "41", "")
             else:
                 self.ASSERT(False, "")
@@ -149,7 +149,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_B)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -161,7 +161,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_C)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -173,7 +173,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_D)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -190,7 +190,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "41", "")
             else:
                 self.ASSERT(False, "")
@@ -202,7 +202,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_INCORRECT_10, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -214,7 +214,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_INCORRECT_11, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -226,7 +226,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_INCORRECT_12, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -243,7 +243,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "41", "")
             else:
                 self.ASSERT(False, "")
@@ -254,7 +254,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, "C", test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -266,7 +266,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_B,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -277,7 +277,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, "", test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -288,7 +288,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_B)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -300,7 +300,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_INCORRECT_1,
                                                               test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -310,7 +310,7 @@ class test_auth_1(ParametrizedTestCase):
     def test_abnormal_019_transfer(self):
         try:
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -322,7 +322,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_INCORRECT_5,
                                                               test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -334,7 +334,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_INCORRECT_6,
                                                               test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -345,7 +345,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -356,7 +356,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -367,7 +367,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_C)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -378,7 +378,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_D)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -389,7 +389,7 @@ class test_auth_1(ParametrizedTestCase):
         try:
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -401,7 +401,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               public_key=test_config.KEY_NO_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -413,7 +413,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -425,7 +425,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               public_key=test_config.KEY_NO_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -438,7 +438,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -451,7 +451,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_INCORRECT_4,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -464,7 +464,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_INCORRECT_5,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -477,7 +477,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_INCORRECT_6,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -490,7 +490,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -504,7 +504,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -517,7 +517,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_B, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A], node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -530,7 +530,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_C, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A], node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -544,7 +544,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_D, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A], node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -557,7 +557,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -573,7 +573,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -586,7 +586,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_INCORRECT_1,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -599,7 +599,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_INCORRECT_2,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -612,7 +612,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -625,7 +625,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_B, test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -642,7 +642,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A, test_config.FUNCTION_B,
                                                                    test_config.FUNCTION_C])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -658,7 +658,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -674,7 +674,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_INCORRECT_2,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -687,7 +687,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_D])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -700,7 +700,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A, test_config.FUNCTION_D])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -713,7 +713,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_role_function(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -727,7 +727,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A],
                                                                   public_key=test_config.KEY_NO_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -741,7 +741,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A],
                                                                   public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -755,7 +755,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ROLE_CORRECT,
                                                                   [test_config.FUNCTION_A],
                                                                   public_key=test_config.KEY_NO_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -770,7 +770,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -786,7 +786,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_INCORRECT_4,
                                                               test_config.ontID_A, test_config.ROLE_CORRECT,
                                                               [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -802,7 +802,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_INCORRECT_5,
                                                               test_config.ontID_A, test_config.ROLE_CORRECT,
                                                               [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -818,7 +818,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_INCORRECT_6,
                                                               test_config.ontID_A, test_config.ROLE_CORRECT,
                                                               [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -833,7 +833,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -849,7 +849,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_B)
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -866,7 +866,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A],
                                                               node_index=0)
             process = (response["result"]["Result"] == "00")
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -883,7 +883,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A],
                                                               node_index=0)
             process = (response["result"]["Result"] == "00")
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -900,7 +900,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A],
                                                               node_index=0)
             process = (response["result"]["Result"] == "00")
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -915,7 +915,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -930,7 +930,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_INCORRECT_3, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -945,7 +945,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_INCORRECT_1, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -961,7 +961,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT,
                                                               [test_config.ontID_A, test_config.ontID_B])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -978,7 +978,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT,
                                                               [test_config.ontID_A, test_config.ontID_B,
                                                                test_config.ontID_C])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -993,7 +993,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_D])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1008,7 +1008,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   [test_config.FUNCTION_A])
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1024,7 +1024,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A],
                                                               public_key=test_config.KEY_NO_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1040,7 +1040,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A],
                                                               public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1056,7 +1056,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().bind_user_role(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A],
                                                               public_key=test_config.KEY_NO_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1075,7 +1075,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1094,7 +1094,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1113,7 +1113,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1132,7 +1132,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1151,7 +1151,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1177,7 +1177,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_B, test_config.ontID_E,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1196,7 +1196,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_B, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1215,7 +1215,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_C, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1234,7 +1234,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1259,7 +1259,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1278,7 +1278,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_A,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1297,7 +1297,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_C,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1316,7 +1316,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_D,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1335,7 +1335,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1354,7 +1354,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_INCORRECT_3,
                                                                   test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1373,7 +1373,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_INCORRECT_1,
                                                                   test_config.PERIOD_CORRECT, test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1392,7 +1392,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1412,7 +1412,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT,
                                                                   test_config.PERIOD_INCORRECT_1,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1432,7 +1432,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT,
                                                                   test_config.PERIOD_INCORRECT_2,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1452,7 +1452,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT,
                                                                   test_config.PERIOD_INCORRECT_3,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1472,7 +1472,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT,
                                                                   test_config.PERIOD_INCORRECT_4,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1492,7 +1492,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT,
                                                                   test_config.PERIOD_INCORRECT_5,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1511,7 +1511,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1530,7 +1530,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_INCORRECT_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1549,7 +1549,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_INCORRECT_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1568,7 +1568,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_INCORRECT_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1587,7 +1587,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_INCORRECT_4)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1606,7 +1606,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1626,7 +1626,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT,
                                                                   public_key=test_config.KEY_NO_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1646,7 +1646,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT,
                                                                   public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1666,7 +1666,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ROLE_CORRECT, test_config.PERIOD_CORRECT,
                                                                   test_config.LEVEL_CORRECT,
                                                                   public_key=test_config.KEY_NO_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1688,7 +1688,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1710,7 +1710,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_INCORRECT_4,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1732,7 +1732,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_INCORRECT_5,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1754,7 +1754,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_INCORRECT_6,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1776,7 +1776,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1798,7 +1798,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_B, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1820,7 +1820,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1842,7 +1842,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_C, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1864,7 +1864,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_D, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT, node_index=0)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1886,7 +1886,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -1908,7 +1908,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_A,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1930,7 +1930,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_A,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1952,7 +1952,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_A,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1974,7 +1974,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_C,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -1996,7 +1996,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_D,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2018,7 +2018,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -2040,7 +2040,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_INCORRECT_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2062,7 +2062,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_INCORRECT_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2084,7 +2084,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_INCORRECT_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2106,7 +2106,7 @@ class test_auth_1(ParametrizedTestCase):
             (process, response) = API.native().withdraw_user_role(test_config.CONTRACT_ADDRESS_CORRECT,
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -2129,7 +2129,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT,
                                                                   public_key=test_config.KEY_NO_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2152,7 +2152,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT,
                                                                   public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2175,7 +2175,7 @@ class test_auth_1(ParametrizedTestCase):
                                                                   test_config.ontID_A, test_config.ontID_B,
                                                                   test_config.ROLE_CORRECT,
                                                                   public_key=test_config.KEY_NO_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2187,7 +2187,7 @@ class test_auth_1(ParametrizedTestCase):
             # init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_138, "contractA_Func_A",
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "01", "")
             else:
                 self.ASSERT(False, "")
@@ -2199,7 +2199,7 @@ class test_auth_1(ParametrizedTestCase):
             # init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_139, "contractA_Func_A",
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "323232", "")
             else:
                 self.ASSERT(True, "")
@@ -2216,7 +2216,7 @@ class test_auth_1(ParametrizedTestCase):
                                                               test_config.ROLE_CORRECT, [test_config.ontID_A])
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "41", "")
             else:
                 self.ASSERT(False, "")
@@ -2228,7 +2228,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A, public_key=test_config.KEY_NO_1)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2240,7 +2240,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A, public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
@@ -2252,7 +2252,7 @@ class test_auth_1(ParametrizedTestCase):
 
             (process, response) = invoke_function(test_config.CONTRACT_ADDRESS_CORRECT, test_config.FUNCTION_A,
                                                   test_config.ontID_A, public_key=test_config.KEY_NO_3)
-            if isinstance(response, dict) and response.get("result", False):
+            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")
