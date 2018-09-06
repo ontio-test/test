@@ -413,7 +413,7 @@ class test_auth_1(ParametrizedTestCase):
             init_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A)
             (process, response) = API.native().transfer_admin(test_config.CONTRACT_ADDRESS_CORRECT, test_config.ontID_A,
                                                               public_key=test_config.KEY_NO_2)
-            if isinstance(response, dict) and response.get("result", False) and isinstance(response.get("result", False), dict):
+            if isinstance(response, dict) and response.get("result", False):
                 self.ASSERT(response["result"]["Result"] == "00", "")
             else:
                 self.ASSERT(True, "")

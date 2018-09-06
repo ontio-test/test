@@ -196,8 +196,8 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_normal_020_consensus(self):
 		try:
-			m = 1
-			pubkey_array = [test_config.PUBLIC_KEY]
+			m = 2
+			pubkey_array = [test_config.PUBLIC_KEY, test_config.PUBLIC_KEY]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_A, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=0)
 			self.ASSERT(process, "test_normal_020_consensus failed")	
 		except Exception as e:
@@ -205,8 +205,8 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_normal_021_consensus(self):
 		try:
-			m = 1
-			pubkey_array = [test_config.PUBLIC_KEY]
+			m = 2
+			pubkey_array = [test_config.PUBLIC_KEY, test_config.PUBLIC_KEY]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_A, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=1)
 			self.ASSERT(process, "test_normal_021_consensus failed")	
 		except Exception as e:
@@ -214,8 +214,8 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_normal_022_consensus(self):
 		try:
-			m = 1
-			pubkey_array = [test_config.PUBLIC_KEY]
+			m = 2
+			pubkey_array = [test_config.PUBLIC_KEY, test_config.PUBLIC_KEY]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_C, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=2)
 			self.ASSERT(process, "test_normal_022_consensus failed")	
 		except Exception as e:
@@ -223,8 +223,8 @@ class test_consensus_1(ParametrizedTestCase):
 
 	def test_abnormal_023_consensus(self):
 		try:
-			m = 1
-			pubkey_array = [test_config.PUBLIC_KEY]
+			m = 2
+			pubkey_array = [test_config.PUBLIC_KEY, test_config.PUBLIC_KEY]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_C, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=0)
 			self.ASSERT(not process, "test_abnormal_023_consensus failed")	
 		except Exception as e:
@@ -473,7 +473,7 @@ class test_consensus_3(ParametrizedTestCase):
 	
 	def tearDown(self):
 		logger.close(self.result())
-	
+	'''
 	def test_normal_014_consensus(self):
 		process = False
 		try:
@@ -543,7 +543,7 @@ class test_consensus_3(ParametrizedTestCase):
 			self.ASSERT(response["result"]["Result"] != storage_value, "invoke_function get error...[2]")		
 		except Exception as e:
 			logger.print(e.args[0])
-
+	'''
 
 class test_consensus_4(ParametrizedTestCase):
 	
