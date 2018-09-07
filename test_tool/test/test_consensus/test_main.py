@@ -203,12 +203,12 @@ class test_consensus_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_normal_021_consensus(self):
+	def test_abnormal_021_consensus(self):
 		try:
 			m = 2
 			pubkey_array = [test_config.PUBLIC_KEY, test_config.PUBLIC_KEY_2]
 			(process, response) = test_api.multi_sig_transfer(test_config.m_contract_addr, test_config.ADDRESS_A, test_config.ADDRESS_B, test_config.AMOUNT, m, pubkey_array, node_index=1)
-			self.ASSERT(process, "test_normal_021_consensus failed")	
+			self.ASSERT(not process, "test_normal_021_consensus failed")
 		except Exception as e:
 			logger.print(e.args[0])
 
