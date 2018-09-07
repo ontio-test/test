@@ -73,6 +73,7 @@ class Config():
 
 	DEFAULT_GAS_PRICE = 0
 	DEFAULT_GAS_LIMIT = 1000000000
+	DEFAULT_MAX_AUTHORIZATION = 1000000000
 
 	RPC_HEADERS = {'content-type': 'application/json'}
 	#RPC CONFIG

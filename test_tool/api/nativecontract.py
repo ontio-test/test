@@ -387,7 +387,7 @@ class NativeApi:
                     "gas_price": gas_price,
                     "gas_limit": gas_limit,
                     "address": "0700000000000000000000000000000000000000",
-                    "method": "voteForPeer",
+                    "method": "authorizeForPeer",
                     "version": 0,
                     "params": [
                                 walletAddress,
@@ -417,7 +417,7 @@ class NativeApi:
                     "gas_price": gas_price,
                     "gas_limit": gas_limit,
                     "address": "0700000000000000000000000000000000000000",
-                    "method": "unVoteForPeer",
+                    "method": "unAuthorizeForPeer",
                     "version": 0,
                     "params": [
                         wallet_address,
@@ -674,6 +674,163 @@ class NativeApi:
         
         return CONTRACT_API.call_contract(Task(name="invoke_function_register", ijson=request), twice = True, sleep=sleep)
 
+    def change_max_authorization(self, pubKey, walletAddress, maxAuthorize, node_index=None, errorcode=0,
+                           gas_price=Config.DEFAULT_GAS_PRICE, gas_limit=Config.DEFAULT_GAS_LIMIT, sleep=5):
+        request = {
+            "REQUEST": {
+                "Qid": "t",
+                "Method": "signativeinvoketx",
+                "Params": {
+                    "gas_price": gas_price,
+                    "gas_limit": gas_limit,
+                    "address": "0700000000000000000000000000000000000000",
+                    "method": "changeMaxAuthorization",
+                    "version": 0,
+                    "params": [
+                        pubKey,
+                        walletAddress,
+                        maxAuthorize
+                    ]
+                }
+            },
+            "RESPONSE": {"error": errorcode}
+        }
+
+        if node_index != None:
+            request["NODE_INDEX"] = node_index
+        else:
+            for node in Config.NODES:
+                if node["address"] == walletAddress:
+                    request["NODE_INDEX"] = Config.NODES.index(node)
+                    break
+
+        return CONTRACT_API.call_contract(Task(name="change_max_authorization", ijson=request), twice=True, sleep=sleep)
+
+    def set_peer_cost(self, pubKey, walletAddress, peerCost, node_index=None, errorcode=0,
+                           gas_price=Config.DEFAULT_GAS_PRICE, gas_limit=Config.DEFAULT_GAS_LIMIT, sleep=5):
+        request = {
+            "REQUEST": {
+                "Qid": "t",
+                "Method": "signativeinvoketx",
+                "Params": {
+                    "gas_price": gas_price,
+                    "gas_limit": gas_limit,
+                    "address": "0700000000000000000000000000000000000000",
+                    "method": "setPeerCost",
+                    "version": 0,
+                    "params": [
+                        pubKey,
+                        walletAddress,
+                        peerCost
+                    ]
+                }
+            },
+            "RESPONSE": {"error": errorcode}
+        }
+
+        if node_index != None:
+            request["NODE_INDEX"] = node_index
+        else:
+            for node in Config.NODES:
+                if node["address"] == walletAddress:
+                    request["NODE_INDEX"] = Config.NODES.index(node)
+                    break
+
+        return CONTRACT_API.call_contract(Task(name="set_peer_cost", ijson=request), twice=True, sleep=sleep)
+
+    def withdraw_fee(self, walletAddress, node_index=None, errorcode=0,
+                           gas_price=Config.DEFAULT_GAS_PRICE, gas_limit=Config.DEFAULT_GAS_LIMIT, sleep=5):
+        request = {
+            "REQUEST": {
+                "Qid": "t",
+                "Method": "signativeinvoketx",
+                "Params": {
+                    "gas_price": gas_price,
+                    "gas_limit": gas_limit,
+                    "address": "0700000000000000000000000000000000000000",
+                    "method": "withdrawFee",
+                    "version": 0,
+                    "params": [
+                        walletAddress
+                    ]
+                }
+            },
+            "RESPONSE": {"error": errorcode}
+        }
+
+        if node_index != None:
+            request["NODE_INDEX"] = node_index
+        else:
+            for node in Config.NODES:
+                if node["address"] == walletAddress:
+                    request["NODE_INDEX"] = Config.NODES.index(node)
+                    break
+
+        return CONTRACT_API.call_contract(Task(name="withdraw_fee", ijson=request), twice=True, sleep=sleep)
+
+    def add_init_pos(self, pubKey, walletAddress, pos, node_index=None, errorcode=0,
+                           gas_price=Config.DEFAULT_GAS_PRICE, gas_limit=Config.DEFAULT_GAS_LIMIT, sleep=5):
+        request = {
+            "REQUEST": {
+                "Qid": "t",
+                "Method": "signativeinvoketx",
+                "Params": {
+                    "gas_price": gas_price,
+                    "gas_limit": gas_limit,
+                    "address": "0700000000000000000000000000000000000000",
+                    "method": "addInitPos",
+                    "version": 0,
+                    "params": [
+                        pubKey,
+                        walletAddress,
+                        pos
+                    ]
+                }
+            },
+            "RESPONSE": {"error": errorcode}
+        }
+
+        if node_index != None:
+            request["NODE_INDEX"] = node_index
+        else:
+            for node in Config.NODES:
+                if node["address"] == walletAddress:
+                    request["NODE_INDEX"] = Config.NODES.index(node)
+                    break
+
+        return CONTRACT_API.call_contract(Task(name="add_init_pos", ijson=request), twice=True, sleep=sleep)
+
+    def reduce_init_pos(self, pubKey, walletAddress, pos, node_index=None, errorcode=0,
+                           gas_price=Config.DEFAULT_GAS_PRICE, gas_limit=Config.DEFAULT_GAS_LIMIT, sleep=5):
+        request = {
+            "REQUEST": {
+                "Qid": "t",
+                "Method": "signativeinvoketx",
+                "Params": {
+                    "gas_price": gas_price,
+                    "gas_limit": gas_limit,
+                    "address": "0700000000000000000000000000000000000000",
+                    "method": "reduceInitPos",
+                    "version": 0,
+                    "params": [
+                        pubKey,
+                        walletAddress,
+                        pos
+                    ]
+                }
+            },
+            "RESPONSE": {"error": errorcode}
+        }
+
+        if node_index != None:
+            request["NODE_INDEX"] = node_index
+        else:
+            for node in Config.NODES:
+                if node["address"] == walletAddress:
+                    request["NODE_INDEX"] = Config.NODES.index(node)
+                    break
+
+        return CONTRACT_API.call_contract(Task(name="reduce_init_pos", ijson=request), twice=True, sleep=sleep)
 
 ##############################################
     def transferFrom_multi(self, put_address, amount, node_index = None,errorcode=0,public_key_Array=[], errorkey = "error", gas_price= Config.DEFAULT_GAS_PRICE, gas_limit = Config.DEFAULT_GAS_LIMIT, sleep=5):
