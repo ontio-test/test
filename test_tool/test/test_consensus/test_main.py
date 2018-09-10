@@ -575,7 +575,7 @@ class test_consensus_4(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	'''
 	def test_normal_034_consensus(self):
 		process = False
 		try:
@@ -602,7 +602,7 @@ class test_consensus_4(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-
+	'''
 
 if __name__ == '__main__':
     unittest.main()

@@ -162,10 +162,6 @@ class test_api:
 		
 		(process, response) = API.native().register_candidate(Config.NODES[new_node]["pubkey"], Config.NODES[new_node]["address"], str(init_pos), ByteToHex(bytes(Config.NODES[new_node]["ontid"], encoding = "utf8")), "1", new_node)
 		if not process:
-			return (process, response)	
-
-		(process, response) = API.native().change_max_authorization(Config.NODES[new_node]["pubkey"], Config.NODES[new_node]["address"], str(Config.DEFAULT_MAX_AUTHORIZATION), new_node)
-		if not process:
 			return (process, response)
 
 		(process, response) = API.native().approve_candidate(Config.NODES[new_node]["pubkey"])
