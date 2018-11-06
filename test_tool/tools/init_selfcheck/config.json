@@ -26,6 +26,6 @@
     },
 
     "test_config_path": "/home/ubuntu/ontology/sourceCode/test/test_tool/config.json",
-    "default_node_args": " --ws --rest --loglevel=0 --enableconsensus --networkid=6666  --gasprice 0 --gaslimit 20000 ",
+    "default_node_args": " --ws --rest --loglevel=0 --enable-consensus --networkid=6666  --gasprice 0 --gaslimit 20000 ",
     "test_service_path": "/home/ubuntu/ontology/test_service/rpcserver.py"
 }

@@ -69,6 +69,6 @@
 	}],
 	"MULTI_SIGNED_ADDRESS" : "AJroHBLRsfPTPQocSKjpADp4AKybg8GZuz",
 	"INIT_AMOUNT_ONG" : "1000000000000000",
-	"DEFAULT_NODE_ARGS" : "--ws --rest --loglevel=0 --enableconsensus --networkid=299  --gasprice=0 --gaslimit=20000 ",
+	"DEFAULT_NODE_ARGS" : "--ws --rest --loglevel=0 --enable-consensus --networkid=299  --gasprice=0 --gaslimit=20000 ",
 	"NODE_PATH" : "/home/ubuntu/ontology/node"
 }
