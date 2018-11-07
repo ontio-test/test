@@ -647,14 +647,15 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_normal_088_getsmartcodeeventbyhash(self):
-		try:
-			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[1]["address"], "100000000", 0, twice=True, check_state=True)
-			tx_hash_failed = response["txhash"]
-			(process, response) = API.ws().getsmartcodeeventbyhash(tx_hash_failed)
-			self.ASSERT(process, "")
-		except Exception as e:
-			logger.print(e.args[0])
+	# failed transaction do not return txhash
+	# def test_normal_088_getsmartcodeeventbyhash(self):
+	# 	try:
+	# 		(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[1]["address"], "100000000", 0, twice=True, check_state=True)
+	# 		tx_hash_failed = response["txhash"]
+	# 		(process, response) = API.ws().getsmartcodeeventbyhash(tx_hash_failed)
+	# 		self.ASSERT(process, "")
+	# 	except Exception as e:
+	# 		logger.print(e.args[0])
 
 	def test_abnormal_089_getsmartcodeeventbyhash(self):
 		try:
@@ -691,16 +692,17 @@ class test_websocket_1(ParametrizedTestCase):
 		except Exception as e:
 			logger.print(e.args[0])
 
-	def test_normal_094_getblockheightbytxhash(self):
-		try:
-			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[1]["address"], "100000000", 0, twice=True, check_state=False)
-			tx_hash_failed = response["txhash"]
-			API.node().wait_tx_result(tx_hash_failed)
-			(process, response) = API.ws().getblockheightbytxhash(tx_hash_failed)
-			self.ASSERT(process, "")
-		except Exception as e:
-			traceback.print_exc()
-			logger.print(e.args[0])
+	# failed transaction do not return txhash
+	# def test_normal_094_getblockheightbytxhash(self):
+	# 	try:
+	# 		(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[1]["address"], "100000000", 0, twice=True, check_state=False)
+	# 		tx_hash_failed = response["txhash"]
+	# 		API.node().wait_tx_result(tx_hash_failed)
+	# 		(process, response) = API.ws().getblockheightbytxhash(tx_hash_failed)
+	# 		self.ASSERT(process, "")
+	# 	except Exception as e:
+	# 		traceback.print_exc()
+	# 		logger.print(e.args[0])
 
 	def test_abnormal_095_getblockheightbytxhash(self):
 		try:
@@ -736,16 +738,17 @@ class test_websocket_1(ParametrizedTestCase):
 			self.ASSERT(process, "")
 		except Exception as e:
 			logger.print(e.args[0])
-	
-	def test_normal_100_getmerkleproof(self):
-		try:
-			(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[1]["address"], "100000000", 0, twice=True, check_state=False)
-			tx_hash_failed = response["txhash"]
-			API.node().wait_tx_result(tx_hash_failed)
-			(process, response) = API.ws().getmerkleproof(tx_hash_failed)
-			self.ASSERT(process, "")
-		except Exception as e:
-			logger.print(e.args[0])
+
+	# failed transaction do not return txhash
+	# def test_normal_100_getmerkleproof(self):
+	# 	try:
+	# 		(process, response) = API.native().transfer_ont(Config.NODES[0]["address"], Config.NODES[1]["address"], "100000000", 0, twice=True, check_state=False)
+	# 		tx_hash_failed = response["txhash"]
+	# 		API.node().wait_tx_result(tx_hash_failed)
+	# 		(process, response) = API.ws().getmerkleproof(tx_hash_failed)
+	# 		self.ASSERT(process, "")
+	# 	except Exception as e:
+	# 		logger.print(e.args[0])
 
 	def test_abnormal_101_getmerkleproof(self):
 		try:
